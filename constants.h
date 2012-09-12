@@ -75,10 +75,10 @@
 #define kSaveAccepted		@"Your trip has already been uploaded. Thank you."
 #define kSaveError			@"Your trip has been saved. Please try uploading again later."
 
-#define kInfoURL			@"http://www.sfcta.org/CycleTracksInfo"
-#define kInstructionsURL	@"http://www.sfcta.org/cycletrackshelp_v2.html"
+#define kInfoURL			@"http://cycleatlanta.org/CycleAtlantaInfo"
+#define kInstructionsURL	@"http://cycleatlanta.org/cycleatlantahelp.html"
 
-//#define kSaveURL			@"http://your-database-here/post/"
+#define kSaveURL			@"http://cycleatlanta.org/post/"
 
 #define kTripNotesPlaceholder	@"Comments"
 
