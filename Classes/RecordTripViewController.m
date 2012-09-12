@@ -70,7 +70,7 @@
            fromLocation:(CLLocation *)oldLocation
 {
 	// NSLog(@"location update: %@", [newLocation description]);
-	CLLocationDistance deltaDistance = [newLocation getDistanceFrom:oldLocation];
+	CLLocationDistance deltaDistance = [newLocation distanceFromLocation:oldLocation];
 	//NSLog(@"deltaDistance = %f", deltaDistance);
 	
 	if ( !didUpdateUserLocation )
@@ -251,7 +251,7 @@
 	// self.title = @"Record New Trip";
 	
 	// init map region to San Francisco
-	MKCoordinateRegion region = { { 37.7620, -122.4350 }, { 0.10825, 0.10825 } };
+	MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
 	[mapView setRegion:region animated:NO];
 	
 	// setup info button

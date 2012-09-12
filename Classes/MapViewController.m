@@ -264,7 +264,7 @@
 		NSLog(@"added %d unique GPS coordinates of %d to map", count, [sortedCoords count]);
 		
 		// add end point as a pin annotation
-		if ( last = [sortedCoords lastObject] )
+		if ( last == [sortedCoords lastObject] )
 		{
 			pin.last = YES;
 			pin.title = @"End";
@@ -300,15 +300,15 @@
 		}
 		else
 		{
-			// init map region to San Francisco
-			MKCoordinateRegion region = { { 37.7620, -122.4350 }, { 0.10825, 0.10825 } };
+			// init map region to Atlanta
+			MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
 			[mapView setRegion:region animated:NO];
 		}
 	}
 	else
 	{
-		// error: init map region to San Francisco
-		MKCoordinateRegion region = { { 37.7620, -122.4350 }, { 0.10825, 0.10825 } };
+		// error: init map region to Atlanta
+		MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
 		[mapView setRegion:region animated:NO];
 	}
 	

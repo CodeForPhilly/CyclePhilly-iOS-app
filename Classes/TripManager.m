@@ -210,7 +210,7 @@
 	CLLocation *nextLoc = [[CLLocation alloc] initWithLatitude:[next.latitude doubleValue] 
 													 longitude:[next.longitude doubleValue]];
 	
-	CLLocationDistance	deltaDist	= [nextLoc getDistanceFrom:prevLoc];
+	CLLocationDistance	deltaDist	= [nextLoc distanceFromLocation:prevLoc];
 	NSTimeInterval		deltaTime	= [next.recorded timeIntervalSinceDate:prev.recorded];
 	CLLocationDistance	newDist		= 0.;
 	
