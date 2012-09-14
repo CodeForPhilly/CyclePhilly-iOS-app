@@ -38,6 +38,7 @@
 #import "TripManager.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "constants.h"
 
 
 @implementation CycleTracksAppDelegate
@@ -45,7 +46,7 @@
 @synthesize window;
 @synthesize tabBarController;
 @synthesize uniqueIDHash;
-
+//@synthesize consentFor18;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -133,7 +134,10 @@
 	PersonalInfoViewController *vc	= (PersonalInfoViewController *)[nav topViewController];
 	vc.managedObjectContext			= context;
 	
-	
+
+    
+    
+    
 	// create a tab bar controller and init with nav controllers above
 	//tabBarController = [[UITabBarController alloc] initWithNibName:@"MainWindow.xib" bundle:nil];
 	

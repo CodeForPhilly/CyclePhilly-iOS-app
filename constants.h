@@ -47,6 +47,7 @@
 #define kStdButtonWidth			106.0
 #define kStdButtonHeight		40.0
 
+
 // error messages
 #define kConnectionError	@"Unable to reach server"
 #define kServerError		@"Failed to upload your trip. Please try again later."
@@ -57,6 +58,7 @@
 #define	kSavingTitle		@"Uploading Your Trip"
 #define kSuccessTitle		@"Transfer complete"
 #define kTripNotesTitle		@"Enter Comments Below"
+#define kConsentFor18Title  @"In order to send route data to Georgia Tech and the City of Atlanta, you must be at least 18."
 
 
 #define kInterruptedTitle		@"Recording Interrupted"
@@ -67,6 +69,7 @@
 #define kZeroDistanceMessage	@"Your trip distance estimates may need to be recalculated..."
 
 // alert messages
+#define kConsentFor18Message @"Are you at least 18 years old?"
 #define kBatteryMessage		@"Recording of your trip has been halted to preserve battery life."
 #define kConnecting			@"Contacting server..."
 #define kPreparingData		@"Preparing your trip data for transfer."

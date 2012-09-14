@@ -38,6 +38,7 @@
     UIWindow *window;
     UITabBarController *tabBarController;
 	NSString *uniqueIDHash;
+    //UIAlertView *consentFor18;
 }
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
@@ -47,6 +48,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) NSString *uniqueIDHash;
+//@property (nonatomic, retain) UIAlertView *consentFor18;
 
 - (NSString *)applicationDocumentsDirectory;
 - (void)initUniqueIDHash;

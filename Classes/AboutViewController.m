@@ -54,9 +54,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 	NSLog(@"About viewDidLoad");
 	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kInstructionsURL]]];
+    
+    /*_alreadyConsent18 = [[NSUserDefaults standardUserDefaults] boolForKey:@"alreadyConsent18"];
+    
+    if (!_alreadyConsent18) {
+        
+        [[NSUserDefaults standardUserDefaults] setBool: !_alreadyConsent18
+                                                forKey: @"alreadyConsent18"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle: kConsentFor18Title
+                                                             message: kConsentFor18Message
+                                                            delegate: self
+                                                   cancelButtonTitle: @"NO"
+                                                   otherButtonTitles: @"YES", nil]
+                                  autorelease];
+        [alertView show];
+    }*/
 }
 
 
@@ -85,5 +103,15 @@
     [super dealloc];
 }
 
+/*
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    _over18 = !(buttonIndex == 0);
+    [[NSUserDefaults standardUserDefaults] setBool: _over18 forKey:@"over18"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"User's age is over 18: %d", _over18);
+}*/
 
 @end

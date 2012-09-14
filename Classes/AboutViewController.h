@@ -30,8 +30,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AboutViewController : UIViewController <UIWebViewDelegate> {
+@interface AboutViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate> {
 	IBOutlet UIWebView	*webView;
+    Boolean _over18;
+    Boolean _alreadyConsent18;
 }
 
 @end

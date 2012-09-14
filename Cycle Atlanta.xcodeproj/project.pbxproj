@@ -96,8 +96,8 @@
 		64F826CC106B5F3E001413F8 /* ArrowButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F826CB106B5F3E001413F8 /* ArrowButton.png */; };
 		64FCC5B411352242000FA1B6 /* PersonalInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64FCC5B311352242000FA1B6 /* PersonalInfo.xib */; };
 		64FCC5B811352371000FA1B6 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 64FCC5B711352371000FA1B6 /* 20-gear2.png */; };
-		8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */; };
+		8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */; };
 		D0F29BCB153F2CC900C2C747 /* cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D0F29BCA153F2CC900C2C747 /* cancel_button.png */; };
 /* End PBXBuildFile section */
 
