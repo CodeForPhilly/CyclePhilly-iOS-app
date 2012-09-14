@@ -36,6 +36,8 @@
 #import "RecordTripViewController.h"
 #import "SavedTripsViewController.h"
 #import "TripManager.h"
+#import "NSString+MD5Addition.h"
+#import "UIDevice+IdentifierAddition.h"
 
 
 @implementation CycleTracksAppDelegate
@@ -225,7 +227,10 @@
 
 - (void)initUniqueIDHash
 {
-	unsigned char result[CC_MD5_DIGEST_LENGTH];
+    
+	self.uniqueIDHash = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]; // save for later.
+	NSLog(@"Hashed uniqueID: %@", uniqueIDHash);
+	/*unsigned char result[CC_MD5_DIGEST_LENGTH];
 	const char * uniqueIDStr = [[UIDevice currentDevice].uniqueIdentifier UTF8String];
 	CC_MD5(uniqueIDStr, strlen(uniqueIDStr), result);
 	NSString *uniqueID = [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
@@ -237,7 +242,7 @@
 	
 	NSLog(@"uniqueID: %@", [UIDevice currentDevice].uniqueIdentifier);	
 	NSLog(@"Hashed uniqueID: %@", uniqueID);
-	self.uniqueIDHash = uniqueID; // save for later.
+	self.uniqueIDHash = uniqueID; // save for later.*/
 }
 
 
