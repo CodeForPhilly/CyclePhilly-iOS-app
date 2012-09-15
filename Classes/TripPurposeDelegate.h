@@ -38,14 +38,14 @@
 #define kTripPurposeErrand		6
 #define kTripPurposeOther		7
 
-#define kTripPurposeCommuteIcon		@"commuter2.png"
-#define kTripPurposeSchoolIcon		@"school.tif"
-#define kTripPurposeWorkIcon		@"work-related.tif"
-#define kTripPurposeExerciseIcon	@"exercise.tif"
-#define kTripPurposeSocialIcon		@"social.tif"
-#define kTripPurposeShoppingIcon	@"shopping.tif"
-#define kTripPurposeErrandIcon		@"errands.tif"
-#define kTripPurposeOtherIcon		@"other.tif"
+#define kTripPurposeCommuteIcon		@"commute.png"
+#define kTripPurposeSchoolIcon		@"school.png"
+#define kTripPurposeWorkIcon		@"workRelated.png"
+#define kTripPurposeExerciseIcon	@"exercise.ong"
+#define kTripPurposeSocialIcon		@"social.png"
+#define kTripPurposeShoppingIcon	@"shopping.png"
+#define kTripPurposeErrandIcon		@"errands.png"
+#define kTripPurposeOtherIcon		@"other.png"
 
 #define kTripPurposeCommuteString	@"Commute"
 #define kTripPurposeSchoolString	@"School"
