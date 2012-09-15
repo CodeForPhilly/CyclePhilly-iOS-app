@@ -360,7 +360,7 @@
 		else if ( reuseIdentifier == kCellReuseIdentifierExclamation )
 		{
 			// add exclamation point
-			UIImage		*image		= [UIImage imageNamed:@"exclamation_point.png"];
+			UIImage		*image		= [UIImage imageNamed:@"failedUpload.png"];
 			UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
 			imageView.frame = CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
 			imageView.tag	= kTagImage;

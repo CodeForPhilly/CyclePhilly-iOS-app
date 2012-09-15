@@ -263,11 +263,11 @@
 	*/
 	
 	// Set up the buttons.
-	/*
+	
 	[self.view addSubview:[self createSaveButton]];
 	[self.view addSubview:[self createStartButton]];
-	[self.view addSubview:[self createLockButton]];
-	*/
+	//[self.view addSubview:[self createLockButton]];
+	
 	
 //	[self createCounter];
 
@@ -312,23 +312,29 @@
 // instantiate start button
 - (UIButton *)createStartButton
 {
-	if (startButton == nil)
-	{
-		// create a UIButton (UIButtonTypeRoundedRect)
-		startButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-		[startButton setBackgroundImage:[UIImage imageNamed:@"start_button.png"] forState:UIControlStateNormal];
-		startButton.frame = CGRectMake( 9.0, 181.0, kCustomButtonWidth, kCustomButtonHeight );
-		startButton.backgroundColor = [UIColor clearColor];
-		startButton.enabled = YES;
-		//startButton.hidden = YES;
-		
-		[startButton setTitle:@"Start" forState:UIControlStateNormal];
-		[startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-		startButton.titleLabel.font = [UIFont boldSystemFontOfSize: 24];
-		//startButton.titleLabel.shadowOffset = CGSizeMake (1.0, 1.0);
-		startButton.titleLabel.textColor = [UIColor whiteColor];
-		[startButton addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
-	}
+	//modified by cL
+    // create a UIButton (UIButtonTypeRoundedRect)
+    //startButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+    UIImage *buttonImage = [[UIImage imageNamed:@"greenButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"greenButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    
+    [startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [startButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    
+    //startButton.frame = CGRectMake( 9.0, 181.0, kCustomButtonWidth, kCustomButtonHeight );
+    startButton.backgroundColor = [UIColor clearColor];
+    startButton.enabled = YES;
+    //startButton.hidden = YES;
+    
+    [startButton setTitle:@"Start" forState:UIControlStateNormal];
+    [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    startButton.titleLabel.font = [UIFont boldSystemFontOfSize: 24];
+    startButton.titleLabel.shadowOffset = CGSizeMake (0, 0);
+    startButton.titleLabel.textColor = [UIColor whiteColor];
+    [startButton addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
+    
 	return startButton;
 }
 
@@ -336,23 +342,28 @@
 // instantiate save button
 - (UIButton *)createSaveButton
 {
-	if (saveButton == nil)
-	{
-		// create a UIButton (UIButtonTypeRoundedRect)
-		saveButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-		[saveButton setBackgroundImage:[UIImage imageNamed:@"save_button.png"] forState:UIControlStateNormal];
-		saveButton.frame = CGRectMake( 9.0, 240.0, kCustomButtonWidth, kCustomButtonHeight );
-		saveButton.backgroundColor = [UIColor clearColor];
-		saveButton.enabled = NO;
-		//saveButton.hidden = YES;
-		
-		[saveButton setTitle:@"Save" forState:UIControlStateNormal];
-		[saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-		saveButton.titleLabel.font = [UIFont boldSystemFontOfSize: 24];
-		//saveButton.titleLabel.shadowOffset = CGSizeMake (1.0, 1.0);
-		saveButton.titleLabel.textColor = [UIColor whiteColor];
-		[saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-	}
+	//modified by cL
+    //saveButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    UIImage *buttonImage = [[UIImage imageNamed:@"blueButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"blueButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageDisabled = [[UIImage imageNamed:@"greyButton.png"]
+                                    resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    [saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [saveButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    [saveButton setBackgroundImage:buttonImageDisabled forState:UIControlStateDisabled];
+    
+    saveButton.enabled = NO;
+    //saveButton.hidden = YES;
+    
+    [saveButton setTitle:@"Save" forState:UIControlStateNormal];
+    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    saveButton.titleLabel.font = [UIFont boldSystemFontOfSize: 22];
+    saveButton.titleLabel.shadowOffset = CGSizeMake (0, 0);
+    saveButton.titleLabel.textColor = [UIColor whiteColor];
+    [saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    
 	return saveButton;
 }
 
@@ -396,7 +407,14 @@
 	// reset button states
 	recording = NO;
 	startButton.enabled = YES;
-    [startButton setBackgroundImage:[UIImage imageNamed:@"start_button.png"] forState:UIControlStateNormal];
+    UIImage *buttonImage = [[UIImage imageNamed:@"greenButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"greenButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    
+    [startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [startButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    //[startButton setBackgroundImage:[UIImage imageNamed:@"start_button.png"] forState:UIControlStateNormal];
     [startButton setTitle:@"Start" forState:UIControlStateNormal];
 	saveButton.enabled = NO;
 	
@@ -640,8 +658,15 @@
 	reminderManager = [[ReminderManager alloc] initWithRecordingInProgressDelegate:self];
 	
 	// Toggle start button
-	[startButton setBackgroundImage:[UIImage imageNamed:@"cancel_button.png"] forState:UIControlStateNormal];
-    [startButton setTitle:@"Cancel" forState:UIControlStateNormal];    
+    // modified by cL
+    UIImage *buttonImage = [[UIImage imageNamed:@"redButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"redButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    [startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [startButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    //[startButton setBackgroundImage:[UIImage imageNamed:@"cancel_button.png"] forState:UIControlStateNormal];
+    [startButton setTitle:@"Cancel" forState:UIControlStateNormal];
 	
 	// enable save button
 	saveButton.enabled = YES;
