@@ -47,6 +47,7 @@
 @synthesize tabBarController;
 @synthesize uniqueIDHash;
 //@synthesize consentFor18;
+@synthesize isRecording;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -267,6 +268,25 @@
 			abort();
         } 
     }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *) application
+{
+    CycleTracksAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if(appDelegate.isRecording){
+        NSLog(@"BACKGROUNDED and recording"); //set location service to startUpdatingLocation
+        [locationManager startUpdatingLocation];
+    } else {
+        NSLog(@"BACKGROUNDED and sitting idle"); //set location service to startMonitoringSignificantLocationChanges
+        [locationManager stopUpdatingLocation];
+        //[self.locationManager startMonitoringSignificantLocationChanges];
+    }
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *) application
+{
+    //always turnon location updating when active.
+    [locationManager startUpdatingLocation];
 }
 
 

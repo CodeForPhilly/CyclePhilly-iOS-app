@@ -42,27 +42,27 @@
 
 @implementation RecordTripViewController
 
-@synthesize locationManager, tripManager, reminderManager;
+@synthesize tripManager, reminderManager;
 @synthesize infoButton, saveButton, startButton, parentView;
 @synthesize timer, timeCounter, distCounter;
 @synthesize recording, shouldUpdateCounter, userInfoSaved;
-
+@synthesize appDelegate;
 
 #pragma mark CLLocationManagerDelegate methods
 
 
 - (CLLocationManager *)getLocationManager {
-	
-    if (locationManager != nil) {
-        return locationManager;
+	appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.locationManager != nil) {
+        return appDelegate.locationManager;
     }
 	
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    appDelegate.locationManager = [[CLLocationManager alloc] init];
+    appDelegate.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     //locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    locationManager.delegate = self;
-	
-    return locationManager;
+    appDelegate.locationManager.delegate = self;
+    
+    return appDelegate.locationManager;
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -272,7 +272,8 @@
 //	[self createCounter];
 
 	
-
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isRecording = NO;
 	self.recording = NO;
 	self.shouldUpdateCounter = NO;
 	
@@ -405,6 +406,8 @@
 - (void)resetRecordingInProgress
 {
 	// reset button states
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isRecording = NO;
 	recording = NO;
 	startButton.enabled = YES;
     UIImage *buttonImage = [[UIImage imageNamed:@"greenButton.png"]
@@ -472,7 +475,9 @@
 		case 0: // push Trip Purpose picker
 			// stop recording new GPS data points
 		{
-			recording = NO;
+            appDelegate = [[UIApplication sharedApplication] delegate];
+            appDelegate.isRecording = NO;
+            recording = NO;
 			
 			// update UI
 			saveButton.enabled = NO;
@@ -531,7 +536,9 @@
 					[self setCounterTimeSince:tripManager.trip.start
 									 distance:[tripManager getDistanceEstimate]];
 
-					startButton.enabled = YES;					
+					startButton.enabled = YES;
+                    //HERE
+                    [startButton setTitle:@"Continue" forState:UIControlStateNormal];
 					break;
 			}
 		}
@@ -673,6 +680,8 @@
 	saveButton.hidden = NO;
 	
 	// set recording flag so future location updates will be added as coords
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isRecording = YES;
 	recording = YES;
 	
 	// update "Touch start to begin text"
@@ -888,7 +897,7 @@
 
 - (void)viewDidUnload {
     //self.coords = nil;
-    self.locationManager = nil;
+    appDelegate.locationManager = nil;
     self.startButton = nil;
 }
 
@@ -927,7 +936,7 @@
 - (void)dealloc {
     [managedObjectContext release];
     //[coords release];
-    [locationManager release];
+    [appDelegate.locationManager release];
     [startButton release];
     [super dealloc];
 }
@@ -1019,6 +1028,8 @@ shouldSelectViewController:(UIViewController *)viewController
 - (void)didCancelPurpose
 {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isRecording = YES;
 	recording = YES;
 	saveButton.enabled = YES;
 	shouldUpdateCounter = YES;
@@ -1030,7 +1041,9 @@ shouldSelectViewController:(UIViewController *)viewController
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	
 	// update UI
-	recording = NO;	
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isRecording = NO;
+	recording = NO;
 	saveButton.enabled = NO;
 	startButton.enabled = YES;
 	[self resetTimer];
