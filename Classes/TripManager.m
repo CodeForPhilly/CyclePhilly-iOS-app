@@ -467,7 +467,7 @@
 		NSLog(@"TripManager setSaved error %@, %@", error, [error localizedDescription]);
 	}
 	else
-		NSLog(@"Saved trip: %@ (%.0fm, %.0fs)", trip.purpose, trip.distance, trip.duration );
+		NSLog(@"Saved trip: %@ (%.0fm, %.0fs)", trip.purpose, [trip.distance doubleValue], [trip.duration doubleValue]);
 
 	dirty = YES;
 	
@@ -671,7 +671,7 @@
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
-          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 	
 	[activityDelegate dismissSaving];
 	[activityDelegate stopAnimating];
