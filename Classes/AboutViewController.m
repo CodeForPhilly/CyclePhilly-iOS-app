@@ -57,7 +57,13 @@
     
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 	NSLog(@"About viewDidLoad");
-	[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kInstructionsURL]]];
+    //loads the instructions page everytime the app is started. good for testing.
+    NSURL *url = [NSURL URLWithString:kInstructionsURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [webView loadRequest:request];
+    //loads the instructions page once and saves it unless the app is deleted
+	//[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kInstructionsURL]]];
     
     /*_alreadyConsent18 = [[NSUserDefaults standardUserDefaults] boolForKey:@"alreadyConsent18"];
     
