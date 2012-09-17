@@ -275,10 +275,11 @@
     CycleTracksAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if(appDelegate.isRecording){
         NSLog(@"BACKGROUNDED and recording"); //set location service to startUpdatingLocation
-        [locationManager startUpdatingLocation];
+        [appDelegate.locationManager startUpdatingLocation];
     } else {
         NSLog(@"BACKGROUNDED and sitting idle"); //set location service to startMonitoringSignificantLocationChanges
-        [locationManager stopUpdatingLocation];
+        [appDelegate.locationManager stopUpdatingLocation];
+        NSLog(@"location service is: %@", locationManager);
         //[self.locationManager startMonitoringSignificantLocationChanges];
     }
 }
