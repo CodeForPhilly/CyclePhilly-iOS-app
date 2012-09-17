@@ -279,15 +279,16 @@
     } else {
         NSLog(@"BACKGROUNDED and sitting idle"); //set location service to startMonitoringSignificantLocationChanges
         [appDelegate.locationManager stopUpdatingLocation];
-        NSLog(@"location service is: %@", locationManager);
-        //[self.locationManager startMonitoringSignificantLocationChanges];
+        //[appDelegate.locationManager startMonitoringSignificantLocationChanges];
     }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *) application
 {
     //always turnon location updating when active.
-    [locationManager startUpdatingLocation];
+    CycleTracksAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //[appDelegate.locationManager stoptMonitoringSignificantLocationChanges];
+    [appDelegate.locationManager startUpdatingLocation];
 }
 
 
