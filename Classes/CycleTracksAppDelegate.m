@@ -48,6 +48,7 @@
 @synthesize uniqueIDHash;
 //@synthesize consentFor18;
 @synthesize isRecording;
+@synthesize locationManager;
 
 #pragma mark -
 #pragma mark Application lifecycle

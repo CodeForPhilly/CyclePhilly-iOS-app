@@ -35,7 +35,7 @@
 @class User;
 
 
-@interface PersonalInfoViewController : UITableViewController <UITextFieldDelegate>
+@interface PersonalInfoViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
 {
 	id <PersonalInfoDelegate> delegate;
 	NSManagedObjectContext *managedObjectContext;
@@ -47,6 +47,11 @@
 	UITextField *homeZIP;
 	UITextField *workZIP;
 	UITextField *schoolZIP;
+    NSArray *genderArray;
+    UIToolbar *doneToolbar;
+    UIActionSheet *actionSheet;
+    UIPickerView *pickerView;
+    UITextField *currentTextField;
 	
 	NSNumber	*cyclingFreq;
 }
@@ -55,6 +60,8 @@
 @property (nonatomic, retain) id <PersonalInfoDelegate> delegate;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) NSArray *genderArray;
+@property (strong, nonatomic) UIToolbar *doneToolbar;
 
 @property (nonatomic, retain) UITextField	*age;
 @property (nonatomic, retain) UITextField	*email;
@@ -71,6 +78,5 @@
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
 
 - (void)done;
-
 
 @end

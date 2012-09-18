@@ -39,6 +39,8 @@
 @synthesize delegate, managedObjectContext, user;
 @synthesize age, email, gender, homeZIP, workZIP, schoolZIP, cyclingFreq;
 
+@synthesize genderArray,doneToolbar;
+
 
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -80,8 +82,6 @@
 	textField.borderStyle = UITextBorderStyleRoundedRect;
 	textField.textAlignment = UITextAlignmentRight;
 	textField.placeholder = @"";
-	textField.keyboardType = UIKeyboardTypeDefault;
-	textField.returnKeyType = UIReturnKeyDone;
 	textField.delegate = self;
 	return textField;
 }
@@ -137,7 +137,16 @@
 
 	// Set the title.
 	// self.title = @"Personal Info";
-	
+    
+    genderArray = [[NSArray alloc]initWithObjects:@"", @"Female",@"Male", nil];
+    
+    CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
+    pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    pickerView.showsSelectionIndicator = YES;
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    
+    
 	// initialize text fields
 	self.age		= [self initTextFieldNumeric];
 	self.email		= [self initTextFieldEmail];
@@ -206,6 +215,53 @@
 
 #pragma mark UITextFieldDelegate methods
 
+/*-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if(textField ==gender){
+        return NO;// Hide both keyboard and blinking cursor.
+    }
+    else{
+        return YES;
+    }
+}*/
+- (void)textFieldDidBeginEditing:(UITextField *)myTextField{
+    
+    currentTextField = myTextField;
+    
+    if(myTextField == gender){
+        [myTextField resignFirstResponder];
+        
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
+        
+        [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+        
+        [actionSheet addSubview:pickerView];
+        
+        doneToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        doneToolbar.barStyle = UIBarStyleBlackOpaque;
+        [doneToolbar sizeToFit];
+        
+        NSMutableArray *barItems = [[NSMutableArray alloc] init];
+        
+        UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        [barItems addObject:flexSpace];
+        
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+        [barItems addObject:doneBtn];
+        
+        UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
+        [barItems addObject:cancelBtn];
+        
+        [doneToolbar setItems:barItems animated:YES];
+        
+        [actionSheet addSubview:doneToolbar];
+        
+        [actionSheet addSubview:pickerView];
+        
+        [actionSheet showInView:self.view];
+        
+        [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+    }
+}
 
 // the user pressed the "Done" button, so dismiss the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -602,10 +658,36 @@
 */
 
 
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    return [genderArray count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [genderArray objectAtIndex:row];
+}
+
+- (void)doneButtonPressed:(id)sender{
+    NSInteger genderRow;
+    genderRow = [pickerView selectedRowInComponent:0];
+    if(currentTextField == gender){
+        NSString *genderSelect = [genderArray objectAtIndex:genderRow];
+        gender.text = genderSelect;
+    }
+    [actionSheet dismissWithClickedButtonIndex:1 animated:YES];
+}
+
+- (void)cancelButtonPressed:(id)sender{
+    [actionSheet dismissWithClickedButtonIndex:1 animated:YES];
+}
+
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end
 
