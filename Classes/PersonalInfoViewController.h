@@ -44,33 +44,53 @@
 	UITextField *age;
 	UITextField *email;
 	UITextField *gender;
+    UITextField *ethnicity;
+    UITextField *income;
 	UITextField *homeZIP;
 	UITextField *workZIP;
 	UITextField *schoolZIP;
-    NSArray *genderArray;
+    UITextField *cyclingFreq;
+    UITextField *riderType;
+    UITextField *riderHistory;
     UIToolbar *doneToolbar;
     UIActionSheet *actionSheet;
     UIPickerView *pickerView;
     UITextField *currentTextField;
-	
-	NSNumber	*cyclingFreq;
+    
+    NSArray *genderArray;
+    NSArray *ageArray;
+    NSArray *ethnicityArray;
+    NSArray *incomeArray;
+    NSArray *cyclingFreqArray;
+    NSArray *riderTypeArray;
+    NSArray *riderHistoryArray;
+    
+    NSInteger ageSelectedRow;
+    NSInteger genderSelectedRow;
+    NSInteger ethnicitySelectedRow;
+    NSInteger incomeSelectedRow;
+    NSInteger cyclingFreqSelectedRow;
+    NSInteger riderTypeSelectedRow;
+    NSInteger riderHistorySelectedRow;
 }
 
 
 @property (nonatomic, retain) id <PersonalInfoDelegate> delegate;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) User *user;
-@property (nonatomic, retain) NSArray *genderArray;
-@property (strong, nonatomic) UIToolbar *doneToolbar;
 
 @property (nonatomic, retain) UITextField	*age;
 @property (nonatomic, retain) UITextField	*email;
 @property (nonatomic, retain) UITextField	*gender;
+@property (nonatomic, retain) UITextField   *ethnicity;
+@property (nonatomic, retain) UITextField   *income;
 @property (nonatomic, retain) UITextField	*homeZIP;
 @property (nonatomic, retain) UITextField	*workZIP;
 @property (nonatomic, retain) UITextField	*schoolZIP;
 
-@property (nonatomic, retain) NSNumber		*cyclingFreq;
+@property (nonatomic, retain) UITextField   *cyclingFreq;
+@property (nonatomic, retain) UITextField   *riderType;
+@property (nonatomic, retain) UITextField   *riderHistory;
 
 //- (void)initTripManager:(TripManager*)manager;
 

@@ -41,7 +41,7 @@
 #define kTripPurposeCommuteIcon		@"commute.png"
 #define kTripPurposeSchoolIcon		@"school.png"
 #define kTripPurposeWorkIcon		@"workRelated.png"
-#define kTripPurposeExerciseIcon	@"exercise.ong"
+#define kTripPurposeExerciseIcon	@"exercise.png"
 #define kTripPurposeSocialIcon		@"social.png"
 #define kTripPurposeShoppingIcon	@"shopping.png"
 #define kTripPurposeErrandIcon		@"errands.png"

@@ -37,7 +37,11 @@
 @dynamic age;
 @dynamic email;
 @dynamic gender;
+@dynamic ethnicity;
+@dynamic income;
 @dynamic cyclingFreq;
+@dynamic rider_type;
+@dynamic rider_history;
 @dynamic schoolZIP;
 @dynamic workZIP;
 @dynamic homeZIP;

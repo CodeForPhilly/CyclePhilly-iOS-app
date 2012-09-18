@@ -37,9 +37,8 @@
 @implementation PersonalInfoViewController
 
 @synthesize delegate, managedObjectContext, user;
-@synthesize age, email, gender, homeZIP, workZIP, schoolZIP, cyclingFreq;
-
-@synthesize genderArray,doneToolbar;
+@synthesize age, email, gender, ethnicity, income, homeZIP, workZIP, schoolZIP;
+@synthesize cyclingFreq, riderType, riderHistory;
 
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -81,7 +80,18 @@
 	UITextField *textField = [[UITextField alloc] initWithFrame:frame];
 	textField.borderStyle = UITextBorderStyleRoundedRect;
 	textField.textAlignment = UITextAlignmentRight;
-	textField.placeholder = @"";
+	textField.placeholder = @"Choose one";
+	textField.delegate = self;
+	return textField;
+}
+
+- (UITextField*)initTextFieldBeta
+{
+	CGRect frame = CGRectMake( 152, 7, 138, 29 );
+	UITextField *textField = [[UITextField alloc] initWithFrame:frame];
+	textField.borderStyle = UITextBorderStyleRoundedRect;
+	textField.textAlignment = UITextAlignmentRight;
+	textField.placeholder = @"Choose one";
 	textField.delegate = self;
 	return textField;
 }
@@ -94,7 +104,7 @@
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone,
 	textField.borderStyle = UITextBorderStyleRoundedRect;
 	textField.textAlignment = UITextAlignmentRight;
-	textField.placeholder = @"";
+	textField.placeholder = @"***@***";
 	textField.keyboardType = UIKeyboardTypeEmailAddress;
 	textField.returnKeyType = UIReturnKeyDone;
 	textField.delegate = self;
@@ -138,7 +148,20 @@
 	// Set the title.
 	// self.title = @"Personal Info";
     
-    genderArray = [[NSArray alloc]initWithObjects:@"", @"Female",@"Male", nil];
+    genderArray = [[NSArray alloc]initWithObjects: @"", @"Female",@"Male", nil];
+    
+    ageArray = [[NSArray alloc]initWithObjects: @"", @"Less than 18", @"18-24", @"25-34", @"35-44", @"45-54", @"55-64", @"65+", nil];
+    
+    ethnicityArray = [[NSArray alloc]initWithObjects: @"", @"White", @"African American", @"Asian", @"Native American", @"Pacific Islander", @"Multi-racial", @"Hispanic / Mexican / Latino", @"Other", nil];
+    
+    incomeArray = [[NSArray alloc]initWithObjects: @"", @"Less than $20,000", @"$20,000 to $39,999", @"$40,000 to $59,999", @"$60,000 to $74,999", @"$75,000 to $99,999", @"$100,000 or greater", nil];
+    
+    cyclingFreqArray = [[NSArray alloc]initWithObjects: @"", @"Less than once a month", @"Several times per month", @"Several times per week", @"Daily", nil];
+    
+    riderTypeArray = [[NSArray alloc]initWithObjects: @"", @"Strong & fearless", @"Enthused & confident", @"Comfortable, but cautious", @"Interested, but concerned", nil];
+    
+    riderHistoryArray = [[NSArray alloc]initWithObjects: @"", @"Since childhood", @"Several years", @"One year or less", @"Just trying it out / just started", nil];
+    
     
     CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
     pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
@@ -148,12 +171,17 @@
     
     
 	// initialize text fields
-	self.age		= [self initTextFieldNumeric];
+	self.age		= [self initTextFieldAlpha];
 	self.email		= [self initTextFieldEmail];
 	self.gender		= [self initTextFieldAlpha];
+    self.ethnicity  = [self initTextFieldAlpha];
+    self.income     = [self initTextFieldAlpha];
 	self.homeZIP	= [self initTextFieldNumeric];
 	self.workZIP	= [self initTextFieldNumeric];
 	self.schoolZIP	= [self initTextFieldNumeric];
+    self.cyclingFreq = [self initTextFieldBeta];
+    self.riderType  =  [self initTextFieldBeta];
+    self.riderHistory =[self initTextFieldBeta];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -193,17 +221,24 @@
 		age.text		= user.age;
 		email.text		= user.email;
 		gender.text		= user.gender;
+        ethnicity.text  = [ethnicityArray objectAtIndex:[user.ethnicity integerValue]];
+        income.text     = [incomeArray objectAtIndex:[user.income integerValue]];
 		homeZIP.text	= user.homeZIP;
 		workZIP.text	= user.workZIP;
 		schoolZIP.text	= user.schoolZIP;
+        
+        
+        cyclingFreq.text = [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]];
+        riderType.text = [riderTypeArray objectAtIndex:[user.rider_type integerValue]];
+        riderHistory.text = [riderHistoryArray objectAtIndex:[user.rider_history integerValue]];
 		
 		// init cycling frequency
-		NSLog(@"init cycling freq: %d", [user.cyclingFreq intValue]);
-		cyclingFreq		= [NSNumber numberWithInt:[user.cyclingFreq intValue]];
+		//NSLog(@"init cycling freq: %d", [user.cyclingFreq intValue]);
+		//cyclingFreq		= [NSNumber numberWithInt:[user.cyclingFreq intValue]];
 		
-		if ( !([user.cyclingFreq intValue] > kMaxCyclingFreq) )
-			[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[user.cyclingFreq integerValue] 
-																					  inSection:2]];
+		//if ( !([user.cyclingFreq intValue] > kMaxCyclingFreq) )
+		//	[self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[user.cyclingFreq integerValue]
+        //    inSection:2]];
 	}
 	else
 		NSLog(@"init FAIL");
@@ -227,7 +262,7 @@
     
     currentTextField = myTextField;
     
-    if(myTextField == gender){
+    if(myTextField == gender || myTextField == age || myTextField == ethnicity || myTextField == income || myTextField == cyclingFreq || myTextField == riderType || myTextField == riderHistory){
         [myTextField resignFirstResponder];
         
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
@@ -255,11 +290,16 @@
         
         [actionSheet addSubview:doneToolbar];
         
+        [pickerView selectRow:0 inComponent:0 animated:NO];
+        
+        [pickerView reloadAllComponents];
+        
         [actionSheet addSubview:pickerView];
         
         [actionSheet showInView:self.view];
         
         [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+
     }
 }
 
@@ -283,7 +323,7 @@
 		if ( textField == age )
 		{
 			NSLog(@"saving age: %@", age.text);
-			[user setAge:age.text];
+			[user setAge:[NSString stringWithFormat:@"%d",ageSelectedRow]];
 		}
 		if ( textField == email )
 		{
@@ -293,7 +333,17 @@
 		if ( textField == gender )
 		{
 			NSLog(@"saving gender: %@", gender.text);
-			[user setGender:gender.text];
+			[user setGender:[NSString stringWithFormat:@"%d",genderSelectedRow]];
+		}
+        if ( textField == ethnicity )
+		{
+			NSLog(@"saving ethnicity: %@", [ethnicityArray objectAtIndex:[user.ethnicity integerValue]]);
+			[user setEthnicity:user.ethnicity];
+		}
+        if ( textField == income )
+		{
+			NSLog(@"saving income: %@", [incomeArray objectAtIndex:[user.income integerValue]]);
+			[user setIncome:user.income];
 		}
 		if ( textField == homeZIP )
 		{
@@ -310,6 +360,21 @@
 			NSLog(@"saving workZIP: %@", workZIP.text);
 			[user setWorkZIP:workZIP.text];
 		}
+        if ( textField == cyclingFreq )
+		{
+			NSLog(@"saving cyclingFreq: %@", [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]]);
+			[user setCyclingFreq:user.cyclingFreq];
+		}
+        if ( textField == riderType )
+		{
+			NSLog(@"saving rider type: %@", [riderTypeArray objectAtIndex:[user.rider_type integerValue]]);
+			[user setRider_type:user.rider_type];
+		}
+        if ( textField == riderHistory )
+		{
+			NSLog(@"saving rider history: %@", [riderHistoryArray objectAtIndex:[user.rider_history integerValue]]);
+			[user setRider_history:user.rider_history];
+		}
 		
 		NSError *error;
 		if (![managedObjectContext save:&error]) {
@@ -325,13 +390,19 @@
 	if ( user != nil )
 	{
 		NSLog(@"saving age: %@", age.text);
-		[user setAge:age.text];
+		[user setAge:[NSString stringWithFormat:@"%d",ageSelectedRow]];
 
 		NSLog(@"saving email: %@", email.text);
 		[user setEmail:email.text];
 
 		NSLog(@"saving gender: %@", gender.text);
-		[user setGender:gender.text];
+		[user setGender:[NSString stringWithFormat:@"%d",genderSelectedRow]];
+        
+        NSLog(@"saving ethnicity: %@", [ethnicityArray objectAtIndex:[user.ethnicity integerValue]]);
+        [user setEthnicity:user.ethnicity];
+        
+        NSLog(@"saving income: %@", [incomeArray objectAtIndex:[user.income integerValue]]);
+        [user setIncome:user.income];
 
 		NSLog(@"saving homeZIP: %@", homeZIP.text);
 		[user setHomeZIP:homeZIP.text];
@@ -341,9 +412,18 @@
 
 		NSLog(@"saving workZIP: %@", workZIP.text);
 		[user setWorkZIP:workZIP.text];
+        
+        NSLog(@"saving cycle freq: %@", [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]]);
+        [user setCyclingFreq:user.cyclingFreq];
+        
+        NSLog(@"saving rider type: %@", [riderTypeArray objectAtIndex:[user.rider_type integerValue]]);
+        [user setRider_type:user.rider_type];
+        
+        NSLog(@"saving rider history: %@", [riderHistoryArray objectAtIndex:[user.rider_history integerValue]]);
+        [user setRider_history:user.rider_history];
 		
-		NSLog(@"saving cycling freq: %d", [cyclingFreq intValue]);
-		[user setCyclingFreq:cyclingFreq];
+		//NSLog(@"saving cycling freq: %d", [cyclingFreq intValue]);
+		//[user setCyclingFreq:cyclingFreq];
 
 		NSError *error;
 		if (![managedObjectContext save:&error]) {
@@ -408,21 +488,26 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 5;
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
-		default:
 			return @"Tell us about yourself";
 			break;
 		case 1:
 			return @"Your typical commute";
 			break;
 		case 2:
-			return @"Your cycling frequency";
+			return @"How often do you cycle?";
+			break;
+        case 3:
+			return @"What kind of rider are you?";
+			break;
+        case 4:
+			return @"How long have you cycle?";
 			break;
 	}
 }
@@ -434,13 +519,19 @@
 	switch ( section )
 	{
 		case 0:
-			return 3;
+			return 5;
 			break;
 		case 1:
 			return 3;
 			break;
 		case 2:
-			return 4;
+			return 1;
+			break;
+        case 3:
+			return 1;
+			break;
+        case 4:
+			return 1;
 			break;
 		default:
 			return 0;
@@ -480,6 +571,14 @@
 					cell.textLabel.text = @"Gender";
 					[cell.contentView addSubview:gender];
 					break;
+                case 3:
+					cell.textLabel.text = @"Ethnicity";
+					[cell.contentView addSubview:ethnicity];
+					break;
+                case 4:
+					cell.textLabel.text = @"Home Income";
+					[cell.contentView addSubview:income];
+					break;
 			}
 			
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -513,40 +612,101 @@
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
 			break;
-			
-		case 2:
+            
+        case 2:
 		{
-			static NSString *CellIdentifier = @"CellCheckmark";
+			static NSString *CellIdentifier = @"CellTextField";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 			}
-			
+            
+			// inner switch statement identifies row
 			switch ([indexPath indexAtPosition:1])
 			{
 				case 0:
-					cell.textLabel.text = @"Less than once a month";
+                    cell.textLabel.text = @"Cycle Frequency";
+					[cell.contentView addSubview:cyclingFreq];
 					break;
-				case 1:
-					cell.textLabel.text = @"Several times per month";
+            }
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
+			break;
+            
+        case 3:
+		{
+			static NSString *CellIdentifier = @"CellTextField";
+			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			if (cell == nil) {
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			}
+            
+			// inner switch statement identifies row
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+                    cell.textLabel.text = @"Rider Type";
+					[cell.contentView addSubview:riderType];
 					break;
-				case 2:
-					cell.textLabel.text = @"Several times per week";
-					break;
-				case 3:
-					cell.textLabel.text = @"Daily";
+            }
+			
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
+			break;
+            
+        case 4:
+		{
+			static NSString *CellIdentifier = @"CellTextField";
+			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			if (cell == nil) {
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			}
+            
+			// inner switch statement identifies row
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+                    cell.textLabel.text = @"Rider History";
+                    [cell.contentView addSubview:riderHistory];
 					break;
 			}
-			/*
-			if ( user != nil )
-				if ( [user.cyclingFreq intValue] == [indexPath indexAtPosition:1] )
-					cell.accessoryType = UITableViewCellAccessoryCheckmark;
-			 */
-			if ( [cyclingFreq intValue] == [indexPath indexAtPosition:1] )
-				cell.accessoryType = UITableViewCellAccessoryCheckmark;
-			else
-				cell.accessoryType = UITableViewCellAccessoryNone;
+			
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
+            
+//		case 2:
+//		{
+//			static NSString *CellIdentifier = @"CellCheckmark";
+//			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//			if (cell == nil) {
+//				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//			}
+//			
+//			switch ([indexPath indexAtPosition:1])
+//			{
+//				case 0:
+//					cell.textLabel.text = @"Less than once a month";
+//					break;
+//				case 1:
+//					cell.textLabel.text = @"Several times per month";
+//					break;
+//				case 2:
+//					cell.textLabel.text = @"Several times per week";
+//					break;
+//				case 3:
+//					cell.textLabel.text = @"Daily";
+//					break;
+//			}
+//			/*
+//			if ( user != nil )
+//				if ( [user.cyclingFreq intValue] == [indexPath indexAtPosition:1] )
+//					cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//			 */
+//			if ( [cyclingFreq intValue] == [indexPath indexAtPosition:1] )
+//				cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//			else
+//				cell.accessoryType = UITableViewCellAccessoryNone;
+//		}
 	}
 	
 	// debug
@@ -591,29 +751,65 @@
 			}
 			break;
 		}
-		
-		case 2:
+            
+        case 2:
 		{
-			// cycling frequency
-			// remove all checkmarks
-			UITableViewCell *cell;
-			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:2]];
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			
-			// apply checkmark to selected cell
-			cell = [tableView cellForRowAtIndexPath:indexPath];
-			cell.accessoryType = UITableViewCellAccessoryCheckmark;
-
-			// store cycling freq
-			cyclingFreq = [NSNumber numberWithInt:[indexPath indexAtPosition:1]];
-			NSLog(@"setting instance variable cycling freq: %d", [cyclingFreq intValue]);
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+					break;
+				case 1:
+					break;
+			}
+			break;
 		}
+            
+        case 3:
+		{
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+					break;
+				case 1:
+					break;
+			}
+			break;
+		}
+            
+        case 4:
+		{
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+					break;
+				case 1:
+					break;
+			}
+			break;
+		}
+		
+//		case 2:
+//		{
+//			// cycling frequency
+//			// remove all checkmarks
+//			UITableViewCell *cell;
+//			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+//			cell.accessoryType = UITableViewCellAccessoryNone;
+//			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+//			cell.accessoryType = UITableViewCellAccessoryNone;
+//			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+//			cell.accessoryType = UITableViewCellAccessoryNone;
+//			cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:2]];
+//			cell.accessoryType = UITableViewCellAccessoryNone;
+//			
+//			// apply checkmark to selected cell
+//			cell = [tableView cellForRowAtIndexPath:indexPath];
+//			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//
+//			// store cycling freq
+//			cyclingFreq = [NSNumber numberWithInt:[indexPath indexAtPosition:1]];
+//			NSLog(@"setting instance variable cycling freq: %d", [cyclingFreq intValue]);
+//		}
 	}
 }
 
@@ -663,20 +859,90 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    return [genderArray count];
+    if(currentTextField == gender){
+        return [genderArray count];
+    }
+    else if(currentTextField == age){
+        return [ageArray count];
+    }
+    else if(currentTextField == ethnicity){
+        return [ethnicityArray count];
+    }
+    else if(currentTextField == income){
+        return [incomeArray count];
+    }
+    else if(currentTextField == cyclingFreq){
+        return [cyclingFreqArray count];
+    }
+    else if(currentTextField == riderType){
+        return [riderTypeArray count];
+    }
+    else if(currentTextField == riderHistory){
+        return [riderHistoryArray count];
+    }
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [genderArray objectAtIndex:row];
+    if(currentTextField == gender){
+        return [genderArray objectAtIndex:row];
+    }
+    else if(currentTextField == age){
+        return [ageArray objectAtIndex:row];
+    }
+    else if(currentTextField == ethnicity){
+        return [ethnicityArray objectAtIndex:row];
+    }
+    else if(currentTextField == income){
+        return [incomeArray objectAtIndex:row];
+    }
+    else if(currentTextField == cyclingFreq){
+        return [cyclingFreqArray objectAtIndex:row];
+    }
+    else if(currentTextField == riderType){
+        return [riderTypeArray objectAtIndex:row];
+    }
+    else if(currentTextField == riderHistory){
+        return [riderHistoryArray objectAtIndex:row];
+    }
 }
 
 - (void)doneButtonPressed:(id)sender{
-    NSInteger genderRow;
-    genderRow = [pickerView selectedRowInComponent:0];
+    NSInteger selectedRow;
+    selectedRow = [pickerView selectedRowInComponent:0];
     if(currentTextField == gender){
-        NSString *genderSelect = [genderArray objectAtIndex:genderRow];
+        genderSelectedRow = selectedRow;
+        NSString *genderSelect = [genderArray objectAtIndex:selectedRow];
         gender.text = genderSelect;
+    }
+    if(currentTextField == age){
+        ageSelectedRow = selectedRow;
+        NSString *ageSelect = [ageArray objectAtIndex:selectedRow];
+        age.text = ageSelect;
+    }
+    if(currentTextField == ethnicity){
+        ethnicitySelectedRow = selectedRow;
+        NSString *ethnicitySelect = [ethnicityArray objectAtIndex:selectedRow];
+        ethnicity.text = ethnicitySelect;
+    }
+    if(currentTextField == income){
+        incomeSelectedRow = selectedRow;
+        NSString *incomeSelect = [incomeArray objectAtIndex:selectedRow];
+        income.text = incomeSelect;
+    }
+    if(currentTextField == cyclingFreq){
+        cyclingFreqSelectedRow = selectedRow;
+        NSString *cyclingFreqSelect = [cyclingFreqArray objectAtIndex:selectedRow];
+        cyclingFreq.text = cyclingFreqSelect;
+    }
+    if(currentTextField == riderType){
+        riderTypeSelectedRow = selectedRow;
+        NSString *riderTypeSelect = [riderTypeArray objectAtIndex:selectedRow];
+        riderType.text = riderTypeSelect;
+    }
+    if(currentTextField == riderHistory){
+        riderHistorySelectedRow = selectedRow;
+        NSString *riderHistorySelect = [riderHistoryArray objectAtIndex:selectedRow];
+        riderHistory.text = riderHistorySelect;
     }
     [actionSheet dismissWithClickedButtonIndex:1 animated:YES];
 }

@@ -39,7 +39,11 @@
 @property (nonatomic, retain) NSString * age;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * gender;
+@property (nonatomic, retain) NSNumber * ethnicity;
+@property (nonatomic, retain) NSNumber * income;
 @property (nonatomic, retain) NSNumber * cyclingFreq;
+@property (nonatomic, retain) NSNumber * rider_type;
+@property (nonatomic, retain) NSNumber * rider_history;
 @property (nonatomic, retain) NSString * schoolZIP;
 @property (nonatomic, retain) NSString * workZIP;
 @property (nonatomic, retain) NSString * homeZIP;
