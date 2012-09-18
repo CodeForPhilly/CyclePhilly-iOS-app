@@ -39,6 +39,7 @@
 @synthesize delegate, managedObjectContext, user;
 @synthesize age, email, gender, ethnicity, income, homeZIP, workZIP, schoolZIP;
 @synthesize cyclingFreq, riderType, riderHistory;
+@synthesize ageSelectedRow, genderSelectedRow, ethnicitySelectedRow, incomeSelectedRow, cyclingFreqSelectedRow, riderTypeSelectedRow, riderHistorySelectedRow;
 
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -104,7 +105,7 @@
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone,
 	textField.borderStyle = UITextBorderStyleRoundedRect;
 	textField.textAlignment = UITextAlignmentRight;
-	textField.placeholder = @"***@***";
+	textField.placeholder = @"name@domain";
 	textField.keyboardType = UIKeyboardTypeEmailAddress;
 	textField.returnKeyType = UIReturnKeyDone;
 	textField.delegate = self;
@@ -148,19 +149,19 @@
 	// Set the title.
 	// self.title = @"Personal Info";
     
-    genderArray = [[NSArray alloc]initWithObjects: @"", @"Female",@"Male", nil];
+    genderArray = [[NSArray alloc]initWithObjects: @" ", @"Female",@"Male", nil];
     
-    ageArray = [[NSArray alloc]initWithObjects: @"", @"Less than 18", @"18-24", @"25-34", @"35-44", @"45-54", @"55-64", @"65+", nil];
+    ageArray = [[NSArray alloc]initWithObjects: @" ", @"Less than 18", @"18-24", @"25-34", @"35-44", @"45-54", @"55-64", @"65+", nil];
     
-    ethnicityArray = [[NSArray alloc]initWithObjects: @"", @"White", @"African American", @"Asian", @"Native American", @"Pacific Islander", @"Multi-racial", @"Hispanic / Mexican / Latino", @"Other", nil];
+    ethnicityArray = [[NSArray alloc]initWithObjects: @" ", @"White", @"African American", @"Asian", @"Native American", @"Pacific Islander", @"Multi-racial", @"Hispanic / Mexican / Latino", @"Other", nil];
     
-    incomeArray = [[NSArray alloc]initWithObjects: @"", @"Less than $20,000", @"$20,000 to $39,999", @"$40,000 to $59,999", @"$60,000 to $74,999", @"$75,000 to $99,999", @"$100,000 or greater", nil];
+    incomeArray = [[NSArray alloc]initWithObjects: @" ", @"Less than $20,000", @"$20,000 to $39,999", @"$40,000 to $59,999", @"$60,000 to $74,999", @"$75,000 to $99,999", @"$100,000 or greater", nil];
     
-    cyclingFreqArray = [[NSArray alloc]initWithObjects: @"", @"Less than once a month", @"Several times per month", @"Several times per week", @"Daily", nil];
+    cyclingFreqArray = [[NSArray alloc]initWithObjects: @" ", @"Less than once a month", @"Several times per month", @"Several times per week", @"Daily", nil];
     
-    riderTypeArray = [[NSArray alloc]initWithObjects: @"", @"Strong & fearless", @"Enthused & confident", @"Comfortable, but cautious", @"Interested, but concerned", nil];
+    riderTypeArray = [[NSArray alloc]initWithObjects: @" ", @"Strong & fearless", @"Enthused & confident", @"Comfortable, but cautious", @"Interested, but concerned", nil];
     
-    riderHistoryArray = [[NSArray alloc]initWithObjects: @"", @"Since childhood", @"Several years", @"One year or less", @"Just trying it out / just started", nil];
+    riderHistoryArray = [[NSArray alloc]initWithObjects: @" ", @"Since childhood", @"Several years", @"One year or less", @"Just trying it out / just started", nil];
     
     
     CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
@@ -218,9 +219,9 @@
 	if ( user != nil )
 	{
 		// initialize text fields to saved personal info
-		age.text		= user.age;
+		age.text		= [ageArray objectAtIndex:[user.age integerValue]];
 		email.text		= user.email;
-		gender.text		= user.gender;
+		gender.text		= [genderArray objectAtIndex:[user.gender integerValue]];;
         ethnicity.text  = [ethnicityArray objectAtIndex:[user.ethnicity integerValue]];
         income.text     = [incomeArray objectAtIndex:[user.income integerValue]];
 		homeZIP.text	= user.homeZIP;
@@ -322,8 +323,8 @@
 	{
 		if ( textField == age )
 		{
-			NSLog(@"saving age: %@", age.text);
-			[user setAge:[NSString stringWithFormat:@"%d",ageSelectedRow]];
+			NSLog(@"saving age: %@", [ageArray objectAtIndex:[user.age integerValue]]);
+			[user setAge:[NSNumber numberWithInt:ageSelectedRow]];
 		}
 		if ( textField == email )
 		{
@@ -332,18 +333,18 @@
 		}
 		if ( textField == gender )
 		{
-			NSLog(@"saving gender: %@", gender.text);
-			[user setGender:[NSString stringWithFormat:@"%d",genderSelectedRow]];
+			NSLog(@"saving gender: %@", [genderArray objectAtIndex:[user.gender integerValue]]);
+			[user setGender:[NSNumber numberWithInt:genderSelectedRow]];
 		}
         if ( textField == ethnicity )
 		{
 			NSLog(@"saving ethnicity: %@", [ethnicityArray objectAtIndex:[user.ethnicity integerValue]]);
-			[user setEthnicity:user.ethnicity];
+			[user setEthnicity:[NSNumber numberWithInt:ethnicitySelectedRow]];
 		}
         if ( textField == income )
 		{
 			NSLog(@"saving income: %@", [incomeArray objectAtIndex:[user.income integerValue]]);
-			[user setIncome:user.income];
+			[user setIncome:[NSNumber numberWithInt:incomeSelectedRow]];
 		}
 		if ( textField == homeZIP )
 		{
@@ -363,17 +364,17 @@
         if ( textField == cyclingFreq )
 		{
 			NSLog(@"saving cyclingFreq: %@", [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]]);
-			[user setCyclingFreq:user.cyclingFreq];
+			[user setCyclingFreq:[NSNumber numberWithInt:cyclingFreqSelectedRow]];
 		}
         if ( textField == riderType )
 		{
 			NSLog(@"saving rider type: %@", [riderTypeArray objectAtIndex:[user.rider_type integerValue]]);
-			[user setRider_type:user.rider_type];
+			[user setRider_type:[NSNumber numberWithInt:riderTypeSelectedRow]];
 		}
         if ( textField == riderHistory )
 		{
 			NSLog(@"saving rider history: %@", [riderHistoryArray objectAtIndex:[user.rider_history integerValue]]);
-			[user setRider_history:user.rider_history];
+			[user setRider_history:[NSNumber numberWithInt:riderHistorySelectedRow]];
 		}
 		
 		NSError *error;
@@ -389,38 +390,38 @@
 {
 	if ( user != nil )
 	{
-		NSLog(@"saving age: %@", age.text);
-		[user setAge:[NSString stringWithFormat:@"%d",ageSelectedRow]];
+		[user setAge:[NSNumber numberWithInt:ageSelectedRow]];
+        NSLog(@"saved age index: %@ and text: %@", user.age, age.text);
 
-		NSLog(@"saving email: %@", email.text);
 		[user setEmail:email.text];
+        NSLog(@"saved email: %@", user.email);
 
-		NSLog(@"saving gender: %@", gender.text);
-		[user setGender:[NSString stringWithFormat:@"%d",genderSelectedRow]];
+		[user setGender:[NSNumber numberWithInt:genderSelectedRow]];
+		NSLog(@"saved gender index: %@ and text: %@", user.gender, gender.text);
         
-        NSLog(@"saving ethnicity: %@", [ethnicityArray objectAtIndex:[user.ethnicity integerValue]]);
-        [user setEthnicity:user.ethnicity];
+        [user setEthnicity:[NSNumber numberWithInt:ethnicitySelectedRow]];
+        NSLog(@"saving ethnicity index: %@ and text: %@", user.ethnicity, ethnicity.text);
         
-        NSLog(@"saving income: %@", [incomeArray objectAtIndex:[user.income integerValue]]);
-        [user setIncome:user.income];
-
-		NSLog(@"saving homeZIP: %@", homeZIP.text);
+        [user setIncome:[NSNumber numberWithInt:incomeSelectedRow]];
+        NSLog(@"saved income index: %@ and text: %@", user.income, income.text);
+        
 		[user setHomeZIP:homeZIP.text];
+        NSLog(@"saved homeZIP: %@", homeZIP.text);
 
-		NSLog(@"saving schoolZIP: %@", schoolZIP.text);
 		[user setSchoolZIP:schoolZIP.text];
+        NSLog(@"saved schoolZIP: %@", schoolZIP.text);
 
-		NSLog(@"saving workZIP: %@", workZIP.text);
 		[user setWorkZIP:workZIP.text];
+        NSLog(@"saved workZIP: %@", workZIP.text);
+                
+        [user setCyclingFreq:[NSNumber numberWithInt:cyclingFreqSelectedRow]];
+        NSLog(@"saved cycle freq index: %@ and text: %@", user.cyclingFreq, cyclingFreq.text);
         
-        NSLog(@"saving cycle freq: %@", [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]]);
-        [user setCyclingFreq:user.cyclingFreq];
+        [user setCyclingFreq:[NSNumber numberWithInt:riderTypeSelectedRow]];
+        NSLog(@"saved rider type index: %@ and text: %@", user.rider_type, riderType.text);
         
-        NSLog(@"saving rider type: %@", [riderTypeArray objectAtIndex:[user.rider_type integerValue]]);
-        [user setRider_type:user.rider_type];
-        
-        NSLog(@"saving rider history: %@", [riderHistoryArray objectAtIndex:[user.rider_history integerValue]]);
-        [user setRider_history:user.rider_history];
+        [user setRider_history:[NSNumber numberWithInt:riderHistorySelectedRow]];
+        NSLog(@"saved rider history index: %@ and text: %@", user.rider_history, riderHistory.text);
 		
 		//NSLog(@"saving cycling freq: %d", [cyclingFreq intValue]);
 		//[user setCyclingFreq:cyclingFreq];
@@ -507,7 +508,7 @@
 			return @"What kind of rider are you?";
 			break;
         case 4:
-			return @"How long have you cycle?";
+			return @"How long have you been a cyclist?";
 			break;
 	}
 }

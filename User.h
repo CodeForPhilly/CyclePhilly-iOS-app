@@ -36,9 +36,9 @@
 {
 }
 
-@property (nonatomic, retain) NSString * age;
+@property (nonatomic, retain) NSNumber * age;
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSString * gender;
+@property (nonatomic, retain) NSNumber * gender;
 @property (nonatomic, retain) NSNumber * ethnicity;
 @property (nonatomic, retain) NSNumber * income;
 @property (nonatomic, retain) NSNumber * cyclingFreq;

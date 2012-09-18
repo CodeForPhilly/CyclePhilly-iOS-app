@@ -49,6 +49,7 @@
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
 @property (nonatomic, retain) UIBarButtonItem *flipButton;
 @property (nonatomic, retain) UIView *infoView;
+@property (nonatomic, retain) MKPolyline* routeLine;
 
 - (id)initWithTrip:(Trip *)trip;
 

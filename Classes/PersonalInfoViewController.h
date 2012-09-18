@@ -92,6 +92,15 @@
 @property (nonatomic, retain) UITextField   *riderType;
 @property (nonatomic, retain) UITextField   *riderHistory;
 
+@property (nonatomic) NSInteger ageSelectedRow;
+@property (nonatomic) NSInteger genderSelectedRow;
+@property (nonatomic) NSInteger ethnicitySelectedRow;
+@property (nonatomic) NSInteger incomeSelectedRow;
+@property (nonatomic) NSInteger cyclingFreqSelectedRow;
+@property (nonatomic) NSInteger riderTypeSelectedRow;
+@property (nonatomic) NSInteger riderHistorySelectedRow;
+
+
 //- (void)initTripManager:(TripManager*)manager;
 
 // DEPRECATED

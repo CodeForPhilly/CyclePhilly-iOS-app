@@ -395,13 +395,17 @@
 		if ( user != nil )
 		{
 			// initialize text fields to saved personal info
-			[userDict setValue:user.age			forKey:@"age"];
-			[userDict setValue:user.email		forKey:@"email"];
-			[userDict setValue:user.gender		forKey:@"gender"];
-			[userDict setValue:user.homeZIP		forKey:@"homeZIP"];
-			[userDict setValue:user.workZIP		forKey:@"workZIP"];
-			[userDict setValue:user.schoolZIP	forKey:@"schoolZIP"];
-			[userDict setValue:user.cyclingFreq	forKey:@"cyclingFreq"];
+			[userDict setValue:user.age             forKey:@"age"];
+			[userDict setValue:user.email           forKey:@"email"];
+			[userDict setValue:user.gender          forKey:@"gender"];
+			[userDict setValue:user.homeZIP         forKey:@"homeZIP"];
+			[userDict setValue:user.workZIP         forKey:@"workZIP"];
+			[userDict setValue:user.schoolZIP       forKey:@"schoolZIP"];
+			[userDict setValue:user.cyclingFreq     forKey:@"cyclingFreq"];
+            [userDict setValue:user.ethnicity       forKey:@"ethnicity"];
+            [userDict setValue:user.income          forKey:@"income"];
+            [userDict setValue:user.rider_type      forKey:@"rider_type"];
+            [userDict setValue:user.rider_history	forKey:@"rider_history"];
 		}
 		else
 			NSLog(@"TripManager fetch user FAIL");

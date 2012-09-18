@@ -44,7 +44,7 @@
 
 @implementation MapViewController
 
-@synthesize doneButton, flipButton, infoView, trip;
+@synthesize doneButton, flipButton, infoView, trip, routeLine;
 
 
 /*
@@ -208,7 +208,9 @@
 		NSNumber *maxLat = [NSNumber numberWithDouble:0.0];
 		NSNumber *minLon = [NSNumber numberWithDouble:0.0];
 		NSNumber *maxLon = [NSNumber numberWithDouble:0.0];
-		
+
+        NSMutableArray *routeCoords = [[NSMutableArray alloc]init];
+        
 		for ( Coord *coord in sortedCoords )
 		{
 			// only plot unique coordinates to our map for performance reasons
@@ -216,20 +218,23 @@
 				(![coord.latitude  isEqualToNumber:last.latitude] &&
 				 ![coord.longitude isEqualToNumber:last.longitude] ) )
 			{
-				CLLocationCoordinate2D coordinate; 
+                CLLocationCoordinate2D coordinate;
 				coordinate.latitude  = [coord.latitude doubleValue];
 				coordinate.longitude = [coord.longitude doubleValue];
-				
-				pin = [[MapCoord alloc] init];
-				pin.coordinate = coordinate;
+                
+                CLLocation *routePoint = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+				[routeCoords addObject:routePoint];
+                
+				//pin = [[MapCoord alloc] init];
+				//pin.coordinate = coordinate;
 				
 				if ( first )
 				{
 					// add start point as a pin annotation
 					first = NO;
-					pin.first = YES;
-					pin.title = @"Start";
-					pin.subtitle = [dateFormatter stringFromDate:coord.recorded];
+					//pin.first = YES;
+					//pin.title = @"Start";
+					//pin.subtitle = [dateFormatter stringFromDate:coord.recorded];                    
 					
 					// initialize min/max values to the first coord
 					minLat = coord.latitude;
@@ -253,13 +258,37 @@
 						maxLon = coord.longitude;
 				}				
 				
-				[mapView addAnnotation:pin];
+				//[mapView addAnnotation:pin];
 				count++;
 			}
 			
 			// update last coord pointer so we can cull redundant coords above
 			last = coord;
 		}
+        NSLog(@"routeCoords array is this long: %d@", [routeCoords count]);
+
+        NSUInteger numPoints = [routeCoords count];
+        CLLocationCoordinate2D *routePath = malloc(numPoints * sizeof(CLLocationCoordinate2D));
+        for (NSUInteger index=0; index < numPoints; index ++){
+            routePath[index] = [[routeCoords objectAtIndex:index] coordinate];
+        }
+
+        self.routeLine = [MKPolyline polylineWithCoordinates:routePath count:count];
+        [mapView addOverlay:self.routeLine];
+        [mapView setNeedsDisplay];
+        
+        //add start/end pins
+        MKPointAnnotation *startPoint = [[MKPointAnnotation alloc] init];
+        startPoint.coordinate = routePath[0];
+        startPoint.title = @"Start";
+        [mapView addAnnotation:startPoint];
+        MKPointAnnotation *endPoint = [[MKPointAnnotation alloc] init];
+        endPoint.coordinate = routePath[numPoints-1];
+        endPoint.title = @"End";
+        [mapView addAnnotation:endPoint];
+
+        
+        //free(routePath);
 		
 		NSLog(@"added %d unique GPS coordinates of %d to map", count, [sortedCoords count]);
 		
@@ -456,9 +485,25 @@
 		}
 		
         return annotationView;
+    } else {
+        //handle 'normal' pins
+        
+        if(annotation.title==@"Start"){
+            MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
+            annView.pinColor = MKPinAnnotationColorGreen;
+            return annView;
+        }
     }
 	
     return nil;
+}
+
+- (MKOverlayView*)mapView:(MKMapView*)theMapView viewForOverlay:(id <MKOverlay>)overlay
+{
+    MKPolylineView* lineView = [[[MKPolylineView alloc] initWithPolyline:self.routeLine] autorelease];
+    lineView.strokeColor = [UIColor blueColor];
+    lineView.lineWidth = 8;
+    return lineView;
 }
 
 
