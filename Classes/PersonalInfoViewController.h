@@ -72,6 +72,7 @@
     NSInteger cyclingFreqSelectedRow;
     NSInteger riderTypeSelectedRow;
     NSInteger riderHistorySelectedRow;
+    NSInteger selectedItem;
 }
 
 
@@ -99,7 +100,7 @@
 @property (nonatomic) NSInteger cyclingFreqSelectedRow;
 @property (nonatomic) NSInteger riderTypeSelectedRow;
 @property (nonatomic) NSInteger riderHistorySelectedRow;
-
+@property (nonatomic) NSInteger selectedItem;
 
 //- (void)initTripManager:(TripManager*)manager;
 

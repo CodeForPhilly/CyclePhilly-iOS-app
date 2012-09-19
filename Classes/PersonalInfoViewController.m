@@ -39,7 +39,7 @@
 @synthesize delegate, managedObjectContext, user;
 @synthesize age, email, gender, ethnicity, income, homeZIP, workZIP, schoolZIP;
 @synthesize cyclingFreq, riderType, riderHistory;
-@synthesize ageSelectedRow, genderSelectedRow, ethnicitySelectedRow, incomeSelectedRow, cyclingFreqSelectedRow, riderTypeSelectedRow, riderHistorySelectedRow;
+@synthesize ageSelectedRow, genderSelectedRow, ethnicitySelectedRow, incomeSelectedRow, cyclingFreqSelectedRow, riderTypeSelectedRow, riderHistorySelectedRow, selectedItem;
 
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -189,9 +189,11 @@
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 
 	// Set up the buttons.
-	UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-																		  target:self action:@selector(done)];
-	done.enabled = YES;
+    // this is actually the Save button.
+    UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done)];
+    
+    //Initial Save button state is disabled. will be enabled if a change has been made to any of the fields.
+	done.enabled = NO;
 	self.navigationItem.rightBarButtonItem = done;
 	
 	NSFetchRequest		*request = [[NSFetchRequest alloc] init];
@@ -271,6 +273,7 @@
     currentTextField = myTextField;
     
     if(myTextField == gender || myTextField == age || myTextField == ethnicity || myTextField == income || myTextField == cyclingFreq || myTextField == riderType || myTextField == riderHistory){
+        //TODO add code here to dismiss keyboard if it's visible
         [myTextField resignFirstResponder];
         
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
@@ -294,11 +297,30 @@
         UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
         [barItems addObject:cancelBtn];
         
+        //TODO add a next andprevious button to left side to take us to the next/previous thing. and switch to the right kind of input mode.
+        
         [doneToolbar setItems:barItems animated:YES];
         
         [actionSheet addSubview:doneToolbar];
         
-        [pickerView selectRow:0 inComponent:0 animated:NO];
+        selectedItem = 0;
+        if(myTextField == gender){
+            selectedItem = [user.gender integerValue];
+        }else if (myTextField == age){
+            selectedItem = [user.age integerValue];
+        }else if (myTextField == ethnicity){
+            selectedItem = [user.ethnicity integerValue];
+        }else if (myTextField == income){
+            selectedItem = [user.income integerValue];
+        }else if (myTextField == cyclingFreq){
+            selectedItem = [user.cyclingFreq integerValue];
+        }else if (myTextField == riderType){
+            selectedItem = [user.rider_type integerValue];
+        }else if (myTextField == riderHistory){
+            selectedItem = [user.rider_history integerValue];
+        }
+        
+        [pickerView selectRow:selectedItem inComponent:0 animated:NO];
         
         [pickerView reloadAllComponents];
         
@@ -327,62 +349,41 @@
 	
 	// save value
 	if ( user != nil )
-	{
-		if ( textField == age )
-		{
-			NSLog(@"saving age: %@", [ageArray objectAtIndex:[user.age integerValue]]);
-			[user setAge:[NSNumber numberWithInt:ageSelectedRow]];
-		}
+	{		
 		if ( textField == email )
 		{
+            //enable save button if value has been changed.
+            if (email.text != user.email){
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            }
 			NSLog(@"saving email: %@", email.text);
 			[user setEmail:email.text];
-		}
-		if ( textField == gender )
-		{
-			NSLog(@"saving gender: %@", [genderArray objectAtIndex:[user.gender integerValue]]);
-			[user setGender:[NSNumber numberWithInt:genderSelectedRow]];
-		}
-        if ( textField == ethnicity )
-		{
-			NSLog(@"saving ethnicity: %@", [ethnicityArray objectAtIndex:[user.ethnicity integerValue]]);
-			[user setEthnicity:[NSNumber numberWithInt:ethnicitySelectedRow]];
-		}
-        if ( textField == income )
-		{
-			NSLog(@"saving income: %@", [incomeArray objectAtIndex:[user.income integerValue]]);
-			[user setIncome:[NSNumber numberWithInt:incomeSelectedRow]];
-		}
+		}		
 		if ( textField == homeZIP )
 		{
+            if (homeZIP.text != user.homeZIP){
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            }
 			NSLog(@"saving homeZIP: %@", homeZIP.text);
 			[user setHomeZIP:homeZIP.text];
 		}
 		if ( textField == schoolZIP )
 		{
+            if (schoolZIP.text != user.schoolZIP){
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            }
 			NSLog(@"saving schoolZIP: %@", schoolZIP.text);
 			[user setSchoolZIP:schoolZIP.text];
 		}
 		if ( textField == workZIP )
 		{
+            if (workZIP.text != user.workZIP){
+                self.navigationItem.rightBarButtonItem.enabled = YES;
+            }
 			NSLog(@"saving workZIP: %@", workZIP.text);
 			[user setWorkZIP:workZIP.text];
 		}
-        if ( textField == cyclingFreq )
-		{
-			NSLog(@"saving cyclingFreq: %@", [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]]);
-			[user setCyclingFreq:[NSNumber numberWithInt:cyclingFreqSelectedRow]];
-		}
-        if ( textField == riderType )
-		{
-			NSLog(@"saving rider type: %@", [riderTypeArray objectAtIndex:[user.rider_type integerValue]]);
-			[user setRider_type:[NSNumber numberWithInt:riderTypeSelectedRow]];
-		}
-        if ( textField == riderHistory )
-		{
-			NSLog(@"saving rider history: %@", [riderHistoryArray objectAtIndex:[user.rider_history integerValue]]);
-			[user setRider_history:[NSNumber numberWithInt:riderHistorySelectedRow]];
-		}
+       
 		
 		NSError *error;
 		if (![managedObjectContext save:&error]) {
@@ -395,6 +396,7 @@
 
 - (void)done
 {
+    NSLog(@"Saving User Data");
 	if ( user != nil )
 	{
 		[user setAge:[NSNumber numberWithInt:ageSelectedRow]];
@@ -407,7 +409,7 @@
 		NSLog(@"saved gender index: %@ and text: %@", user.gender, gender.text);
         
         [user setEthnicity:[NSNumber numberWithInt:ethnicitySelectedRow]];
-        NSLog(@"saving ethnicity index: %@ and text: %@", user.ethnicity, ethnicity.text);
+        NSLog(@"saved ethnicity index: %@ and text: %@", user.ethnicity, ethnicity.text);
         
         [user setIncome:[NSNumber numberWithInt:incomeSelectedRow]];
         NSLog(@"saved income index: %@ and text: %@", user.income, income.text);
@@ -445,7 +447,8 @@
 	// update UI
 	// TODO: test for at least one set value
 	[delegate setSaved:YES];
-	
+    //disable the save button after saving
+	self.navigationItem.rightBarButtonItem.enabled = NO;
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -922,36 +925,70 @@
     NSInteger selectedRow;
     selectedRow = [pickerView selectedRowInComponent:0];
     if(currentTextField == gender){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.gender integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
         genderSelectedRow = selectedRow;
         NSString *genderSelect = [genderArray objectAtIndex:selectedRow];
         gender.text = genderSelect;
     }
     if(currentTextField == age){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.age integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+
         ageSelectedRow = selectedRow;
         NSString *ageSelect = [ageArray objectAtIndex:selectedRow];
         age.text = ageSelect;
     }
     if(currentTextField == ethnicity){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.ethnicity integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+
         ethnicitySelectedRow = selectedRow;
         NSString *ethnicitySelect = [ethnicityArray objectAtIndex:selectedRow];
         ethnicity.text = ethnicitySelect;
     }
     if(currentTextField == income){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.income integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+
         incomeSelectedRow = selectedRow;
         NSString *incomeSelect = [incomeArray objectAtIndex:selectedRow];
         income.text = incomeSelect;
     }
     if(currentTextField == cyclingFreq){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.cyclingFreq integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+
         cyclingFreqSelectedRow = selectedRow;
         NSString *cyclingFreqSelect = [cyclingFreqArray objectAtIndex:selectedRow];
         cyclingFreq.text = cyclingFreqSelect;
     }
     if(currentTextField == riderType){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.rider_type integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+
         riderTypeSelectedRow = selectedRow;
         NSString *riderTypeSelect = [riderTypeArray objectAtIndex:selectedRow];
         riderType.text = riderTypeSelect;
     }
     if(currentTextField == riderHistory){
+        //enable save button if value has been changed.
+        if (selectedRow != [user.rider_history integerValue]){
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+        }
+
         riderHistorySelectedRow = selectedRow;
         NSString *riderHistorySelect = [riderHistoryArray objectAtIndex:selectedRow];
         riderHistory.text = riderHistorySelect;
