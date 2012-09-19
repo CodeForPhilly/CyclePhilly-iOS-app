@@ -218,20 +218,27 @@
 	[self setUser:[mutableFetchResults objectAtIndex:0]];
 	if ( user != nil )
 	{
-		// initialize text fields to saved personal info
-		age.text		= [ageArray objectAtIndex:[user.age integerValue]];
-		email.text		= user.email;
-		gender.text		= [genderArray objectAtIndex:[user.gender integerValue]];;
-        ethnicity.text  = [ethnicityArray objectAtIndex:[user.ethnicity integerValue]];
-        income.text     = [incomeArray objectAtIndex:[user.income integerValue]];
-		homeZIP.text	= user.homeZIP;
-		workZIP.text	= user.workZIP;
-		schoolZIP.text	= user.schoolZIP;
+		// initialize text fields indexes to saved personal info
+		age.text            = [ageArray objectAtIndex:[user.age integerValue]];
+        ageSelectedRow      = [user.age integerValue];
+		email.text          = user.email;
+		gender.text         = [genderArray objectAtIndex:[user.gender integerValue]];;
+        genderSelectedRow   = [user.gender integerValue];
+        ethnicity.text      = [ethnicityArray objectAtIndex:[user.ethnicity integerValue]];
+        ethnicitySelectedRow= [user.ethnicity integerValue];
+        income.text         = [incomeArray objectAtIndex:[user.income integerValue]];
+        incomeSelectedRow   = [user.income integerValue];
+		
+        homeZIP.text        = user.homeZIP;
+		workZIP.text        = user.workZIP;
+		schoolZIP.text      = user.schoolZIP;
         
-        
-        cyclingFreq.text = [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]];
-        riderType.text = [riderTypeArray objectAtIndex:[user.rider_type integerValue]];
-        riderHistory.text = [riderHistoryArray objectAtIndex:[user.rider_history integerValue]];
+        cyclingFreq.text        = [cyclingFreqArray objectAtIndex:[user.cyclingFreq integerValue]];
+        cyclingFreqSelectedRow  = [user.cyclingFreq integerValue];
+        riderType.text          = [riderTypeArray objectAtIndex:[user.rider_type integerValue]];
+        riderTypeSelectedRow    = [user.rider_type integerValue];
+        riderHistory.text       = [riderHistoryArray objectAtIndex:[user.rider_history integerValue]];
+        riderHistorySelectedRow = [user.rider_history integerValue];
 		
 		// init cycling frequency
 		//NSLog(@"init cycling freq: %d", [user.cyclingFreq intValue]);
@@ -417,7 +424,7 @@
         [user setCyclingFreq:[NSNumber numberWithInt:cyclingFreqSelectedRow]];
         NSLog(@"saved cycle freq index: %@ and text: %@", user.cyclingFreq, cyclingFreq.text);
         
-        [user setCyclingFreq:[NSNumber numberWithInt:riderTypeSelectedRow]];
+        [user setRider_type:[NSNumber numberWithInt:riderTypeSelectedRow]];
         NSLog(@"saved rider type index: %@ and text: %@", user.rider_type, riderType.text);
         
         [user setRider_history:[NSNumber numberWithInt:riderHistorySelectedRow]];
@@ -511,6 +518,7 @@
 			return @"How long have you been a cyclist?";
 			break;
 	}
+    return nil;
 }
 
 
@@ -537,6 +545,7 @@
 		default:
 			return 0;
 	}
+    return 0;
 }
 
 
@@ -881,6 +890,7 @@
     else if(currentTextField == riderHistory){
         return [riderHistoryArray count];
     }
+    return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -905,6 +915,7 @@
     else if(currentTextField == riderHistory){
         return [riderHistoryArray objectAtIndex:row];
     }
+    return nil;
 }
 
 - (void)doneButtonPressed:(id)sender{
