@@ -260,16 +260,23 @@
 
 #pragma mark UITextFieldDelegate methods
 
-/*-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if(textField ==gender){
-        return NO;// Hide both keyboard and blinking cursor.
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if(currentTextField == email || currentTextField == workZIP || currentTextField == homeZIP || currentTextField == schoolZIP || textField != email || textField != workZIP || textField != homeZIP || textField != schoolZIP){
+        NSLog(@"currentTextField: text2");
+        [currentTextField resignFirstResponder];
+        [textField resignFirstResponder];
     }
-    else{
-        return YES;
-    }
-}*/
+    return YES;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)myTextField{
     
+    /*if(currentTextField == email || currentTextField == workZIP || currentTextField == homeZIP || currentTextField == schoolZIP){
+        NSLog(@"currentTextField: text");
+        [currentTextField resignFirstResponder];
+        [myTextField resignFirstResponder];
+    }
+    NSLog(@"currentTextfield: picker");*/
     currentTextField = myTextField;
     
     if(myTextField == gender || myTextField == age || myTextField == ethnicity || myTextField == income || myTextField == cyclingFreq || myTextField == riderType || myTextField == riderHistory){
@@ -922,6 +929,7 @@
 }
 
 - (void)doneButtonPressed:(id)sender{
+    
     NSInteger selectedRow;
     selectedRow = [pickerView selectedRowInComponent:0];
     if(currentTextField == gender){
