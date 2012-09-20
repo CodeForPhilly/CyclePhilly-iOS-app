@@ -42,7 +42,7 @@
 
 @implementation RecordTripViewController
 
-@synthesize tripManager, reminderManager;
+@synthesize tripManager;// reminderManager;
 @synthesize infoButton, saveButton, startButton, parentView;
 @synthesize timer, timeCounter, distCounter;
 @synthesize recording, shouldUpdateCounter, userInfoSaved;
@@ -280,7 +280,7 @@
 	// Start the location manager.
 	[[self getLocationManager] startUpdatingLocation];
 	
-	// Start receiving updates as to battery level
+	/* Start receiving updates as to battery level
 	UIDevice *device = [UIDevice currentDevice];
 	device.batteryMonitoringEnabled = YES;
 	switch (device.batteryState)
@@ -300,7 +300,7 @@
 	}
 
 	NSLog(@"battery level = %f%%", device.batteryLevel * 100.0 );
-
+    */
 	// check if any user data has already been saved and pre-select personal info cell accordingly
 	if ( [self hasUserInfoBeenSaved] )
 		[self setSaved:YES];
@@ -425,13 +425,13 @@
 	NSManagedObjectContext *context = tripManager.managedObjectContext;
 	[self initTripManager:[[TripManager alloc] initWithManagedObjectContext:context]];
 	tripManager.dirty = YES;
-	
+	/*Removing the reminder manager---not needed with conditional backgrounding
 	if ( reminderManager )
 	{
 		[reminderManager release];
 		reminderManager = nil;
 	}
-	
+	*/
 	[self resetCounter];
 	[self resetPurpose];
 	[self resetTimer];
@@ -639,30 +639,31 @@
 	NSLog(@"start");
 	
 	// start the timer if needed
+    // by cL: commented out bcs changes to start/stop mean we don't really have a way to 'pause' recording a trip.
 	if ( timer == nil )
 	{
 		// check if we're continuing a trip
-		if ( tripManager.trip && [tripManager.trip.coords count] )
-		{
-			timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
-													 target:self selector:@selector(updateCounter:)
-												   userInfo:[self continueTripTimerUserInfo] repeats:YES];
-		}
+		//if ( tripManager.trip && [tripManager.trip.coords count] )
+		//{
+		//	timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
+		//											 target:self selector:@selector(updateCounter:)
+		//										   userInfo:[self continueTripTimerUserInfo] repeats:YES];
+		//}
 		
 		// or starting a new recording
-		else {
+		//else {
 			[self resetCounter];
 			timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
 													 target:self selector:@selector(updateCounter:)
 												   userInfo:[self newTripTimerUserInfo] repeats:YES];
-		}
+		//}
 	}
 
 	// init reminder manager
-	if ( reminderManager )
-		[reminderManager release];
+	//if ( reminderManager )
+	//	[reminderManager release];
 	
-	reminderManager = [[ReminderManager alloc] initWithRecordingInProgressDelegate:self];
+	//reminderManager = [[ReminderManager alloc] initWithRecordingInProgressDelegate:self];
 	
 	// Toggle start button
     // modified by cL

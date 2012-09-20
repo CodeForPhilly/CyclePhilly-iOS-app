@@ -85,7 +85,7 @@
 	BOOL userInfoSaved;
 	
 	TripManager		*tripManager;
-	ReminderManager *reminderManager;
+//	ReminderManager *reminderManager;
 }
 
 //@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -112,7 +112,7 @@
 @property (assign) BOOL shouldUpdateCounter;
 @property (assign) BOOL userInfoSaved;
 
-@property (nonatomic, retain) ReminderManager *reminderManager;
+//@property (nonatomic, retain) ReminderManager *reminderManager;
 @property (nonatomic, retain) TripManager *tripManager;
 
 @property (nonatomic, retain) CycleTracksAppDelegate *appDelegate;

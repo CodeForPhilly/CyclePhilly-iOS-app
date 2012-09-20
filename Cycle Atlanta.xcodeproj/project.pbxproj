@@ -836,7 +836,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -854,7 +854,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -884,7 +884,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -918,7 +918,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
 				SDKROOT = iphoneos;
 			};
 			name = Beta;
@@ -950,7 +950,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
 				SDKROOT = iphoneos;
 			};
 			name = "Release Beta";
