@@ -29,7 +29,7 @@
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
 #import "constants.h"
-#import "CycleTracksAppDelegate.h"
+#import "CycleAtlantaAppDelegate.h"
 #import "SaveRequest.h"
 
 
@@ -44,7 +44,7 @@
 	if (self = [super init])
 	{
 		// Nab the unique device id hash from our delegate.
-		CycleTracksAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+		CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 		self.deviceUniqueIdHash = delegate.uniqueIDHash;
 		
 		// create request.

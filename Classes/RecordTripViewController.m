@@ -243,6 +243,7 @@
 - (void)viewDidLoad
 {
 	NSLog(@"RecordTripViewController viewDidLoad");
+    NSLog(@"Bundle ID: %@", [[NSBundle mainBundle] bundleIdentifier]);
     [super viewDidLoad];
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;

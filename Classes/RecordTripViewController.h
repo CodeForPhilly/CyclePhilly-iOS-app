@@ -35,7 +35,7 @@
 #import "PersonalInfoDelegate.h"
 #import "RecordingInProgressDelegate.h"
 #import "TripPurposeDelegate.h"
-#import "CycleTracksAppDelegate.h"
+#import "CycleAtlantaAppDelegate.h"
 
 
 @class ReminderManager;
@@ -56,7 +56,7 @@
 	UITextViewDelegate>
 {
     NSManagedObjectContext *managedObjectContext;
-	CycleTracksAppDelegate *appDelegate;
+	CycleAtlantaAppDelegate *appDelegate;
 //    CLLocationManager *locationManager;
 	/*
 	UITableViewCell *tripPurposeCell;
@@ -115,7 +115,7 @@
 //@property (nonatomic, retain) ReminderManager *reminderManager;
 @property (nonatomic, retain) TripManager *tripManager;
 
-@property (nonatomic, retain) CycleTracksAppDelegate *appDelegate;
+@property (nonatomic, retain) CycleAtlantaAppDelegate *appDelegate;
 
 - (void)initTripManager:(TripManager*)manager;
 

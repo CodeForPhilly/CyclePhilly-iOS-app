@@ -31,7 +31,7 @@
 #import <CommonCrypto/CommonDigest.h>
 
 
-#import "CycleTracksAppDelegate.h"
+#import "CycleAtlantaAppDelegate.h"
 #import "PersonalInfoViewController.h"
 #import "RecordTripViewController.h"
 #import "SavedTripsViewController.h"
@@ -41,7 +41,7 @@
 #import "constants.h"
 
 
-@implementation CycleTracksAppDelegate
+@implementation CycleAtlantaAppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
@@ -273,7 +273,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *) application
 {
-    CycleTracksAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    CycleAtlantaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if(appDelegate.isRecording){
         NSLog(@"BACKGROUNDED and recording"); //set location service to startUpdatingLocation
         [appDelegate.locationManager startUpdatingLocation];
@@ -287,7 +287,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *) application
 {
     //always turnon location updating when active.
-    CycleTracksAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    CycleAtlantaAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     //[appDelegate.locationManager stoptMonitoringSignificantLocationChanges];
     [appDelegate.locationManager startUpdatingLocation];
 }

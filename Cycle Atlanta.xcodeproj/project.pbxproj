@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* CycleTracksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* CycleTracksAppDelegate.m */; };
+		1D3623260D0F684500981E51 /* CycleAtlantaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* CycleAtlantaAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -42,10 +42,8 @@
 		642F15271071DA700050BCB9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642F15261071DA700050BCB9 /* MapViewController.m */; };
 		642F161D1071ED1C0050BCB9 /* MapCoord.m in Sources */ = {isa = PBXBuildFile; fileRef = 642F161C1071ED1C0050BCB9 /* MapCoord.m */; };
 		6433E4E6106D4A2D00C27387 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433E4E5106D4A2D00C27387 /* User.m */; };
-		6433E62F106D6BC200C27387 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6433E62E106D6BC200C27387 /* Icon.png */; };
 		644ED3E410853DEC008725A8 /* commuter2.png in Resources */ = {isa = PBXBuildFile; fileRef = 644ED3E310853DEC008725A8 /* commuter2.png */; };
 		64577E29106DC2FD003ACBFD /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64577E28106DC2FD003ACBFD /* dist.plist */; };
-		64580FF31076B32C0075DABD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 64580FF21076B32C0075DABD /* Default.png */; };
 		6458114E107AA4D30075DABD /* bicycle-bell-normalized.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6458114D107AA4D30075DABD /* bicycle-bell-normalized.aiff */; };
 		645E4EDC1200C1C800EFF0E6 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645E4EDB1200C1C800EFF0E6 /* LoadingView.m */; };
 		64C8D40311386B26008BCADE /* RecordMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C8D40211386B26008BCADE /* RecordMap.xib */; };
@@ -135,12 +133,24 @@
 		9D4648391604EF3800A4F9CB /* tabbar_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4648311604EF3800A4F9CB /* tabbar_settings@2x.png */; };
 		9D46483A1604EF3800A4F9CB /* tabbar_view.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4648321604EF3800A4F9CB /* tabbar_view.png */; };
 		9D46483B1604EF3800A4F9CB /* tabbar_view@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4648331604EF3800A4F9CB /* tabbar_view@2x.png */; };
+		9D47F8FD160BA4E900B8B14D /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8F5160BA4E900B8B14D /* appIcon.png */; };
+		9D47F8FE160BA4E900B8B14D /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8F6160BA4E900B8B14D /* appIcon@2x.png */; };
+		9D47F8FF160BA4E900B8B14D /* appSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8F7160BA4E900B8B14D /* appSplash.png */; };
+		9D47F900160BA4E900B8B14D /* appSplash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8F8160BA4E900B8B14D /* appSplash@2x.png */; };
+		9D47F901160BA4E900B8B14D /* appStoreIcon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8F9160BA4E900B8B14D /* appStoreIcon512.png */; };
+		9D47F902160BA4E900B8B14D /* appStoreIcon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8FA160BA4E900B8B14D /* appStoreIcon1024.png */; };
+		9D47F903160BA4E900B8B14D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8FB160BA4E900B8B14D /* Default.png */; };
+		9D47F904160BA4E900B8B14D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F8FC160BA4E900B8B14D /* Icon.png */; };
+		9D47F906160BA50100B8B14D /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F905160BA50000B8B14D /* appIcon.png */; };
+		9D47F908160BA50C00B8B14D /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F907160BA50C00B8B14D /* appIcon@2x.png */; };
+		9D47F90A160BA52C00B8B14D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F909160BA52C00B8B14D /* Default.png */; };
+		9D47F90C160BA53000B8B14D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F90B160BA53000B8B14D /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* CycleTracksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleTracksAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* CycleTracksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleTracksAppDelegate.m; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* CycleAtlantaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleAtlantaAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* CycleAtlantaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleAtlantaAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Cycle Atlanta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Atlanta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -192,10 +202,8 @@
 		6433E54E106D542100C27387 /* TripPurposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripPurposeDelegate.h; sourceTree = "<group>"; };
 		6433E5C5106D62ED00C27387 /* PersonalInfoDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoDelegate.h; sourceTree = "<group>"; };
 		6433E5D3106D66EA00C27387 /* ActivityIndicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorDelegate.h; sourceTree = "<group>"; };
-		6433E62E106D6BC200C27387 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		644ED3E310853DEC008725A8 /* commuter2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commuter2.png; sourceTree = "<group>"; };
 		64577E28106DC2FD003ACBFD /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
-		64580FF21076B32C0075DABD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6458114D107AA4D30075DABD /* bicycle-bell-normalized.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "bicycle-bell-normalized.aiff"; sourceTree = "<group>"; };
 		64581198107AC1080075DABD /* RecordingInProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingInProgressDelegate.h; sourceTree = "<group>"; };
 		645E4EDA1200C1C800EFF0E6 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
@@ -301,6 +309,18 @@
 		9D4648311604EF3800A4F9CB /* tabbar_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_settings@2x.png"; sourceTree = "<group>"; };
 		9D4648321604EF3800A4F9CB /* tabbar_view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_view.png; sourceTree = "<group>"; };
 		9D4648331604EF3800A4F9CB /* tabbar_view@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_view@2x.png"; sourceTree = "<group>"; };
+		9D47F8F5160BA4E900B8B14D /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appIcon.png; path = Images/appIcon.png; sourceTree = "<group>"; };
+		9D47F8F6160BA4E900B8B14D /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appIcon@2x.png"; path = "Images/appIcon@2x.png"; sourceTree = "<group>"; };
+		9D47F8F7160BA4E900B8B14D /* appSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appSplash.png; path = Images/appSplash.png; sourceTree = "<group>"; };
+		9D47F8F8160BA4E900B8B14D /* appSplash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appSplash@2x.png"; path = "Images/appSplash@2x.png"; sourceTree = "<group>"; };
+		9D47F8F9160BA4E900B8B14D /* appStoreIcon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appStoreIcon512.png; path = Images/appStoreIcon512.png; sourceTree = "<group>"; };
+		9D47F8FA160BA4E900B8B14D /* appStoreIcon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appStoreIcon1024.png; path = Images/appStoreIcon1024.png; sourceTree = "<group>"; };
+		9D47F8FB160BA4E900B8B14D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Images/Default.png; sourceTree = "<group>"; };
+		9D47F8FC160BA4E900B8B14D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Images/Icon.png; sourceTree = "<group>"; };
+		9D47F905160BA50000B8B14D /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
+		9D47F907160BA50C00B8B14D /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
+		9D47F909160BA52C00B8B14D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9D47F90B160BA53000B8B14D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,8 +349,8 @@
 				64210F5F11350C8500415F1A /* AboutViewController.h */,
 				64210F6011350C8500415F1A /* AboutViewController.m */,
 				6433E5D3106D66EA00C27387 /* ActivityIndicatorDelegate.h */,
-				1D3623240D0F684500981E51 /* CycleTracksAppDelegate.h */,
-				1D3623250D0F684500981E51 /* CycleTracksAppDelegate.m */,
+				1D3623240D0F684500981E51 /* CycleAtlantaAppDelegate.h */,
+				1D3623250D0F684500981E51 /* CycleAtlantaAppDelegate.m */,
 				645E4EDA1200C1C800EFF0E6 /* LoadingView.h */,
 				645E4EDB1200C1C800EFF0E6 /* LoadingView.m */,
 				642F161B1071ED1C0050BCB9 /* MapCoord.h */,
@@ -373,6 +393,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9D47F90B160BA53000B8B14D /* Default@2x.png */,
+				9D47F909160BA52C00B8B14D /* Default.png */,
+				9D47F907160BA50C00B8B14D /* appIcon@2x.png */,
+				9D47F905160BA50000B8B14D /* appIcon.png */,
 				64577E28106DC2FD003ACBFD /* dist.plist */,
 				64F8239A106AB3E1001413F8 /* TouchJSON */,
 				64119AA81068672100C201F0 /* Trip Purpose data source */,
@@ -462,8 +486,14 @@
 		6411A16A106A05DE00C201F0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				64580FF21076B32C0075DABD /* Default.png */,
-				6433E62E106D6BC200C27387 /* Icon.png */,
+				9D47F8F5160BA4E900B8B14D /* appIcon.png */,
+				9D47F8F6160BA4E900B8B14D /* appIcon@2x.png */,
+				9D47F8F7160BA4E900B8B14D /* appSplash.png */,
+				9D47F8F8160BA4E900B8B14D /* appSplash@2x.png */,
+				9D47F8F9160BA4E900B8B14D /* appStoreIcon512.png */,
+				9D47F8FA160BA4E900B8B14D /* appStoreIcon1024.png */,
+				9D47F8FB160BA4E900B8B14D /* Default.png */,
+				9D47F8FC160BA4E900B8B14D /* Icon.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -695,10 +725,8 @@
 				6411A193106A90E400C201F0 /* shopping.tif in Resources */,
 				6411A194106A90E400C201F0 /* social.tif in Resources */,
 				6411A195106A90E400C201F0 /* work-related.tif in Resources */,
-				6433E62F106D6BC200C27387 /* Icon.png in Resources */,
 				64577E29106DC2FD003ACBFD /* dist.plist in Resources */,
 				642F150C1071D9910050BCB9 /* MapViewController.xib in Resources */,
-				64580FF31076B32C0075DABD /* Default.png in Resources */,
 				6458114E107AA4D30075DABD /* bicycle-bell-normalized.aiff in Resources */,
 				644ED3E410853DEC008725A8 /* commuter2.png in Resources */,
 				64210F29113508B800415F1A /* MainWindow.xib in Resources */,
@@ -776,6 +804,18 @@
 				9D4648391604EF3800A4F9CB /* tabbar_settings@2x.png in Resources */,
 				9D46483A1604EF3800A4F9CB /* tabbar_view.png in Resources */,
 				9D46483B1604EF3800A4F9CB /* tabbar_view@2x.png in Resources */,
+				9D47F8FD160BA4E900B8B14D /* appIcon.png in Resources */,
+				9D47F8FE160BA4E900B8B14D /* appIcon@2x.png in Resources */,
+				9D47F8FF160BA4E900B8B14D /* appSplash.png in Resources */,
+				9D47F900160BA4E900B8B14D /* appSplash@2x.png in Resources */,
+				9D47F901160BA4E900B8B14D /* appStoreIcon512.png in Resources */,
+				9D47F902160BA4E900B8B14D /* appStoreIcon1024.png in Resources */,
+				9D47F903160BA4E900B8B14D /* Default.png in Resources */,
+				9D47F904160BA4E900B8B14D /* Icon.png in Resources */,
+				9D47F906160BA50100B8B14D /* appIcon.png in Resources */,
+				9D47F908160BA50C00B8B14D /* appIcon@2x.png in Resources */,
+				9D47F90A160BA52C00B8B14D /* Default.png in Resources */,
+				9D47F90C160BA53000B8B14D /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,7 +827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* CycleTracksAppDelegate.m in Sources */,
+				1D3623260D0F684500981E51 /* CycleAtlantaAppDelegate.m in Sources */,
 				28C3AD8A0F43EF2300507BA6 /* CycleTracks.xcdatamodel in Sources */,
 				6411996210683D7500C201F0 /* RecordTripViewController.m in Sources */,
 				641199B2106851AA00C201F0 /* SavedTripsViewController.m in Sources */,
@@ -836,7 +876,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -854,7 +894,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -884,7 +924,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -918,7 +958,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
 				SDKROOT = iphoneos;
 			};
 			name = Beta;
@@ -950,7 +990,7 @@
 				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Atlanta";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B5A96F9-2EC0-46CC-AB79-22EDC2D82BC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB7857C8-CE48-496F-8365-637668B1F5D4";
 				SDKROOT = iphoneos;
 			};
 			name = "Release Beta";
