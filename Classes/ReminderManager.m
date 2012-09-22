@@ -1,4 +1,13 @@
-/**  CycleTracks, Copyright 2009,2010 San Francisco County Transportation Authority
+/** Cycle Altanta, Copyright 2012 Georgia Institute of Technology
+ *                                    Atlanta, GA. USA
+ *
+ *   @author Christopher Le Dantec <ledantec@gatech.edu>
+ *   @author Anhong Guo <guoanhong15@gmail.com>
+ *
+ *   Updated/Modified for Atlanta's app deployment. Based on the
+ *   CycleTracks codebase for SFCTA.
+ *
+ ** CycleTracks, Copyright 2009,2010 San Francisco County Transportation Authority
  *                                    San Francisco, CA, USA
  *
  *   @author Matt Paul <mattpaul@mopimp.com>
