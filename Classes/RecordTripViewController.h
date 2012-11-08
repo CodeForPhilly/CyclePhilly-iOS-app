@@ -81,6 +81,7 @@
 	IBOutlet UILabel *timeCounter;
 	IBOutlet UILabel *distCounter;
 	IBOutlet UILabel *speedCounter;
+    UIActionSheet *saveActionSheet;
 
 
 	NSTimer *timer;
@@ -110,6 +111,7 @@
 
 @property (nonatomic, retain) UILabel *timeCounter;
 @property (nonatomic, retain) UILabel *distCounter;
+@property (nonatomic, retain) UIActionSheet *saveActionSheet;
 
 
 @property (assign) NSTimer *timer;
@@ -134,6 +136,7 @@
 
 // IBAction handlers
 - (IBAction)save:(UIButton *)sender;
+-(void)save;
 - (IBAction)start:(UIButton *)sender;
 
 

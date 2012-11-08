@@ -56,6 +56,7 @@
 @synthesize timer, timeCounter, distCounter;
 @synthesize recording, shouldUpdateCounter, userInfoSaved;
 @synthesize appDelegate;
+@synthesize saveActionSheet;
 
 #pragma mark CLLocationManagerDelegate methods
 
@@ -482,36 +483,45 @@
 		case kActionSheetButtonChange:
 			NSLog(@"Change => push Trip Purpose picker");
 			 */
-		case 0: // push Trip Purpose picker
-			// stop recording new GPS data points
-		{
-            appDelegate = [[UIApplication sharedApplication] delegate];
-            appDelegate.isRecording = NO;
-            recording = NO;
-			
-			// update UI
-			saveButton.enabled = NO;
-			
-			[self resetTimer];
-			
-			// Trip Purpose
-			NSLog(@"INIT + PUSH");
-			PickerViewController *pickerViewController = [[PickerViewController alloc]
-														  //initWithPurpose:[tripManager getPurposeIndex]];
-														  initWithNibName:@"TripPurposePicker" bundle:nil];
-			[pickerViewController setDelegate:self];
-			//[[self navigationController] pushViewController:pickerViewController animated:YES];
-			[self.navigationController presentModalViewController:pickerViewController animated:YES];
-			[pickerViewController release];
-		}
-			break;
-			
-		case kActionSheetButtonCancel:
-		default:
+           case 0:
+           {
+               NSLog(@"Discard!!!!");
+               [self resetRecordingInProgress];
+               break;
+           }
+        case 1:{
+            [self save];
+            break;
+        }
+//		case 1: // push Trip Purpose picker
+//			// stop recording new GPS data points
+//		{
+//            appDelegate = [[UIApplication sharedApplication] delegate];
+//            appDelegate.isRecording = NO;
+//            recording = NO;
+//			
+//			// update UI
+//			saveButton.enabled = NO;
+//			
+//			[self resetTimer];
+//			
+//			// Trip Purpose
+//			NSLog(@"INIT + PUSH");
+//			PickerViewController *pickerViewController = [[PickerViewController alloc]
+//														  //initWithPurpose:[tripManager getPurposeIndex]];
+//														  initWithNibName:@"TripPurposePicker" bundle:nil];
+//			[pickerViewController setDelegate:self];
+//			//[[self navigationController] pushViewController:pickerViewController animated:YES];
+//			[self.navigationController presentModalViewController:pickerViewController animated:YES];
+//			[pickerViewController release];
+//                break;
+//		}
+		default:{
 			NSLog(@"Cancel");
 			// re-enable counter updates
 			shouldUpdateCounter = YES;
 			break;
+        }
 	}
 }
 
@@ -573,7 +583,157 @@
 
 
 // handle save button action
-- (IBAction)save:(UIButton *)sender
+//- (IBAction)save:(UIButton *)sender
+//{
+//	NSLog(@"save");
+//	
+//	// go directly to TripPurpose, user can cancel from there
+//	if ( YES )
+//	{
+//		// Trip Purpose
+//		NSLog(@"INIT + PUSH");
+//		PickerViewController *pickerViewController = [[PickerViewController alloc]
+//													  //initWithPurpose:[tripManager getPurposeIndex]];
+//													  initWithNibName:@"TripPurposePicker" bundle:nil];
+//		[pickerViewController setDelegate:self];
+//		//[[self navigationController] pushViewController:pickerViewController animated:YES];
+//		[self.navigationController presentModalViewController:pickerViewController animated:YES];
+//		[pickerViewController release];
+//	}
+//	
+//	// prompt to confirm first
+//	else
+//	{
+//		// pause updating the counter
+//		shouldUpdateCounter = NO;
+//		
+//		// construct purpose confirmation string
+//		NSString *purpose = nil;
+//		if ( tripManager != nil )
+//			purpose = [self getPurposeString:[tripManager getPurposeIndex]];
+//		
+//		NSString *confirm = [NSString stringWithFormat:@"Stop recording & save this trip?"];
+//		
+//		// present action sheet
+//		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
+//																 delegate:self
+//														cancelButtonTitle:@"Cancel"
+//												   destructiveButtonTitle:nil
+//														otherButtonTitles:@"Save", nil];
+//		
+//		actionSheet.actionSheetStyle		= UIActionSheetStyleBlackTranslucent;
+//		UIViewController *pvc = self.parentViewController;
+//		UITabBarController *tbc = (UITabBarController *)pvc.parentViewController;
+//		
+//		[actionSheet showFromTabBar:tbc.tabBar];
+//		[actionSheet release];
+//	}
+//}
+
+
+- (NSDictionary *)newTripTimerUserInfo
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], @"StartDate",
+			tripManager, @"TripManager", nil ];
+}
+
+
+- (NSDictionary *)continueTripTimerUserInfo
+{
+	if ( tripManager.trip && tripManager.trip.start )
+		return [NSDictionary dictionaryWithObjectsAndKeys:tripManager.trip.start, @"StartDate",
+				tripManager, @"TripManager", nil ];
+	else {
+		NSLog(@"WARNING: tried to continue trip timer but failed to get trip.start date");
+		return [self newTripTimerUserInfo];
+	}
+	
+}
+
+
+// handle start button action
+- (IBAction)start:(UIButton *)sender
+{
+    
+    if(recording == NO)
+    {
+	NSLog(@"start");
+	
+	// start the timer if needed
+    // by cL: commented out bcs changes to start/stop mean we don't really have a way to 'pause' recording a trip.
+	if ( timer == nil )
+	{
+		// check if we're continuing a trip
+		//if ( tripManager.trip && [tripManager.trip.coords count] )
+		//{
+		//	timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
+		//											 target:self selector:@selector(updateCounter:)
+		//										   userInfo:[self continueTripTimerUserInfo] repeats:YES];
+		//}
+		
+		// or starting a new recording
+		//else {
+			[self resetCounter];
+			timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
+													 target:self selector:@selector(updateCounter:)
+												   userInfo:[self newTripTimerUserInfo] repeats:YES];
+		//}
+	}
+
+	// init reminder manager
+	//if ( reminderManager )
+	//	[reminderManager release];
+	
+	//reminderManager = [[ReminderManager alloc] initWithRecordingInProgressDelegate:self];
+	
+	// Toggle start button
+    // modified by cL
+    UIImage *buttonImage = [[UIImage imageNamed:@"blueButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"blueButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    [startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [startButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    //[startButton setBackgroundImage:[UIImage imageNamed:@"cancel_button.png"] forState:UIControlStateNormal];
+    [startButton setTitle:@"Save" forState:UIControlStateNormal];
+	
+	// enable save button
+	saveButton.enabled = YES;
+	saveButton.hidden = NO;
+	
+	// set recording flag so future location updates will be added as coords
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isRecording = YES;
+	recording = YES;
+	
+	// update "Touch start to begin text"
+	//[self.tableView reloadData];
+	
+	/*
+	CGRect sectionRect = [self.tableView rectForSection:0];
+	[self.tableView setNeedsDisplayInRect:sectionRect];
+	[self.view setNeedsDisplayInRect:sectionRect];
+	*/
+	
+	// set flag to update counter
+	shouldUpdateCounter = YES;
+    }
+    
+    else
+    {
+        NSLog(@"User Press Save Button");
+        saveActionSheet = [[UIActionSheet alloc]
+                       initWithTitle:@""
+                       delegate:self
+                       cancelButtonTitle:@"Continue"
+                       destructiveButtonTitle:@"Discard"
+                       otherButtonTitles:@"Save",nil];
+        //[saveActionSheet showInView:self.view];
+        [saveActionSheet showInView:[UIApplication sharedApplication].keyWindow];
+    }
+	
+}
+- (void)save
 {
 	NSLog(@"save");
 	
@@ -618,103 +778,6 @@
 		[actionSheet showFromTabBar:tbc.tabBar];
 		[actionSheet release];
 	}
-}
-
-
-- (NSDictionary *)newTripTimerUserInfo
-{
-    return [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], @"StartDate",
-			tripManager, @"TripManager", nil ];
-}
-
-
-- (NSDictionary *)continueTripTimerUserInfo
-{
-	if ( tripManager.trip && tripManager.trip.start )
-		return [NSDictionary dictionaryWithObjectsAndKeys:tripManager.trip.start, @"StartDate",
-				tripManager, @"TripManager", nil ];
-	else {
-		NSLog(@"WARNING: tried to continue trip timer but failed to get trip.start date");
-		return [self newTripTimerUserInfo];
-	}
-	
-}
-
-
-// handle start button action
-- (IBAction)start:(UIButton *)sender
-{
-    if(recording == NO)
-    {
-	NSLog(@"start");
-	
-	// start the timer if needed
-    // by cL: commented out bcs changes to start/stop mean we don't really have a way to 'pause' recording a trip.
-	if ( timer == nil )
-	{
-		// check if we're continuing a trip
-		//if ( tripManager.trip && [tripManager.trip.coords count] )
-		//{
-		//	timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
-		//											 target:self selector:@selector(updateCounter:)
-		//										   userInfo:[self continueTripTimerUserInfo] repeats:YES];
-		//}
-		
-		// or starting a new recording
-		//else {
-			[self resetCounter];
-			timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
-													 target:self selector:@selector(updateCounter:)
-												   userInfo:[self newTripTimerUserInfo] repeats:YES];
-		//}
-	}
-
-	// init reminder manager
-	//if ( reminderManager )
-	//	[reminderManager release];
-	
-	//reminderManager = [[ReminderManager alloc] initWithRecordingInProgressDelegate:self];
-	
-	// Toggle start button
-    // modified by cL
-    UIImage *buttonImage = [[UIImage imageNamed:@"redButton.png"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"redButtonHighlight.png"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    [startButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [startButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-    //[startButton setBackgroundImage:[UIImage imageNamed:@"cancel_button.png"] forState:UIControlStateNormal];
-    [startButton setTitle:@"Cancel" forState:UIControlStateNormal];
-	
-	// enable save button
-	saveButton.enabled = YES;
-	saveButton.hidden = NO;
-	
-	// set recording flag so future location updates will be added as coords
-    appDelegate = [[UIApplication sharedApplication] delegate];
-    appDelegate.isRecording = YES;
-	recording = YES;
-	
-	// update "Touch start to begin text"
-	//[self.tableView reloadData];
-	
-	/*
-	CGRect sectionRect = [self.tableView rectForSection:0];
-	[self.tableView setNeedsDisplayInRect:sectionRect];
-	[self.view setNeedsDisplayInRect:sectionRect];
-	*/
-	
-	// set flag to update counter
-	shouldUpdateCounter = YES;
-    }
-    
-    else
-    {
-        NSLog(@"User Cancel");
-        [self resetRecordingInProgress];
-        
-    }
-	
 }
 
 

@@ -90,7 +90,7 @@
 #define kInfoURL			@"http://cycleatlanta.org/CycleAtlantaInfo"
 #define kInstructionsURL	@"http://cycleatlanta.org/instructions/"
 
-#define kSaveURL			@"http://cycleatlanta.org/post/"
+#define kSaveURL			@"http://cycleatlanta.org/post_dev/"
 
 #define kTripNotesPlaceholder	@"Comments"
 
