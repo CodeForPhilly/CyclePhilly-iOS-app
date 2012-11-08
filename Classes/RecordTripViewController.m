@@ -318,6 +318,12 @@
 	
 	// check for any unsaved trips / interrupted recordings
 	[self hasRecordingBeenInterrupted];
+    
+    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+	NSLog(@"save");
 }
 
 
@@ -735,7 +741,101 @@
 }
 - (void)save
 {
-	NSLog(@"save");
+	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+	// go directly to TripPurpose, user can cancel from there
+	if ( YES )
+	{
+		// Trip Purpose
+		NSLog(@"INIT + PUSH");
+		PickerViewController *pickerViewController2 = [[PickerViewController alloc]
+													  //initWithPurpose:[tripManager getPurposeIndex]];
+													  initWithNibName:@"TripPurposePicker" bundle:nil];
+		[pickerViewController2 setDelegate:self];
+		//[[self navigationController] pushViewController:pickerViewController animated:YES];
+		[self.navigationController presentModalViewController:pickerViewController2 animated:YES];
+		[pickerViewController2 release];
+	}
+	
+	// prompt to confirm first
+	else
+	{
+		// pause updating the counter
+		shouldUpdateCounter = NO;
+		
+		// construct purpose confirmation string
+		NSString *purpose = nil;
+		if ( tripManager != nil )
+			purpose = [self getPurposeString:[tripManager getPurposeIndex]];
+		
+		NSString *confirm = [NSString stringWithFormat:@"Stop recording & save this trip?"];
+		
+		// present action sheet
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
+																 delegate:self
+														cancelButtonTitle:@"Cancel"
+												   destructiveButtonTitle:nil
+														otherButtonTitles:@"Save", nil];
+		
+		actionSheet.actionSheetStyle		= UIActionSheetStyleBlackTranslucent;
+		UIViewController *pvc = self.parentViewController;
+		UITabBarController *tbc = (UITabBarController *)pvc.parentViewController;
+		
+		[actionSheet showFromTabBar:tbc.tabBar];
+		[actionSheet release];
+	}
+}
+-(IBAction)issue:(id)sender{
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"issue");
+	
+	// go directly to TripPurpose, user can cancel from there
+	if ( YES )
+	{
+		// Trip Purpose
+		NSLog(@"INIT + PUSH");
+		PickerViewController *pickerViewController3 = [[PickerViewController alloc]
+													  //initWithPurpose:[tripManager getPurposeIndex]];
+													  initWithNibName:@"TripPurposePicker" bundle:nil];
+		[pickerViewController3 setDelegate:self];
+		//[[self navigationController] pushViewController:pickerViewController animated:YES];
+		[self.navigationController presentModalViewController:pickerViewController3 animated:YES];
+		[pickerViewController3 release];
+	}
+	
+	// prompt to confirm first
+	else
+	{
+		// pause updating the counter
+		shouldUpdateCounter = NO;
+		
+		// construct purpose confirmation string
+		NSString *purpose = nil;
+		if ( tripManager != nil )
+			purpose = [self getPurposeString:[tripManager getPurposeIndex]];
+		
+		NSString *confirm = [NSString stringWithFormat:@"Stop recording & save this trip?"];
+		
+		// present action sheet
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
+																 delegate:self
+														cancelButtonTitle:@"Cancel"
+												   destructiveButtonTitle:nil
+														otherButtonTitles:@"Save", nil];
+		
+		actionSheet.actionSheetStyle		= UIActionSheetStyleBlackTranslucent;
+		UIViewController *pvc = self.parentViewController;
+		UITabBarController *tbc = (UITabBarController *)pvc.parentViewController;
+		
+		[actionSheet showFromTabBar:tbc.tabBar];
+		[actionSheet release];
+	}
+}
+-(IBAction)asset:(id)sender{
+    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"asset");
 	
 	// go directly to TripPurpose, user can cancel from there
 	if ( YES )

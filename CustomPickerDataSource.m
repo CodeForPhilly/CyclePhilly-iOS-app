@@ -65,54 +65,127 @@
 		 * Other
 		 */
 		
-		CustomView *view;
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Commute";
-		view.image = [UIImage imageNamed:kTripPurposeCommuteIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"School";
-		view.image = [UIImage imageNamed:kTripPurposeSchoolIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Work-Related";
-		view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Exercise";
-		view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Social";
-		view.image = [UIImage imageNamed:kTripPurposeSocialIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Shopping";
-		view.image = [UIImage imageNamed:kTripPurposeShoppingIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Errand";
-		view.image = [UIImage imageNamed:kTripPurposeErrandIcon];
-		[viewArray addObject:view];
-		[view release];
-		
-		view = [[CustomView alloc] initWithFrame:CGRectZero];
-		view.title = @"Other";
-		view.image = [UIImage imageNamed:kTripPurposeOtherIcon];
-		[viewArray addObject:view];
-		[view release];
+        CustomView *view;
+        pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+        
+        if (pickerCategory == 0) {
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Commute";
+            view.image = [UIImage imageNamed:kTripPurposeCommuteIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"School";
+            view.image = [UIImage imageNamed:kTripPurposeSchoolIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Work-Related";
+            view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Exercise";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Social";
+            view.image = [UIImage imageNamed:kTripPurposeSocialIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Shopping";
+            view.image = [UIImage imageNamed:kTripPurposeShoppingIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Errand";
+            view.image = [UIImage imageNamed:kTripPurposeErrandIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Other";
+            view.image = [UIImage imageNamed:kTripPurposeOtherIcon];
+            [viewArray addObject:view];
+            [view release];
+        }
+        //TODO: figure out the real category, picture and title
+        else if (pickerCategory == 1){
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Commute";
+            view.image = [UIImage imageNamed:kTripPurposeCommuteIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"School";
+            view.image = [UIImage imageNamed:kTripPurposeSchoolIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Work-Related";
+            view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Exercise";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Social";
+            view.image = [UIImage imageNamed:kTripPurposeSocialIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Shopping";
+            view.image = [UIImage imageNamed:kTripPurposeShoppingIcon];
+            [viewArray addObject:view];
+            [view release];
+        }
+        else if (pickerCategory == 2){
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Commute";
+            view.image = [UIImage imageNamed:kTripPurposeCommuteIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"School";
+            view.image = [UIImage imageNamed:kTripPurposeSchoolIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Work-Related";
+            view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Exercise";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Social";
+            view.image = [UIImage imageNamed:kTripPurposeSocialIcon];
+            [viewArray addObject:view];
+            [view release];
+        }
 
 		self.customPickerArray = viewArray;
 		[viewArray release];

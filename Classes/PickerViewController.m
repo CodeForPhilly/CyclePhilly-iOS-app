@@ -45,6 +45,7 @@
 @implementation PickerViewController
 
 @synthesize customPickerView, customPickerDataSource, delegate, description;
+@synthesize descriptionText;
 
 
 // return the picker frame based on its size
@@ -142,10 +143,24 @@
 
 
 - (void)viewDidLoad
-{		
+{
+    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+    
+    if (pickerCategory == 0) {
+        navBarItself.topItem.title = @"Trip Purpose";
+        self.descriptionText.text = @"Please select your trip purpose & tap Save";
+    }
+    else if (pickerCategory == 1){
+        navBarItself.topItem.title = @"Issue";
+        self.descriptionText.text = @"Please select your issue type & tap Save";
+    }
+    else if (pickerCategory == 2){
+        navBarItself.topItem.title = @"Asset";
+        self.descriptionText.text = @"Please select your asset type & tap Save";
+    }
 	[super viewDidLoad];
+    
 	
-	self.title = NSLocalizedString(@"Trip Purpose", @"");
 
 	//self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	// self.view.backgroundColor = [[UIColor alloc] initWithRed:40. green:42. blue:57. alpha:1. ];
@@ -194,34 +209,97 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
 	//NSLog(@"parent didSelectRow: %d inComponent:%d", row, component);
-
-	switch (row) {
-		case 0:
-			description.text = kDescCommute;
-			break;
-		case 1:
-			description.text = kDescSchool;
-			break;
-		case 2:
-			description.text = kDescWork;
-			break;
-		case 3:
-			description.text = kDescExercise;
-			break;
-		case 4:
-			description.text = kDescSocial;
-			break;
-		case 5:
-			description.text = kDescShopping;
-			break;
-		case 6:
-			description.text = kDescErrand;
-			break;
-		case 7:
-		default:
-			description.text = kDescOther;
-			break;
-	}
+    
+    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+    
+    if (pickerCategory == 0) {
+        switch (row) {
+            case 0:
+                description.text = kDescCommute;
+                break;
+            case 1:
+                description.text = kDescSchool;
+                break;
+            case 2:
+                description.text = kDescWork;
+                break;
+            case 3:
+                description.text = kDescExercise;
+                break;
+            case 4:
+                description.text = kDescSocial;
+                break;
+            case 5:
+                description.text = kDescShopping;
+                break;
+            case 6:
+                description.text = kDescErrand;
+                break;
+            case 7:
+            default:
+                description.text = kDescOther;
+                break;
+        }
+    }
+    //TODO: figure out the real description text
+    else if (pickerCategory == 1){
+        switch (row) {
+            case 0:
+                description.text = kDescSchool;
+                break;
+            case 1:
+                description.text = kDescCommute;
+                break;
+            case 2:
+                description.text = kDescWork;
+                break;
+            case 3:
+                description.text = kDescExercise;
+                break;
+            case 4:
+                description.text = kDescSocial;
+                break;
+            case 5:
+                description.text = kDescShopping;
+                break;
+            case 6:
+                description.text = kDescErrand;
+                break;
+            case 7:
+            default:
+                description.text = kDescOther;
+                break;
+        }
+    }
+    else if (pickerCategory == 2){
+        switch (row) {
+            case 0:
+                description.text = kDescCommute;
+                break;
+            case 1:
+                description.text = kDescSchool;
+                break;
+            case 2:
+                description.text = kDescWork;
+                break;
+            case 3:
+                description.text = kDescExercise;
+                break;
+            case 4:
+                description.text = kDescSocial;
+                break;
+            case 5:
+                description.text = kDescShopping;
+                break;
+            case 6:
+                description.text = kDescErrand;
+                break;
+            case 7:
+            default:
+                description.text = kDescOther;
+                break;
+        }
+    }
 }
 
 

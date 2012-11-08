@@ -37,7 +37,7 @@
 //	For more information on the project, 
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
-
+//TODO: figure out the real description text
 // Trip Purpose descriptions
 #define kDescCommute	@"The primary reason for this bike trip is to get between home and your primary work location."
 #define kDescSchool		@"The primary reason for this bike trip is to go to or from school or college."
@@ -52,6 +52,7 @@
 {
 	NSArray	*customPickerArray;
 	id<UIPickerViewDelegate> parent;
+    NSInteger pickerCategory;
 }
 
 @property (nonatomic, retain) NSArray *customPickerArray;

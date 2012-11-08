@@ -49,6 +49,9 @@
 	CustomPickerDataSource	*customPickerDataSource;
 	
 	UITextView				*description;
+    NSInteger pickerCategory;
+    IBOutlet UINavigationBar *navBarItself;
+    UILabel *descriptionText;
 }
 
 
@@ -57,6 +60,8 @@
 @property (nonatomic, retain) CustomPickerDataSource *customPickerDataSource;
 
 @property (nonatomic, retain) UITextView *description;
+
+@property (nonatomic, retain) IBOutlet UILabel *descriptionText;
 
 - (id)initWithPurpose:(NSInteger)index;
 

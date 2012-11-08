@@ -93,6 +93,7 @@
 	BOOL recording;
 	BOOL shouldUpdateCounter;
 	BOOL userInfoSaved;
+    NSInteger pickerCategory;
 	
 	TripManager		*tripManager;
 //	ReminderManager *reminderManager;
@@ -137,6 +138,8 @@
 // IBAction handlers
 - (IBAction)save:(UIButton *)sender;
 -(void)save;
+-(IBAction)issue:(id)sender;
+-(IBAction)asset:(id)sender;
 - (IBAction)start:(UIButton *)sender;
 
 
