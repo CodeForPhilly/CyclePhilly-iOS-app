@@ -140,6 +140,7 @@
 -(void)save;
 -(IBAction)issue:(id)sender;
 -(IBAction)asset:(id)sender;
+-(IBAction)detail:(id)sender;
 - (IBAction)start:(UIButton *)sender;
 
 

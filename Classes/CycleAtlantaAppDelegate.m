@@ -48,6 +48,7 @@
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "constants.h"
+#import "DetailViewController.h"
 
 
 @implementation CycleAtlantaAppDelegate

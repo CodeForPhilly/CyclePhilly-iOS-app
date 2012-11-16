@@ -40,6 +40,7 @@
 
 #import "CustomView.h"
 #import "PickerViewController.h"
+#import "DetailViewController.h"
 
 
 @implementation PickerViewController
@@ -106,8 +107,29 @@
 
 - (IBAction)save:(id)sender
 {
-	NSInteger row = [customPickerView selectedRowInComponent:0];
-	[delegate didPickPurpose:row];
+    //TODO: push to view
+    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+    
+    if (pickerCategory == 0) {
+        NSLog(@"Purpose Save button pressed");
+        NSInteger row = [customPickerView selectedRowInComponent:0];
+        [delegate didPickPurpose:row];
+    }
+    else if (pickerCategory == 1){
+        NSLog(@"Issue Save button pressed");
+        NSLog(@"detail");
+        NSLog(@"INIT + PUSH");
+        //[self dismissModalViewControllerAnimated:YES];
+        [self presentModalViewController:[[UIViewController alloc] initWithNibName:@"DetailView" bundle:nil] animated:YES];
+    }
+    else if (pickerCategory == 2){
+        NSLog(@"Asset Save button pressed");
+        NSLog(@"detail");
+        NSLog(@"INIT + PUSH");
+        [self presentModalViewController:[[UIViewController alloc] initWithNibName:@"DetailView" bundle:nil] animated:YES];
+    }
+
+	
 }
 
 

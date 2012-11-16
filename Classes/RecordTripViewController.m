@@ -880,6 +880,13 @@
 	}
 }
 
+-(IBAction)detail:(id)sender{
+    NSLog(@"detail");
+    NSLog(@"INIT + PUSH");
+    [self.navigationController presentModalViewController:[[UIViewController alloc] initWithNibName:@"DetailView" bundle:nil] animated:YES];
+}
+
+
 
 
 - (void)createCounter

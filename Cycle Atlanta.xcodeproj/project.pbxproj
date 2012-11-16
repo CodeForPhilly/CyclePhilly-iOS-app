@@ -60,8 +60,12 @@
 		64F823E1106AC151001413F8 /* SaveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823E0106AC151001413F8 /* SaveRequest.m */; };
 		64F824E6106AFFA4001413F8 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */; };
 		64FCC5B411352242000FA1B6 /* PersonalInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64FCC5B311352242000FA1B6 /* PersonalInfo.xib */; };
+		8F1B1D3F164B94C60022B776 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1B1D3E164B94C60022B776 /* DetailViewController.m */; };
+		8F1B1D41164B94E90022B776 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1B1D40164B94E90022B776 /* DetailView.xib */; };
 		8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */; };
 		8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */; };
+		8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E51655E35800324E6E /* MobileCoreServices.framework */; };
+		8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E81655E36600324E6E /* MediaPlayer.framework */; };
 		9D4647B71604EBF400A4F9CB /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4647A91604EBF400A4F9CB /* blueButton.png */; };
 		9D4647B81604EBF400A4F9CB /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4647AA1604EBF400A4F9CB /* blueButton@2x.png */; };
 		9D4647B91604EBF400A4F9CB /* blueButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D4647AB1604EBF400A4F9CB /* blueButtonHighlight.png */; };
@@ -228,10 +232,16 @@
 		64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		64FCC5B311352242000FA1B6 /* PersonalInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfo.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Cycle Atlanta-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cycle Atlanta-Info.plist"; sourceTree = "<group>"; };
+		8F1B1D3D164B94C60022B776 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		8F1B1D3E164B94C60022B776 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8F1B1D40164B94E90022B776 /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
+		8F1B1D42164B9C720022B776 /* DetailDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailDelegate.h; sourceTree = "<group>"; };
 		8F5E60621602CBE000D8F85D /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5Addition.h"; path = "../NSString+MD5Addition.h"; sourceTree = "<group>"; };
 		8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5Addition.m"; path = "../NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		8F5E60641602CBE000D8F85D /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+IdentifierAddition.h"; path = "../UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+IdentifierAddition.m"; path = "../UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		8FD696E51655E35800324E6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		8FD696E81655E36600324E6E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9D4647A91604EBF400A4F9CB /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		9D4647AA1604EBF400A4F9CB /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
 		9D4647AB1604EBF400A4F9CB /* blueButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButtonHighlight.png; sourceTree = "<group>"; };
@@ -316,6 +326,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */,
+				8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -352,6 +364,8 @@
 				64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */,
 				64119ABD10689ED800C201F0 /* PickerViewController.h */,
 				64119ABE10689ED800C201F0 /* PickerViewController.m */,
+				8F1B1D3D164B94C60022B776 /* DetailViewController.h */,
+				8F1B1D3E164B94C60022B776 /* DetailViewController.m */,
 				64581198107AC1080075DABD /* RecordingInProgressDelegate.h */,
 				6411996010683D7500C201F0 /* RecordTripViewController.h */,
 				6411996110683D7500C201F0 /* RecordTripViewController.m */,
@@ -364,6 +378,7 @@
 				64119F021069ACF800C201F0 /* TripManager.h */,
 				64119F031069ACF800C201F0 /* TripManager.m */,
 				6433E54E106D542100C27387 /* TripPurposeDelegate.h */,
+				8F1B1D42164B9C720022B776 /* DetailDelegate.h */,
 				8F5E60641602CBE000D8F85D /* UIDevice+IdentifierAddition.h */,
 				8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */,
 			);
@@ -421,6 +436,7 @@
 				64C8D40211386B26008BCADE /* RecordMap.xib */,
 				64210F5311350AE200415F1A /* RecordNewTrip.xib */,
 				64119A9B1068665B00C201F0 /* TripPurposePicker.xib */,
+				8F1B1D40164B94E90022B776 /* DetailView.xib */,
 				64FCC5B311352242000FA1B6 /* PersonalInfo.xib */,
 			);
 			name = Resources;
@@ -429,6 +445,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FD696E81655E36600324E6E /* MediaPlayer.framework */,
+				8FD696E51655E35800324E6E /* MobileCoreServices.framework */,
 				642647FC107435A200E43DEF /* AudioToolbox.framework */,
 				642F151B1071D9DD0050BCB9 /* MapKit.framework */,
 				64F823C5106AB42B001413F8 /* Security.framework */,
@@ -792,6 +810,7 @@
 				9D47F908160BA50C00B8B14D /* appIcon@2x.png in Resources */,
 				9D47F90A160BA52C00B8B14D /* Default.png in Resources */,
 				9D47F90C160BA53000B8B14D /* Default@2x.png in Resources */,
+				8F1B1D41164B94E90022B776 /* DetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +850,7 @@
 				645E4EDC1200C1C800EFF0E6 /* LoadingView.m in Sources */,
 				8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */,
 				8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */,
+				8F1B1D3F164B94C60022B776 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
