@@ -226,22 +226,22 @@
 	return response;
 }
 
-- (void)hasRecordingBeenInterrupted
-{
-	if ( [tripManager countUnSavedTrips] )
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kInterruptedTitle
-														message:kInterruptedMessage
-													   delegate:self
-											  cancelButtonTitle:@"Cancel"
-											  otherButtonTitles:@"Continue", nil];
-		alert.tag = 101;
-		[alert show];
-		[alert release];
-	}
-	else
-		NSLog(@"no unsaved trips found");
-}
+//- (void)hasRecordingBeenInterrupted
+//{
+//	if ( [tripManager countUnSavedTrips] )
+//	{
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kInterruptedTitle
+//														message:kInterruptedMessage
+//													   delegate:self
+//											  cancelButtonTitle:@"Cancel"
+//											  otherButtonTitles:@"Continue", nil];
+//		alert.tag = 101;
+//		[alert show];
+//		[alert release];
+//	}
+//	else
+//		NSLog(@"no unsaved trips found");
+//}
 
 - (void)infoAction:(id)sender
 {
@@ -317,7 +317,7 @@
 		[self setSaved:YES];
 	
 	// check for any unsaved trips / interrupted recordings
-	[self hasRecordingBeenInterrupted];
+	//[self hasRecordingBeenInterrupted];
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
