@@ -1231,6 +1231,7 @@ shouldSelectViewController:(UIViewController *)viewController
 	
 	[tripManager setPurpose:index];
 	[tripManager promptForTripNotes];
+    //do something here: may change to be the save as a separate view. Not prompt.
 }
 
 

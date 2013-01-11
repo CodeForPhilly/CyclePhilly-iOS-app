@@ -16,6 +16,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @end
 
 @implementation DetailViewController
+@synthesize delegate;
 @synthesize detailTextView;
 @synthesize addPicButton;
 @synthesize imageView;
@@ -71,11 +72,15 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 -(IBAction)skip:(id)sender{
     NSLog(@"Skip");
+    [delegate didCancelPurpose];
+    //do something: photo=null, text=null
 }
 
 -(IBAction)saveDetail:(id)sender{
     NSLog(@"Save Detail");
     [detailTextView resignFirstResponder];
+    //do many things here: get photo and text for later use.
+    [delegate didCancelPurpose];
 }
 
 - (IBAction)shootPictureOrVideo:(id)sender {

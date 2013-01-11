@@ -120,13 +120,23 @@
         NSLog(@"detail");
         NSLog(@"INIT + PUSH");
         //[self dismissModalViewControllerAnimated:YES];
-        [self presentModalViewController:[[UIViewController alloc] initWithNibName:@"DetailView" bundle:nil] animated:YES];
+        
+        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil];
+        detailViewController.delegate = self.delegate;
+        
+        [self presentModalViewController:detailViewController animated:YES];
+        //do something here: get index for later use.
     }
     else if (pickerCategory == 2){
         NSLog(@"Asset Save button pressed");
         NSLog(@"detail");
         NSLog(@"INIT + PUSH");
-        [self presentModalViewController:[[UIViewController alloc] initWithNibName:@"DetailView" bundle:nil] animated:YES];
+        
+        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil];
+        detailViewController.delegate = self.delegate;
+        
+        [self presentModalViewController:detailViewController animated:YES];
+        //do something here: get index for later use.
     }
 
 	

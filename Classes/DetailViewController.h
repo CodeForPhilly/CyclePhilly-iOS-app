@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TripPurposeDelegate.h"
 
 @interface DetailViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>{
+    id <TripPurposeDelegate> delegate;
     UITextView *detailTextView;
     UIButton *addPicButton;
 }
+
+@property (nonatomic, retain) id <TripPurposeDelegate> delegate;
 
 @property (nonatomic, retain) IBOutlet UITextView *detailTextView;
 @property (nonatomic, retain) IBOutlet UIButton *addPicButton;
