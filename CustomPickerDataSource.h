@@ -37,7 +37,6 @@
 //	For more information on the project, 
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
-//TODO: figure out the real description text
 // Trip Purpose descriptions
 #define kDescCommute	@"The primary reason for this bike trip is to get between home and your primary work location."
 #define kDescSchool		@"The primary reason for this bike trip is to go to or from school or college."
@@ -47,6 +46,23 @@
 #define kDescShopping	@"The primary reason for this bike trip is to purchase or bring home goods or groceries."
 #define kDescErrand		@"The primary reason for this bike trip is to attend to personal business such as banking, doctor visit, going to the gym, etc."
 #define kDescOther		@"If none of the other reasons apply to this trip, you can enter trip comments after saving your trip to tell us more."
+
+// Issue descriptions
+#define kIssueDescPavementIssue  @"Here’s a spot that the road needs repair that would help people cycle better (pothole, spalling concrete, gravel in the road, manhole cover, sewer grate)."
+#define kIssueDescTrafficSignal  @"Here’s a signal that you can’t activate with your bike.  We want to help create good citizens and not run a red."
+#define kIssueDescEnforcement    @"The bike lane is always blocked here, cars disobey no right on red… anything where the cops can help make cycling better."
+#define kIssueDescNeedParking    @"Please put a bike rack here.  You need a place to secure your bike other than the tree and telephone pole."
+#define kIssueDescBikeLaneIssue  @"Where the bike lane ends (abruptly) or is too narrow (pesky parked cars)."
+#define kIssueDescNoteThisSpot   @"Anything else ripe for improvement.  Want a sharrow, a sign, a bike lane.  Tell us in the notes what you wish were here."
+
+// Asset descriptions
+#define kAssetDescBikeParking   @"Park them here and remember to secure your bike well.  Please only include racks or other objects intended for bikes."
+#define kAssetDescBikeShops @"Have a flat, a broken chain or spongy brakes?  Or do you need a bike to jump into this world of cycling in the first place?  They are here to help."
+#define kAssetDescPublicRestrooms   @"Help us make cycling mainstream… here’s a place to refresh yourself before you re-enter the fashionable world of Atlanta."
+#define kAssetDescSecretPassage @"Looking for the access point under the tracks, through the park, onto a trail or over a ravine?  Here’s all the cut-thrus we need."
+#define kAssetDescWaterFountains    @"Here’s a spot to fill your bottle on those hot summer days… stay hydrated, people.  We need you."
+#define kAssetDescNoteThisSpot  @"Anything else we should map to help your fellow cyclists.  Tell us in the notes what is here that we should remember."
+
 
 @interface CustomPickerDataSource : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
 {

@@ -54,7 +54,7 @@
 		// create the data source for this custom picker
 		NSMutableArray *viewArray = [[NSMutableArray alloc] init];
 
-		/*
+		/* Trip Purpose
 		 * Commute
 		 * School
 		 * Work-Related
@@ -64,6 +64,24 @@
 		 * Errand
 		 * Other
 		 */
+        
+        /* Issue
+         * Pavement issue
+         * Traffic signal
+         * Enforcement
+         * Need parking
+         * Bike lane issue
+         * Note this spot
+         */
+        
+        /* Asset
+         * Bike parking
+         * Bike shops
+         * Public restrooms
+         * Secret passage
+         * Water fountains
+         * Note this spot
+         */
 		
         CustomView *view;
         pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
@@ -120,69 +138,75 @@
         //TODO: figure out the real category, picture and title
         else if (pickerCategory == 1){
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Commute";
-            view.image = [UIImage imageNamed:kTripPurposeCommuteIcon];
+            view.title = @"Pavement issue";
+            //view.image = [UIImage imageNamed:kIssuePavementIssueIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"School";
-            view.image = [UIImage imageNamed:kTripPurposeSchoolIcon];
+            view.title = @"Traffic signal";
+            //view.image = [UIImage imageNamed:kIssueTrafficSignalIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Work-Related";
-            view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
+            view.title = @"Enforcement";
+            //view.image = [UIImage imageNamed:kIssueEnforcementIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Exercise";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.title = @"Need parking";
+            //view.image = [UIImage imageNamed:kIssueNeedParkingIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Social";
-            view.image = [UIImage imageNamed:kTripPurposeSocialIcon];
+            view.title = @"Bike lane issue";
+            //view.image = [UIImage imageNamed:kIssueBikeLaneIssueIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Shopping";
-            view.image = [UIImage imageNamed:kTripPurposeShoppingIcon];
+            view.title = @"Note this spot";
+            //view.image = [UIImage imageNamed:kIssueNoteThisSpotIcon];
             [viewArray addObject:view];
             [view release];
         }
         else if (pickerCategory == 2){
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Commute";
-            view.image = [UIImage imageNamed:kTripPurposeCommuteIcon];
+            view.title = @"Bike parking";
+            //view.image = [UIImage imageNamed:kAssetBikeParkingIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"School";
-            view.image = [UIImage imageNamed:kTripPurposeSchoolIcon];
+            view.title = @"Bike shops";
+            //view.image = [UIImage imageNamed:kAssetBikeShopsIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Work-Related";
-            view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
+            view.title = @"Public restrooms";
+            //view.image = [UIImage imageNamed:kAssetPublicRestroomsIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Exercise";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.title = @"Secret passage";
+            //view.image = [UIImage imageNamed:kAssetSecretPassageIcon];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Social";
-            view.image = [UIImage imageNamed:kTripPurposeSocialIcon];
+            view.title = @"Water fountains";
+            //view.image = [UIImage imageNamed:kAssetWaterFountainsIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Note this spot";
+            //view.image = [UIImage imageNamed:kAssetNoteThisSpotIcon];
             [viewArray addObject:view];
             [view release];
         }

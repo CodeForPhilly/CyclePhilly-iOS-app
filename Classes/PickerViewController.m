@@ -184,11 +184,11 @@
     }
     else if (pickerCategory == 1){
         navBarItself.topItem.title = @"Issue";
-        self.descriptionText.text = @"Please select your issue type & tap Save";
+        self.descriptionText.text = @"Please select the issue type & tap Save";
     }
     else if (pickerCategory == 2){
         navBarItself.topItem.title = @"Asset";
-        self.descriptionText.text = @"Please select your asset type & tap Save";
+        self.descriptionText.text = @"Please select the asset type & tap Save";
     }
 	[super viewDidLoad];
     
@@ -209,6 +209,9 @@
 	//description = [[UITextView alloc] initWithFrame:CGRectMake( 18.0, 280.0, 284.0, 130.0 )];
 	description = [[UITextView alloc] initWithFrame:CGRectMake( 18.0, 314.0, 284.0, 120.0 )];
 	description.editable = NO;
+    description.backgroundColor = [UIColor clearColor];
+    description.textColor = [UIColor whiteColor];
+    
 	description.font = [UIFont fontWithName:@"Arial" size:16];
 	[self.view addSubview:description];
 }
@@ -267,7 +270,6 @@
             case 6:
                 description.text = kDescErrand;
                 break;
-            case 7:
             default:
                 description.text = kDescOther;
                 break;
@@ -277,58 +279,44 @@
     else if (pickerCategory == 1){
         switch (row) {
             case 0:
-                description.text = kDescSchool;
+                description.text = kIssueDescPavementIssue;
                 break;
             case 1:
-                description.text = kDescCommute;
+                description.text = kIssueDescTrafficSignal;
                 break;
             case 2:
-                description.text = kDescWork;
+                description.text = kIssueDescEnforcement;
                 break;
             case 3:
-                description.text = kDescExercise;
+                description.text = kIssueDescNeedParking;
                 break;
             case 4:
-                description.text = kDescSocial;
+                description.text = kIssueDescBikeLaneIssue;
                 break;
-            case 5:
-                description.text = kDescShopping;
-                break;
-            case 6:
-                description.text = kDescErrand;
-                break;
-            case 7:
             default:
-                description.text = kDescOther;
+                description.text = kIssueDescNoteThisSpot;
                 break;
         }
     }
     else if (pickerCategory == 2){
         switch (row) {
             case 0:
-                description.text = kDescCommute;
+                description.text = kAssetDescBikeParking;
                 break;
             case 1:
-                description.text = kDescSchool;
+                description.text = kAssetDescBikeShops;
                 break;
             case 2:
-                description.text = kDescWork;
+                description.text = kAssetDescPublicRestrooms;
                 break;
             case 3:
-                description.text = kDescExercise;
+                description.text = kAssetDescSecretPassage;
                 break;
             case 4:
-                description.text = kDescSocial;
+                description.text = kAssetDescWaterFountains;
                 break;
-            case 5:
-                description.text = kDescShopping;
-                break;
-            case 6:
-                description.text = kDescErrand;
-                break;
-            case 7:
             default:
-                description.text = kDescOther;
+                description.text = kAssetDescNoteThisSpot;
                 break;
         }
     }

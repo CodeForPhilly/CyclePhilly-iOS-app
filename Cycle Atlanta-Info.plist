@@ -43,8 +43,6 @@
 	<array>
 		<string>location</string>
 	</array>
-	<key>UIPrerenderedIcon</key>
-	<string>NO</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>location-services</string>

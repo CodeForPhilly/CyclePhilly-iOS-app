@@ -226,10 +226,10 @@
 	return response;
 }
 
-//- (void)hasRecordingBeenInterrupted
-//{
-//	if ( [tripManager countUnSavedTrips] )
-//	{
+- (void)hasRecordingBeenInterrupted
+{
+	if ( [tripManager countUnSavedTrips] )
+	{
 //		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kInterruptedTitle
 //														message:kInterruptedMessage
 //													   delegate:self
@@ -238,10 +238,12 @@
 //		alert.tag = 101;
 //		[alert show];
 //		[alert release];
-//	}
-//	else
-//		NSLog(@"no unsaved trips found");
-//}
+        
+        [self resetRecordingInProgress];
+	}
+	else
+		NSLog(@"no unsaved trips found");
+}
 
 - (void)infoAction:(id)sender
 {
@@ -252,6 +254,7 @@
 
 - (void)viewDidLoad
 {
+    //self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	NSLog(@"RecordTripViewController viewDidLoad");
     NSLog(@"Bundle ID: %@", [[NSBundle mainBundle] bundleIdentifier]);
     [super viewDidLoad];
@@ -317,7 +320,7 @@
 		[self setSaved:YES];
 	
 	// check for any unsaved trips / interrupted recordings
-	//[self hasRecordingBeenInterrupted];
+	[self hasRecordingBeenInterrupted];
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
@@ -493,6 +496,7 @@
            {
                NSLog(@"Discard!!!!");
                [self resetRecordingInProgress];
+               //discard that trip
                break;
            }
         case 1:{
