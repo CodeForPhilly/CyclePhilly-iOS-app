@@ -57,7 +57,7 @@
 		/* Trip Purpose
 		 * Commute
 		 * School
-		 * Work-Related
+		 * Work-related
 		 * Exercise
 		 * Social
 		 * Shopping
@@ -69,7 +69,7 @@
          * Pavement issue
          * Traffic signal
          * Enforcement
-         * Need parking
+         * Bike parking
          * Bike lane issue
          * Note this spot
          */
@@ -100,7 +100,7 @@
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Work-Related";
+            view.title = @"Work-related";
             view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
             [viewArray addObject:view];
             [view release];
@@ -156,7 +156,7 @@
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Need parking";
+            view.title = @"Bike parking";
             //view.image = [UIImage imageNamed:kIssueNeedParkingIcon];
             [viewArray addObject:view];
             [view release];

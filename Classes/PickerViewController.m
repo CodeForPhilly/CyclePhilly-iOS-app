@@ -183,11 +183,11 @@
         self.descriptionText.text = @"Please select your trip purpose & tap Save";
     }
     else if (pickerCategory == 1){
-        navBarItself.topItem.title = @"Issue";
+        navBarItself.topItem.title = @"Boo this...";
         self.descriptionText.text = @"Please select the issue type & tap Save";
     }
     else if (pickerCategory == 2){
-        navBarItself.topItem.title = @"Asset";
+        navBarItself.topItem.title = @"This is rad!";
         self.descriptionText.text = @"Please select the asset type & tap Save";
     }
 	[super viewDidLoad];

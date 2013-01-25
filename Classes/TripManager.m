@@ -1158,7 +1158,7 @@
 			return @"School";
 			break;
 		case kTripPurposeWork:
-			return @"Work-Related";
+			return @"Work-related";
 			break;
 		case kTripPurposeExercise:
 			return @"Exercise";

@@ -398,8 +398,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */,
-				64577E28106DC2FD003ACBFD /* dist.plist */,
 				64F8239A106AB3E1001413F8 /* TouchJSON */,
 				64119AA81068672100C201F0 /* Trip Purpose data source */,
 				6411992B1068371B00C201F0 /* Data Model */,
@@ -434,6 +432,7 @@
 				6411A16A106A05DE00C201F0 /* Images */,
 				6458114D107AA4D30075DABD /* bicycle-bell-normalized.aiff */,
 				8D1107310486CEB800E47090 /* Cycle Atlanta-Info.plist */,
+				64577E28106DC2FD003ACBFD /* dist.plist */,
 				64210F28113508B800415F1A /* MainWindow.xib */,
 				642F14791071D3F10050BCB9 /* MapViewController.xib */,
 				64C8D40211386B26008BCADE /* RecordMap.xib */,
@@ -491,8 +490,9 @@
 		6411A16A106A05DE00C201F0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				9D47F90B160BA53000B8B14D /* Default@2x.png */,
 				9D47F909160BA52C00B8B14D /* Default.png */,
+				9D47F90B160BA53000B8B14D /* Default@2x.png */,
+				8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */,
 				9D47F907160BA50C00B8B14D /* appIcon@2x.png */,
 				9D47F905160BA50000B8B14D /* appIcon.png */,
 				9D47F8F9160BA4E900B8B14D /* appStoreIcon512.png */,
