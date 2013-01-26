@@ -38,7 +38,6 @@
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
 
-#import "CJSONSerializer.h"
 #import "constants.h"
 #import "Coord.h"
 #import "SaveRequest.h"
@@ -377,9 +376,10 @@
 }
 
 
-- (NSString*)jsonEncodeUserData
+//- (NSString*)jsonEncodeUserData
+- (NSDictionary*)encodeUserData
 {
-	NSLog(@"jsonEncodeUserData");
+	NSLog(@"encodeUserData");
 	NSMutableDictionary *userDict = [NSMutableDictionary dictionaryWithCapacity:7];
 	
 	NSFetchRequest		*request = [[NSFetchRequest alloc] init];
@@ -424,12 +424,8 @@
 	else
 		NSLog(@"TripManager WARNING no saved user data to encode");
 	
-	NSLog(@"serializing user data to JSON...");
-	NSString *jsonUserData = [[CJSONSerializer serializer] serializeObject:userDict];
-	NSLog(@"%@", jsonUserData );
-	
 	[request release];
-	return jsonUserData;
+    return userDict;
 }
 
 
@@ -532,11 +528,6 @@
 		[tripDict setValue:coordsDict forKey:newDateString];
 	}
 #endif
-
-	NSLog(@"serializing trip data to JSON...");
-	NSString *jsonTripData = [[CJSONSerializer serializer] serializeObject:tripDict];
-	NSLog(@"%@", jsonTripData );
-	
 	// get trip purpose
 	NSString *purpose;
 	if ( trip.purpose )
@@ -554,18 +545,28 @@
 	NSLog(@"start: %@", start);
 
 	// encode user data
-	NSString *jsonUserData = [self jsonEncodeUserData];
+	NSDictionary *userDict = [self encodeUserData];
+    
+    // JSON encode user data and trip data, return to strings
+    NSError *writeError = nil;
+    
+    NSData *userJsonData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:&writeError];
+    NSString *userJson = [[NSString alloc] initWithData:userJsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"user data %@", userJson);
+
+    NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
+    NSString *tripJson = [[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"trip data %@", tripJson);
 
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
-							  jsonTripData, @"coords",
+							  tripJson, @"coords",
 							  purpose, @"purpose",
 							  notes, @"notes",
 							  start, @"start",
-							  jsonUserData, @"user",
+							  userJson, @"user",
 							  [NSString stringWithFormat:@"%d", kSaveProtocolVersion], @"version",
 							  nil];
-	
 	// create save request
 	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars];
 	

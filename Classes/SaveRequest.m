@@ -57,26 +57,27 @@
 		self.deviceUniqueIdHash = delegate.uniqueIDHash;
 		
 		// create request.
-		self.request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kSaveURL]]; // prop set retains
-		// [request addValue:kServiceUserAgent forHTTPHeaderField:@"User-Agent"];
-
-		// setup POST vars
+        self.request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:kSaveURL]];
 		[request setHTTPMethod:@"POST"];
-		self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
+		
+        self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
 	
 		// add hash of device id
 		[postVars setObject:deviceUniqueIdHash forKey:@"device"];
 
-		// convert dict to string
+        //convert dict to string
 		NSMutableString *postBody = [NSMutableString string];
-
+        
 		for(NSString * key in postVars)
 			[postBody appendString:[NSString stringWithFormat:@"%@=%@&", key, [postVars objectForKey:key]]];
+        
+		NSLog(@"Initializing HTTP POST request to %@ of size %d with body %@", 
+			  kSaveURL, [[postBody dataUsingEncoding:NSUTF8StringEncoding] length], postBody);
 
-		NSLog(@"initializing HTTP POST request to %@ with %d bytes", 
-			  kSaveURL,
-			  [[postBody dataUsingEncoding:NSUTF8StringEncoding] length]);
+        //set the POST body
 		[request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+
 	}
 	
 	return self;

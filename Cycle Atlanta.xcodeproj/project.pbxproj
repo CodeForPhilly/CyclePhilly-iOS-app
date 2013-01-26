@@ -48,14 +48,6 @@
 		645E4EDC1200C1C800EFF0E6 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 645E4EDB1200C1C800EFF0E6 /* LoadingView.m */; };
 		64C8D40311386B26008BCADE /* RecordMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C8D40211386B26008BCADE /* RecordMap.xib */; };
 		64ED1621112F364200E617E1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ED1620112F364200E617E1 /* QuartzCore.framework */; };
-		64F823AE106AB3E1001413F8 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F8239D106AB3E1001413F8 /* CDataScanner.m */; };
-		64F823AF106AB3E1001413F8 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823A0106AB3E1001413F8 /* CDataScanner_Extensions.m */; };
-		64F823B0106AB3E1001413F8 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823A2106AB3E1001413F8 /* NSCharacterSet_Extensions.m */; };
-		64F823B1106AB3E1001413F8 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823A4106AB3E1001413F8 /* NSDictionary_JSONExtensions.m */; };
-		64F823B2106AB3E1001413F8 /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823A6106AB3E1001413F8 /* NSScanner_Extensions.m */; };
-		64F823B3106AB3E1001413F8 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823A9106AB3E1001413F8 /* CJSONDeserializer.m */; };
-		64F823B4106AB3E1001413F8 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823AB106AB3E1001413F8 /* CJSONScanner.m */; };
-		64F823B5106AB3E1001413F8 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823AD106AB3E1001413F8 /* CJSONSerializer.m */; };
 		64F823C6106AB42B001413F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F823C5106AB42B001413F8 /* Security.framework */; };
 		64F823E1106AC151001413F8 /* SaveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823E0106AC151001413F8 /* SaveRequest.m */; };
 		64F824E6106AFFA4001413F8 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */; };
@@ -209,22 +201,6 @@
 		645E4EDB1200C1C800EFF0E6 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		64C8D40211386B26008BCADE /* RecordMap.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordMap.xib; sourceTree = "<group>"; };
 		64ED1620112F364200E617E1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		64F8239C106AB3E1001413F8 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CDataScanner.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		64F8239D106AB3E1001413F8 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CDataScanner.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		64F8239F106AB3E1001413F8 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CDataScanner_Extensions.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		64F823A0106AB3E1001413F8 /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CDataScanner_Extensions.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		64F823A1106AB3E1001413F8 /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
-		64F823A2106AB3E1001413F8 /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
-		64F823A3106AB3E1001413F8 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
-		64F823A4106AB3E1001413F8 /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
-		64F823A5106AB3E1001413F8 /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
-		64F823A6106AB3E1001413F8 /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
-		64F823A8106AB3E1001413F8 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CJSONDeserializer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		64F823A9106AB3E1001413F8 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CJSONDeserializer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		64F823AA106AB3E1001413F8 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CJSONScanner.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		64F823AB106AB3E1001413F8 /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CJSONScanner.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		64F823AC106AB3E1001413F8 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CJSONSerializer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		64F823AD106AB3E1001413F8 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CJSONSerializer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		64F823B6106AB402001413F8 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		64F823C5106AB42B001413F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		64F823DF106AC151001413F8 /* SaveRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveRequest.h; sourceTree = "<group>"; };
@@ -398,7 +374,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				64F8239A106AB3E1001413F8 /* TouchJSON */,
 				64119AA81068672100C201F0 /* Trip Purpose data source */,
 				6411992B1068371B00C201F0 /* Data Model */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -515,53 +490,6 @@
 				6411A18D106A90E400C201F0 /* work-related.tif */,
 			);
 			path = "TripPurposePickerIcons v2";
-			sourceTree = "<group>";
-		};
-		64F8239A106AB3E1001413F8 /* TouchJSON */ = {
-			isa = PBXGroup;
-			children = (
-				64F8239B106AB3E1001413F8 /* Source */,
-			);
-			name = TouchJSON;
-			sourceTree = "<group>";
-		};
-		64F8239B106AB3E1001413F8 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				64F8239C106AB3E1001413F8 /* CDataScanner.h */,
-				64F8239D106AB3E1001413F8 /* CDataScanner.m */,
-				64F8239E106AB3E1001413F8 /* Extensions */,
-				64F823A7106AB3E1001413F8 /* JSON */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		64F8239E106AB3E1001413F8 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				64F8239F106AB3E1001413F8 /* CDataScanner_Extensions.h */,
-				64F823A0106AB3E1001413F8 /* CDataScanner_Extensions.m */,
-				64F823A1106AB3E1001413F8 /* NSCharacterSet_Extensions.h */,
-				64F823A2106AB3E1001413F8 /* NSCharacterSet_Extensions.m */,
-				64F823A3106AB3E1001413F8 /* NSDictionary_JSONExtensions.h */,
-				64F823A4106AB3E1001413F8 /* NSDictionary_JSONExtensions.m */,
-				64F823A5106AB3E1001413F8 /* NSScanner_Extensions.h */,
-				64F823A6106AB3E1001413F8 /* NSScanner_Extensions.m */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		64F823A7106AB3E1001413F8 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				64F823A8106AB3E1001413F8 /* CJSONDeserializer.h */,
-				64F823A9106AB3E1001413F8 /* CJSONDeserializer.m */,
-				64F823AA106AB3E1001413F8 /* CJSONScanner.h */,
-				64F823AB106AB3E1001413F8 /* CJSONScanner.m */,
-				64F823AC106AB3E1001413F8 /* CJSONSerializer.h */,
-				64F823AD106AB3E1001413F8 /* CJSONSerializer.m */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		9D4647A81604EBF400A4F9CB /* Button Icons */ = {
@@ -836,14 +764,6 @@
 				64119EB81069A35C00C201F0 /* Trip.m in Sources */,
 				64119F041069ACF800C201F0 /* TripManager.m in Sources */,
 				64119FC31069C4CC00C201F0 /* Coord.m in Sources */,
-				64F823AE106AB3E1001413F8 /* CDataScanner.m in Sources */,
-				64F823AF106AB3E1001413F8 /* CDataScanner_Extensions.m in Sources */,
-				64F823B0106AB3E1001413F8 /* NSCharacterSet_Extensions.m in Sources */,
-				64F823B1106AB3E1001413F8 /* NSDictionary_JSONExtensions.m in Sources */,
-				64F823B2106AB3E1001413F8 /* NSScanner_Extensions.m in Sources */,
-				64F823B3106AB3E1001413F8 /* CJSONDeserializer.m in Sources */,
-				64F823B4106AB3E1001413F8 /* CJSONScanner.m in Sources */,
-				64F823B5106AB3E1001413F8 /* CJSONSerializer.m in Sources */,
 				64F823E1106AC151001413F8 /* SaveRequest.m in Sources */,
 				64F824E6106AFFA4001413F8 /* PersonalInfoViewController.m in Sources */,
 				6433E4E6106D4A2D00C27387 /* User.m in Sources */,
