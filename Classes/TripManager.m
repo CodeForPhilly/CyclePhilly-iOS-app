@@ -44,6 +44,8 @@
 #import "Trip.h"
 #import "TripManager.h"
 #import "User.h"
+#import "ZipUtil.h"
+//#import "Base64.h"
 
 
 // use this epsilon for both real-time and post-processing distance calculations
@@ -55,9 +57,11 @@
 
 #define kSaveProtocolVersion_1	1
 #define kSaveProtocolVersion_2	2
+#define kSaveProtocolVersion_3	3
 
 //#define kSaveProtocolVersion	kSaveProtocolVersion_1
 #define kSaveProtocolVersion	kSaveProtocolVersion_2
+//#define kSaveProtocolVersion	kSaveProtocolVersion_3
 
 @implementation TripManager
 
@@ -489,9 +493,26 @@
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];		
 	[outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
-	// TODO: test more campact float representations with NSString, NSNumberFormatter
-
-#if kSaveProtocolVersion == kSaveProtocolVersion_2
+    // TODO: complete edits to backend for version 3
+#if kSaveProtocolVersion == kSaveProtocolVersion_3
+    NSLog(@"saving using protocol version 3");
+	
+	// create a tripDict entry for each coord
+	while (coord = [enumerator nextObject])
+	{
+		NSMutableDictionary *coordsDict = [NSMutableDictionary dictionaryWithCapacity:7];
+		[coordsDict setValue:coord.altitude  forKey:@"a"];  //altitude
+		[coordsDict setValue:coord.latitude  forKey:@"l"];  //latitude
+		[coordsDict setValue:coord.longitude forKey:@"n"];  //longitude
+		[coordsDict setValue:coord.speed     forKey:@"s"];  //speed
+		[coordsDict setValue:coord.hAccuracy forKey:@"h"];  //haccuracy
+		[coordsDict setValue:coord.vAccuracy forKey:@"v"];  //vaccuracy
+		
+		NSString *newDateString = [outputFormatter stringFromDate:coord.recorded];
+		[coordsDict setValue:newDateString forKey:@"r"];    //recorded timestamp
+		[tripDict setValue:coordsDict forKey:newDateString];
+	}
+#elif kSaveProtocolVersion == kSaveProtocolVersion_2
 	NSLog(@"saving using protocol version 2");
 	
 	// create a tripDict entry for each coord
@@ -549,15 +570,22 @@
     
     // JSON encode user data and trip data, return to strings
     NSError *writeError = nil;
-    
+    // JSON encode user data
     NSData *userJsonData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:&writeError];
     NSString *userJson = [[NSString alloc] initWithData:userJsonData encoding:NSUTF8StringEncoding];
     NSLog(@"user data %@", userJson);
-
+    
+    // JSON encode the trip data
     NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
     NSString *tripJson = [[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding];
     NSLog(@"trip data %@", tripJson);
-
+        
+    // GZIP JSON trip data
+//    NSData *tripJsonDataZipped =[ZipUtil gzipDeflate:tripJsonData];
+    // base64 encode GZIP-JSON data
+    //NSString *tripJsonDataB64 = [tripJsonDataZipped base64EncodedString];
+    //NSLog(@"trip data base64 %@", tripJsonDataB64);
+    
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
 							  tripJson, @"coords",
@@ -633,6 +661,12 @@
 		}
 		
 		NSLog(@"%@: %@", title, message);
+        
+        //
+        // DEBUG
+        NSLog(@"+++++++DEBUG didReceiveResponse %@: %@", [response URL],[(NSHTTPURLResponse*)response allHeaderFields]);
+        //
+        //
 		
 		// update trip.uploaded 
 		if ( success )
@@ -702,7 +736,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	// do something with the data
-    NSLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
+    NSLog(@"+++++++DEBUG: Received %d bytes of data", [receivedData length]);
 	NSLog(@"%@", [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] autorelease] );
 
 	[activityDelegate dismissSaving];
@@ -827,21 +861,22 @@
 			}
 		}
 		
+        // TODO: Rework upload UI.
 		// present UIAlertView "Saving..."
-		saving = [[UIAlertView alloc] initWithTitle:kSavingTitle
-											message:kConnecting
-										   delegate:nil
-								  cancelButtonTitle:nil
-								  otherButtonTitles:nil];
-		
-		NSLog(@"created saving dialog: %@", saving);
-		
-		[self createActivityIndicator];
-		[activityIndicator startAnimating];
-		[saving addSubview:activityIndicator];
-		[saving show];
-		[saving release];
-		
+//		saving = [[UIAlertView alloc] initWithTitle:kSavingTitle
+//											message:kConnecting
+//										   delegate:nil
+//								  cancelButtonTitle:nil
+//								  otherButtonTitles:nil];
+//		
+//		NSLog(@"created saving dialog: %@", saving);
+//		
+//		[self createActivityIndicator];
+//		[activityIndicator startAnimating];
+//		[saving addSubview:activityIndicator];
+//		[saving show];
+//		[saving release];
+//		
 		// save / upload trip
 		[self saveTrip];		
 	}

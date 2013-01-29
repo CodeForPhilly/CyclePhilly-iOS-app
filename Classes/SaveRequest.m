@@ -40,6 +40,7 @@
 #import "constants.h"
 #import "CycleAtlantaAppDelegate.h"
 #import "SaveRequest.h"
+#import "ZipUtil.h"
 
 
 @implementation SaveRequest
@@ -59,24 +60,34 @@
 		// create request.
         self.request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:kSaveURL]];
-		[request setHTTPMethod:@"POST"];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
+//        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+//        [request setValue:@"chunked" forHTTPHeaderField:@"Transfer-Encoding"];
+//        [request setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
 		
         self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
+        NSLog(@"postVars = %@", postVars);
 	
 		// add hash of device id
 		[postVars setObject:deviceUniqueIdHash forKey:@"device"];
-
+       
         //convert dict to string
 		NSMutableString *postBody = [NSMutableString string];
-        
+    
 		for(NSString * key in postVars)
 			[postBody appendString:[NSString stringWithFormat:@"%@=%@&", key, [postVars objectForKey:key]]];
+        
+        //gzip the POST payload
+        //NSData *postBodyData = [postBody dataUsingEncoding:NSUTF8StringEncoding];
+        //NSData *postBodyDataZipped = [ZipUtil gzipDeflate:postBodyData];
         
 		NSLog(@"Initializing HTTP POST request to %@ of size %d with body %@", 
 			  kSaveURL, [[postBody dataUsingEncoding:NSUTF8StringEncoding] length], postBody);
 
         //set the POST body
 		[request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+        //[request setHTTPBody:postBodyDataZipped];
 
 	}
 	
@@ -101,5 +112,4 @@
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
 	return [conn autorelease];
 }
-
 @end
