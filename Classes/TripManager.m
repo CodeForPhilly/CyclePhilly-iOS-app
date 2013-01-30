@@ -44,9 +44,6 @@
 #import "Trip.h"
 #import "TripManager.h"
 #import "User.h"
-#import "ZipUtil.h"
-//#import "Base64.h"
-
 
 // use this epsilon for both real-time and post-processing distance calculations
 #define kEpsilonAccuracy		100.0
@@ -60,8 +57,8 @@
 #define kSaveProtocolVersion_3	3
 
 //#define kSaveProtocolVersion	kSaveProtocolVersion_1
-#define kSaveProtocolVersion	kSaveProtocolVersion_2
-//#define kSaveProtocolVersion	kSaveProtocolVersion_3
+//#define kSaveProtocolVersion	kSaveProtocolVersion_2
+#define kSaveProtocolVersion	kSaveProtocolVersion_3
 
 @implementation TripManager
 
@@ -580,12 +577,6 @@
     NSString *tripJson = [[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding];
     NSLog(@"trip data %@", tripJson);
         
-    // GZIP JSON trip data
-//    NSData *tripJsonDataZipped =[ZipUtil gzipDeflate:tripJsonData];
-    // base64 encode GZIP-JSON data
-    //NSString *tripJsonDataB64 = [tripJsonDataZipped base64EncodedString];
-    //NSLog(@"trip data base64 %@", tripJsonDataB64);
-    
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
 							  tripJson, @"coords",
