@@ -279,7 +279,7 @@
 	
 	// Set up the buttons.
 	
-	[self.view addSubview:[self createSaveButton]];
+	//[self.view addSubview:[self createSaveButton]];
 	[self.view addSubview:[self createStartButton]];
 	//[self.view addSubview:[self createLockButton]];
 	
@@ -362,32 +362,32 @@
 
 
 // instantiate save button
-- (UIButton *)createSaveButton
-{
-	//modified by cL
-    //saveButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-    UIImage *buttonImage = [[UIImage imageNamed:@"blueButton.png"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"blueButtonHighlight.png"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageDisabled = [[UIImage imageNamed:@"greyButton.png"]
-                                    resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    [saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [saveButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-    [saveButton setBackgroundImage:buttonImageDisabled forState:UIControlStateDisabled];
-    
-    saveButton.enabled = NO;
-    //saveButton.hidden = YES;
-    
-    [saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.titleLabel.font = [UIFont boldSystemFontOfSize: 22];
-    saveButton.titleLabel.shadowOffset = CGSizeMake (0, 0);
-    saveButton.titleLabel.textColor = [UIColor whiteColor];
-    [saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-    
-	return saveButton;
-}
+//- (UIButton *)createSaveButton
+//{
+//	//modified by cL
+//    //saveButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+//    UIImage *buttonImage = [[UIImage imageNamed:@"blueButton.png"]
+//                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+//    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"blueButtonHighlight.png"]
+//                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+//    UIImage *buttonImageDisabled = [[UIImage imageNamed:@"greyButton.png"]
+//                                    resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+//    [saveButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+//    [saveButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+//    [saveButton setBackgroundImage:buttonImageDisabled forState:UIControlStateDisabled];
+//    
+//    saveButton.enabled = NO;
+//    //saveButton.hidden = YES;
+//    
+//    [saveButton setTitle:@"Save" forState:UIControlStateNormal];
+//    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    saveButton.titleLabel.font = [UIFont boldSystemFontOfSize: 22];
+//    saveButton.titleLabel.shadowOffset = CGSizeMake (0, 0);
+//    saveButton.titleLabel.textColor = [UIColor whiteColor];
+//    [saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//	return saveButton;
+//}
 
 
 - (void)resetPurpose
@@ -440,7 +440,7 @@
     [startButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
     //[startButton setBackgroundImage:[UIImage imageNamed:@"start_button.png"] forState:UIControlStateNormal];
     [startButton setTitle:@"Start" forState:UIControlStateNormal];
-	saveButton.enabled = NO;
+//	saveButton.enabled = NO;
 	
 	// reset trip, reminder managers
 	NSManagedObjectContext *context = tripManager.managedObjectContext;
@@ -592,7 +592,6 @@
 }
 
 
-
 // handle save button action
 //- (IBAction)save:(UIButton *)sender
 //{
@@ -709,8 +708,8 @@
     [startButton setTitle:@"Save" forState:UIControlStateNormal];
 	
 	// enable save button
-	saveButton.enabled = YES;
-	saveButton.hidden = NO;
+	//saveButton.enabled = YES;
+	//saveButton.hidden = NO;
 	
 	// set recording flag so future location updates will be added as coords
     appDelegate = [[UIApplication sharedApplication] delegate];
@@ -729,7 +728,7 @@
 	// set flag to update counter
 	shouldUpdateCounter = YES;
     }
-    
+    // do the saving
     else
     {
         NSLog(@"User Press Save Button");
@@ -789,6 +788,7 @@
 		[actionSheet showFromTabBar:tbc.tabBar];
 		[actionSheet release];
 	}
+    
 }
 -(IBAction)issue:(id)sender{
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey: @"pickerCategory"];
@@ -1217,7 +1217,7 @@ shouldSelectViewController:(UIViewController *)viewController
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = YES;
 	recording = YES;
-	saveButton.enabled = YES;
+//	saveButton.enabled = YES;
 	shouldUpdateCounter = YES;
 }
 
@@ -1230,7 +1230,7 @@ shouldSelectViewController:(UIViewController *)viewController
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = NO;
 	recording = NO;
-	saveButton.enabled = NO;
+//	saveButton.enabled = NO;
 	startButton.enabled = YES;
 	[self resetTimer];
 	

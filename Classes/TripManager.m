@@ -147,10 +147,7 @@
 {
 	if ( activityIndicator == nil )
 	{
-		CGRect frame = CGRectMake( 130.0, 88.0, kActivityIndicatorSize, kActivityIndicatorSize );
-		activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-		[activityIndicator sizeToFit];
 	}
 	return activityIndicator;
 }
