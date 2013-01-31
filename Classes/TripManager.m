@@ -147,7 +147,10 @@
 {
 	if ( activityIndicator == nil )
 	{
+        CGRect frame = CGRectMake( 130.0, 88.0, kActivityIndicatorSize, kActivityIndicatorSize );
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        [activityIndicator sizeToFit];
 	}
 	return activityIndicator;
 }
@@ -438,7 +441,7 @@
 {
 	NSLog(@"about to save trip with %d coords...", [coords count]);
 	[activityDelegate updateSavingMessage:kPreparingData];
-	NSLog(@"%@", trip);
+	//NSLog(@"%@", trip);
 
 	// close out Trip record
 	// NOTE: this code assumes we're saving the current recording in progress
@@ -567,12 +570,12 @@
     // JSON encode user data
     NSData *userJsonData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:&writeError];
     NSString *userJson = [[NSString alloc] initWithData:userJsonData encoding:NSUTF8StringEncoding];
-    NSLog(@"user data %@", userJson);
+    //NSLog(@"user data %@", userJson);
     
     // JSON encode the trip data
     NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
     NSString *tripJson = [[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding];
-    NSLog(@"trip data %@", tripJson);
+    //NSLog(@"trip data %@", tripJson);
         
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -667,7 +670,8 @@
 				NSLog(@"TripManager setUploaded error %@, %@", error, [error localizedDescription]);
 			}
 		}
-		
+
+        // this is the save success alert view
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
 														message:message
 													   delegate:alertDelegate
@@ -675,7 +679,7 @@
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
-		
+
 		[activityDelegate dismissSaving];
 		[activityDelegate stopAnimating];
 	}
@@ -719,6 +723,7 @@
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -851,22 +856,23 @@
 		
         // TODO: Rework upload UI.
 		// present UIAlertView "Saving..."
-//		saving = [[UIAlertView alloc] initWithTitle:kSavingTitle
-//											message:kConnecting
-//										   delegate:nil
-//								  cancelButtonTitle:nil
-//								  otherButtonTitles:nil];
-//		
-//		NSLog(@"created saving dialog: %@", saving);
-//		
-//		[self createActivityIndicator];
-//		[activityIndicator startAnimating];
-//		[saving addSubview:activityIndicator];
-//		[saving show];
-//		[saving release];
-//		
+		saving = [[UIAlertView alloc] initWithTitle:kSavingTitle
+											message:kConnecting
+										   delegate:alertDelegate
+								  cancelButtonTitle:nil
+								  otherButtonTitles:nil];
+		
+		NSLog(@"created saving dialog: %@", saving);
+		
+		[self createActivityIndicator];
+		[activityIndicator startAnimating];
+		[saving addSubview:activityIndicator];
+		[saving show];
+        [saving release];
+		
 		// save / upload trip
-		[self saveTrip];		
+        [self saveTrip];
+
 	}
 	
 	/*
