@@ -584,6 +584,8 @@
 							  notes, @"notes",
 							  start, @"start",
 							  userJson, @"user",
+                              //flaggedLocationJson, @"flaggLocation"
+                              
 							  [NSString stringWithFormat:@"%d", kSaveProtocolVersion], @"version",
 							  nil];
 	// create save request
