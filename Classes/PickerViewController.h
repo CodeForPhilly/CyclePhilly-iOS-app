@@ -50,6 +50,7 @@
 	
 	UITextView				*description;
     NSInteger pickerCategory;
+    NSInteger pickedFlaggedType;
     IBOutlet UINavigationBar *navBarItself;
     UILabel *descriptionText;
 }

@@ -201,9 +201,9 @@
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUnsyncedTitle
 														message:kUnsyncedMessage
-													   delegate:self
-											  cancelButtonTitle:@"Cancel"
-											  otherButtonTitles:@"Upload Now", nil];
+													   delegate:nil
+											  cancelButtonTitle:nil
+											  otherButtonTitles:@"OK", nil];
 		alert.tag = 303;
 		[alert show];
 		[alert release];

@@ -41,6 +41,7 @@
 #import "CustomView.h"
 #import "PickerViewController.h"
 #import "DetailViewController.h"
+#import "TripManager.h"
 
 
 @implementation PickerViewController
@@ -101,6 +102,9 @@
 
 - (IBAction)cancel:(id)sender
 {
+    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	[delegate didCancelPurpose];
 }
 
@@ -126,6 +130,16 @@
         
         [self presentModalViewController:detailViewController animated:YES];
         //do something here: get index for later use.
+        NSInteger row = [customPickerView selectedRowInComponent:0];
+        
+        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:row forKey: @"pickedFlaggedType"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        
+        NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
     }
     else if (pickerCategory == 2){
         NSLog(@"Asset Save button pressed");
@@ -137,6 +151,17 @@
         
         [self presentModalViewController:detailViewController animated:YES];
         //do something here: get index for later use.
+        NSInteger row = [customPickerView selectedRowInComponent:0];
+        
+        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:row+6 forKey: @"pickedFlaggedType"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        
+        NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
+        
     }
 
 	

@@ -324,10 +324,6 @@
 	// check for any unsaved trips / interrupted recordings
 	[self hasRecordingBeenInterrupted];
     
-    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
 	NSLog(@"save");
 }
 
@@ -1250,7 +1246,6 @@ shouldSelectViewController:(UIViewController *)viewController
 	[tripManager promptForTripNotes];
     //do something here: may change to be the save as a separate view. Not prompt.
 }
-
 
 #pragma mark RecordingInProgressDelegate method
 

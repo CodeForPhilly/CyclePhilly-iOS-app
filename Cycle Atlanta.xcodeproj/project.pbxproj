@@ -56,6 +56,7 @@
 		8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */; };
 		8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */; };
 		8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */; };
+		8FA0AD9716BC1F3F00E0E7C4 /* FlaggedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AD9616BC1F3F00E0E7C4 /* FlaggedLocation.m */; };
 		8FD62A3C16B2253100B54A35 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */; };
 		8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E51655E35800324E6E /* MobileCoreServices.framework */; };
 		8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E81655E36600324E6E /* MediaPlayer.framework */; };
@@ -220,6 +221,8 @@
 		8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+IdentifierAddition.m"; path = "../UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		8FA0AD9216BB4ED800E0E7C4 /* CycleAtlanta 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CycleAtlanta 2.xcdatamodel"; sourceTree = "<group>"; };
 		8FA0AD9316BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CycleAtlanta.xcdatamodel; sourceTree = "<group>"; };
+		8FA0AD9516BC1F3F00E0E7C4 /* FlaggedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlaggedLocation.h; sourceTree = "<group>"; };
+		8FA0AD9616BC1F3F00E0E7C4 /* FlaggedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocation.m; sourceTree = "<group>"; };
 		8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8FD696E51655E35800324E6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8FD696E81655E36600324E6E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -451,6 +454,8 @@
 			isa = PBXGroup;
 			children = (
 				8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */,
+				8FA0AD9516BC1F3F00E0E7C4 /* FlaggedLocation.h */,
+				8FA0AD9616BC1F3F00E0E7C4 /* FlaggedLocation.m */,
 				64119FC11069C4CC00C201F0 /* Coord.h */,
 				64119FC21069C4CC00C201F0 /* Coord.m */,
 				64119EB61069A35C00C201F0 /* Trip.h */,
@@ -786,6 +791,7 @@
 				8F1B1D3F164B94C60022B776 /* DetailViewController.m in Sources */,
 				9D504DA116B6CF4000B99EBC /* ZipUtil.m in Sources */,
 				8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */,
+				8FA0AD9716BC1F3F00E0E7C4 /* FlaggedLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
