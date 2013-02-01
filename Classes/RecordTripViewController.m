@@ -48,7 +48,7 @@
 #import "Trip.h"
 #import "User.h"
 
-
+//TODO: Fix incomplete implementation
 @implementation RecordTripViewController
 
 @synthesize tripManager;// reminderManager;
@@ -164,6 +164,7 @@
 	manager.alertDelegate	= self;
 	manager.dirty			= YES;
 	self.tripManager		= manager;
+    manager.loadingDelegate = self;
 }
 
 /*
@@ -527,6 +528,17 @@
 //			[pickerViewController release];
 //                break;
 //		}
+        case 5:{
+            //for actionSheetLoading success
+            Trip *trip = tripManager.trip;
+			[self resetRecordingInProgress];
+			
+			// load map view of saved trip
+			MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
+			[[self navigationController] pushViewController:mvc animated:YES];
+			[mvc release];
+            break;
+        }
 		default:{
 			NSLog(@"Cancel");
 			// re-enable counter updates
@@ -568,7 +580,7 @@
 									 distance:[tripManager getDistanceEstimate]];
 
 					startButton.enabled = YES;
-                    //HERE
+
                     [startButton setTitle:@"Continue" forState:UIControlStateNormal];
 					break;
 			}

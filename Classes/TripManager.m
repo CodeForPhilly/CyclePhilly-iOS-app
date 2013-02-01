@@ -62,7 +62,7 @@
 
 @implementation TripManager
 
-@synthesize activityDelegate, activityIndicator, alertDelegate, saving, tripNotes, tripNotesText;
+@synthesize activityDelegate, activityIndicator, alertDelegate, actionSheetLoading, loadingDelegate, saving, tripNotes, tripNotesText;
 @synthesize coords, dirty, trip, managedObjectContext, receivedData;
 
 
@@ -490,7 +490,6 @@
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];		
 	[outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
-    // TODO: complete edits to backend for version 3
 #if kSaveProtocolVersion == kSaveProtocolVersion_3
     NSLog(@"saving using protocol version 3");
 	
@@ -594,15 +593,33 @@
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
 																   delegate:self];
-	
-	if ( theConnection )
-	{
-		receivedData=[[NSMutableData data] retain];		
-	}
-	else
-	{
-		// inform the user that the download could not be made
-	}
+    
+    // show the actionsheet once connection is initiated
+	actionSheetLoading = [[UIActionSheet alloc] initWithTitle:@"Uploading trip data.\n\n" delegate:loadingDelegate cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    
+    UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    loading.center=CGPointMake(50, 30);
+    loading.hidesWhenStopped = YES;
+    [actionSheetLoading addSubview:loading];
+    [loading startAnimating];
+    [actionSheetLoading showInView:[UIApplication sharedApplication].keyWindow];
+    
+    UILabel *loadingTitle = [[actionSheetLoading subviews] objectAtIndex:0];
+    loadingTitle.font = [UIFont systemFontOfSize:20];
+    loadingTitle.textAlignment = UITextAlignmentCenter;
+    [actionSheetLoading release];
+
+     if ( theConnection )
+     {
+         receivedData=[[NSMutableData data] retain];
+     }
+     else
+     {
+         // inform the user that the download could not be made
+     
+     }
+    
 }
 
 
@@ -673,17 +690,8 @@
 			}
 		}
 
-        // this is the save success alert view
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-														message:message
-													   delegate:alertDelegate
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-
-		[activityDelegate dismissSaving];
-		[activityDelegate stopAnimating];
+        [actionSheetLoading dismissWithClickedButtonIndex:5 animated:true];
+        
 	}
 	
     // it can be called multiple times, for example in the case of a
@@ -833,6 +841,7 @@
 	[tripNotes addSubview:tripNotesText];
 	[tripNotes show];
 	[tripNotes release];
+    NSLog(@"prompt for notes");
 }
 
 
@@ -855,22 +864,6 @@
 				[self saveNotes:tripNotesText.text];
 			}
 		}
-		
-        // TODO: Rework upload UI.
-		// present UIAlertView "Saving..."
-		saving = [[UIAlertView alloc] initWithTitle:kSavingTitle
-											message:kConnecting
-										   delegate:alertDelegate
-								  cancelButtonTitle:nil
-								  otherButtonTitles:nil];
-		
-		NSLog(@"created saving dialog: %@", saving);
-		
-		[self createActivityIndicator];
-		[activityIndicator startAnimating];
-		[saving addSubview:activityIndicator];
-		[saving show];
-        [saving release];
 		
 		// save / upload trip
         [self saveTrip];

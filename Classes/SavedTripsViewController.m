@@ -359,7 +359,7 @@
 	{
 		cell = [[[TripCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier] autorelease];
 		cell.detailTextLabel.numberOfLines = 2;
-		if ( reuseIdentifier == kCellReuseIdentifierCheck )
+		if ( [reuseIdentifier isEqual: kCellReuseIdentifierCheck] )
 		{
 			/*
 			// add check mark
@@ -371,7 +371,7 @@
 			cell.accessoryView = imageView;
 			 */
 		}
-		else if ( reuseIdentifier == kCellReuseIdentifierExclamation )
+		else if ( [reuseIdentifier isEqual: kCellReuseIdentifierExclamation] )
 		{
 			// add exclamation point
 			UIImage		*image		= [UIImage imageNamed:@"failedUpload.png"];
@@ -381,7 +381,7 @@
 			//[cell.contentView addSubview:imageView];
 			cell.accessoryView = imageView;
 		}
-		else if ( reuseIdentifier == kCellReuseIdentifierInProgress )
+		else if ( [reuseIdentifier isEqual: kCellReuseIdentifierInProgress] )
 		{
 			// prevent user from selecting the current recording in progress
 			cell.selectionStyle = UITableViewCellSelectionStyleNone; 
@@ -646,7 +646,7 @@
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	return ( cell.reuseIdentifier != kCellReuseIdentifierInProgress );
+	return ( ![cell.reuseIdentifier isEqual: kCellReuseIdentifierInProgress] );
 }
 
 

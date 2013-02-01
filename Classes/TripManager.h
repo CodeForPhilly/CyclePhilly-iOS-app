@@ -79,7 +79,9 @@ UITextViewDelegate>
 
 @property (nonatomic, retain) id <ActivityIndicatorDelegate> activityDelegate;
 @property (nonatomic, retain) id <UIAlertViewDelegate> alertDelegate;
+@property (nonatomic, retain) id <UIActionSheetDelegate> loadingDelegate;
 
+@property (nonatomic, retain) UIActionSheet *actionSheetLoading;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIAlertView *saving;
 @property (nonatomic, retain) UIAlertView *tripNotes;
