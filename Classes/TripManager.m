@@ -717,6 +717,9 @@
 	
     // receivedData is declared as a method instance elsewhere
     [receivedData release];
+    
+    // dismiss the uploading status sheet
+    [actionSheetLoading dismissWithClickedButtonIndex:5 animated:true];
 	
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",
