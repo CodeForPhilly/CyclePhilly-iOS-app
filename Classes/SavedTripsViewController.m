@@ -213,6 +213,11 @@
 	
 	// no trip selection by default
 	selectedTrip = nil;
+    
+    pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
 }
 
 

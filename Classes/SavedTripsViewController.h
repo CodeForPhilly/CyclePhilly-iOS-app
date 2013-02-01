@@ -61,6 +61,8 @@
 	Trip *selectedTrip;
 	
 	LoadingView *loading;
+    
+    NSInteger pickerCategory;
 }
 
 @property (nonatomic, retain) NSMutableArray *trips;
