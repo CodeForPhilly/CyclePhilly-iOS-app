@@ -71,7 +71,7 @@
          * Enforcement
          * Bike parking
          * Bike lane issue
-         * Note this spot
+         * Note this issue
          */
         
         /* Asset
@@ -80,7 +80,7 @@
          * Public restrooms
          * Secret passage
          * Water fountains
-         * Note this spot
+         * Note this asset
          */
 		
         CustomView *view;
@@ -209,6 +209,89 @@
             //view.image = [UIImage imageNamed:kAssetNoteThisSpotIcon];
             [viewArray addObject:view];
             [view release];
+        }
+        else if (pickerCategory == 3){
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Note this asset";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Water fountains";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Secret passage";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Public restrooms";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Bike shops";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Bike parking";
+            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @" ";
+            view.image = [UIImage imageNamed:kTripPurposeOtherIcon];
+            [viewArray addObject:view];
+            [view release];
+            
+            
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Pavement issue";
+            view.image = [UIImage imageNamed:kNoteThisIssue];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Traffic signal";
+            view.image = [UIImage imageNamed:kNoteThisIssue];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Enforcement";
+            view.image = [UIImage imageNamed:kNoteThisIssue];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Bike parking";
+            view.image = [UIImage imageNamed:kNoteThisIssue];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Bike lane issue";
+            view.image = [UIImage imageNamed:kNoteThisIssue];
+            [viewArray addObject:view];
+            [view release];
+            
+            view = [[CustomView alloc] initWithFrame:CGRectZero];
+            view.title = @"Note this issue";
+            view.image = [UIImage imageNamed:kNoteThisIssue];
+            [viewArray addObject:view];
+            [view release];
+
         }
 
 		self.customPickerArray = viewArray;

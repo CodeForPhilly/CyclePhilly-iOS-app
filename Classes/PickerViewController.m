@@ -67,7 +67,8 @@
 	//CGRect pickerRect = CGRectMake(	0.0, 0.0, size.width, size.height );	
 	
 	// layout at top of page, leaving room for translucent nav bar
-	//CGRect pickerRect = CGRectMake(	0.0, 43.0, size.width, size.height );	
+	//CGRect pickerRect = CGRectMake(	0.0, 43.0, size.width, size.height );
+	
 	CGRect pickerRect = CGRectMake(	0.0, 78.0, size.width, size.height );	
 	return pickerRect;
 }
@@ -129,7 +130,7 @@
         detailViewController.delegate = self.delegate;
         
         [self presentModalViewController:detailViewController animated:YES];
-        //do something here: get index for later use.
+        //FlaggedLocation: get index of picker
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
         pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
@@ -163,8 +164,28 @@
         NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
         
     }
-
-	
+    else if (pickerCategory == 3){
+        NSLog(@"Note This Save button pressed");
+        NSLog(@"detail");
+        NSLog(@"INIT + PUSH");
+        
+        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailView" bundle:nil];
+        detailViewController.delegate = self.delegate;
+        
+        [self presentModalViewController:detailViewController animated:YES];
+        //do something here: get index for later use.
+        NSInteger row = [customPickerView selectedRowInComponent:0];
+        
+        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:row+6 forKey: @"pickedFlaggedType"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        
+        NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
+        
+    }	
 }
 
 
@@ -175,9 +196,18 @@
 	{
 		//NSLog(@"PickerViewController init");		
 		[self createCustomPicker];
+        
+		pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+        if (pickerCategory == 0) {
+            // picker defaults to top-most item => update the description
+            [self pickerView:customPickerView didSelectRow:0 inComponent:0];
+        }
+        else if (pickerCategory == 3){
+            // picker defaults to top-most item => update the description
+            [self pickerView:customPickerView didSelectRow:6 inComponent:0];
+        }
+        
 		
-		// picker defaults to top-most item => update the description
-		[self pickerView:customPickerView didSelectRow:0 inComponent:0];
 	}
 	return self;
 }
@@ -192,8 +222,15 @@
 		// update the picker
 		[customPickerView selectRow:index inComponent:0 animated:YES];
 		
-		// update the description
-		[self pickerView:customPickerView didSelectRow:index inComponent:0];
+		pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
+        if (pickerCategory == 0) {
+            // picker defaults to top-most item => update the description
+            [self pickerView:customPickerView didSelectRow:0 inComponent:0];
+        }
+        else if (pickerCategory == 3){
+            // picker defaults to top-most item => update the description
+            [self pickerView:customPickerView didSelectRow:6 inComponent:0];
+        }
 	}
 	return self;
 }
@@ -215,6 +252,19 @@
         navBarItself.topItem.title = @"This is rad!";
         self.descriptionText.text = @"Please select the asset type & tap Save";
     }
+    else if (pickerCategory == 3){
+        navBarItself.topItem.title = @"Note This";
+        self.descriptionText.text = @"Please select the type & tap Save";
+        [self.customPickerView selectRow:6 inComponent:0 animated:NO];
+        if ([self.customPickerView selectedRowInComponent:0] == 6) {
+            NSLog(@"selectedRow is 6");
+            navBarItself.topItem.rightBarButtonItem.enabled = NO;
+        }
+        else{
+            navBarItself.topItem.rightBarButtonItem.enabled = YES;
+        }
+    }
+
 	[super viewDidLoad];
     
 	
@@ -268,6 +318,15 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    if (pickerCategory == 3){
+        if ([self.customPickerView selectedRowInComponent:0] == 6) {
+            NSLog(@"selectedRow is 6");
+            navBarItself.topItem.rightBarButtonItem.enabled = NO;
+        }
+        else{
+            navBarItself.topItem.rightBarButtonItem.enabled = YES;
+        }
+    }
 	//NSLog(@"parent didSelectRow: %d inComponent:%d", row, component);
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
@@ -300,7 +359,7 @@
                 break;
         }
     }
-    //TODO: figure out the real description text
+
     else if (pickerCategory == 1){
         switch (row) {
             case 0:
@@ -343,6 +402,54 @@
             default:
                 description.text = kAssetDescNoteThisSpot;
                 break;
+        }
+    }
+    else if (pickerCategory == 3){
+        switch (row) {
+            case 6:
+                description.text = kDescNoteThis;
+                break;
+                
+            case 0:
+                description.text = kAssetDescNoteThisSpot;
+                break;
+            case 1:
+                description.text = kAssetDescWaterFountains;
+                break;
+            case 2:
+                description.text = kAssetDescSecretPassage;
+                break;
+            case 3:
+                description.text = kAssetDescPublicRestrooms;
+                break;
+            case 4:
+                description.text = kAssetDescBikeShops;
+                break;
+            case 5:
+                description.text = kAssetDescBikeParking;
+                break;
+        
+            
+            
+            case 7:
+                description.text = kIssueDescPavementIssue;
+                break;
+            case 8:
+                description.text = kIssueDescTrafficSignal;
+                break;
+            case 9:
+                description.text = kIssueDescEnforcement;
+                break;
+            case 10:
+                description.text = kIssueDescNeedParking;
+                break;
+            case 11:
+                description.text = kIssueDescBikeLaneIssue;
+                break;
+            case 12:
+                description.text = kIssueDescNoteThisSpot;
+                break;
+
         }
     }
 }

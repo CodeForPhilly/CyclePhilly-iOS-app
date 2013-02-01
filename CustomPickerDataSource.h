@@ -55,6 +55,8 @@
 #define kIssueDescBikeLaneIssue  @"Where the bike lane ends (abruptly) or is too narrow (pesky parked cars)."
 #define kIssueDescNoteThisSpot   @"Anything else ripe for improvement: want a sharrow, a sign, a bike lane? Share the details."
 
+#define kDescNoteThis   @"Anything about this spot?"
+
 // Asset descriptions
 #define kAssetDescBikeParking   @"Park them here and remember to secure your bike well! Please only include racks or other objects intended for bikes."
 #define kAssetDescBikeShops @"Have a flat, a broken chain, or spongy brakes? Or do you need a bike to jump into this world of cycling in the first place? Here's a shop ready to help."

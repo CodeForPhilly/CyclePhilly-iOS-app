@@ -261,7 +261,8 @@
     NSLog(@"Bundle ID: %@", [[NSBundle mainBundle] bundleIdentifier]);
     [super viewDidLoad];
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.navigationBarHidden = YES;
 
 	// Set the title.
 	// self.title = @"Record New Trip";
@@ -862,6 +863,54 @@
 		//[[self navigationController] pushViewController:pickerViewController animated:YES];
 		[self.navigationController presentModalViewController:pickerViewController animated:YES];
 		[pickerViewController release];
+	}
+	
+	// prompt to confirm first
+	else
+	{
+		// pause updating the counter
+		shouldUpdateCounter = NO;
+		
+		// construct purpose confirmation string
+		NSString *purpose = nil;
+		if ( tripManager != nil )
+			purpose = [self getPurposeString:[tripManager getPurposeIndex]];
+		
+		NSString *confirm = [NSString stringWithFormat:@"Stop recording & save this trip?"];
+		
+		// present action sheet
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
+																 delegate:self
+														cancelButtonTitle:@"Cancel"
+												   destructiveButtonTitle:nil
+														otherButtonTitles:@"Save", nil];
+		
+		actionSheet.actionSheetStyle		= UIActionSheetStyleBlackTranslucent;
+		UIViewController *pvc = self.parentViewController;
+		UITabBarController *tbc = (UITabBarController *)pvc.parentViewController;
+		
+		[actionSheet showFromTabBar:tbc.tabBar];
+		[actionSheet release];
+	}
+}
+
+-(IBAction)notethis:(id)sender{
+    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey: @"pickerCategory"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"Note This");
+	
+	// go directly to TripPurpose, user can cancel from there
+	if ( YES )
+	{
+		// Trip Purpose
+		NSLog(@"INIT + PUSH");
+		PickerViewController *pickerViewController4 = [[PickerViewController alloc]
+                                                       //initWithPurpose:[tripManager getPurposeIndex]];
+                                                       initWithNibName:@"TripPurposePicker" bundle:nil];
+		[pickerViewController4 setDelegate:self];
+		//[[self navigationController] pushViewController:pickerViewController animated:YES];
+		[self.navigationController presentModalViewController:pickerViewController4 animated:YES];
+		[pickerViewController4 release];
 	}
 	
 	// prompt to confirm first

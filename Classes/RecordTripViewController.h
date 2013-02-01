@@ -143,6 +143,8 @@
 -(IBAction)detail:(id)sender;
 - (IBAction)start:(UIButton *)sender;
 
+-(IBAction)notethis:(id)sender;
+
 
 // timer methods
 - (void)start:(UIButton *)sender;

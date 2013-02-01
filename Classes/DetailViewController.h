@@ -16,6 +16,7 @@
     UITextView *detailTextView;
     UIButton *addPicButton;
     NSInteger pickerCategory;
+    NSString *details;
 }
 
 @property (nonatomic, retain) id <TripPurposeDelegate> delegate;

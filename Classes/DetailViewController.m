@@ -85,6 +85,10 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [detailTextView resignFirstResponder];
     //do many things here: get photo and text for later use.
     [delegate didCancelPurpose];
+    
+    //FlaggedLocation: get detail texts
+    details = detailTextView.text;
+    
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
