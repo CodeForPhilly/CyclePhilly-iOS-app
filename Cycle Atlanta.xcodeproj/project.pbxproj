@@ -991,7 +991,7 @@
 				8FA0AD9216BB4ED800E0E7C4 /* CycleAtlanta 2.xcdatamodel */,
 				8FA0AD9316BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodel */,
 			);
-			currentVersion = 8FA0AD9316BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodel */;
+			currentVersion = 8FA0AD9216BB4ED800E0E7C4 /* CycleAtlanta 2.xcdatamodel */;
 			path = CycleAtlanta.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
