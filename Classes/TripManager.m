@@ -44,12 +44,9 @@
 #import "Trip.h"
 #import "TripManager.h"
 #import "User.h"
-<<<<<<< HEAD
 #import "FlaggedLocation.h"
-=======
 #import "LoadingView.h"
 #import "RecordTripViewController.h"
->>>>>>> re-worked uploading status ui
 
 // use this epsilon for both real-time and post-processing distance calculations
 #define kEpsilonAccuracy		100.0
