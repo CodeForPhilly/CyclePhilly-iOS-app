@@ -58,14 +58,14 @@
 
 
 // error messages
-#define kConnectionError	@"Unable to reach server"
-#define kServerError		@"Failed to upload your trip. Please try again later."
+#define kConnectionError	@"Server unreachable, \n try again later."
+#define kServerError		@"Upload failed, \n try again later."
 
 // alert titles
 #define kBatteryTitle		@"Battery Low"
 #define kRetryTitle			@"Retry Upload?"
-#define	kSavingTitle		@"Uploading Your Trip"
-#define kSuccessTitle		@"Transfer complete"
+#define	kSavingTitle		@"Uploading your trip"
+#define kSuccessTitle		@"Upload complete"
 #define kTripNotesTitle		@"Enter Comments Below"
 #define kConsentFor18Title  @"In order to send route data to Georgia Tech and the City of Atlanta, you must be at least 18."
 

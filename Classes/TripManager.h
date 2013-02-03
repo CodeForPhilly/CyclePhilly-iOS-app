@@ -42,7 +42,7 @@
 #import <Foundation/Foundation.h>
 #import "ActivityIndicatorDelegate.h"
 #import "TripPurposeDelegate.h"
-
+#import "LoadingView.h"
 
 @class Trip;
 
@@ -53,13 +53,12 @@ TripPurposeDelegate,
 UIAlertViewDelegate, 
 UITextViewDelegate>
 {
-	id <ActivityIndicatorDelegate> activityDelegate;
-	id <UIAlertViewDelegate> alertDelegate;
-
-	UIActivityIndicatorView *activityIndicator;
 	UIAlertView *saving;
 	UIAlertView *tripNotes;
 	UITextView	*tripNotesText;
+//    id <ActivityIndicatorDelegate> activityDelegate;
+//    id <UIAlertViewDelegate> alertDelegate;
+//    UIActivityIndicatorView *activityIndicator;
 
 	BOOL dirty;
 	Trip *trip;
@@ -76,13 +75,14 @@ UITextViewDelegate>
 	NSMutableArray *zeroDistanceTrips;
 }
 
-
 @property (nonatomic, retain) id <ActivityIndicatorDelegate> activityDelegate;
 @property (nonatomic, retain) id <UIAlertViewDelegate> alertDelegate;
-@property (nonatomic, retain) id <UIActionSheetDelegate> loadingDelegate;
 
-@property (nonatomic, retain) UIActionSheet *actionSheetLoading;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) LoadingView *uploadingView;
+
+@property (nonatomic, retain) UIViewController *parent; //again, this can't be right.
+
 @property (nonatomic, retain) UIAlertView *saving;
 @property (nonatomic, retain) UIAlertView *tripNotes;
 @property (nonatomic, retain) UITextView *tripNotesText;

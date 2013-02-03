@@ -44,7 +44,12 @@
 #import "Trip.h"
 #import "TripManager.h"
 #import "User.h"
+<<<<<<< HEAD
 #import "FlaggedLocation.h"
+=======
+#import "LoadingView.h"
+#import "RecordTripViewController.h"
+>>>>>>> re-worked uploading status ui
 
 // use this epsilon for both real-time and post-processing distance calculations
 #define kEpsilonAccuracy		100.0
@@ -63,9 +68,9 @@
 
 @implementation TripManager
 
-@synthesize activityDelegate, activityIndicator, alertDelegate, actionSheetLoading, loadingDelegate, saving, tripNotes, tripNotesText;
+@synthesize saving, tripNotes, tripNotesText;
 @synthesize coords, dirty, trip, managedObjectContext, receivedData;
-
+@synthesize uploadingView, parent;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context
 {
@@ -141,19 +146,6 @@
 		[self loadTrip:_trip];
     }
     return self;
-}
-
-
-- (UIActivityIndicatorView *)createActivityIndicator
-{
-	if ( activityIndicator == nil )
-	{
-        CGRect frame = CGRectMake( 130.0, 88.0, kActivityIndicatorSize, kActivityIndicatorSize );
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        [activityIndicator sizeToFit];
-	}
-	return activityIndicator;
 }
 
 
@@ -378,7 +370,6 @@
 }
 
 
-//- (NSString*)jsonEncodeUserData
 - (NSDictionary*)encodeUserData
 {
 	NSLog(@"encodeUserData");
@@ -441,7 +432,7 @@
 - (void)saveTrip
 {
 	NSLog(@"about to save trip with %d coords...", [coords count]);
-	[activityDelegate updateSavingMessage:kPreparingData];
+//	[activityDelegate updateSavingMessage:kPreparingData];
 	//NSLog(@"%@", trip);
 
 	// close out Trip record
@@ -594,24 +585,13 @@
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
 																   delegate:self];
-    
-    // show the actionsheet once connection is initiated
-	actionSheetLoading = [[UIActionSheet alloc] initWithTitle:@"Uploading trip data.\n\n" delegate:loadingDelegate cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    
-    UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    loading.center=CGPointMake(50, 30);
-    loading.hidesWhenStopped = YES;
-    [actionSheetLoading addSubview:loading];
-    [loading startAnimating];
-    [actionSheetLoading showInView:[UIApplication sharedApplication].keyWindow];
-    
-    UILabel *loadingTitle = [[actionSheetLoading subviews] objectAtIndex:0];
-    loadingTitle.font = [UIFont systemFontOfSize:20];
-    loadingTitle.textAlignment = UITextAlignmentCenter;
-    [actionSheetLoading release];
+	// create loading view to indicate trip is being uploaded
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view:kSavingTitle] retain];
 
-     if ( theConnection )
+    //switch to map w/ trip view
+    [parent displayUploadedTripMap];
+
+    if ( theConnection )
      {
          receivedData=[[NSMutableData data] retain];
      }
@@ -632,9 +612,6 @@
 {
 	NSLog(@"%d bytesWritten, %d totalBytesWritten, %d totalBytesExpectedToWrite",
 		  bytesWritten, totalBytesWritten, totalBytesExpectedToWrite );
-	
-	[activityDelegate updateBytesWritten:totalBytesWritten
-			   totalBytesExpectedToWrite:totalBytesExpectedToWrite];
 }
 
 
@@ -689,9 +666,12 @@
 				// Handle the error.
 				NSLog(@"TripManager setUploaded error %@, %@", error, [error localizedDescription]);
 			}
-		}
+            
+            [uploadingView loadingComplete:kSuccessTitle:.7];
+		} else {
 
-        [actionSheetLoading dismissWithClickedButtonIndex:5 animated:true];
+            [uploadingView loadingComplete:kServerError:1.5];
+        }
         
 	}
 	
@@ -707,7 +687,7 @@
     // append the new data to the receivedData	
     // receivedData is declared as a method instance elsewhere
 	[receivedData appendData:data];	
-	[activityDelegate startAnimating];
+//	[activityDelegate startAnimating];
 }
 
 - (void)connection:(NSURLConnection *)connection
@@ -719,24 +699,22 @@
     // receivedData is declared as a method instance elsewhere
     [receivedData release];
     
-    // dismiss the uploading status sheet
-    [actionSheetLoading dismissWithClickedButtonIndex:5 animated:true];
-	
+    // TODO: is this really adequate...?
+    [uploadingView loadingComplete:kConnectionError:1.5];
+    
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-	
-	[activityDelegate dismissSaving];
-	[activityDelegate stopAnimating];
+    
 
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kConnectionError
-													message:[error localizedDescription]
-												   delegate:alertDelegate
-										  cancelButtonTitle:@"OK"
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kConnectionError
+//													message:[error localizedDescription]
+//												   delegate:nil
+//										  cancelButtonTitle:@"OK"
+//										  otherButtonTitles:nil];
+//	[alert show];
+//	[alert release];
     
 }
 
@@ -745,9 +723,6 @@
 	// do something with the data
     NSLog(@"+++++++DEBUG: Received %d bytes of data", [receivedData length]);
 	NSLog(@"%@", [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] autorelease] );
-
-	[activityDelegate dismissSaving];
-	[activityDelegate stopAnimating];
 
     // release the connection, and the data object
     [connection release];
@@ -919,12 +894,10 @@
 
 
 - (void)startAnimating {
-	[activityIndicator startAnimating];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)stopAnimating {
-	//[activityIndicator stopAnimating];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
@@ -1059,9 +1032,6 @@
 	[request release];
 	return success;
 }
-
-
-
 
 
 // filter and sort all trip coords before calculating distance in post-processing

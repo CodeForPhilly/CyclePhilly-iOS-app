@@ -47,7 +47,11 @@
 
 }
 
-+ (id)loadingViewInView:(UIView *)aSuperview;
+@property (nonatomic, retain) UILabel *loadingLabel;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
+
++ (id)loadingViewInView:(UIView *)aSuperview: (NSString *)message;
+- (void)loadingComplete:(NSString *)completeMessage:(NSTimeInterval)delay;
 - (void)removeView;
 
 @end

@@ -160,11 +160,9 @@
 
 - (void)initTripManager:(TripManager*)manager
 {
-	//manager.activityDelegate = self;
-	manager.alertDelegate	= self;
 	manager.dirty			= YES;
 	self.tripManager		= manager;
-    manager.loadingDelegate = self;
+    manager.parent          = self;
 }
 
 /*
@@ -387,6 +385,16 @@
 //	return saveButton;
 //}
 
+- (void)displayUploadedTripMap
+{
+    Trip *trip = tripManager.trip;
+    [self resetRecordingInProgress];
+    
+    // load map view of saved trip
+    MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
+    [[self navigationController] pushViewController:mvc animated:YES];
+    [mvc release];
+}
 
 - (void)resetPurpose
 {
@@ -525,17 +533,6 @@
 //			[pickerViewController release];
 //                break;
 //		}
-        case 5:{
-            //for actionSheetLoading success
-            Trip *trip = tripManager.trip;
-			[self resetRecordingInProgress];
-			
-			// load map view of saved trip
-			MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
-			[[self navigationController] pushViewController:mvc animated:YES];
-			[mvc release];
-            break;
-        }
 		default:{
 			NSLog(@"Cancel");
 			// re-enable counter updates

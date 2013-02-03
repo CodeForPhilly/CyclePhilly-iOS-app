@@ -113,7 +113,7 @@
 
 - (void)initTripManager:(TripManager*)manager
 {
-	self.tripManager = manager;
+	self.tripManager = manager;   
 }
 
 - (id)initWithTripManager:(TripManager*)manager
@@ -327,7 +327,7 @@
 // display map view
 - (void)displaySelectedTripMap
 {
-	loading		= [[LoadingView loadingViewInView:self.parentViewController.view] retain];
+	loading		= [[LoadingView loadingViewInView:self.parentViewController.view:@"Loading..."] retain];
 	loading.tag = 909;
 	[self performSelectorInBackground:@selector(_recalculateDistanceForSelectedTripMap) withObject:nil];
 }
@@ -629,7 +629,7 @@
 			tripManager = [[TripManager alloc] initWithTrip:selectedTrip];
 			//tripManager.activityDelegate = self;
 			tripManager.alertDelegate = self;
-			
+			tripManager.parent = self;
 			// prompt to upload
 			[self promptToConfirmPurpose];
 		}
@@ -647,6 +647,16 @@
 {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	return ( ![cell.reuseIdentifier isEqual: kCellReuseIdentifierInProgress] );
+}
+
+- (void)displayUploadedTripMap
+{
+    Trip *trip = tripManager.trip;
+    
+    // load map view of saved trip
+    MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
+    [[self navigationController] pushViewController:mvc animated:YES];
+    [mvc release];
 }
 
 
