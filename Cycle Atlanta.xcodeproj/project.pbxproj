@@ -20,9 +20,7 @@
 		64119AAD1068672100C201F0 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64119AAA1068672100C201F0 /* CustomView.m */; };
 		64119AAE1068672100C201F0 /* CustomPickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 64119AAC1068672100C201F0 /* CustomPickerDataSource.m */; };
 		64119ABF10689ED800C201F0 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64119ABE10689ED800C201F0 /* PickerViewController.m */; };
-		64119EB81069A35C00C201F0 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 64119EB71069A35C00C201F0 /* Trip.m */; };
 		64119F041069ACF800C201F0 /* TripManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64119F031069ACF800C201F0 /* TripManager.m */; };
-		64119FC31069C4CC00C201F0 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 64119FC21069C4CC00C201F0 /* Coord.m */; };
 		6411A18E106A90E400C201F0 /* commute.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6411A186106A90E400C201F0 /* commute.tif */; };
 		6411A18F106A90E400C201F0 /* errands.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6411A187106A90E400C201F0 /* errands.tif */; };
 		6411A190106A90E400C201F0 /* exercise.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6411A188106A90E400C201F0 /* exercise.tif */; };
@@ -40,7 +38,6 @@
 		642F151C1071D9DD0050BCB9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642F151B1071D9DD0050BCB9 /* MapKit.framework */; };
 		642F15271071DA700050BCB9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642F15261071DA700050BCB9 /* MapViewController.m */; };
 		642F161D1071ED1C0050BCB9 /* MapCoord.m in Sources */ = {isa = PBXBuildFile; fileRef = 642F161C1071ED1C0050BCB9 /* MapCoord.m */; };
-		6433E4E6106D4A2D00C27387 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6433E4E5106D4A2D00C27387 /* User.m */; };
 		644ED3E410853DEC008725A8 /* commuter2.png in Resources */ = {isa = PBXBuildFile; fileRef = 644ED3E310853DEC008725A8 /* commuter2.png */; };
 		64577E29106DC2FD003ACBFD /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64577E28106DC2FD003ACBFD /* dist.plist */; };
 		6458114E107AA4D30075DABD /* bicycle-bell-normalized.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6458114D107AA4D30075DABD /* bicycle-bell-normalized.aiff */; };
@@ -56,7 +53,11 @@
 		8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */; };
 		8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */; };
 		8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */; };
-		8FA0AD9716BC1F3F00E0E7C4 /* FlaggedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AD9616BC1F3F00E0E7C4 /* FlaggedLocation.m */; };
+		8FB7C20D16C55EB9001A8A48 /* FlaggedLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C20C16C55EB9001A8A48 /* FlaggedLocationManager.m */; };
+		8FB7C21016C5903D001A8A48 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C20F16C5903D001A8A48 /* Trip.m */; };
+		8FB7C21316C5903E001A8A48 /* FlaggedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C21216C5903D001A8A48 /* FlaggedLocation.m */; };
+		8FB7C21616C5903E001A8A48 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C21516C5903E001A8A48 /* Coord.m */; };
+		8FB7C21916C5903E001A8A48 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C21816C5903E001A8A48 /* User.m */; };
 		8FD62A3C16B2253100B54A35 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */; };
 		8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E51655E35800324E6E /* MobileCoreServices.framework */; };
 		8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E81655E36600324E6E /* MediaPlayer.framework */; };
@@ -163,12 +164,8 @@
 		64119AAC1068672100C201F0 /* CustomPickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerDataSource.m; sourceTree = "<group>"; };
 		64119ABD10689ED800C201F0 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		64119ABE10689ED800C201F0 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
-		64119EB61069A35C00C201F0 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
-		64119EB71069A35C00C201F0 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		64119F021069ACF800C201F0 /* TripManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripManager.h; sourceTree = "<group>"; };
 		64119F031069ACF800C201F0 /* TripManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripManager.m; sourceTree = "<group>"; };
-		64119FC11069C4CC00C201F0 /* Coord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coord.h; sourceTree = "<group>"; };
-		64119FC21069C4CC00C201F0 /* Coord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coord.m; sourceTree = "<group>"; };
 		6411A186106A90E400C201F0 /* commute.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = commute.tif; sourceTree = "<group>"; };
 		6411A187106A90E400C201F0 /* errands.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = errands.tif; sourceTree = "<group>"; };
 		6411A188106A90E400C201F0 /* exercise.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = exercise.tif; sourceTree = "<group>"; };
@@ -190,8 +187,6 @@
 		642F15261071DA700050BCB9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		642F161B1071ED1C0050BCB9 /* MapCoord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCoord.h; sourceTree = "<group>"; };
 		642F161C1071ED1C0050BCB9 /* MapCoord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCoord.m; sourceTree = "<group>"; };
-		6433E4E4106D4A2D00C27387 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		6433E4E5106D4A2D00C27387 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		6433E54E106D542100C27387 /* TripPurposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripPurposeDelegate.h; sourceTree = "<group>"; };
 		6433E5C5106D62ED00C27387 /* PersonalInfoDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoDelegate.h; sourceTree = "<group>"; };
 		6433E5D3106D66EA00C27387 /* ActivityIndicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActivityIndicatorDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -221,8 +216,16 @@
 		8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+IdentifierAddition.m"; path = "../UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		8FA0AD9216BB4ED800E0E7C4 /* CycleAtlanta 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CycleAtlanta 2.xcdatamodel"; sourceTree = "<group>"; };
 		8FA0AD9316BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CycleAtlanta.xcdatamodel; sourceTree = "<group>"; };
-		8FA0AD9516BC1F3F00E0E7C4 /* FlaggedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlaggedLocation.h; sourceTree = "<group>"; };
-		8FA0AD9616BC1F3F00E0E7C4 /* FlaggedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocation.m; sourceTree = "<group>"; };
+		8FB7C20B16C55EB9001A8A48 /* FlaggedLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlaggedLocationManager.h; sourceTree = "<group>"; };
+		8FB7C20C16C55EB9001A8A48 /* FlaggedLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocationManager.m; sourceTree = "<group>"; };
+		8FB7C20E16C5903C001A8A48 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		8FB7C20F16C5903D001A8A48 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		8FB7C21116C5903D001A8A48 /* FlaggedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlaggedLocation.h; sourceTree = "<group>"; };
+		8FB7C21216C5903D001A8A48 /* FlaggedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocation.m; sourceTree = "<group>"; };
+		8FB7C21416C5903E001A8A48 /* Coord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coord.h; sourceTree = "<group>"; };
+		8FB7C21516C5903E001A8A48 /* Coord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coord.m; sourceTree = "<group>"; };
+		8FB7C21716C5903E001A8A48 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8FB7C21816C5903E001A8A48 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8FD696E51655E35800324E6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8FD696E81655E36600324E6E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -365,6 +368,8 @@
 				64F823E0106AC151001413F8 /* SaveRequest.m */,
 				64119F021069ACF800C201F0 /* TripManager.h */,
 				64119F031069ACF800C201F0 /* TripManager.m */,
+				8FB7C20B16C55EB9001A8A48 /* FlaggedLocationManager.h */,
+				8FB7C20C16C55EB9001A8A48 /* FlaggedLocationManager.m */,
 				6433E54E106D542100C27387 /* TripPurposeDelegate.h */,
 				8F1B1D42164B9C720022B776 /* DetailDelegate.h */,
 				8F5E60641602CBE000D8F85D /* UIDevice+IdentifierAddition.h */,
@@ -454,14 +459,14 @@
 			isa = PBXGroup;
 			children = (
 				8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */,
-				8FA0AD9516BC1F3F00E0E7C4 /* FlaggedLocation.h */,
-				8FA0AD9616BC1F3F00E0E7C4 /* FlaggedLocation.m */,
-				64119FC11069C4CC00C201F0 /* Coord.h */,
-				64119FC21069C4CC00C201F0 /* Coord.m */,
-				64119EB61069A35C00C201F0 /* Trip.h */,
-				64119EB71069A35C00C201F0 /* Trip.m */,
-				6433E4E4106D4A2D00C27387 /* User.h */,
-				6433E4E5106D4A2D00C27387 /* User.m */,
+				8FB7C21716C5903E001A8A48 /* User.h */,
+				8FB7C21816C5903E001A8A48 /* User.m */,
+				8FB7C21416C5903E001A8A48 /* Coord.h */,
+				8FB7C21516C5903E001A8A48 /* Coord.m */,
+				8FB7C21116C5903D001A8A48 /* FlaggedLocation.h */,
+				8FB7C21216C5903D001A8A48 /* FlaggedLocation.m */,
+				8FB7C20E16C5903C001A8A48 /* Trip.h */,
+				8FB7C20F16C5903D001A8A48 /* Trip.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -775,12 +780,9 @@
 				64119AAD1068672100C201F0 /* CustomView.m in Sources */,
 				64119AAE1068672100C201F0 /* CustomPickerDataSource.m in Sources */,
 				64119ABF10689ED800C201F0 /* PickerViewController.m in Sources */,
-				64119EB81069A35C00C201F0 /* Trip.m in Sources */,
 				64119F041069ACF800C201F0 /* TripManager.m in Sources */,
-				64119FC31069C4CC00C201F0 /* Coord.m in Sources */,
 				64F823E1106AC151001413F8 /* SaveRequest.m in Sources */,
 				64F824E6106AFFA4001413F8 /* PersonalInfoViewController.m in Sources */,
-				6433E4E6106D4A2D00C27387 /* User.m in Sources */,
 				642F15271071DA700050BCB9 /* MapViewController.m in Sources */,
 				642F161D1071ED1C0050BCB9 /* MapCoord.m in Sources */,
 				6426476E1073FEC300E43DEF /* ReminderManager.m in Sources */,
@@ -791,7 +793,11 @@
 				8F1B1D3F164B94C60022B776 /* DetailViewController.m in Sources */,
 				9D504DA116B6CF4000B99EBC /* ZipUtil.m in Sources */,
 				8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */,
-				8FA0AD9716BC1F3F00E0E7C4 /* FlaggedLocation.m in Sources */,
+				8FB7C20D16C55EB9001A8A48 /* FlaggedLocationManager.m in Sources */,
+				8FB7C21016C5903D001A8A48 /* Trip.m in Sources */,
+				8FB7C21316C5903E001A8A48 /* FlaggedLocation.m in Sources */,
+				8FB7C21616C5903E001A8A48 /* Coord.m in Sources */,
+				8FB7C21916C5903E001A8A48 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

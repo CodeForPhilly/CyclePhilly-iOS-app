@@ -195,8 +195,21 @@
         
         //Flagged Location: get Coord data
         
+        CLLocation *locationNow;
         
+        //get current location
         
+        flaggedLocationNow.flag_type = pickedFlaggedType;
+        
+        [flaggedLocationNow setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
+        [flaggedLocationNow setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
+        [flaggedLocationNow setLongitude:[NSNumber numberWithDouble:locationNow.coordinate.longitude]];
+        [flaggedLocationNow setSpeed:[NSNumber numberWithDouble:locationNow.speed]];
+        [flaggedLocationNow setHAccuracy:[NSNumber numberWithDouble:locationNow.horizontalAccuracy]];
+        [flaggedLocationNow setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
+        [flaggedLocationNow setRecorded:locationNow.timestamp];
+        
+        //send to next view
     }	
 }
 

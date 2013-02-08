@@ -29,44 +29,59 @@
  */
 
 //
-//  CycleTracksAppDelegate.h
+//  TripManager.h
 //  CycleTracks
 //
 //  Copyright 2009-2010 SFCTA. All rights reserved.
-//  Written by Matt Paul <mattpaul@mopimp.com> on 9/21/09.
-//	For more information on the project, 
+//  Written by Matt Paul <mattpaul@mopimp.com> on 9/22/09.
+//	For more information on the project,
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
+
+
 #import <CoreLocation/CoreLocation.h>
+#import <Foundation/Foundation.h>
+#import "ActivityIndicatorDelegate.h"
+#import "LoadingView.h"
+#import "FlaggedLocation.h"
 
-@interface CycleAtlantaAppDelegate : NSObject <UIApplicationDelegate>
+@class FlaggedLocation;
+
+
+@interface FlaggedLocationManager : NSObject <ActivityIndicatorDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;	    
-    NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-    UIWindow *window;
-    UITabBarController *tabBarController;
-	NSString *uniqueIDHash;
-    //UIAlertView *consentFor18;
-    // added to handle location manager background service switching
-    BOOL isRecording;
-    CLLocationManager *locationManager;
+	FlaggedLocation *flaggedLocation;
+	
+    NSMutableArray *flaggedLocations;
+    NSManagedObjectContext *managedObjectContextFlagged;
+    
+	NSMutableData *receivedDataFlagged;
+	
+	//NSMutableArray *unSavedFlaggedLocation;
+	//NSMutableArray *unSyncedFlaggedLocation;
 }
 
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, retain) id <ActivityIndicatorDelegate> activityDelegate;
+@property (nonatomic, retain) id <UIAlertViewDelegate> alertDelegate;
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) NSString *uniqueIDHash;
-//@property (nonatomic, retain) UIAlertView *consentFor18;
-// added to handle location manager background service switching
-@property (nonatomic, assign) BOOL isRecording;
-@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
-- (NSString *)applicationDocumentsDirectory;
-- (void)initUniqueIDHash;
+@property (nonatomic, retain) LoadingView *uploadingView;
+
+@property (nonatomic, retain) UIViewController *parent; //again, this can't be right.
+
+@property (assign) BOOL dirty;
+@property (nonatomic, retain) FlaggedLocation *flaggedLocation;
+
+@property (nonatomic, retain) NSMutableArray *flaggedLocations;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContextFlagged;
+
+@property (nonatomic, retain) NSMutableData *receivedDataFlagged;
+
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
+
+- (void)saveFlaggedLocation;
 
 @end
+
 

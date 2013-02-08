@@ -48,7 +48,7 @@
 
 #pragma mark init
 
-- initWithPostVars:(NSDictionary *)inPostVars
+- initWithPostVars:(NSDictionary *)inPostVars with:(NSInteger) type;
 {
 	if (self = [super init])
 	{
@@ -60,7 +60,14 @@
         self.request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:kSaveURL]];
         [request setHTTPMethod:@"POST"];
-        [request setValue:@"3" forHTTPHeaderField:@"Cycleatl-Protocol-Version"];
+        
+        if (type == 3) {
+            [request setValue:@"3" forHTTPHeaderField:@"Cycleatl-Protocol-Version"];
+        }
+        else if (type == 4){
+            [request setValue:@"4" forHTTPHeaderField:@"Cycleatl-Protocol-Version"];
+        }
+        
         [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
         // this is a bit grotty, but it indicates a) cycleatl namespace
         // b) trip upload, c) version 3, d) form encoding

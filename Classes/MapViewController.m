@@ -140,6 +140,7 @@
 {
     [super viewDidLoad];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.navigationBarHidden = NO;
 
 	if ( trip )
 	{

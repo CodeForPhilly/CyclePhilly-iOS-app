@@ -40,6 +40,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomPickerDataSource.h"
 #import "TripPurposeDelegate.h"
+#import "FlaggedLocation.h"
 
 
 @interface PickerViewController : UIViewController <UIPickerViewDelegate>
@@ -53,6 +54,8 @@
     NSInteger pickedFlaggedType;
     IBOutlet UINavigationBar *navBarItself;
     UILabel *descriptionText;
+    
+    FlaggedLocation *flaggedLocationNow;
 }
 
 
