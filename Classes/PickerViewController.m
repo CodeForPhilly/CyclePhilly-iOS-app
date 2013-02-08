@@ -173,17 +173,29 @@
         detailViewController.delegate = self.delegate;
         
         [self presentModalViewController:detailViewController animated:YES];
-        //do something here: get index for later use.
+        
+        
+        //Flagged Location: get index of type
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
         pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
         
-        [[NSUserDefaults standardUserDefaults] setInteger:row+6 forKey: @"pickedFlaggedType"];
+        if(row>=7){
+            [[NSUserDefaults standardUserDefaults] setInteger:row-7 forKey: @"pickedFlaggedType"];
+        }
+        else if (row<=5){
+            [[NSUserDefaults standardUserDefaults] setInteger:11-row forKey: @"pickedFlaggedType"];
+        }
+        
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
         
         NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
+        
+        //Flagged Location: get Coord data
+        
+        
         
     }	
 }
@@ -257,7 +269,6 @@
         self.descriptionText.text = @"Please select the type & tap Save";
         [self.customPickerView selectRow:6 inComponent:0 animated:NO];
         if ([self.customPickerView selectedRowInComponent:0] == 6) {
-            NSLog(@"selectedRow is 6");
             navBarItself.topItem.rightBarButtonItem.enabled = NO;
         }
         else{
@@ -320,7 +331,6 @@
 {
     if (pickerCategory == 3){
         if ([self.customPickerView selectedRowInComponent:0] == 6) {
-            NSLog(@"selectedRow is 6");
             navBarItself.topItem.rightBarButtonItem.enabled = NO;
         }
         else{

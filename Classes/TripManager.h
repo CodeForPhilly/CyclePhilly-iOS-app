@@ -66,6 +66,7 @@ UITextViewDelegate>
 	NSInteger purposeIndex;
 	
 	NSMutableArray *coords;
+    NSMutableArray *flaggedLocations;
     NSManagedObjectContext *managedObjectContext;
 
 	NSMutableData *receivedData;

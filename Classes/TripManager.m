@@ -474,6 +474,11 @@
 	NSMutableDictionary *tripDict = [NSMutableDictionary dictionaryWithCapacity:[coords count]];
 	NSEnumerator *enumerator = [coords objectEnumerator];
 	Coord *coord;
+    
+    // get array of Flagged Locations, save locations else where, see coords code
+	NSMutableDictionary *flaggedLocationDict = [NSMutableDictionary dictionaryWithCapacity:[flaggedLocations count]];
+	NSEnumerator *enumerator2 = [flaggedLocations objectEnumerator];
+    FlaggedLocation *flaggedLocation;
 	
 	// format date as a string
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];		
@@ -497,6 +502,26 @@
 		[coordsDict setValue:newDateString forKey:@"r"];    //recorded timestamp
 		[tripDict setValue:coordsDict forKey:newDateString];
 	}
+    // create a flaggedLocationDict for each flaggedLocaton
+    while (flaggedLocation = [enumerator2 nextObject])
+	{
+		flaggedLocationDict = [NSMutableDictionary dictionaryWithCapacity:10];
+		[flaggedLocationDict setValue:flaggedLocation.altitude  forKey:@"a"];  //altitude
+		[flaggedLocationDict setValue:flaggedLocation.latitude  forKey:@"l"];  //latitude
+		[flaggedLocationDict setValue:flaggedLocation.longitude forKey:@"n"];  //longitude
+		[flaggedLocationDict setValue:flaggedLocation.speed     forKey:@"s"];  //speed
+		[flaggedLocationDict setValue:flaggedLocation.hAccuracy forKey:@"h"];  //haccuracy
+		[flaggedLocationDict setValue:flaggedLocation.vAccuracy forKey:@"v"];  //vaccuracy
+        
+        [flaggedLocationDict setValue:flaggedLocation.flag_type     forKey:@"t"];  //flag_type
+		[flaggedLocationDict setValue:flaggedLocation.details forKey:@"d"];  //details
+		[flaggedLocationDict setValue:flaggedLocation.image_url forKey:@"i"];  //image_url
+        
+		
+		NSString *newDateString = [outputFormatter stringFromDate:flaggedLocation.recorded];
+		[flaggedLocationDict setValue:newDateString forKey:@"r"];    //recorded timestamp
+	}
+
 #elif kSaveProtocolVersion == kSaveProtocolVersion_2
 	NSLog(@"saving using protocol version 2");
 	
@@ -532,7 +557,7 @@
 		NSString *newDateString = [outputFormatter stringFromDate:coord.recorded];
 		[coordsDict setValue:newDateString forKey:@"recorded"];		
 		[tripDict setValue:coordsDict forKey:newDateString];
-	}
+	}    
 #endif
 	// get trip purpose
 	NSString *purpose;
@@ -564,6 +589,10 @@
     NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
     NSString *tripJson = [[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding];
     //NSLog(@"trip data %@", tripJson);
+    
+    // JSON encode the Flagged Location data
+    NSData *flaggedLocationJsonData = [NSJSONSerialization dataWithJSONObject:flaggedLocationDict options:0 error:&writeError];
+    NSString *flaggedLocationJson = [[NSString alloc] initWithData:flaggedLocationJsonData encoding:NSUTF8StringEncoding];
         
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:

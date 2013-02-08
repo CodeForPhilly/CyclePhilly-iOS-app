@@ -74,24 +74,28 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 -(IBAction)skip:(id)sender{
     NSLog(@"Skip");
     [delegate didCancelPurpose];
+    
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    //do something: photo=null, text=null
+    
+    //Flagged Location: photo=null, text=null
 }
 
 -(IBAction)saveDetail:(id)sender{
     NSLog(@"Save Detail");
     [detailTextView resignFirstResponder];
-    //do many things here: get photo and text for later use.
     [delegate didCancelPurpose];
-    
-    //FlaggedLocation: get detail texts
-    details = detailTextView.text;
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //Flagged Location: get detail texts
+    details = detailTextView.text;
+    
+    //Flagged Location: save image UIImage *image
+
 }
 
 - (IBAction)shootPictureOrVideo:(id)sender {
