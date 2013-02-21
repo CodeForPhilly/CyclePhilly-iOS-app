@@ -55,9 +55,9 @@
 		8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */; };
 		8FB7C20D16C55EB9001A8A48 /* FlaggedLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C20C16C55EB9001A8A48 /* FlaggedLocationManager.m */; };
 		8FB7C21016C5903D001A8A48 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C20F16C5903D001A8A48 /* Trip.m */; };
-		8FB7C21316C5903E001A8A48 /* FlaggedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C21216C5903D001A8A48 /* FlaggedLocation.m */; };
 		8FB7C21616C5903E001A8A48 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C21516C5903E001A8A48 /* Coord.m */; };
 		8FB7C21916C5903E001A8A48 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C21816C5903E001A8A48 /* User.m */; };
+		8FCF6C5316D578040070FF33 /* FlaggedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FCF6C5216D578030070FF33 /* FlaggedLocation.m */; };
 		8FD62A3C16B2253100B54A35 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */; };
 		8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E51655E35800324E6E /* MobileCoreServices.framework */; };
 		8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E81655E36600324E6E /* MediaPlayer.framework */; };
@@ -220,12 +220,12 @@
 		8FB7C20C16C55EB9001A8A48 /* FlaggedLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocationManager.m; sourceTree = "<group>"; };
 		8FB7C20E16C5903C001A8A48 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		8FB7C20F16C5903D001A8A48 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		8FB7C21116C5903D001A8A48 /* FlaggedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlaggedLocation.h; sourceTree = "<group>"; };
-		8FB7C21216C5903D001A8A48 /* FlaggedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocation.m; sourceTree = "<group>"; };
 		8FB7C21416C5903E001A8A48 /* Coord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coord.h; sourceTree = "<group>"; };
 		8FB7C21516C5903E001A8A48 /* Coord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coord.m; sourceTree = "<group>"; };
 		8FB7C21716C5903E001A8A48 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		8FB7C21816C5903E001A8A48 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8FCF6C5116D578030070FF33 /* FlaggedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlaggedLocation.h; sourceTree = "<group>"; };
+		8FCF6C5216D578030070FF33 /* FlaggedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlaggedLocation.m; sourceTree = "<group>"; };
 		8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8FD696E51655E35800324E6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8FD696E81655E36600324E6E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -463,10 +463,10 @@
 				8FB7C21816C5903E001A8A48 /* User.m */,
 				8FB7C21416C5903E001A8A48 /* Coord.h */,
 				8FB7C21516C5903E001A8A48 /* Coord.m */,
-				8FB7C21116C5903D001A8A48 /* FlaggedLocation.h */,
-				8FB7C21216C5903D001A8A48 /* FlaggedLocation.m */,
 				8FB7C20E16C5903C001A8A48 /* Trip.h */,
 				8FB7C20F16C5903D001A8A48 /* Trip.m */,
+				8FCF6C5116D578030070FF33 /* FlaggedLocation.h */,
+				8FCF6C5216D578030070FF33 /* FlaggedLocation.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -795,9 +795,9 @@
 				8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */,
 				8FB7C20D16C55EB9001A8A48 /* FlaggedLocationManager.m in Sources */,
 				8FB7C21016C5903D001A8A48 /* Trip.m in Sources */,
-				8FB7C21316C5903E001A8A48 /* FlaggedLocation.m in Sources */,
 				8FB7C21616C5903E001A8A48 /* Coord.m in Sources */,
 				8FB7C21916C5903E001A8A48 /* User.m in Sources */,
+				8FCF6C5316D578040070FF33 /* FlaggedLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

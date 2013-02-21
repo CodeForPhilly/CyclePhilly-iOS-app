@@ -2,7 +2,7 @@
 //  FlaggedLocation.m
 //  Cycle Atlanta
 //
-//  Created by Guo Anhong on 13-2-8.
+//  Created by Guo Anhong on 13-2-20.
 //
 //
 
@@ -12,15 +12,15 @@
 
 @implementation FlaggedLocation
 
+@dynamic details;
 @dynamic speed;
-@dynamic recorded;
-@dynamic flag_type;
 @dynamic longitude;
 @dynamic image_url;
-@dynamic details;
-@dynamic latitude;
+@dynamic flag_type;
 @dynamic vAccuracy;
+@dynamic latitude;
 @dynamic hAccuracy;
+@dynamic recorded;
 @dynamic altitude;
 @dynamic user;
 

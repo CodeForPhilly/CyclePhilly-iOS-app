@@ -42,6 +42,8 @@
 #import "PickerViewController.h"
 #import "DetailViewController.h"
 #import "TripManager.h"
+#import "FlaggedLocationManager.h"
+#import "RecordTripViewController.h"
 
 
 @implementation PickerViewController
@@ -102,11 +104,12 @@
 
 
 - (IBAction)cancel:(id)sender
+//add value to be sent in
 {
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-	[delegate didCancelPurpose];
+	[delegate didCancelNote];
 }
 
 
@@ -178,12 +181,16 @@
         //Flagged Location: get index of type
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
+        NSNumber *tempType;
+        
         pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
         
         if(row>=7){
+            tempType = row-7;
             [[NSUserDefaults standardUserDefaults] setInteger:row-7 forKey: @"pickedFlaggedType"];
         }
         else if (row<=5){
+            tempType = 11-row;
             [[NSUserDefaults standardUserDefaults] setInteger:11-row forKey: @"pickedFlaggedType"];
         }
         
@@ -193,23 +200,12 @@
         
         NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
         
-        //Flagged Location: get Coord data
         
-        CLLocation *locationNow;
+        //send to FlaggedLocationManager
+        FlaggedLocationManager *tempororyFLManager;
+        tempororyFLManager = [[FlaggedLocationManager alloc] init];
+        [tempororyFLManager addFlagType:tempType];
         
-        //get current location
-        
-        flaggedLocationNow.flag_type = pickedFlaggedType;
-        
-        [flaggedLocationNow setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
-        [flaggedLocationNow setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
-        [flaggedLocationNow setLongitude:[NSNumber numberWithDouble:locationNow.coordinate.longitude]];
-        [flaggedLocationNow setSpeed:[NSNumber numberWithDouble:locationNow.speed]];
-        [flaggedLocationNow setHAccuracy:[NSNumber numberWithDouble:locationNow.horizontalAccuracy]];
-        [flaggedLocationNow setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
-        [flaggedLocationNow setRecorded:locationNow.timestamp];
-        
-        //send to next view
     }	
 }
 

@@ -45,10 +45,12 @@
 #import "RecordingInProgressDelegate.h"
 #import "TripPurposeDelegate.h"
 #import "CycleAtlantaAppDelegate.h"
+#import "FlaggedLocation.h"
 
 
 @class ReminderManager;
 @class TripManager;
+@class FlaggedLocationManager;
 //@class CycleTracksAppDelegate;
 
 //@interface RecordTripViewController : UITableViewController 
@@ -96,6 +98,11 @@
     NSInteger pickerCategory;
 	
 	TripManager		*tripManager;
+    FlaggedLocationManager *flaggedLocationManager;
+    
+    NSInteger noteThisFlag;
+    
+    CLLocation *myLocation;
 //	ReminderManager *reminderManager;
 }
 
@@ -127,9 +134,13 @@
 //@property (nonatomic, retain) ReminderManager *reminderManager;
 @property (nonatomic, retain) TripManager *tripManager;
 
+@property (nonatomic, retain) FlaggedLocationManager *flaggedLocationManager;
+
 @property (nonatomic, retain) CycleAtlantaAppDelegate *appDelegate;
 
 - (void)initTripManager:(TripManager*)manager;
+
+- (void)initFlaggedLocationManager:(FlaggedLocationManager*)manager;
 
 // DEPRECATED
 //- (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
@@ -157,6 +168,5 @@
 - (UIButton *)createStartButton;
 
 - (void)displayUploadedTripMap;
-
 
 @end

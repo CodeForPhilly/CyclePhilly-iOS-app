@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TripPurposeDelegate.h"
 
@@ -17,6 +16,7 @@
     UIButton *addPicButton;
     NSInteger pickerCategory;
     NSString *details;
+    UIImage *image;
 }
 
 @property (nonatomic, retain) id <TripPurposeDelegate> delegate;
@@ -26,9 +26,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong, nonatomic) UIImage *image;
-@property (strong, nonatomic) NSURL *movieURL;
 @property (copy, nonatomic) NSString *lastChosenMediaType;
 @property (assign, nonatomic) CGRect imageFrame;
 

@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
+#import "FlaggedLocationManager.h"
 
 @interface DetailViewController ()
 static UIImage *shrinkImage(UIImage *original, CGSize size);
@@ -20,9 +21,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize detailTextView;
 @synthesize addPicButton;
 @synthesize imageView;
-@synthesize moviePlayerController;
 @synthesize image;
-@synthesize movieURL;
 @synthesize lastChosenMediaType;
 @synthesize imageFrame;
 
@@ -46,6 +45,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
         addPicButton.hidden = YES;
     }
     imageFrame = imageView.frame;
+    
+    self.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"appIcon" ofType:@"png"]];
     
 }
 
@@ -73,19 +74,27 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 -(IBAction)skip:(id)sender{
     NSLog(@"Skip");
-    [delegate didCancelPurpose];
+    [delegate didCancelNote];
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     //Flagged Location: photo=null, text=null
+    details = @"";
+    image = nil;
+    
+    FlaggedLocationManager *tempororyFLManager;
+    tempororyFLManager = [[FlaggedLocationManager alloc] init];
+    [tempororyFLManager addDetails:details];
+    [tempororyFLManager addImgURL:@""];
+    [tempororyFLManager addImage:nil];
 }
 
 -(IBAction)saveDetail:(id)sender{
     NSLog(@"Save Detail");
     [detailTextView resignFirstResponder];
-    [delegate didCancelPurpose];
+    [delegate didCancelNote];
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
@@ -93,6 +102,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     
     //Flagged Location: get detail texts
     details = detailTextView.text;
+    FlaggedLocationManager *tempororyFLManager;
+    tempororyFLManager = [[FlaggedLocationManager alloc] init];
+    [tempororyFLManager addDetails:details];
+    //[tempororyFLManager addImgURL:];
+    //[tempororyFLManager addImage:];
     
     //Flagged Location: save image UIImage *image
 
@@ -115,14 +129,14 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 #pragma mark UIImagePickerController delegate methods
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    self.lastChosenMediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
-        UIImage *chosenImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        UIImage *shrunkenImage = shrinkImage(chosenImage, imageFrame.size);
-        self.image = shrunkenImage;
-    } else if ([lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
-        self.movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
-    }
+    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *shrunkenImage = shrinkImage(chosenImage, imageFrame.size);
+    
+    //add metadata, store image binary data, set url
+    
+    
+    
+    self.image = shrunkenImage;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -150,35 +164,23 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
 }
 
 - (void)updateDisplay {
-    if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
-        imageView.image = image;
-        imageView.hidden = NO;
-        moviePlayerController.view.hidden = YES;
-    } else if ([lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
-        [self.moviePlayerController.view removeFromSuperview];
-        self.moviePlayerController = [[MPMoviePlayerController alloc]
-                                      initWithContentURL:movieURL];
-        moviePlayerController.view.frame = imageFrame;
-        moviePlayerController.view.clipsToBounds = YES;
-        [self.view addSubview:moviePlayerController.view];
-        imageView.hidden = YES;
-    }
+    imageView.image = image;
+    imageView.hidden = NO;
 }
 
 - (void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType {
-    NSArray *mediaTypes = [UIImagePickerController
-                           availableMediaTypesForSourceType:sourceType];
+    //NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
     if ([UIImagePickerController isSourceTypeAvailable:
-         sourceType] && [mediaTypes count] > 0) {
-        NSArray *mediaTypes = [UIImagePickerController
-                               availableMediaTypesForSourceType:sourceType];
-        UIImagePickerController *picker =
-        [[UIImagePickerController alloc] init];
-        picker.mediaTypes = mediaTypes;
+         sourceType]) {
+        //NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        //picker.mediaTypes = mediaTypes;
+        //picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         [self presentModalViewController:picker animated:YES];
+        [picker release];
     } else {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error accessing media"
@@ -198,7 +200,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     [super viewDidUnload];
     self.imageView = nil;
     self.addPicButton = nil;
-    self.moviePlayerController = nil;
 }
 
 -(IBAction)screenShoot:(id)sender{

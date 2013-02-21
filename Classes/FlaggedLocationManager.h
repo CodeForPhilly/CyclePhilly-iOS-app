@@ -50,8 +50,7 @@
 @interface FlaggedLocationManager : NSObject <ActivityIndicatorDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
 	FlaggedLocation *flaggedLocation;
-	
-    NSMutableArray *flaggedLocations;
+
     NSManagedObjectContext *managedObjectContextFlagged;
     
 	NSMutableData *receivedDataFlagged;
@@ -72,7 +71,6 @@
 @property (assign) BOOL dirty;
 @property (nonatomic, retain) FlaggedLocation *flaggedLocation;
 
-@property (nonatomic, retain) NSMutableArray *flaggedLocations;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContextFlagged;
 
 @property (nonatomic, retain) NSMutableData *receivedDataFlagged;
@@ -81,6 +79,12 @@
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
 
 - (void)saveFlaggedLocation;
+
+- (void)addFlagType:(NSNumber *)flagType;
+- (void)addDetails:(NSString *)details;
+- (void)addLocation:(CLLocation*)locationNow;
+- (void)addImgURL:(NSString *)imgURL;
+- (void)addImage:(UIImage *)image;
 
 @end
 

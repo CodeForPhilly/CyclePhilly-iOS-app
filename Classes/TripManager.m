@@ -264,7 +264,7 @@
 
 - (CLLocationDistance)addCoord:(CLLocation *)location
 {
-	//NSLog(@"addCoord");
+	NSLog(@"addCoord");
 	
 	if ( !trip )
 		[self createTrip];	

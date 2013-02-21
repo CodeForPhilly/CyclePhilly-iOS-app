@@ -52,7 +52,7 @@
 
 @implementation FlaggedLocationManager
 
-@synthesize flaggedLocation, flaggedLocations, managedObjectContextFlagged, receivedDataFlagged;
+@synthesize flaggedLocation, managedObjectContextFlagged, receivedDataFlagged;
 @synthesize uploadingView, parent;
 
 // change initialization values
@@ -60,6 +60,59 @@
 // change this function for flagged location detail view
 
 // change this function for Flagged Location initialization
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext*)context
+{
+    if ( self = [super init] )
+	{
+		self.managedObjectContextFlagged = context;
+        self.flaggedLocation = (FlaggedLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"FlaggedLocation" inManagedObjectContext:managedObjectContextFlagged];
+    }
+    return self;
+}
+
+- (void)addFlagType:(NSNumber *)flagType
+{
+    flaggedLocation.flag_type=flagType;
+    NSLog(@"Added flag type: %d", (int)flagType);
+}
+
+- (void)addDetails:(NSString *)details
+{
+    flaggedLocation.details = details;
+    NSLog(@"Added details: %@", details);
+}
+
+- (void)addImgURL:(NSString *)imgURL
+{
+    flaggedLocation.image_url = imgURL;
+    NSLog(@"Added image url: %@", imgURL);
+}
+
+- (void)addImage:(UIImage *)image
+{
+    NSLog(@"Added image:");
+}
+
+- (void)addLocation:(CLLocation *)locationNow
+{
+    NSLog(@"This is very very special!");
+    
+    [flaggedLocation setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
+    [flaggedLocation setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
+    [flaggedLocation setLongitude:[NSNumber numberWithDouble:locationNow.coordinate.longitude]];
+    [flaggedLocation setSpeed:[NSNumber numberWithDouble:locationNow.speed]];
+    [flaggedLocation setHAccuracy:[NSNumber numberWithDouble:locationNow.horizontalAccuracy]];
+    [flaggedLocation setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
+    [flaggedLocation setRecorded:locationNow.timestamp];
+	
+	NSError *error;
+	if (![managedObjectContextFlagged save:&error]) {
+		// Handle the error.
+		NSLog(@"FlaggedLocation addLocation error %@, %@", error, [error localizedDescription]);
+	}
+    
+}
 
 - (void) saveFlaggedLocation
 {

@@ -79,6 +79,7 @@
 
 @optional
 - (void)didCancelPurpose;
+- (void)didCancelNote;
 - (void)didPickPurpose:(unsigned int)index;
 
 @end
