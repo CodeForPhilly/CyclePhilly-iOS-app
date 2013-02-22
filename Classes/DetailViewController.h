@@ -25,10 +25,11 @@
 @property (nonatomic, retain) IBOutlet UIButton *addPicButton;
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageFrameView;
 
 @property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) UIImage *imageFrame;
 @property (copy, nonatomic) NSString *lastChosenMediaType;
-@property (assign, nonatomic) CGRect imageFrame;
 
 -(IBAction)skip:(id)sender;
 -(IBAction)saveDetail:(id)sender;
@@ -37,5 +38,6 @@
 - (IBAction)selectExistingPictureOrVideo:(id)sender;
 
 -(IBAction)screenShoot:(id)sender;
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size;
 
 @end

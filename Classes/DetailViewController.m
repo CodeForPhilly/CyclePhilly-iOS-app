@@ -12,6 +12,7 @@
 
 @interface DetailViewController ()
 static UIImage *shrinkImage(UIImage *original, CGSize size);
+
 - (void)updateDisplay;
 - (void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType;
 @end
@@ -22,8 +23,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize addPicButton;
 @synthesize imageView;
 @synthesize image;
-@synthesize lastChosenMediaType;
 @synthesize imageFrame;
+@synthesize imageFrameView;
+@synthesize lastChosenMediaType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,10 +46,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
           UIImagePickerControllerSourceTypeCamera]) {
         addPicButton.hidden = YES;
     }
-    imageFrame = imageView.frame;
+    
     detailTextView.layer.borderWidth = 1.0;
     detailTextView.layer.borderColor = [[UIColor blackColor] CGColor];
-    self.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"photoFrame" ofType:@"png"]];
+    self.imageFrame = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"photoFrame" ofType:@"png"]];
+    imageFrameView.image = imageFrame;
     
 }
 
@@ -130,6 +133,15 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (UIImage *)imageWithImage:(UIImage *)orgImage convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [orgImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
+}
+
 #pragma mark UIImagePickerController delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -138,12 +150,23 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *castedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     //save to library
     UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
-    //compress to NSData
-    NSData *imageData =  UIImageJPEGRepresentation(castedImage, 0);
-    //get back to image
+    
+    CGSize size;
+    size.height = 640;
+    size.width = 480;
+    
+    UIGraphicsBeginImageContext(size);
+    [castedImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData *imageData =  UIImageJPEGRepresentation(destImage, 0);
+    
     UIImage *compressedImage=[UIImage imageWithData:imageData];
     
     NSLog(@"Size of Image(bytes):%d",[imageData length]);
+    
+    
     
     /*NSDictionary *gpsDict   = [NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithFloat:fabs(loc.coordinate.latitude)], kCGImagePropertyGPSLatitude
@@ -157,6 +180,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
 
     self.image = compressedImage;
+    //[addPicButton setTitle:@" " forState:UIControlStateNormal];
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -218,6 +242,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
 - (void)viewDidUnload {
     [super viewDidUnload];
     self.imageView = nil;
+    self.imageFrameView=nil;
     self.addPicButton = nil;
 }
 

@@ -77,9 +77,9 @@
 
 - (void)addFlagType:(NSNumber *)flagType
 {
-    [flaggedLocation setFlag_type:flagType];
+    [self.flaggedLocation setFlag_type:flagType];
     NSLog(@"Added flag type: %d", (int)flagType);
-    NSLog(@"Added flag type: %d", (int)self.flaggedLocation.flag_type);
+    NSLog(@"Added flag type: %d", (int)flaggedLocation.flag_type);
 }
 
 - (void)addDetails:(NSString *)details
@@ -136,7 +136,7 @@
 	
     // create a flaggedLocationDict for each flaggedLocaton
     flaggedLocationDict = [[NSMutableDictionary alloc] initWithCapacity:10];
-    [flaggedLocationDict :flaggedLocation.altitude  forKey:@"a"];  //altitude
+    [flaggedLocationDict setValue:flaggedLocation.altitude  forKey:@"a"];  //altitude
     [flaggedLocationDict setValue:flaggedLocation.latitude  forKey:@"l"];  //latitude
     [flaggedLocationDict setValue:flaggedLocation.longitude forKey:@"n"];  //longitude
     [flaggedLocationDict setValue:flaggedLocation.speed     forKey:@"s"];  //speed
