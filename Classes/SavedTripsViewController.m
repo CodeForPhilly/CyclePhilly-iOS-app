@@ -752,7 +752,7 @@
 			[trips removeObjectAtIndex:index];
 			selectedTrip = nil;
 			
-			// TODO: get indexPath for animation
+			
 			//[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 			[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:YES];
 			//[self.tableView reloadData];

@@ -289,7 +289,7 @@
     currentTextField = myTextField;
     
     if(myTextField == gender || myTextField == age || myTextField == ethnicity || myTextField == income || myTextField == cyclingFreq || myTextField == riderType || myTextField == riderHistory){
-        //TODO add code here to dismiss keyboard if it's visible
+        
         [myTextField resignFirstResponder];
         
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
@@ -313,7 +313,7 @@
         UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
         [barItems addObject:cancelBtn];
         
-        //TODO add a next andprevious button to left side to take us to the next/previous thing. and switch to the right kind of input mode.
+        //TODO add a next and previous button to left side to take us to the next/previous thing. and switch to the right kind of input mode.
         
         [doneToolbar setItems:barItems animated:YES];
         
@@ -461,7 +461,7 @@
 		NSLog(@"ERROR can't save personal info for nil user");
 	
 	// update UI
-	// TODO: test for at least one set value
+	
 	[delegate setSaved:YES];
     //disable the save button after saving
 	self.navigationItem.rightBarButtonItem.enabled = NO;

@@ -115,7 +115,6 @@
 
 - (IBAction)save:(id)sender
 {
-    //TODO: push to view
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     
     if (pickerCategory == 0) {

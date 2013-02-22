@@ -26,6 +26,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize imageFrame;
 @synthesize imageFrameView;
 @synthesize lastChosenMediaType;
+@synthesize imageData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -91,7 +92,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     FlaggedLocationManager *tempororyFLManager;
     tempororyFLManager = [[FlaggedLocationManager alloc] init];
     [tempororyFLManager addDetails:details];
-    [tempororyFLManager addImgURL:@""];
     [tempororyFLManager addImage:nil];
     //[tempororyFLManager saveFlaggedLocation];
 }
@@ -110,10 +110,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     FlaggedLocationManager *tempororyFLManager;
     tempororyFLManager = [[FlaggedLocationManager alloc] init];
     [tempororyFLManager addDetails:details];
-    //[tempororyFLManager addImgURL:];
     //[tempororyFLManager addImage:];
-    
-    //Flagged Location: save image UIImage *image
     
     //[tempororyFLManager saveFlaggedLocation];
 
@@ -160,7 +157,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    NSData *imageData =  UIImageJPEGRepresentation(destImage, 0);
+    imageData =  UIImageJPEGRepresentation(destImage, 0);
+    
     
     UIImage *compressedImage=[UIImage imageWithData:imageData];
     
@@ -176,7 +174,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                , [formatter stringFromDate:[loc timestamp]], kCGImagePropertyGPSTimeStamp
                                , [NSNumber numberWithFloat:fabs(loc.altitude)], kCGImagePropertyGPSAltitude
                                , nil];*/
-    //Also try to use the library
     
 
     self.image = compressedImage;

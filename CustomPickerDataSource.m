@@ -135,7 +135,6 @@
             [viewArray addObject:view];
             [view release];
         }
-        //TODO: figure out the real category, picture and title
         else if (pickerCategory == 1){
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Pavement issue";

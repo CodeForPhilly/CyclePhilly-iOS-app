@@ -69,7 +69,6 @@
 #define kTripPurposeErrandString	@"Errand"
 #define kTripPurposeOtherString		@"Other"
 
-//TODO: define strings and icons for issue and asset
 
 
 @protocol TripPurposeDelegate <NSObject>

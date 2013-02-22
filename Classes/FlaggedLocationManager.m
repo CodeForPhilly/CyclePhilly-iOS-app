@@ -75,6 +75,7 @@
     return self;
 }
 
+//called from PickerViewController
 - (void)addFlagType:(NSNumber *)flagType
 {
     [self.flaggedLocation setFlag_type:flagType];
@@ -82,6 +83,7 @@
     NSLog(@"Added flag type: %d", (int)flaggedLocation.flag_type);
 }
 
+//called from DetailViewController
 - (void)addDetails:(NSString *)details
 {
     [flaggedLocation setDetails:details];
@@ -89,17 +91,20 @@
     NSLog(@"Added details: %@", flaggedLocation.details);
 }
 
+//called before uploading (generated from userid, recordedtime and type)
 - (void)addImgURL:(NSString *)imgURL
 {
     flaggedLocation.image_url = imgURL;
     NSLog(@"Added image url: %@", imgURL);
 }
 
+//called from DetailViewController
 - (void)addImage:(UIImage *)image
 {
     NSLog(@"Added image:");
 }
 
+//called from RecordTripViewController
 - (void)addLocation:(CLLocation *)locationNow
 {
     NSLog(@"This is very very special!");
@@ -124,6 +129,7 @@
     
 }
 
+//called in DetailViewController once pressing skip or save
 - (void) saveFlaggedLocation
 {
     NSMutableDictionary *flaggedLocationDict;

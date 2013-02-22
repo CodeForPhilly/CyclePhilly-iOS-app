@@ -17,6 +17,7 @@
     NSInteger pickerCategory;
     NSString *details;
     UIImage *image;
+    NSData *imageData;
 }
 
 @property (nonatomic, retain) id <TripPurposeDelegate> delegate;
@@ -29,6 +30,8 @@
 
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) UIImage *imageFrame;
+@property (nonatomic, retain) NSData *imageData;
+
 @property (copy, nonatomic) NSString *lastChosenMediaType;
 
 -(IBAction)skip:(id)sender;
