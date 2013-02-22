@@ -90,7 +90,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [tempororyFLManager addDetails:details];
     [tempororyFLManager addImgURL:@""];
     [tempororyFLManager addImage:nil];
-    [tempororyFLManager saveFlaggedLocation];
+    //[tempororyFLManager saveFlaggedLocation];
 }
 
 -(IBAction)saveDetail:(id)sender{
@@ -112,7 +112,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     
     //Flagged Location: save image UIImage *image
     
-    [tempororyFLManager saveFlaggedLocation];
+    //[tempororyFLManager saveFlaggedLocation];
 
 }
 
@@ -131,16 +131,32 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     // Dispose of any resources that can be recreated.
 }
 #pragma mark UIImagePickerController delegate methods
+
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *chosenImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    UIImage *shrunkenImage = shrinkImage(chosenImage, imageFrame.size);
+    //original
+    UIImage *castedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //save to library
+    UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
+    //compress to NSData
+    NSData *imageData =  UIImageJPEGRepresentation(castedImage, 0);
+    //get back to image
+    UIImage *compressedImage=[UIImage imageWithData:imageData];
     
-    //add metadata, store image binary data, set url
+    NSLog(@"Size of Image(bytes):%d",[imageData length]);
     
+    /*NSDictionary *gpsDict   = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSNumber numberWithFloat:fabs(loc.coordinate.latitude)], kCGImagePropertyGPSLatitude
+                               , ((loc.coordinate.latitude >= 0) ? @"N" : @"S"), kCGImagePropertyGPSLatitudeRef
+                               , [NSNumber numberWithFloat:fabs(loc.coordinate.longitude)], kCGImagePropertyGPSLongitude
+                               , ((loc.coordinate.longitude >= 0) ? @"E" : @"W"), kCGImagePropertyGPSLongitudeRef
+                               , [formatter stringFromDate:[loc timestamp]], kCGImagePropertyGPSTimeStamp
+                               , [NSNumber numberWithFloat:fabs(loc.altitude)], kCGImagePropertyGPSAltitude
+                               , nil];*/
+    //Also try to use the library
     
-    
-    self.image = shrunkenImage;
+
+    self.image = compressedImage;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -181,7 +197,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
         //picker.mediaTypes = mediaTypes;
         //picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
         picker.delegate = self;
-        picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         [self presentModalViewController:picker animated:YES];
         [picker release];

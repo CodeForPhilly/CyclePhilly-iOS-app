@@ -67,20 +67,26 @@
 	{
 		self.managedObjectContextFlagged = context;
         self.flaggedLocation = (FlaggedLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"FlaggedLocation" inManagedObjectContext:managedObjectContextFlagged];
+        if (!flaggedLocation) {
+            NSLog(@"FlaggedLocationInit is nil");
+        }
+        NSLog(@"FlaggedLocationInit");
     }
     return self;
 }
 
 - (void)addFlagType:(NSNumber *)flagType
 {
-    flaggedLocation.flag_type=flagType;
+    [flaggedLocation setFlag_type:flagType];
     NSLog(@"Added flag type: %d", (int)flagType);
+    NSLog(@"Added flag type: %d", (int)self.flaggedLocation.flag_type);
 }
 
 - (void)addDetails:(NSString *)details
 {
-    flaggedLocation.details = details;
+    [flaggedLocation setDetails:details];
     NSLog(@"Added details: %@", details);
+    NSLog(@"Added details: %@", flaggedLocation.details);
 }
 
 - (void)addImgURL:(NSString *)imgURL
@@ -97,6 +103,10 @@
 - (void)addLocation:(CLLocation *)locationNow
 {
     NSLog(@"This is very very special!");
+    
+    if(!flaggedLocation){
+        NSLog(@"FlaggedLocation nil");
+    }
     
     [flaggedLocation setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
     [flaggedLocation setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
@@ -125,8 +135,8 @@
     NSLog(@"saving using protocol version 4");
 	
     // create a flaggedLocationDict for each flaggedLocaton
-    flaggedLocationDict = [NSMutableDictionary dictionaryWithCapacity:10];
-    [flaggedLocationDict setValue:flaggedLocation.altitude  forKey:@"a"];  //altitude
+    flaggedLocationDict = [[NSMutableDictionary alloc] initWithCapacity:10];
+    [flaggedLocationDict :flaggedLocation.altitude  forKey:@"a"];  //altitude
     [flaggedLocationDict setValue:flaggedLocation.latitude  forKey:@"l"];  //latitude
     [flaggedLocationDict setValue:flaggedLocation.longitude forKey:@"n"];  //longitude
     [flaggedLocationDict setValue:flaggedLocation.speed     forKey:@"s"];  //speed
