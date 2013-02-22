@@ -161,10 +161,11 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
 																   delegate:self];
 	// create loading view to indicate trip is being uploaded
-    //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view:kSavingTitle] retain];
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view:kSavingTitle] retain];
     
     //switch to map w/ trip view
-    //[parent displayUploadedTripMap];
+    [parent displayUploadedFlaggedLocation];
+    NSLog(@"flaggedLocation save and parent");
     
     if ( theConnection )
     {

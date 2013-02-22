@@ -446,6 +446,18 @@
     // load map view of saved trip
     MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
     [[self navigationController] pushViewController:mvc animated:YES];
+    NSLog(@"displayUploadedTripMap");
+    [mvc release];
+}
+
+- (void)displayUploadedFlaggedLocation
+{
+    FlaggedLocation *flaggedLocation = flaggedLocationManager.flaggedLocation;
+    
+    // load map view of flaggedLocation
+    MapViewController *mvc = [[MapViewController alloc] initWithFlaggedLocation:flaggedLocation];
+    [[self navigationController] pushViewController:mvc animated:YES];
+    NSLog(@"displayUploadedFlaggedLocation");
     [mvc release];
 }
 

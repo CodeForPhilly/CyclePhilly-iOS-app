@@ -586,6 +586,8 @@
 
     //switch to map w/ trip view
     [parent displayUploadedTripMap];
+    
+    //TODO: get screenshot and store.
 
     if ( theConnection )
      {

@@ -90,6 +90,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [tempororyFLManager addDetails:details];
     [tempororyFLManager addImgURL:@""];
     [tempororyFLManager addImage:nil];
+    [tempororyFLManager saveFlaggedLocation];
 }
 
 -(IBAction)saveDetail:(id)sender{
@@ -110,6 +111,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     //[tempororyFLManager addImage:];
     
     //Flagged Location: save image UIImage *image
+    
+    [tempororyFLManager saveFlaggedLocation];
 
 }
 

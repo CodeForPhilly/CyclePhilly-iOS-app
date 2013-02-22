@@ -171,5 +171,6 @@
 - (UIButton *)createNoteButton;
 
 - (void)displayUploadedTripMap;
+- (void)displayUploadedFlaggedLocation;
 
 @end
