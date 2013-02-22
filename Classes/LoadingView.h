@@ -50,8 +50,8 @@
 @property (nonatomic, retain) UILabel *loadingLabel;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
 
-+ (id)loadingViewInView:(UIView *)aSuperview: (NSString *)message;
-- (void)loadingComplete:(NSString *)completeMessage:(NSTimeInterval)delay;
++ (id)loadingViewInView:(UIView *)aSuperview messageString:(NSString *)message;
+- (void)loadingComplete:(NSString *) completeMessage delayInterval:(NSTimeInterval)delay;
 - (void)removeView;
 
 @end

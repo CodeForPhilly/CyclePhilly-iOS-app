@@ -114,7 +114,7 @@ CGPathRef NewPathWithRoundRect(CGRect rect, CGFloat cornerRadius)
 // returns the constructed view, already added as a subview of the aSuperview
 //	(and hence retained by the superview)
 //
-+ (id)loadingViewInView:(UIView *)aSuperview: (NSString *)message
++ (id)loadingViewInView:(UIView *)aSuperview messageString:(NSString *)message
 {
     if (message==NULL)
         NSLocalizedString(@"Loading...", nil);
@@ -193,7 +193,7 @@ CGPathRef NewPathWithRoundRect(CGRect rect, CGFloat cornerRadius)
 // changes the message to 'completeMessage' and removes the view after a delay.
 //
 //
-- (void)loadingComplete:(NSString *)completeMessage:(NSTimeInterval)delay
+- (void)loadingComplete:(NSString *)completeMessage delayInterval:(NSTimeInterval)delay
 {
     self.loadingLabel.text=completeMessage;
     

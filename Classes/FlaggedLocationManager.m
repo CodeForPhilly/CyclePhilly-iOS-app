@@ -177,7 +177,7 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
 																   delegate:self];
 	// create loading view to indicate trip is being uploaded
-    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view:kSavingTitle] retain];
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
     
     //switch to map w/ trip view
     [parent displayUploadedFlaggedLocation];
@@ -272,7 +272,7 @@
     [receivedDataFlagged release];
     
     // TODO: is this really adequate...?
-    [uploadingView loadingComplete:kConnectionError:1.5];
+    [uploadingView loadingComplete:kConnectionError delayInterval:1.5];
     
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",

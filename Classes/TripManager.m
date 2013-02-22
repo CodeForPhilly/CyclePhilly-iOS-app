@@ -582,7 +582,7 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
 																   delegate:self];
 	// create loading view to indicate trip is being uploaded
-    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view:kSavingTitle] retain];
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
 
     //switch to map w/ trip view
     [parent displayUploadedTripMap];
@@ -665,10 +665,10 @@
 				NSLog(@"TripManager setUploaded error %@, %@", error, [error localizedDescription]);
 			}
             
-            [uploadingView loadingComplete:kSuccessTitle:.7];
+            [uploadingView loadingComplete:kSuccessTitle delayInterval:.7];
 		} else {
 
-            [uploadingView loadingComplete:kServerError:1.5];
+            [uploadingView loadingComplete:kServerError delayInterval:1.5];
         }
         
 	}
@@ -698,7 +698,7 @@
     [receivedData release];
     
     // TODO: is this really adequate...?
-    [uploadingView loadingComplete:kConnectionError:1.5];
+    [uploadingView loadingComplete:kConnectionError delayInterval:1.5];
     
     // inform the user
     NSLog(@"Connection failed! Error - %@ %@",

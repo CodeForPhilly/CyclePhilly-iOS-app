@@ -510,7 +510,7 @@
     } else {
         //handle 'normal' pins
         
-        if(annotation.title==@"Start"){
+        if([annotation.title isEqual:@"Start"]){
             MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
             annView.pinColor = MKPinAnnotationColorGreen;
             return annView;
