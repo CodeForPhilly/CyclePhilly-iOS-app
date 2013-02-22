@@ -637,13 +637,6 @@
 }
 
 
--(IBAction)detail:(id)sender{
-    NSLog(@"detail");
-    NSLog(@"INIT + PUSH");
-    [self.navigationController presentModalViewController:[[UIViewController alloc] initWithNibName:@"DetailView" bundle:nil] animated:YES];
-}
-
-
 - (void)resetCounter
 {
 	if ( timeCounter != nil )
@@ -873,6 +866,19 @@ shouldSelectViewController:(UIViewController *)viewController
 	[tripManager promptForTripNotes];
     //do something here: may change to be the save as a separate view. Not prompt.
 }
+
+- (void)didPickNoteType:(NSNumber *)index
+{	
+	[flaggedLocationManager.flaggedLocation setFlag_type:index];
+    NSLog(@"Added flag type: %d", [flaggedLocationManager.flaggedLocation.flag_type intValue]);
+    //do something here: may change to be the save as a separate view. Not prompt.
+}
+
+- (void)didEnterNoteDetails:(NSString *)details{
+    [flaggedLocationManager.flaggedLocation setDetails:details];
+    NSLog(@"Added details: %@", flaggedLocationManager.flaggedLocation.details);
+}
+
 
 #pragma mark RecordingInProgressDelegate method
 

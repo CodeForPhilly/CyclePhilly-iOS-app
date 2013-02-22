@@ -89,10 +89,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     details = @"";
     image = nil;
     
-    FlaggedLocationManager *tempororyFLManager;
-    tempororyFLManager = [[FlaggedLocationManager alloc] init];
-    [tempororyFLManager addDetails:details];
-    [tempororyFLManager addImage:nil];
+    [delegate didEnterNoteDetails:details];
+    
     //[tempororyFLManager saveFlaggedLocation];
 }
 
@@ -107,9 +105,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     
     //Flagged Location: get detail texts
     details = detailTextView.text;
-    FlaggedLocationManager *tempororyFLManager;
-    tempororyFLManager = [[FlaggedLocationManager alloc] init];
-    [tempororyFLManager addDetails:details];
+    
+    [delegate didEnterNoteDetails:details];
+    
     //[tempororyFLManager addImage:];
     
     //[tempororyFLManager saveFlaggedLocation];

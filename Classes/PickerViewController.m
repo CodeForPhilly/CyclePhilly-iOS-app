@@ -181,29 +181,18 @@
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
         NSNumber *tempType;
-        
-        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+
         
         if(row>=7){
-            tempType = row-7;
-            [[NSUserDefaults standardUserDefaults] setInteger:row-7 forKey: @"pickedFlaggedType"];
+            tempType = [NSNumber numberWithInt:row-7];
         }
         else if (row<=5){
-            tempType = 11-row;
-            [[NSUserDefaults standardUserDefaults] setInteger:11-row forKey: @"pickedFlaggedType"];
+            tempType = [NSNumber numberWithInt:11-row];
         }
         
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"tempType: %d", [tempType intValue]);
         
-        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
-        
-        NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
-        
-        
-        //send to FlaggedLocationManager
-        FlaggedLocationManager *tempororyFLManager;
-        tempororyFLManager = [[FlaggedLocationManager alloc] init];
-        [tempororyFLManager addFlagType:tempType];
+        [delegate didPickNoteType:tempType];
         
     }	
 }

@@ -80,11 +80,8 @@
 
 - (void)saveFlaggedLocation;
 
-- (void)addFlagType:(NSNumber *)flagType;
-- (void)addDetails:(NSString *)details;
 - (void)addLocation:(CLLocation*)locationNow;
 - (void)addImgURL:(NSString *)imgURL;
-- (void)addImage:(UIImage *)image;
 
 @end
 

@@ -66,7 +66,7 @@
     if ( self = [super init] )
 	{
 		self.managedObjectContextFlagged = context;
-        self.flaggedLocation = (FlaggedLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"FlaggedLocation" inManagedObjectContext:managedObjectContextFlagged];
+        self.flaggedLocation = [(FlaggedLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"FlaggedLocation" inManagedObjectContext:managedObjectContextFlagged] retain];
         if (!flaggedLocation) {
             NSLog(@"FlaggedLocationInit is nil");
         }
@@ -75,33 +75,11 @@
     return self;
 }
 
-//called from PickerViewController
-- (void)addFlagType:(NSNumber *)flagType
-{
-    [self.flaggedLocation setFlag_type:flagType];
-    NSLog(@"Added flag type: %d", (int)flagType);
-    NSLog(@"Added flag type: %d", (int)flaggedLocation.flag_type);
-}
-
-//called from DetailViewController
-- (void)addDetails:(NSString *)details
-{
-    [flaggedLocation setDetails:details];
-    NSLog(@"Added details: %@", details);
-    NSLog(@"Added details: %@", flaggedLocation.details);
-}
-
 //called before uploading (generated from userid, recordedtime and type)
 - (void)addImgURL:(NSString *)imgURL
 {
     flaggedLocation.image_url = imgURL;
     NSLog(@"Added image url: %@", imgURL);
-}
-
-//called from DetailViewController
-- (void)addImage:(UIImage *)image
-{
-    NSLog(@"Added image:");
 }
 
 //called from RecordTripViewController
@@ -114,12 +92,25 @@
     }
     
     [flaggedLocation setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
+    NSLog(@"Altitude: %f", [flaggedLocation.altitude doubleValue]);
+    
     [flaggedLocation setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
+    NSLog(@"Latitude: %f", [flaggedLocation.latitude doubleValue]);
+    
     [flaggedLocation setLongitude:[NSNumber numberWithDouble:locationNow.coordinate.longitude]];
+    NSLog(@"Longitude: %f", [flaggedLocation.longitude doubleValue]);
+    
     [flaggedLocation setSpeed:[NSNumber numberWithDouble:locationNow.speed]];
+    NSLog(@"Speed: %f", [flaggedLocation.speed doubleValue]);
+    
     [flaggedLocation setHAccuracy:[NSNumber numberWithDouble:locationNow.horizontalAccuracy]];
+    NSLog(@"HAccuracy: %f", [flaggedLocation.hAccuracy doubleValue]);
+    
     [flaggedLocation setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
+    NSLog(@"VAccuracy: %f", [flaggedLocation.vAccuracy doubleValue]);
+    
     [flaggedLocation setRecorded:locationNow.timestamp];
+    NSLog(@"Date: %@", flaggedLocation.recorded);
 	
 	NSError *error;
 	if (![managedObjectContextFlagged save:&error]) {

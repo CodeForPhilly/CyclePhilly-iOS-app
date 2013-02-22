@@ -81,5 +81,7 @@
 - (void)didCancelPurpose;
 - (void)didCancelNote;
 - (void)didPickPurpose:(unsigned int)index;
+- (void)didPickNoteType:(NSNumber *)index;
+- (void)didEnterNoteDetails:(NSString *)details;
 
 @end
