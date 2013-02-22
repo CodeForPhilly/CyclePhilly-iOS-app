@@ -213,44 +213,44 @@
         else if (pickerCategory == 3){
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Note this asset";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.image = [UIImage imageNamed:kNoteThisAsset];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Water fountains";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.image = [UIImage imageNamed:kNoteThisAsset];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Secret passage";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.image = [UIImage imageNamed:kNoteThisAsset];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Public restrooms";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.image = [UIImage imageNamed:kNoteThisAsset];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Bike shops";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.image = [UIImage imageNamed:kNoteThisAsset];
             [viewArray addObject:view];
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @"Bike parking";
-            view.image = [UIImage imageNamed:kTripPurposeExerciseIcon];
+            view.image = [UIImage imageNamed:kNoteThisAsset];
             [viewArray addObject:view];
             [view release];
             
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
             view.title = @" ";
-            view.image = [UIImage imageNamed:kTripPurposeOtherIcon];
+            view.image = [UIImage imageNamed:kNoteBlank];
             [viewArray addObject:view];
             [view release];
             

@@ -149,6 +149,12 @@
 		9D47F90C160BA53000B8B14D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D47F90B160BA53000B8B14D /* Default@2x.png */; };
 		9D504DA116B6CF4000B99EBC /* ZipUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D504DA016B6CF4000B99EBC /* ZipUtil.m */; };
 		9D504DA416B6D0AE00B99EBC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D504DA316B6D0AE00B99EBC /* libz.dylib */; };
+		9D6D31A716D7C017007A2497 /* noteAssetPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31A316D7C017007A2497 /* noteAssetPicker.png */; };
+		9D6D31A816D7C017007A2497 /* noteAssetPicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31A416D7C017007A2497 /* noteAssetPicker@2x.png */; };
+		9D6D31A916D7C017007A2497 /* noteIssuePicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31A516D7C017007A2497 /* noteIssuePicker.png */; };
+		9D6D31AA16D7C017007A2497 /* noteIssuePicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31A616D7C017007A2497 /* noteIssuePicker@2x.png */; };
+		9D6D31AD16D7C189007A2497 /* noteBlankPicker.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31AB16D7C189007A2497 /* noteBlankPicker.png */; };
+		9D6D31AE16D7C189007A2497 /* noteBlankPicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -327,6 +333,12 @@
 		9D504D9F16B6CF4000B99EBC /* ZipUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtil.h; sourceTree = "<group>"; };
 		9D504DA016B6CF4000B99EBC /* ZipUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtil.m; sourceTree = "<group>"; };
 		9D504DA316B6D0AE00B99EBC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9D6D31A316D7C017007A2497 /* noteAssetPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noteAssetPicker.png; path = "TripPurposePickerIcons V3/noteAssetPicker.png"; sourceTree = SOURCE_ROOT; };
+		9D6D31A416D7C017007A2497 /* noteAssetPicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noteAssetPicker@2x.png"; path = "TripPurposePickerIcons V3/noteAssetPicker@2x.png"; sourceTree = SOURCE_ROOT; };
+		9D6D31A516D7C017007A2497 /* noteIssuePicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noteIssuePicker.png; path = "TripPurposePickerIcons V3/noteIssuePicker.png"; sourceTree = SOURCE_ROOT; };
+		9D6D31A616D7C017007A2497 /* noteIssuePicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noteIssuePicker@2x.png"; path = "TripPurposePickerIcons V3/noteIssuePicker@2x.png"; sourceTree = SOURCE_ROOT; };
+		9D6D31AB16D7C189007A2497 /* noteBlankPicker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noteBlankPicker.png; path = "TripPurposePickerIcons V3/noteBlankPicker.png"; sourceTree = SOURCE_ROOT; };
+		9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noteBlankPicker@2x.png"; path = "TripPurposePickerIcons V3/noteBlankPicker@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +533,12 @@
 		6411A185106A90E400C201F0 /* TripPurposePickerIcons v2 */ = {
 			isa = PBXGroup;
 			children = (
+				9D6D31AB16D7C189007A2497 /* noteBlankPicker.png */,
+				9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */,
+				9D6D31A316D7C017007A2497 /* noteAssetPicker.png */,
+				9D6D31A416D7C017007A2497 /* noteAssetPicker@2x.png */,
+				9D6D31A516D7C017007A2497 /* noteIssuePicker.png */,
+				9D6D31A616D7C017007A2497 /* noteIssuePicker@2x.png */,
 				644ED3E310853DEC008725A8 /* commuter2.png */,
 				6411A186106A90E400C201F0 /* commute.tif */,
 				6411A187106A90E400C201F0 /* errands.tif */,
@@ -799,6 +817,12 @@
 				9D3CDADF16D7041F00F423B8 /* whiteButton@2x.png in Resources */,
 				9D3CDAE216D7056F00F423B8 /* whiteButtonHighlight.png in Resources */,
 				9D3CDAE316D7056F00F423B8 /* whiteButtonHighlight@2x.png in Resources */,
+				9D6D31A716D7C017007A2497 /* noteAssetPicker.png in Resources */,
+				9D6D31A816D7C017007A2497 /* noteAssetPicker@2x.png in Resources */,
+				9D6D31A916D7C017007A2497 /* noteIssuePicker.png in Resources */,
+				9D6D31AA16D7C017007A2497 /* noteIssuePicker@2x.png in Resources */,
+				9D6D31AD16D7C189007A2497 /* noteBlankPicker.png in Resources */,
+				9D6D31AE16D7C189007A2497 /* noteBlankPicker@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

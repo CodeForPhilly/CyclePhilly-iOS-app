@@ -56,8 +56,9 @@
 #define kTripPurposeErrandIcon		@"errands.png"
 #define kTripPurposeOtherIcon		@"other.png"
 
-#define kNoteThisAsset  @"exercise.png"
-#define kNoteThisIssue		@"failedUpload.png"
+#define kNoteThisAsset              @"noteAssetPicker.png"
+#define kNoteThisIssue              @"noteIssuePicker.png"
+#define kNoteBlank                  @"noteBlankPicker.png"
 
 #define kTripPurposeCommuteString	@"Commute"
 #define kTripPurposeSchoolString	@"School"
