@@ -54,7 +54,7 @@
 
 @synthesize tripManager;// reminderManager;
 @synthesize flaggedLocationManager;
-@synthesize infoButton, saveButton, startButton, parentView;
+@synthesize infoButton, saveButton, startButton, noteButton, parentView;
 @synthesize timer, timeCounter, distCounter;
 @synthesize recording, shouldUpdateCounter, userInfoSaved;
 @synthesize appDelegate;
@@ -306,6 +306,7 @@
 	
 	//[self.view addSubview:[self createSaveButton]];
 	[self.view addSubview:[self createStartButton]];
+    [self.view addSubview:[self createNoteButton]];
 	//[self.view addSubview:[self createLockButton]];
 	
 	
@@ -355,6 +356,29 @@
 	NSLog(@"save");
 }
 
+- (UIButton *)createNoteButton
+{
+    UIImage *buttonImage = [[UIImage imageNamed:@"whiteButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"whiteButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    
+    [noteButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [noteButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    [noteButton setTitleColor:[[UIColor alloc] initWithRed:185.0 / 255 green:91.0 / 255 blue:47.0 / 255 alpha:1.0 ] forState:UIControlStateHighlighted];
+    
+//    noteButton.backgroundColor = [UIColor clearColor];
+    noteButton.enabled = YES;
+    
+    [noteButton setTitle:@"Note this..." forState:UIControlStateNormal];
+
+//    noteButton.titleLabel.font = [UIFont boldSystemFontOfSize: 24];
+    [noteButton addTarget:self action:@selector(notethis:) forControlEvents:UIControlEventTouchUpInside];
+    
+	return noteButton;
+    
+}
+
 
 // instantiate start button
 - (UIButton *)createStartButton
@@ -377,7 +401,7 @@
     
     [startButton setTitle:@"Start" forState:UIControlStateNormal];
     [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    startButton.titleLabel.font = [UIFont boldSystemFontOfSize: 24];
+    startButton.titleLabel.font = [UIFont boldSystemFontOfSize: 18];
     startButton.titleLabel.shadowOffset = CGSizeMake (0, 0);
     startButton.titleLabel.textColor = [UIColor whiteColor];
     [startButton addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
@@ -923,6 +947,7 @@
 -(IBAction)notethis:(id)sender{
     [[NSUserDefaults standardUserDefaults] setInteger:3 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSLog(@"Note This");
     //noteThisFlag = 1;
     

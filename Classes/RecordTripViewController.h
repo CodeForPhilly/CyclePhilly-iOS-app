@@ -79,6 +79,7 @@
 	IBOutlet UIButton *infoButton;
 	IBOutlet UIButton *saveButton;
 	IBOutlet UIButton *startButton;
+    IBOutlet UIButton *noteButton;
 	
 	IBOutlet UILabel *timeCounter;
 	IBOutlet UILabel *distCounter;
@@ -116,6 +117,7 @@
 @property (nonatomic, retain) UIButton *infoButton;
 @property (nonatomic, retain) UIButton *saveButton;
 @property (nonatomic, retain) UIButton *startButton;
+@property (nonatomic, retain) UIButton *noteButton;
 
 @property (nonatomic, retain) UILabel *timeCounter;
 @property (nonatomic, retain) UILabel *distCounter;
@@ -166,6 +168,7 @@
 
 - (UIButton *)createSaveButton;
 - (UIButton *)createStartButton;
+- (UIButton *)createNoteButton;
 
 - (void)displayUploadedTripMap;
 

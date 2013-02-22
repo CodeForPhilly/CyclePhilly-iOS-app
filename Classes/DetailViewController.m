@@ -45,8 +45,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
         addPicButton.hidden = YES;
     }
     imageFrame = imageView.frame;
-    
-    self.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"appIcon" ofType:@"png"]];
+    detailTextView.layer.borderWidth = 1.0;
+    detailTextView.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.image = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"photoFrame" ofType:@"png"]];
     
 }
 
