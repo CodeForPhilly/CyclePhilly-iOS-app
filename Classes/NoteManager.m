@@ -55,7 +55,7 @@
 
 @synthesize note, managedObjectContextNoted, receivedDataNoted;
 @synthesize uploadingView, parent;
-@synthesize deviceUniqueIdHash;
+@synthesize deviceUniqueIdHash1;
 
 // change initialization values
 
@@ -116,7 +116,7 @@
 }
 
 //called in DetailViewController once pressing skip or save
-- (void) saveNote
+- (void)saveNote
 {
     NSMutableDictionary *noteDict;
 	
@@ -142,11 +142,17 @@
     [noteDict setValue:newDateString forKey:@"r"];    //recorded timestamp
     
     CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    self.deviceUniqueIdHash = delegate.uniqueIDHash;
-    NSLog(@"deviceUniqueIdHash is %@", deviceUniqueIdHash);
+    self.deviceUniqueIdHash1 = delegate.uniqueIDHash;
+    NSLog(@"deviceUniqueIdHash is %@", deviceUniqueIdHash1);
     
     //generated from userid, recordedtime and type
-    note.image_url = [NSString stringWithFormat:@"%@ %@ %@",deviceUniqueIdHash,newDateString,note.note_type];
+    
+    if (note.image_data == nil) {
+        note.image_url =@"";
+    }
+    else {
+        note.image_url = [NSString stringWithFormat:@"%@ %@ %@",deviceUniqueIdHash1,newDateString,note.note_type];
+    }
     NSLog(@"img_url: %@", note.image_url);
     
     [noteDict setValue:note.image_url forKey:@"i"];  //image_url

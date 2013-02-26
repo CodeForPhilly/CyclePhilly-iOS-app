@@ -89,7 +89,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     image = nil;
     
     [delegate didEnterNoteDetails:details];
-    //[delegate didSaveImage:nil];
+    [delegate didSaveImage:nil];
     [delegate saveNote];
 }
 
@@ -105,7 +105,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     details = detailTextView.text;
     
     [delegate didEnterNoteDetails:details];
-    //[delegate didSaveImage:imageData];
+    [delegate didSaveImage:imageData];
     [delegate saveNote];
 }
 
@@ -124,14 +124,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     // Dispose of any resources that can be recreated.
 }
 
-- (UIImage *)imageWithImage:(UIImage *)orgImage convertToSize:(CGSize)size {
-    UIGraphicsBeginImageContext(size);
-    [orgImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return destImage;
-}
-
 #pragma mark UIImagePickerController delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker
@@ -139,7 +131,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //original
     UIImage *castedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     //save to library
-    UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
+    //UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
     
     CGSize size;
     size.height = 640;

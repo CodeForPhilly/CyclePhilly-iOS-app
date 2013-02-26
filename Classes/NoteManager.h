@@ -57,10 +57,10 @@
 	
 	//NSMutableArray *unSavedNote;
 	//NSMutableArray *unSyncedNote;
-    NSString *deviceUniqueIdHash;
+    NSString *deviceUniqueIdHash1;
 }
 
-@property (nonatomic, retain) NSString *deviceUniqueIdHash;
+@property (nonatomic, retain) NSString *deviceUniqueIdHash1;
 @property (nonatomic, retain) id <ActivityIndicatorDelegate> activityDelegate;
 @property (nonatomic, retain) id <UIAlertViewDelegate> alertDelegate;
 

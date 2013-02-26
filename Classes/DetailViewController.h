@@ -41,6 +41,5 @@
 - (IBAction)selectExistingPictureOrVideo:(id)sender;
 
 -(IBAction)screenShoot:(id)sender;
-- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size;
 
 @end

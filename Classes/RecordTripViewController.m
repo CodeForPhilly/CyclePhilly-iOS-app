@@ -880,7 +880,8 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didSaveImage:(NSData *)imgData{
     //[noteManager.note setImage_data:imgData];
-    NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
+    //NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
+    NSLog(@"Added image, Size of Image(bytes)");
 }
 
 - (void)saveNote{
@@ -892,7 +893,7 @@ shouldSelectViewController:(UIViewController *)viewController
 #pragma mark RecordingInProgressDelegate method
 
 
-- (Trip*)getRecordingInProgress
+- (Trip *)getRecordingInProgress
 {
 	if ( recording )
 		return tripManager.trip;
