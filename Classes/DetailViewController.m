@@ -89,7 +89,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     image = nil;
     
     [delegate didEnterNoteDetails:details];
-    //[delegate didSaveImage:nil];
+    [delegate didSaveImage:nil];
     [delegate saveNote];
 }
 
@@ -105,7 +105,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     details = detailTextView.text;
     
     [delegate didEnterNoteDetails:details];
-    //[delegate didSaveImage:imageData];
+    [delegate didSaveImage:imageData];
     [delegate saveNote];
 }
 
@@ -120,6 +120,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 - (void)didReceiveMemoryWarning
 {
+    NSLog(@"DetailViewController");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
