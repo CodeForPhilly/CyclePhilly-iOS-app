@@ -52,7 +52,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     detailTextView.layer.borderColor = [[UIColor blackColor] CGColor];
     self.imageFrame = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"photoFrame" ofType:@"png"]];
     imageFrameView.image = imageFrame;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -143,7 +142,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    imageData =  UIImageJPEGRepresentation(destImage, 0);
+    imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 0)];
     
     
     UIImage *compressedImage=[UIImage imageWithData:imageData];
@@ -275,7 +274,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     self.imageFrameView = nil;
     self.image = nil;
     self.imageFrame = nil;
-    self.imageData = nil;
+    //self.imageData = nil;
     self.lastChosenMediaType = nil;
     
     [delegate release];
@@ -285,7 +284,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     [imageFrameView release];
     [image release];
     [imageFrame release];
-    [imageData release];
+    //[imageData release];
     [lastChosenMediaType release];
     
     [super dealloc];

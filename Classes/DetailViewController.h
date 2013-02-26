@@ -30,7 +30,7 @@
 
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) UIImage *imageFrame;
-@property (nonatomic, retain) NSData *imageData;
+@property (readwrite, retain) NSData *imageData;
 
 @property (copy, nonatomic) NSString *lastChosenMediaType;
 

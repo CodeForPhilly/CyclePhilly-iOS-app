@@ -127,7 +127,7 @@
     NSLog(@"saving using protocol version 4");
 	
     // create a noteDict for each note
-    noteDict = [[NSMutableDictionary alloc] initWithCapacity:11];
+    noteDict = [[NSMutableDictionary alloc] initWithCapacity:10];
     [noteDict setValue:note.altitude  forKey:@"a"];  //altitude
     [noteDict setValue:note.latitude  forKey:@"l"];  //latitude
     [noteDict setValue:note.longitude forKey:@"n"];  //longitude
@@ -151,18 +151,20 @@
         note.image_url =@"";
     }
     else {
-        note.image_url = [NSString stringWithFormat:@"%@ %@ %@",deviceUniqueIdHash1,newDateString,note.note_type];
+        note.image_url = [NSString stringWithFormat:@"http://cycleatlanta.org/post_dev/pic/%@%@%@",deviceUniqueIdHash1,newDateString,note.note_type];
     }
     NSLog(@"img_url: %@", note.image_url);
+    NSLog(@"Size of Image(bytes):%d", [note.image_data length]);
     
     [noteDict setValue:note.image_url forKey:@"i"];  //image_url
-    [noteDict setValue:note.image_data forKey:@"g"];  //image_data
-    
+    //[noteDict setValue:note.image_data forKey:@"g"];  //image_data
+        
     // JSON encode user data and trip data, return to strings
     NSError *writeError = nil;
     
     // JSON encode the Note data
-    NSData *noteJsonData = [NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError];
+    NSData *noteJsonData = [[NSData alloc] initWithData:[NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError]];
+    
     NSString *noteJson = [[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding];
     
 	// NOTE: device hash added by SaveRequest initWithPostVars
@@ -174,8 +176,7 @@
 	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4];
 	
 	// create the connection with the request and start loading the data
-	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
-																   delegate:self];
+	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	// create loading view to indicate trip is being uploaded
     //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
     

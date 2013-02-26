@@ -864,11 +864,8 @@ shouldSelectViewController:(UIViewController *)viewController
 }
 
 - (void)didSaveImage:(NSData *)imgData{
-    NSData *data = [NSData dataWithData:imgData];
-    
-    //[noteManager.note setImage_data:imgData];
-    //NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
-    NSLog(@"Added image, Size of Image(bytes)");
+    [noteManager.note setImage_data:imgData];
+    NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
 }
 
 - (void)saveNote{
