@@ -42,44 +42,39 @@
 #import "SaveRequest.h"
 #import "TripManager.h"
 #import "User.h"
-#import "FlaggedLocation.h"
-#import "FlaggedLocationManager.h"
+#import "Note.h"
+#import "NoteManager.h"
 #import "LoadingView.h"
 #import "RecordTripViewController.h"
+#import "CycleAtlantaAppDelegate.h"
 
 
-#define kSaveFlaggedLocationProtocolVersion	4
+#define kSaveNoteProtocolVersion	4
 
-@implementation FlaggedLocationManager
+@implementation NoteManager
 
-@synthesize flaggedLocation, managedObjectContextFlagged, receivedDataFlagged;
+@synthesize note, managedObjectContextNoted, receivedDataNoted;
 @synthesize uploadingView, parent;
+@synthesize deviceUniqueIdHash;
 
 // change initialization values
 
-// change this function for flagged location detail view
+// change this function for note detail view
 
-// change this function for Flagged Location initialization
+// change this function for note initialization
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context
 {
     if ( self = [super init] )
 	{
-		self.managedObjectContextFlagged = context;
-        self.flaggedLocation = [(FlaggedLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"FlaggedLocation" inManagedObjectContext:managedObjectContextFlagged] retain];
-        if (!flaggedLocation) {
-            NSLog(@"FlaggedLocationInit is nil");
+		self.managedObjectContextNoted = context;
+        self.note = [(Note *)[NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:managedObjectContextNoted] retain];
+        if (!note) {
+            NSLog(@"NoteInit is nil");
         }
-        NSLog(@"FlaggedLocationInit");
+        NSLog(@"NoteInit");
     }
     return self;
-}
-
-//called before uploading (generated from userid, recordedtime and type)
-- (void)addImgURL:(NSString *)imgURL
-{
-    flaggedLocation.image_url = imgURL;
-    NSLog(@"Added image url: %@", imgURL);
 }
 
 //called from RecordTripViewController
@@ -87,43 +82,43 @@
 {
     NSLog(@"This is very very special!");
     
-    if(!flaggedLocation){
-        NSLog(@"FlaggedLocation nil");
+    if(!note){
+        NSLog(@"Note nil");
     }
     
-    [flaggedLocation setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
-    NSLog(@"Altitude: %f", [flaggedLocation.altitude doubleValue]);
+    [note setAltitude:[NSNumber numberWithDouble:locationNow.altitude]];
+    NSLog(@"Altitude: %f", [note.altitude doubleValue]);
     
-    [flaggedLocation setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
-    NSLog(@"Latitude: %f", [flaggedLocation.latitude doubleValue]);
+    [note setLatitude:[NSNumber numberWithDouble:locationNow.coordinate.latitude]];
+    NSLog(@"Latitude: %f", [note.latitude doubleValue]);
     
-    [flaggedLocation setLongitude:[NSNumber numberWithDouble:locationNow.coordinate.longitude]];
-    NSLog(@"Longitude: %f", [flaggedLocation.longitude doubleValue]);
+    [note setLongitude:[NSNumber numberWithDouble:locationNow.coordinate.longitude]];
+    NSLog(@"Longitude: %f", [note.longitude doubleValue]);
     
-    [flaggedLocation setSpeed:[NSNumber numberWithDouble:locationNow.speed]];
-    NSLog(@"Speed: %f", [flaggedLocation.speed doubleValue]);
+    [note setSpeed:[NSNumber numberWithDouble:locationNow.speed]];
+    NSLog(@"Speed: %f", [note.speed doubleValue]);
     
-    [flaggedLocation setHAccuracy:[NSNumber numberWithDouble:locationNow.horizontalAccuracy]];
-    NSLog(@"HAccuracy: %f", [flaggedLocation.hAccuracy doubleValue]);
+    [note setHAccuracy:[NSNumber numberWithDouble:locationNow.horizontalAccuracy]];
+    NSLog(@"HAccuracy: %f", [note.hAccuracy doubleValue]);
     
-    [flaggedLocation setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
-    NSLog(@"VAccuracy: %f", [flaggedLocation.vAccuracy doubleValue]);
+    [note setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
+    NSLog(@"VAccuracy: %f", [note.vAccuracy doubleValue]);
     
-    [flaggedLocation setRecorded:locationNow.timestamp];
-    NSLog(@"Date: %@", flaggedLocation.recorded);
+    [note setRecorded:locationNow.timestamp];
+    NSLog(@"Date: %@", note.recorded);
 	
 	NSError *error;
-	if (![managedObjectContextFlagged save:&error]) {
+	if (![managedObjectContextNoted save:&error]) {
 		// Handle the error.
-		NSLog(@"FlaggedLocation addLocation error %@, %@", error, [error localizedDescription]);
+		NSLog(@"Note addLocation error %@, %@", error, [error localizedDescription]);
 	}
     
 }
 
 //called in DetailViewController once pressing skip or save
-- (void) saveFlaggedLocation
+- (void) saveNote
 {
-    NSMutableDictionary *flaggedLocationDict;
+    NSMutableDictionary *noteDict;
 	
 	// format date as a string
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
@@ -131,35 +126,43 @@
     
     NSLog(@"saving using protocol version 4");
 	
-    // create a flaggedLocationDict for each flaggedLocaton
-    flaggedLocationDict = [[NSMutableDictionary alloc] initWithCapacity:10];
-    [flaggedLocationDict setValue:flaggedLocation.altitude  forKey:@"a"];  //altitude
-    [flaggedLocationDict setValue:flaggedLocation.latitude  forKey:@"l"];  //latitude
-    [flaggedLocationDict setValue:flaggedLocation.longitude forKey:@"n"];  //longitude
-    [flaggedLocationDict setValue:flaggedLocation.speed     forKey:@"s"];  //speed
-    [flaggedLocationDict setValue:flaggedLocation.hAccuracy forKey:@"h"];  //haccuracy
-    [flaggedLocationDict setValue:flaggedLocation.vAccuracy forKey:@"v"];  //vaccuracy
+    // create a noteDict for each note
+    noteDict = [[NSMutableDictionary alloc] initWithCapacity:11];
+    [noteDict setValue:note.altitude  forKey:@"a"];  //altitude
+    [noteDict setValue:note.latitude  forKey:@"l"];  //latitude
+    [noteDict setValue:note.longitude forKey:@"n"];  //longitude
+    [noteDict setValue:note.speed     forKey:@"s"];  //speed
+    [noteDict setValue:note.hAccuracy forKey:@"h"];  //haccuracy
+    [noteDict setValue:note.vAccuracy forKey:@"v"];  //vaccuracy
     
-    [flaggedLocationDict setValue:flaggedLocation.flag_type     forKey:@"t"];  //flag_type
-    [flaggedLocationDict setValue:flaggedLocation.details forKey:@"d"];  //details
-    [flaggedLocationDict setValue:flaggedLocation.image_url forKey:@"i"];  //image_url
+    [noteDict setValue:note.note_type     forKey:@"t"];  //note_type
+    [noteDict setValue:note.details forKey:@"d"];  //details
     
+    NSString *newDateString = [outputFormatter stringFromDate:note.recorded];
+    [noteDict setValue:newDateString forKey:@"r"];    //recorded timestamp
     
-    NSString *newDateString = [outputFormatter stringFromDate:flaggedLocation.recorded];
-    [flaggedLocationDict setValue:newDateString forKey:@"r"];    //recorded timestamp
+    CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    self.deviceUniqueIdHash = delegate.uniqueIDHash;
+    NSLog(@"deviceUniqueIdHash is %@", deviceUniqueIdHash);
     
+    //generated from userid, recordedtime and type
+    note.image_url = [NSString stringWithFormat:@"%@ %@ %@",deviceUniqueIdHash,newDateString,note.note_type];
+    NSLog(@"img_url: %@", note.image_url);
+    
+    [noteDict setValue:note.image_url forKey:@"i"];  //image_url
+    [noteDict setValue:note.image_data forKey:@"g"];  //image_data
     
     // JSON encode user data and trip data, return to strings
     NSError *writeError = nil;
     
-    // JSON encode the Flagged Location data
-    NSData *flaggedLocationJsonData = [NSJSONSerialization dataWithJSONObject:flaggedLocationDict options:0 error:&writeError];
-    NSString *flaggedLocationJson = [[NSString alloc] initWithData:flaggedLocationJsonData encoding:NSUTF8StringEncoding];
+    // JSON encode the Note data
+    NSData *noteJsonData = [NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError];
+    NSString *noteJson = [[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding];
     
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
-                              flaggedLocationJson, @"flaggLocation",
-							  [NSString stringWithFormat:@"%d", kSaveFlaggedLocationProtocolVersion], @"version",
+                              noteJson, @"note",
+							  [NSString stringWithFormat:@"%d", kSaveNoteProtocolVersion], @"version",
 							  nil];
 	// create save request
 	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4];
@@ -168,15 +171,15 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
 																   delegate:self];
 	// create loading view to indicate trip is being uploaded
-    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
+    //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
     
     //switch to map w/ trip view
-    [parent displayUploadedFlaggedLocation];
-    NSLog(@"flaggedLocation save and parent");
+    //[parent displayUploadedNote];
+    NSLog(@"note save and parent");
     
     if ( theConnection )
     {
-        receivedDataFlagged=[[NSMutableData data] retain];
+        receivedDataNoted=[[NSMutableData data] retain];
     }
     else
     {
@@ -242,14 +245,14 @@
 	// redirect, so each time we reset the data.
 	
     // receivedData is declared as a method instance elsewhere
-    [receivedDataFlagged setLength:0];
+    [receivedDataNoted setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     // append the new data to the receivedData
     // receivedData is declared as a method instance elsewhere
-	[receivedDataFlagged appendData:data];
+	[receivedDataNoted appendData:data];
     //	[activityDelegate startAnimating];
 }
 
@@ -260,7 +263,7 @@
     [connection release];
 	
     // receivedData is declared as a method instance elsewhere
-    [receivedDataFlagged release];
+    [receivedDataNoted release];
     
     // TODO: is this really adequate...?
     [uploadingView loadingComplete:kConnectionError delayInterval:1.5];
@@ -284,12 +287,12 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	// do something with the data
-    NSLog(@"+++++++DEBUG: Received %d bytes of data", [receivedDataFlagged length]);
-	NSLog(@"%@", [[[NSString alloc] initWithData:receivedDataFlagged encoding:NSUTF8StringEncoding] autorelease] );
+    NSLog(@"+++++++DEBUG: Received %d bytes of data", [receivedDataNoted length]);
+	NSLog(@"%@", [[[NSString alloc] initWithData:receivedDataNoted encoding:NSUTF8StringEncoding] autorelease] );
     
     // release the connection, and the data object
     [connection release];
-    [receivedDataFlagged release];
+    [receivedDataNoted release];
 }
 
 

@@ -42,23 +42,25 @@
 #import <Foundation/Foundation.h>
 #import "ActivityIndicatorDelegate.h"
 #import "LoadingView.h"
-#import "FlaggedLocation.h"
+#import "Note.h"
 
-@class FlaggedLocation;
+@class Note;
 
 
-@interface FlaggedLocationManager : NSObject <ActivityIndicatorDelegate, UIAlertViewDelegate, UITextViewDelegate>
+@interface NoteManager : NSObject <ActivityIndicatorDelegate, UIAlertViewDelegate, UITextViewDelegate>
 {
-	FlaggedLocation *flaggedLocation;
+	Note *note;
 
-    NSManagedObjectContext *managedObjectContextFlagged;
+    NSManagedObjectContext *managedObjectContextNoted;
     
-	NSMutableData *receivedDataFlagged;
+	NSMutableData *receivedDataNoted;
 	
-	//NSMutableArray *unSavedFlaggedLocation;
-	//NSMutableArray *unSyncedFlaggedLocation;
+	//NSMutableArray *unSavedNote;
+	//NSMutableArray *unSyncedNote;
+    NSString *deviceUniqueIdHash;
 }
 
+@property (nonatomic, retain) NSString *deviceUniqueIdHash;
 @property (nonatomic, retain) id <ActivityIndicatorDelegate> activityDelegate;
 @property (nonatomic, retain) id <UIAlertViewDelegate> alertDelegate;
 
@@ -69,19 +71,18 @@
 @property (nonatomic, retain) UIViewController *parent; 
 
 @property (assign) BOOL dirty;
-@property (nonatomic, retain) FlaggedLocation *flaggedLocation;
+@property (nonatomic, retain) Note *note;
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContextFlagged;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContextNoted;
 
-@property (nonatomic, retain) NSMutableData *receivedDataFlagged;
+@property (nonatomic, retain) NSMutableData *receivedDataNoted;
 
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
 
-- (void)saveFlaggedLocation;
+- (void)saveNote;
 
 - (void)addLocation:(CLLocation*)locationNow;
-- (void)addImgURL:(NSString *)imgURL;
 
 @end
 

@@ -2,7 +2,7 @@
 //  Trip.h
 //  Cycle Atlanta
 //
-//  Created by Guo Anhong on 13-2-8.
+//  Created by Guo Anhong on 13-2-26.
 //
 //
 
@@ -20,8 +20,8 @@
 @property (nonatomic, retain) NSString * purpose;
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSDate * saved;
-@property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSSet *coords;
+@property (nonatomic, retain) User *user;
 @end
 
 @interface Trip (CoreDataGeneratedAccessors)

@@ -42,7 +42,7 @@
 #import "PickerViewController.h"
 #import "DetailViewController.h"
 #import "TripManager.h"
-#import "FlaggedLocationManager.h"
+#import "NoteManager.h"
 #import "RecordTripViewController.h"
 
 
@@ -132,17 +132,17 @@
         detailViewController.delegate = self.delegate;
         
         [self presentModalViewController:detailViewController animated:YES];
-        //FlaggedLocation: get index of picker
+        //Note: get index of picker
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
-        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        pickedNotedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedNotedType"];
         
-        [[NSUserDefaults standardUserDefaults] setInteger:row forKey: @"pickedFlaggedType"];
+        [[NSUserDefaults standardUserDefaults] setInteger:row forKey: @"pickedNotedType"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        pickedNotedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedNotedType"];
         
-        NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
+        NSLog(@"pickedNotedType is %d", pickedNotedType);
     }
     else if (pickerCategory == 2){
         NSLog(@"Asset Save button pressed");
@@ -156,14 +156,14 @@
         //do something here: get index for later use.
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
-        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        pickedNotedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedNotedType"];
         
-        [[NSUserDefaults standardUserDefaults] setInteger:row+6 forKey: @"pickedFlaggedType"];
+        [[NSUserDefaults standardUserDefaults] setInteger:row+6 forKey: @"pickedNotedType"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        pickedFlaggedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedFlaggedType"];
+        pickedNotedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedNotedType"];
         
-        NSLog(@"pickedFlaggedType is %d", pickedFlaggedType);
+        NSLog(@"pickedNotedType is %d", pickedNotedType);
         
     }
     else if (pickerCategory == 3){
@@ -177,7 +177,7 @@
         [self presentModalViewController:detailViewController animated:YES];
         
         
-        //Flagged Location: get index of type
+        //Note: get index of type
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
         NSNumber *tempType;

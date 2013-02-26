@@ -2,7 +2,7 @@
 //  Coord.m
 //  Cycle Atlanta
 //
-//  Created by Guo Anhong on 13-2-8.
+//  Created by Guo Anhong on 13-2-26.
 //
 //
 

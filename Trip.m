@@ -2,7 +2,7 @@
 //  Trip.m
 //  Cycle Atlanta
 //
-//  Created by Guo Anhong on 13-2-8.
+//  Created by Guo Anhong on 13-2-26.
 //
 //
 
@@ -20,7 +20,7 @@
 @dynamic purpose;
 @dynamic duration;
 @dynamic saved;
-@dynamic user;
 @dynamic coords;
+@dynamic user;
 
 @end

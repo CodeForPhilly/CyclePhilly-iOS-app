@@ -45,7 +45,7 @@
 #import "RecordTripViewController.h"
 #import "ReminderManager.h"
 #import "TripManager.h"
-#import "FlaggedLocationManager.h"
+#import "NoteManager.h"
 #import "Trip.h"
 #import "User.h"
 
@@ -53,7 +53,7 @@
 @implementation RecordTripViewController
 
 @synthesize tripManager;// reminderManager;
-@synthesize flaggedLocationManager;
+@synthesize noteManager;
 @synthesize infoButton, saveButton, startButton, noteButton, parentView;
 @synthesize timer, timeCounter, distCounter;
 @synthesize recording, shouldUpdateCounter, userInfoSaved;
@@ -142,9 +142,9 @@
 }
 
 
-- (void)initFlaggedLocationManager:(FlaggedLocationManager*)manager
+- (void)initNoteManager:(NoteManager*)manager
 {
-	self.flaggedLocationManager = manager;
+	self.noteManager = manager;
     manager.parent = self;
 }
 
@@ -248,8 +248,8 @@
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    // setup the flaggedLocationManager
-    [self initFlaggedLocationManager:[[FlaggedLocationManager alloc] initWithManagedObjectContext:context]];
+    // setup the noteManager
+    [self initNoteManager:[[NoteManager alloc] initWithManagedObjectContext:context]];
 
 	// check if any user data has already been saved and pre-select personal info cell accordingly
 	if ( [self hasUserInfoBeenSaved] )
@@ -324,14 +324,14 @@
 }
 
 
-- (void)displayUploadedFlaggedLocation
+- (void)displayUploadedNote
 {
-    FlaggedLocation *flaggedLocation = flaggedLocationManager.flaggedLocation;
+    Note *note = noteManager.note;
     
-    // load map view of flaggedLocation
-    MapViewController *mvc = [[MapViewController alloc] initWithFlaggedLocation:flaggedLocation];
+    // load map view of note
+    MapViewController *mvc = [[MapViewController alloc] initWithNote:note];
     [[self navigationController] pushViewController:mvc animated:YES];
-    NSLog(@"displayUploadedFlaggedLocation");
+    NSLog(@"displayUploadedNote");
     [mvc release];
 }
 
@@ -582,10 +582,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSLog(@"Note This");
-    //noteThisFlag = 1;
     
     if (myLocation){
-        [flaggedLocationManager addLocation:myLocation];
+        [noteManager addLocation:myLocation];
     }
 	
 	// go directly to TripPurpose, user can cancel from there
@@ -595,16 +594,16 @@
 		NSLog(@"INIT + PUSH");
         
         
-		PickerViewController *flaggedLocationPickerView = [[PickerViewController alloc]
+		PickerViewController *notePickerView = [[PickerViewController alloc]
                                                        //initWithPurpose:[tripManager getPurposeIndex]];
                                                        initWithNibName:@"TripPurposePicker" bundle:nil];
-		[flaggedLocationPickerView setDelegate:self];
+		[notePickerView setDelegate:self];
 		//[[self navigationController] pushViewController:pickerViewController animated:YES];
-		[self.navigationController presentModalViewController:flaggedLocationPickerView animated:YES];
+		[self.navigationController presentModalViewController:notePickerView animated:YES];
         
         //add location information
         
-		[flaggedLocationPickerView release];
+		[notePickerView release];
 	}
 	
 	// prompt to confirm first
@@ -869,14 +868,24 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didPickNoteType:(NSNumber *)index
 {	
-	[flaggedLocationManager.flaggedLocation setFlag_type:index];
-    NSLog(@"Added flag type: %d", [flaggedLocationManager.flaggedLocation.flag_type intValue]);
+	[noteManager.note setNote_type:index];
+    NSLog(@"Added note type: %d", [noteManager.note.note_type intValue]);
     //do something here: may change to be the save as a separate view. Not prompt.
 }
 
 - (void)didEnterNoteDetails:(NSString *)details{
-    [flaggedLocationManager.flaggedLocation setDetails:details];
-    NSLog(@"Added details: %@", flaggedLocationManager.flaggedLocation.details);
+    [noteManager.note setDetails:details];
+    NSLog(@"Added details: %@", noteManager.note.details);
+}
+
+- (void)didSaveImage:(NSData *)imgData{
+    //[noteManager.note setImage_data:imgData];
+    NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
+}
+
+- (void)saveNote{
+    [noteManager saveNote];
+    NSLog(@"Save note");
 }
 
 

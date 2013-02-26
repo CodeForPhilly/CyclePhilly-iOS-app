@@ -41,14 +41,14 @@
 #import <MapKit/MapKit.h>
 
 #import "TripManager.h"
-#import "FlaggedLocationManager.h"
+#import "NoteManager.h"
 
 
 @interface MapViewController : UIViewController <MKMapViewDelegate>
 {
 	IBOutlet MKMapView *mapView;
 	Trip *trip;
-    FlaggedLocation *flaggedLocation;
+    Note *note;
 	
 	UIBarButtonItem *doneButton;
 	UIBarButtonItem *flipButton;
@@ -57,14 +57,14 @@
 
 
 @property (nonatomic, retain) Trip *trip;
-@property (nonatomic, retain) FlaggedLocation *flaggedLocation;
+@property (nonatomic, retain) Note *note;
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
 @property (nonatomic, retain) UIBarButtonItem *flipButton;
 @property (nonatomic, retain) UIView *infoView;
 @property (nonatomic, retain) MKPolyline* routeLine;
 
 - (id)initWithTrip:(Trip *)trip;
-- (id)initWithFlaggedLocation:(FlaggedLocation *)flaggedLocation;
+- (id)initWithNote:(Note *)note;
 
 
 @end

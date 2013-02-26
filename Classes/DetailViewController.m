@@ -8,7 +8,7 @@
 
 #import "DetailViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
-#import "FlaggedLocationManager.h"
+#import "NoteManager.h"
 
 @interface DetailViewController ()
 static UIImage *shrinkImage(UIImage *original, CGSize size);
@@ -85,13 +85,12 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    //Flagged Location: photo=null, text=null
     details = @"";
     image = nil;
     
     [delegate didEnterNoteDetails:details];
-    
-    //[tempororyFLManager saveFlaggedLocation];
+    //[delegate didSaveImage:nil];
+    [delegate saveNote];
 }
 
 -(IBAction)saveDetail:(id)sender{
@@ -102,16 +101,12 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"pickerCategory"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    //Flagged Location: get detail texts
+
     details = detailTextView.text;
     
     [delegate didEnterNoteDetails:details];
-    
-    //[tempororyFLManager addImage:];
-    
-    //[tempororyFLManager saveFlaggedLocation];
-
+    //[delegate didSaveImage:imageData];
+    [delegate saveNote];
 }
 
 - (IBAction)shootPictureOrVideo:(id)sender {
@@ -162,8 +157,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     NSLog(@"Size of Image(bytes):%d",[imageData length]);
     
-    
-    
     /*NSDictionary *gpsDict   = [NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithFloat:fabs(loc.coordinate.latitude)], kCGImagePropertyGPSLatitude
                                , ((loc.coordinate.latitude >= 0) ? @"N" : @"S"), kCGImagePropertyGPSLatitudeRef
@@ -172,7 +165,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                , [formatter stringFromDate:[loc timestamp]], kCGImagePropertyGPSTimeStamp
                                , [NSNumber numberWithFloat:fabs(loc.altitude)], kCGImagePropertyGPSAltitude
                                , nil];*/
-    
 
     self.image = compressedImage;
     //[addPicButton setTitle:@" " forState:UIControlStateNormal];

@@ -2,12 +2,12 @@
 //  User.m
 //  Cycle Atlanta
 //
-//  Created by Guo Anhong on 13-2-8.
+//  Created by Guo Anhong on 13-2-26.
 //
 //
 
 #import "User.h"
-#import "FlaggedLocation.h"
+#import "Note.h"
 #import "Trip.h"
 
 
@@ -24,7 +24,7 @@
 @dynamic workZIP;
 @dynamic gender;
 @dynamic email;
-@dynamic flaggedlocations;
+@dynamic notes;
 @dynamic trips;
 
 @end

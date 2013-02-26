@@ -1,27 +1,28 @@
 //
-//  FlaggedLocation.m
+//  Note.m
 //  Cycle Atlanta
 //
-//  Created by Guo Anhong on 13-2-20.
+//  Created by Guo Anhong on 13-2-26.
 //
 //
 
-#import "FlaggedLocation.h"
+#import "Note.h"
 #import "User.h"
 
 
-@implementation FlaggedLocation
+@implementation Note
 
 @dynamic details;
 @dynamic speed;
+@dynamic vAccuracy;
 @dynamic longitude;
 @dynamic image_url;
-@dynamic flag_type;
-@dynamic vAccuracy;
+@dynamic note_type;
 @dynamic latitude;
 @dynamic hAccuracy;
 @dynamic recorded;
 @dynamic altitude;
+@dynamic image_data;
 @dynamic user;
 
 @end

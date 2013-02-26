@@ -83,5 +83,7 @@
 - (void)didPickPurpose:(unsigned int)index;
 - (void)didPickNoteType:(NSNumber *)index;
 - (void)didEnterNoteDetails:(NSString *)details;
+- (void)didSaveImage:(NSData *)imgData;
+- (void)saveNote;
 
 @end

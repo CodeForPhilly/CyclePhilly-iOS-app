@@ -40,7 +40,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomPickerDataSource.h"
 #import "TripPurposeDelegate.h"
-#import "FlaggedLocation.h"
+#import "Note.h"
 #import "RecordTripViewController.h"
 
 
@@ -52,7 +52,7 @@
 	
 	UITextView				*description;
     NSInteger pickerCategory;
-    NSInteger pickedFlaggedType;
+    NSInteger pickedNotedType;
     IBOutlet UINavigationBar *navBarItself;
     UILabel *descriptionText;
     

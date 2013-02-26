@@ -43,7 +43,7 @@
 #import "MapCoord.h"
 #import "MapViewController.h"
 #import "Trip.h"
-#import "FlaggedLocation.h"
+#import "Note.h"
 
 
 #define kFudgeFactor	1.5
@@ -54,7 +54,7 @@
 
 @implementation MapViewController
 
-@synthesize doneButton, flipButton, infoView, trip, routeLine, flaggedLocation;
+@synthesize doneButton, flipButton, infoView, trip, routeLine, note;
 
 
 /*
@@ -78,12 +78,12 @@
     return self;
 }
 
-- (id)initWithFlaggedLocation:(FlaggedLocation *)_flaggedLocation
+- (id)initWithNote:(Note *)_note
 {
     //if (self = [super init]) {
 	if (self = [super initWithNibName:@"MapViewController" bundle:nil]) {
 		NSLog(@"MapViewController initWithTrip");
-		self.flaggedLocation = _flaggedLocation;
+		self.note = _note;
 		mapView.delegate = self;
     }
     return self;
