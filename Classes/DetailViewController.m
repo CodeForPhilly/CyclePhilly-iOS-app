@@ -89,7 +89,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     image = nil;
     
     [delegate didEnterNoteDetails:details];
-    [delegate didSaveImage:nil];
+    //[delegate didSaveImage:nil];
     [delegate saveNote];
 }
 
@@ -105,7 +105,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     details = detailTextView.text;
     
     [delegate didEnterNoteDetails:details];
-    [delegate didSaveImage:imageData];
+    //[delegate didSaveImage:imageData];
     [delegate saveNote];
 }
 
@@ -214,17 +214,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     }
 }
 
-
-- (void)dealloc {
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    self.imageView = nil;
-    self.imageFrameView=nil;
-    self.addPicButton = nil;
-}
-
 -(IBAction)screenShoot:(id)sender{
     NSLog(@"Screen Shoot");
     UIImage *image1 = [self screenshot];
@@ -275,6 +264,30 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     UIGraphicsEndImageContext();
     
     return screenImage;
+}
+
+- (void)dealloc {
+    self.delegate = nil;
+    self.detailTextView = nil;
+    self.addPicButton = nil;
+    self.imageView = nil;
+    self.imageFrameView = nil;
+    self.image = nil;
+    self.imageFrame = nil;
+    self.imageData = nil;
+    self.lastChosenMediaType = nil;
+    
+    [delegate release];
+    [detailTextView release];
+    [addPicButton release];
+    [imageView release];
+    [imageFrameView release];
+    [image release];
+    [imageFrame release];
+    [imageData release];
+    [lastChosenMediaType release];
+    
+    [super dealloc];
 }
 
 

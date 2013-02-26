@@ -281,6 +281,12 @@ CGPathRef NewPathWithRoundRect(CGRect rect, CGFloat cornerRadius)
 //
 - (void)dealloc
 {
+    self.loadingLabel = nil;
+    self.activityIndicatorView = nil;
+    
+    [loadingLabel release];
+    [activityIndicatorView release];
+    
     [super dealloc];
 }
 

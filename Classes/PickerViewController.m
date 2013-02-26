@@ -304,21 +304,6 @@
 // For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
 // So release any properties that are loaded in viewDidLoad or can be recreated lazily.
 //
-- (void)viewDidUnload
-{
-	[super viewDidUnload];
-	self.customPickerView = nil;
-	self.customPickerDataSource = nil;
-}
-
-
-- (void)dealloc
-{
-	[customPickerDataSource release];
-	[customPickerView release];
-	
-	[super dealloc];
-}
 
 
 #pragma mark UIPickerViewDelegate
@@ -461,6 +446,26 @@
     }
 }
 
+
+
+- (void)dealloc
+{
+    self.delegate = nil;
+    self.customPickerView = nil;
+	self.customPickerDataSource = nil;
+    self.description = nil;
+    self.descriptionText = nil;
+    
+	[customPickerDataSource release];
+	[customPickerView release];
+    [delegate release];
+    [description release];
+    [descriptionText release];
+    
+    [navBarItself release];
+	
+	[super dealloc];
+}
 
 @end
 

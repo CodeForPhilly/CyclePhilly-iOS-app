@@ -249,4 +249,13 @@
 }
 
 
+- (void)dealloc {
+    self.reminders = nil;
+    
+    [reminders release];
+    
+    [super dealloc];
+}
+
+
 @end

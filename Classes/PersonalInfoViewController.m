@@ -505,11 +505,6 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
 
 #pragma mark Table view methods
 
@@ -1018,6 +1013,52 @@
 }
 
 - (void)dealloc {
+    self.delegate = nil;
+    self.managedObjectContext = nil;
+    self.user = nil;
+    self.age = nil;
+    self.email = nil;
+    self.gender = nil;
+    self.ethnicity = nil;
+    self.income = nil;
+    self.homeZIP = nil;
+    self.workZIP = nil;
+    self.schoolZIP = nil;
+    self.cyclingFreq = nil;
+    self.riderType = nil;
+    self.riderHistory = nil;
+    self.ageSelectedRow = nil;
+    self.genderSelectedRow = nil;
+    self.ethnicitySelectedRow = nil;
+    self.incomeSelectedRow = nil;
+    self.cyclingFreqSelectedRow = nil;
+    self.riderTypeSelectedRow = nil;
+    self.riderHistorySelectedRow = nil;
+    self.selectedItem = nil;
+    
+    [delegate release];
+    [managedObjectContext release];
+    [user release];
+    [age release];
+    [email release];
+    [gender release];
+    [ethnicity release];
+    [income release];
+    [homeZIP release];
+    [workZIP release];
+    [schoolZIP release];
+    [cyclingFreq release];
+    [riderType release];
+    [riderHistory release];
+    
+    [doneToolbar release];
+    [actionSheet release];
+    [pickerView release];
+    [currentTextField release];
+    [genderArray release];
+    [ageArray release];
+    [ethnicityArray release];
+    
     [super dealloc];
 }
 

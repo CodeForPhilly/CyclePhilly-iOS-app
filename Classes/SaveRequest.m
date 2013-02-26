@@ -110,15 +110,6 @@
 	return self;
 }
 
-- (void)dealloc
-{
-	[super dealloc];
-    
-	[postVars release];
-	[request release];
-	[deviceUniqueIdHash release];
-}
-
 #pragma mark instance methods
 
 // add POST vars to request
@@ -128,4 +119,18 @@
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
 	return [conn autorelease];
 }
+
+- (void)dealloc
+{
+	self.request = nil;
+    self.postVars = nil;
+    self.deviceUniqueIdHash = nil;
+    
+	[postVars release];
+	[request release];
+	[deviceUniqueIdHash release];
+    
+    [super dealloc];
+}
+
 @end

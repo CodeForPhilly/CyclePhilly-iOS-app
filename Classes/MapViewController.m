@@ -386,20 +386,6 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-	[doneButton release];
-	[flipButton release];
-	[mapView release];
-	[trip release];
-    [super dealloc];
-}
-
 
 #pragma mark MKMapViewDelegate methods
 
@@ -526,6 +512,26 @@
     lineView.strokeColor = [UIColor blueColor];
     lineView.lineWidth = 8;
     return lineView;
+}
+
+- (void)dealloc {
+    self.trip = nil;
+    self.note = nil;
+    self.doneButton = nil;
+    self.flipButton = nil;
+    self.infoView = nil;
+    self.routeLine = nil;
+    
+	[doneButton release];
+	[flipButton release];
+	[trip release];
+    [note release];
+    [infoView release];
+    [routeLine release];
+    
+    [mapView release];
+    
+    [super dealloc];
 }
 
 

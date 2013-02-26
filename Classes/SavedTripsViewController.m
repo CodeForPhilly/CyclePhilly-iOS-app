@@ -272,15 +272,6 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-    self.trips = nil;
-	/*
-    self.locationManager = nil;
-    self.addButton = nil;
-	 */
-}
-
-
 - (void)_recalculateDistanceForSelectedTripMap
 {
 	// important if we call from a background thread
@@ -700,12 +691,6 @@
  }
  */
 
-- (void)dealloc {
-    [managedObjectContext release];
-    [trips release];
-    [super dealloc];
-}
-
 
 #pragma mark UINavigationController
 
@@ -882,6 +867,22 @@
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	[tripManager setPurpose:index];
 	[tripManager promptForTripNotes];
+}
+
+- (void)dealloc {
+    self.trips = nil;
+    self.managedObjectContext = nil;
+    self.delegate = nil;
+    self.tripManager = nil;
+    self.selectedTrip = nil;
+    
+    [delegate release];
+    [trips release];
+    [tripManager release];
+    [selectedTrip release];
+    [loading release];
+    
+    [super dealloc];
 }
 
 

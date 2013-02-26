@@ -1118,6 +1118,42 @@
 	return count;
 }
 
+-(void)dealloc
+{
+    self.activityDelegate = nil;
+    self.alertDelegate = nil;
+    self.activityIndicator = nil;
+    self.uploadingView = nil;
+    self.parent = nil;
+    self.saving = nil;
+    self.tripNotes = nil;
+    self.tripNotesText = nil;
+    self.dirty = nil;
+    self.trip = nil;
+    self.coords = nil;
+    self.managedObjectContext = nil;
+    self.receivedData = nil;
+    
+    [saving release];
+    [tripNotes release];
+    [tripNotesText release];
+    [trip release];
+    [coords release];
+    [managedObjectContext release];
+    [receivedData release];
+    [_activityDelegate release];
+    [_alertDelegate release];
+    [_activityIndicator release];
+    [uploadingView release];
+    [parent release];
+    
+    [unSavedTrips release];
+    [unSyncedTrips release];
+    [zeroDistanceTrips release];
+    
+    [super dealloc];
+}
+
 
 @end
 

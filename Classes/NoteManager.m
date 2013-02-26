@@ -301,5 +301,31 @@
     [receivedDataNoted release];
 }
 
+- (void)dealloc {
+    self.deviceUniqueIdHash1 = nil;
+    self.activityDelegate = nil;
+    self.alertDelegate = nil;
+    self.activityIndicator = nil;
+    self.uploadingView = nil;
+    self.parent = nil;
+    self.dirty = nil;
+    self.note = nil;
+    self.managedObjectContextNoted = nil;
+    self.receivedDataNoted = nil;
+    
+    
+    [deviceUniqueIdHash1 release];
+    [_activityDelegate release];
+    [_alertDelegate release];
+    [_activityIndicator release];
+    [uploadingView release];
+    [parent release];
+    [note release];
+    [managedObjectContextNoted release];
+    [receivedDataNoted release];
+    
+    [super dealloc];
+}
+
 
 @end

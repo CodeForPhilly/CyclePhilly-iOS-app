@@ -737,13 +737,6 @@
 }
 
 
-- (void)viewDidUnload {
-    //self.coords = nil;
-    appDelegate.locationManager = nil;
-    self.startButton = nil;
-}
-
-
 - (NSString *)updatePurposeWithString:(NSString *)purpose
 {	
 	// only enable start button if we don't already have a pending trip
@@ -759,15 +752,6 @@
 - (NSString *)updatePurposeWithIndex:(unsigned int)index
 {
 	return [self updatePurposeWithString:[tripManager getPurposeString:index]];
-}
-
-
-- (void)dealloc {
-    [managedObjectContext release];
-    //[coords release];
-    [appDelegate.locationManager release];
-    [startButton release];
-    [super dealloc];
 }
 
 
@@ -879,6 +863,8 @@ shouldSelectViewController:(UIViewController *)viewController
 }
 
 - (void)didSaveImage:(NSData *)imgData{
+    NSData *data = [NSData dataWithData:imgData];
+    
     //[noteManager.note setImage_data:imgData];
     //NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
     NSLog(@"Added image, Size of Image(bytes)");
@@ -901,5 +887,47 @@ shouldSelectViewController:(UIViewController *)viewController
 		return nil;
 }
 
+
+- (void)dealloc {
+    
+    appDelegate.locationManager = nil;
+    self.startButton = nil;
+    self.infoButton = nil;
+    self.saveButton = nil;
+    self.noteButton = nil;
+    self.timeCounter = nil;
+    self.distCounter = nil;
+    self.saveActionSheet = nil;
+    self.timer = nil;
+    self.parentView = nil;
+    self.recording = nil;
+    self.shouldUpdateCounter = nil;
+    self.userInfoSaved = nil;
+    self.tripManager = nil;
+    self.noteManager = nil;
+    self.appDelegate = nil;
+    
+    [appDelegate.locationManager release];
+    [appDelegate release];
+    [infoButton release];
+    [saveButton release];
+    [startButton release];
+    [noteButton release];
+    [timeCounter release];
+    [distCounter release];
+    [speedCounter release];
+    [saveActionSheet release];
+    [timer release];
+    [opacityMask release];
+    [parentView release];
+    [tripManager release];
+    [noteManager release];
+    [myLocation release];
+    
+    [managedObjectContext release];
+    [mapView release];
+    
+    [super dealloc];
+}
 
 @end

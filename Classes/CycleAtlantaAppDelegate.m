@@ -408,12 +408,21 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-	
+    self.window = nil;
+    self.tabBarController = nil;
+    self.uniqueIDHash = nil;
+    self.isRecording = nil;
+    self.locationManager = nil;
+    
+    [tabBarController release];
+    [uniqueIDHash release];
+    [locationManager release];
+	[window release];
+    
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];
     
-	[window release];
 	[super dealloc];
 }
 
