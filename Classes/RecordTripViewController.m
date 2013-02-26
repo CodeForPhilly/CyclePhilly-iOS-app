@@ -537,13 +537,13 @@
 	{
 		// Trip Purpose
 		NSLog(@"INIT + PUSH");
-		PickerViewController *pickerViewController2 = [[PickerViewController alloc]
+		PickerViewController *tripPurposePickerView = [[PickerViewController alloc]
 													  //initWithPurpose:[tripManager getPurposeIndex]];
 													  initWithNibName:@"TripPurposePicker" bundle:nil];
-		[pickerViewController2 setDelegate:self];
+		[tripPurposePickerView setDelegate:self];
 		//[[self navigationController] pushViewController:pickerViewController animated:YES];
-		[self.navigationController presentModalViewController:pickerViewController2 animated:YES];
-		[pickerViewController2 release];
+		[self.navigationController presentModalViewController:tripPurposePickerView animated:YES];
+		[tripPurposePickerView release];
 	}
 	
 	// prompt to confirm first

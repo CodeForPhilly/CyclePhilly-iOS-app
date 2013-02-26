@@ -81,7 +81,7 @@ UITextViewDelegate>
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) LoadingView *uploadingView;
 
-@property (nonatomic, retain) UIViewController *parent; //again, this can't be right.
+@property (nonatomic, retain) UIViewController *parent; 
 
 @property (nonatomic, retain) UIAlertView *saving;
 @property (nonatomic, retain) UIAlertView *tripNotes;

@@ -66,7 +66,7 @@
 
 @property (nonatomic, retain) LoadingView *uploadingView;
 
-@property (nonatomic, retain) UIViewController *parent; //again, this can't be right.
+@property (nonatomic, retain) UIViewController *parent; 
 
 @property (assign) BOOL dirty;
 @property (nonatomic, retain) FlaggedLocation *flaggedLocation;
