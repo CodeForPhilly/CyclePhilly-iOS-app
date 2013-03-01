@@ -257,6 +257,22 @@
         //
         // DEBUG
         NSLog(@"+++++++DEBUG didReceiveResponse %@: %@", [response URL],[(NSHTTPURLResponse*)response allHeaderFields]);
+        
+        if ( success )
+		{
+//			[note setUploaded:[NSDate date]];
+//			
+//			NSError *error;
+//			if (![managedObjectContext save:&error]) {
+//				// Handle the error.
+//				NSLog(@"TripManager setUploaded error %@, %@", error, [error localizedDescription]);
+//			}
+            
+            [uploadingView loadingComplete:kSuccessTitle delayInterval:.7];
+		} else {
+            
+            [uploadingView loadingComplete:kServerError delayInterval:1.5];
+        }
 	}
 	
     // it can be called multiple times, for example in the case of a
