@@ -242,6 +242,8 @@
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = NO;
 	self.recording = NO;
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"recording"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	self.shouldUpdateCounter = NO;
 	
 	// Start the location manager.
@@ -355,6 +357,8 @@
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = NO;
 	recording = NO;
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"recording"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	startButton.enabled = YES;
     UIImage *buttonImage = [[UIImage imageNamed:@"greenButton.png"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
@@ -510,6 +514,8 @@
         appDelegate = [[UIApplication sharedApplication] delegate];
         appDelegate.isRecording = YES;
         recording = YES;
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey: @"recording"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
         // set flag to update counter
         shouldUpdateCounter = YES;
@@ -825,6 +831,8 @@ shouldSelectViewController:(UIViewController *)viewController
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = YES;
 	recording = YES;
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey: @"recording"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	shouldUpdateCounter = YES;
 }
 
@@ -844,6 +852,8 @@ shouldSelectViewController:(UIViewController *)viewController
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = NO;
 	recording = NO;
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey: @"recording"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 	startButton.enabled = YES;
 	[self resetTimer];
 	

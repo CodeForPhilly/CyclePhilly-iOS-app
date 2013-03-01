@@ -123,6 +123,8 @@
 	// format date as a string
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
 	[outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDateFormatter *outputFormatterURL = [[NSDateFormatter alloc] init];
+	[outputFormatterURL setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     
     NSLog(@"saving using protocol version 4");
 	
@@ -139,6 +141,7 @@
     [noteDict setValue:note.details forKey:@"d"];  //details
     
     NSString *newDateString = [outputFormatter stringFromDate:note.recorded];
+    NSString *newDateStringURL = [outputFormatterURL stringFromDate:note.recorded];
     [noteDict setValue:newDateString forKey:@"r"];    //recorded timestamp
     
     CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -151,7 +154,7 @@
         note.image_url =@"";
     }
     else {
-        note.image_url = [NSString stringWithFormat:@"%@%@%@",deviceUniqueIdHash1,newDateString,note.note_type];
+        note.image_url = [NSString stringWithFormat:@"%@-%@-type-%@",deviceUniqueIdHash1,newDateStringURL,note.note_type];
     }
     NSLog(@"img_url: %@", note.image_url);
     NSLog(@"Size of Image(bytes):%d", [note.image_data length]);
@@ -178,11 +181,18 @@
 	
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
-	// create loading view to indicate trip is being uploaded
-    //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
+	
+    // create loading view to indicate trip is being uploaded
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingNoteTitle] retain];
     
     //switch to map w/ trip view
-    [parent displayUploadedNote];
+    
+    NSInteger recording = [[NSUserDefaults standardUserDefaults] integerForKey:@"recording"];
+    
+    if (recording == 0) {
+        [parent displayUploadedNote];
+    }
+    
     NSLog(@"note save and parent");
     
     if ( theConnection )

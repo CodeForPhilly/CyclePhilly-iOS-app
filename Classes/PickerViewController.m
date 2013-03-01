@@ -305,6 +305,13 @@
 // So release any properties that are loaded in viewDidLoad or can be recreated lazily.
 //
 
+- (void)didReceiveMemoryWarning {
+    NSLog(@"PickerViewController");
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
+}
 
 #pragma mark UIPickerViewDelegate
 
