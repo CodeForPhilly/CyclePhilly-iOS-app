@@ -151,7 +151,7 @@
         note.image_url =@"";
     }
     else {
-        note.image_url = [NSString stringWithFormat:@"http://cycleatlanta.org/post_dev/pic/%@%@%@",deviceUniqueIdHash1,newDateString,note.note_type];
+        note.image_url = [NSString stringWithFormat:@"%@%@%@",deviceUniqueIdHash1,newDateString,note.note_type];
     }
     NSLog(@"img_url: %@", note.image_url);
     NSLog(@"Size of Image(bytes):%d", [note.image_data length]);
@@ -171,6 +171,7 @@
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
                               noteJson, @"note",
 							  [NSString stringWithFormat:@"%d", kSaveNoteProtocolVersion], @"version",
+                              [NSData dataWithData:note.image_data], @"image_data",
 							  nil];
 	// create save request
 	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4];
@@ -181,7 +182,7 @@
     //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
     
     //switch to map w/ trip view
-    //[parent displayUploadedNote];
+    [parent displayUploadedNote];
     NSLog(@"note save and parent");
     
     if ( theConnection )

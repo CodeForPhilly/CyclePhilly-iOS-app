@@ -40,6 +40,7 @@
 
 #import "constants.h"
 #import "MapViewController.h"
+#import "NoteViewController.h"
 #import "PersonalInfoViewController.h"
 #import "PickerViewController.h"
 #import "RecordTripViewController.h"
@@ -226,8 +227,8 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = YES;
 	
-	// init map region to San Francisco
-	MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
+	// init map region to Atlanta
+	MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.0078, 0.0068 } };
 	[mapView setRegion:region animated:NO];
 	
 	// setup info button used when showing recorded trips
@@ -329,7 +330,7 @@
     Note *note = noteManager.note;
     
     // load map view of note
-    MapViewController *mvc = [[MapViewController alloc] initWithNote:note];
+    NoteViewController *mvc = [[NoteViewController alloc] initWithNote:note];
     [[self navigationController] pushViewController:mvc animated:YES];
     NSLog(@"displayUploadedNote");
     [mvc release];

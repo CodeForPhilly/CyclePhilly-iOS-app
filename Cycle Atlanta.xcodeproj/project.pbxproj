@@ -58,6 +58,8 @@
 		8F9C086D16DC947A003EA308 /* Coord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C086C16DC947A003EA308 /* Coord.m */; };
 		8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */; };
 		8FB7C20D16C55EB9001A8A48 /* NoteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7C20C16C55EB9001A8A48 /* NoteManager.m */; };
+		8FBCD3CA16E0E58100C11EBE /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBCD3C816E0E58100C11EBE /* NoteViewController.m */; };
+		8FBCD3CB16E0E58100C11EBE /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FBCD3C916E0E58100C11EBE /* NoteViewController.xib */; };
 		8FD62A3C16B2253100B54A35 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */; };
 		8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E51655E35800324E6E /* MobileCoreServices.framework */; };
 		8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD696E81655E36600324E6E /* MediaPlayer.framework */; };
@@ -240,6 +242,9 @@
 		8FA0AD9316BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CycleAtlanta.xcdatamodel; sourceTree = "<group>"; };
 		8FB7C20B16C55EB9001A8A48 /* NoteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NoteManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8FB7C20C16C55EB9001A8A48 /* NoteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NoteManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8FBCD3C716E0E58100C11EBE /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
+		8FBCD3C816E0E58100C11EBE /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
+		8FBCD3C916E0E58100C11EBE /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoteViewController.xib; path = Classes/NoteViewController.xib; sourceTree = "<group>"; };
 		8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8FD696E51655E35800324E6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8FD696E81655E36600324E6E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -381,6 +386,8 @@
 				642F161C1071ED1C0050BCB9 /* MapCoord.m */,
 				642F15251071DA700050BCB9 /* MapViewController.h */,
 				642F15261071DA700050BCB9 /* MapViewController.m */,
+				8FBCD3C716E0E58100C11EBE /* NoteViewController.h */,
+				8FBCD3C816E0E58100C11EBE /* NoteViewController.m */,
 				8F5E60621602CBE000D8F85D /* NSString+MD5Addition.h */,
 				8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */,
 				6433E5C5106D62ED00C27387 /* PersonalInfoDelegate.h */,
@@ -456,6 +463,7 @@
 				64577E28106DC2FD003ACBFD /* dist.plist */,
 				64210F28113508B800415F1A /* MainWindow.xib */,
 				642F14791071D3F10050BCB9 /* MapViewController.xib */,
+				8FBCD3C916E0E58100C11EBE /* NoteViewController.xib */,
 				64C8D40211386B26008BCADE /* RecordMap.xib */,
 				64210F5311350AE200415F1A /* RecordNewTrip.xib */,
 				64119A9B1068665B00C201F0 /* TripPurposePicker.xib */,
@@ -821,6 +829,7 @@
 				9D6D31AA16D7C017007A2497 /* noteIssuePicker@2x.png in Resources */,
 				9D6D31AD16D7C189007A2497 /* noteBlankPicker.png in Resources */,
 				9D6D31AE16D7C189007A2497 /* noteBlankPicker@2x.png in Resources */,
+				8FBCD3CB16E0E58100C11EBE /* NoteViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,6 +865,7 @@
 				8F9C086716DC9479003EA308 /* Trip.m in Sources */,
 				8F9C086A16DC947A003EA308 /* User.m in Sources */,
 				8F9C086D16DC947A003EA308 /* Coord.m in Sources */,
+				8FBCD3CA16E0E58100C11EBE /* NoteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

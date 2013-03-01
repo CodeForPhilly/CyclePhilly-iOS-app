@@ -274,7 +274,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     self.imageFrameView = nil;
     self.image = nil;
     self.imageFrame = nil;
-    //self.imageData = nil;
+    self.imageData = nil;
     self.lastChosenMediaType = nil;
     
     [delegate release];
@@ -284,7 +284,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     [imageFrameView release];
     [image release];
     [imageFrame release];
-    //[imageData release];
+    [imageData release];
     [lastChosenMediaType release];
     
     [super dealloc];

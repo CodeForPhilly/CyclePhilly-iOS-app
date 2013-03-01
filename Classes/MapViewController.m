@@ -43,7 +43,7 @@
 #import "MapCoord.h"
 #import "MapViewController.h"
 #import "Trip.h"
-#import "Note.h"
+
 
 
 #define kFudgeFactor	1.5
@@ -54,7 +54,7 @@
 
 @implementation MapViewController
 
-@synthesize doneButton, flipButton, infoView, trip, routeLine, note;
+@synthesize doneButton, flipButton, infoView, trip, routeLine;
 
 
 /*
@@ -78,16 +78,6 @@
     return self;
 }
 
-- (id)initWithNote:(Note *)_note
-{
-    //if (self = [super init]) {
-	if (self = [super initWithNibName:@"MapViewController" bundle:nil]) {
-		NSLog(@"MapViewController initWithTrip");
-		self.note = _note;
-		mapView.delegate = self;
-    }
-    return self;
-}
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -517,7 +507,6 @@
 
 - (void)dealloc {
     self.trip = nil;
-    self.note = nil;
     self.doneButton = nil;
     self.flipButton = nil;
     self.infoView = nil;
@@ -526,7 +515,6 @@
 	[doneButton release];
 	[flipButton release];
 	[trip release];
-    [note release];
     [infoView release];
     [routeLine release];
     

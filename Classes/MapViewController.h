@@ -39,16 +39,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
 #import "TripManager.h"
-#import "NoteManager.h"
 
 
 @interface MapViewController : UIViewController <MKMapViewDelegate>
 {
 	IBOutlet MKMapView *mapView;
 	Trip *trip;
-    Note *note;
 	
 	UIBarButtonItem *doneButton;
 	UIBarButtonItem *flipButton;
@@ -57,14 +54,12 @@
 
 
 @property (nonatomic, retain) Trip *trip;
-@property (nonatomic, retain) Note *note;
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
 @property (nonatomic, retain) UIBarButtonItem *flipButton;
 @property (nonatomic, retain) UIView *infoView;
 @property (nonatomic, retain) MKPolyline* routeLine;
 
 - (id)initWithTrip:(Trip *)trip;
-- (id)initWithNote:(Note *)note;
 
 
 @end
