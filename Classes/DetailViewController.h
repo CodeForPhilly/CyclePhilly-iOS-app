@@ -40,6 +40,5 @@
 - (IBAction)shootPictureOrVideo:(id)sender;
 - (IBAction)selectExistingPictureOrVideo:(id)sender;
 
--(IBAction)screenShoot:(id)sender;
 
 @end

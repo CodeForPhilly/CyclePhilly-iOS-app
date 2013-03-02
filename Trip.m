@@ -21,6 +21,7 @@
 @dynamic duration;
 @dynamic saved;
 @dynamic coords;
+@dynamic thumbnail;
 @dynamic user;
 
 @end

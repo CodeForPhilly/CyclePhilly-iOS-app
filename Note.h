@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSDate * recorded;
 @property (nonatomic, retain) NSNumber * altitude;
 @property (nonatomic, retain) NSData * image_data;
+@property (nonatomic, retain) NSData * thumbnail;
 @property (nonatomic, retain) User *user;
 
 @end

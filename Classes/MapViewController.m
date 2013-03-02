@@ -43,8 +43,7 @@
 #import "MapCoord.h"
 #import "MapViewController.h"
 #import "Trip.h"
-
-
+#import <MobileCoreServices/UTCoreTypes.h>
 
 #define kFudgeFactor	1.5
 #define kInfoViewAlpha	0.8
@@ -55,6 +54,7 @@
 @implementation MapViewController
 
 @synthesize doneButton, flipButton, infoView, trip, routeLine;
+@synthesize delegate;
 
 
 /*
@@ -134,6 +134,7 @@
 	notesText.text				= trip.notes;
 	notesText.textColor			= [UIColor whiteColor];
 	[infoView addSubview:notesText];
+    
 }
 
 
@@ -333,10 +334,14 @@
 			if ( lonDelta < kMinLonDelta )
 				lonDelta = kMinLonDelta;
 			
-			MKCoordinateRegion region = { { [minLat doubleValue] + latDelta / 2, 
-											[minLon doubleValue] + lonDelta / 2 }, 
-										  { latDelta, 
-											lonDelta } };
+//			MKCoordinateRegion region = { { [minLat doubleValue] + latDelta / 2,
+//											[minLon doubleValue] + lonDelta / 2 }, 
+//										  { latDelta, 
+//											lonDelta } };
+            MKCoordinateRegion region = { { (routePath[0].latitude + routePath[numPoints-1].latitude) / 2,
+                (routePath[0].longitude + routePath[numPoints-1].longitude) / 2 },
+                { latDelta,
+                    lonDelta } };
 			[mapView setRegion:region animated:NO];
 		}
 		else
@@ -352,13 +357,97 @@
 		MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
 		[mapView setRegion:region animated:NO];
 	}
-	
-	LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:909];
+    
+    LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:909];
 	//NSLog(@"loading: %@", loading);
 	[loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
-    
-    
+	
+//    UIImage *thumbnailOriginal = [[UIImage alloc] init];
+//    thumbnailOriginal = [self screenshot];
+//    
+//    CGSize size;
+//    size.height = 72;
+//    size.width = 54;
+//    
+//    UIImage *thumbnail = [[UIImage alloc] init];
+//    thumbnail = shrinkImage(thumbnailOriginal, size);
+//
+//    NSData *thumbnailData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)];
+//    NSLog(@"Size of Thumbnail Image(bytes):%d",[thumbnailData length]);
+//    NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
+//    
+//    imgView.image = thumbnail;
+//    
+//    //[delegate getTripThumbnail:thumbnailData];
+
 }
+
+UIImage *shrinkImage(UIImage *original, CGSize size) {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    CGContextRef context = CGBitmapContextCreate(NULL, size.width * scale,
+                                                 size.height * scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedFirst);
+    CGContextDrawImage(context,
+                       CGRectMake(0, 0, size.width * scale, size.height * scale),
+                       original.CGImage);
+    CGImageRef shrunken = CGBitmapContextCreateImage(context);
+    UIImage *final = [UIImage imageWithCGImage:shrunken];
+    
+    CGContextRelease(context);
+    CGImageRelease(shrunken);
+    
+    return final;
+}
+
+
+- (UIImage*)screenshot
+{
+    NSLog(@"Screen Shoot");
+    // Create a graphics context with the target size
+    // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
+    // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
+    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
+    if (NULL != UIGraphicsBeginImageContextWithOptions)
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    else
+        UIGraphicsBeginImageContext(imageSize);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Iterate over every window from back to front
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
+        {
+            // -renderInContext: renders in the coordinate space of the layer,
+            // so we must first apply the layer's geometry to the graphics context
+            CGContextSaveGState(context);
+            // Center the context around the window's anchor point
+            CGContextTranslateCTM(context, [window center].x, [window center].y);
+            // Apply the window's transform about the anchor point
+            CGContextConcatCTM(context, [window transform]);
+            // Offset by the portion of the bounds left of and above the anchor point
+            CGContextTranslateCTM(context,
+                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
+                                  -[window bounds].size.height * [[window layer] anchorPoint].y+50);
+            
+            // Render the layer hierarchy to the current context
+            [[window layer] renderInContext:context];
+            
+            // Restore the context
+            CGContextRestoreGState(context);
+        }
+    }
+    
+    // Retrieve the screenshot image
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return screenImage;
+}
+
 
 
 /*
@@ -511,7 +600,9 @@
     self.flipButton = nil;
     self.infoView = nil;
     self.routeLine = nil;
+    self.delegate = nil;
     
+    [delegate release];
 	[doneButton release];
 	[flipButton release];
 	[trip release];

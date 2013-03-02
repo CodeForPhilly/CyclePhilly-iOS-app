@@ -23,6 +23,7 @@
 @dynamic recorded;
 @dynamic altitude;
 @dynamic image_data;
+@dynamic thumbnail;
 @dynamic user;
 
 @end

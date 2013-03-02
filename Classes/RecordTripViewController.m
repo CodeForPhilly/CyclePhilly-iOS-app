@@ -879,10 +879,22 @@ shouldSelectViewController:(UIViewController *)viewController
     NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
 }
 
+- (void)getTripThumbnail:(NSData *)imgData{
+    [tripManager.trip setThumbnail:imgData];
+    NSLog(@"Trip Thumbnail, Size of Image(bytes):%d", [imgData length]);
+}
+
+- (void)getNoteThumbnail:(NSData *)imgData{
+    [noteManager.note setThumbnail:imgData];
+    NSLog(@"Note Thumbnail, Size of Image(bytes):%d", [imgData length]);
+}
+
 - (void)saveNote{
     [noteManager saveNote];
     NSLog(@"Save note");
 }
+
+
 
 
 #pragma mark RecordingInProgressDelegate method

@@ -39,11 +39,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "TripManager.h"
 
 
 @interface MapViewController : UIViewController <MKMapViewDelegate>
 {
+    id <TripPurposeDelegate> delegate;
 	IBOutlet MKMapView *mapView;
 	Trip *trip;
 	
@@ -52,7 +54,7 @@
 	UIView *infoView;
 }
 
-
+@property (nonatomic, retain) id <TripPurposeDelegate> delegate;
 @property (nonatomic, retain) Trip *trip;
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
 @property (nonatomic, retain) UIBarButtonItem *flipButton;

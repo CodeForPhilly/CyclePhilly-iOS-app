@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSDate * saved;
 @property (nonatomic, retain) NSSet *coords;
+@property (nonatomic, retain) NSData * thumbnail;
 @property (nonatomic, retain) User *user;
 @end
 
