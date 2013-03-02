@@ -84,16 +84,14 @@
            fromLocation:(CLLocation *)oldLocation
 {
 	CLLocationDistance deltaDistance = [newLocation distanceFromLocation:oldLocation];
-
     
     if (!myLocation) {
         myLocation = [newLocation retain];
     }
-    else if ([myLocation distanceFromLocation:newLocation]<1.0) {
+    else if ([myLocation distanceFromLocation:newLocation]) {
         [myLocation release];
         myLocation = [newLocation retain];
     }
-    
     
 	if ( !didUpdateUserLocation )
 	{
@@ -218,7 +216,7 @@
 
 
 - (void)viewDidLoad
-{    
+{
 	NSLog(@"RecordTripViewController viewDidLoad");
     NSLog(@"Bundle ID: %@", [[NSBundle mainBundle] bundleIdentifier]);
     [super viewDidLoad];
@@ -589,6 +587,8 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSLog(@"Note This");
+    
+    [noteManager createNote];
     
     if (myLocation){
         [noteManager addLocation:myLocation];

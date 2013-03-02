@@ -82,6 +82,8 @@
 
 - (void)saveNote;
 
+- (void)createNote;
+
 - (void)addLocation:(CLLocation*)locationNow;
 
 @end

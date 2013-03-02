@@ -190,7 +190,7 @@
 		[noteView setRegion:region animated:NO];
     }
     
-    LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:909];
+    LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:999];
 	//NSLog(@"loading: %@", loading);
 	[loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
     
@@ -221,7 +221,7 @@
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)_noteView
 {
 	//NSLog(@"mapViewDidFinishLoadingMap");
-	LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:909];
+	LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:999];
 	//NSLog(@"loading: %@", loading);
 	[loading removeView];
 }

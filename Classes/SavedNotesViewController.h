@@ -22,11 +22,13 @@
     NSManagedObjectContext *managedObjectContext;
     LoadingView *loading;
     NSInteger pickerCategory;
+    Note * selectedNote;
 }
 
 @property (nonatomic, retain) NSMutableArray *notes;
 @property (nonatomic, retain) NoteManager *noteManager;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) Note *selectedNote;
 
 - (void)initNoteManager:(NoteManager*)manager;
 

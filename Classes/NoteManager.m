@@ -68,14 +68,32 @@
     if ( self = [super init] )
 	{
 		self.managedObjectContext = context;
-        self.note = [(Note *)[NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:managedObjectContext] retain];
+        self.activityDelegate = self;
         if (!note) {
-            NSLog(@"NoteInit is nil");
+            self.note = nil;
         }
-        NSLog(@"NoteInit");
+        
     }
     return self;
 }
+
+- (void)createNote
+{
+	NSLog(@"createNote");
+	
+	// Create and configure a new instance of the Note entity
+    note = [(Note *)[NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:managedObjectContext] retain];
+    
+    [note setRecorded:[NSDate date]];
+    NSLog(@"Date: %@", note.recorded);
+    
+	NSError *error;
+	if (![managedObjectContext save:&error]) {
+		// Handle the error.
+		NSLog(@"createNote error %@, %@", error, [error localizedDescription]);
+	}
+}
+
 
 //called from RecordTripViewController
 - (void)addLocation:(CLLocation *)locationNow
@@ -104,8 +122,8 @@
     [note setVAccuracy:[NSNumber numberWithDouble:locationNow.verticalAccuracy]];
     NSLog(@"VAccuracy: %f", [note.vAccuracy doubleValue]);
     
-    [note setRecorded:locationNow.timestamp];
-    NSLog(@"Date: %@", note.recorded);
+//    [note setRecorded:locationNow.timestamp];
+//    NSLog(@"Date: %@", note.recorded);
 	
 	NSError *error;
 	if (![managedObjectContext save:&error]) {
@@ -183,7 +201,7 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	
     // create loading view to indicate trip is being uploaded
-    //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingNoteTitle] retain];
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingNoteTitle] retain];
     
     //switch to map w/ trip view
     

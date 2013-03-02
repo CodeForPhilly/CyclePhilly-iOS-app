@@ -101,9 +101,10 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="NSArray" key="IBUIViewControllers">
+					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUITableViewController" id="821331473">
+							<string key="IBUITitle">My Notes</string>
 							<object class="IBUITableView" key="IBUIView" id="980482031">
 								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">274</int>
@@ -128,7 +129,7 @@
 								<float key="IBUISectionFooterHeight">22</float>
 							</object>
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="831821857">
-								<string key="IBUITitle">Item</string>
+								<string key="IBUITitle">My Notes</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 							<reference key="IBUIParentViewController" ref="909100406"/>
