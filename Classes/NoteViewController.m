@@ -6,6 +6,7 @@
 //
 //
 
+#import <MobileCoreServices/UTCoreTypes.h>
 #import "NoteViewController.h"
 #import "LoadingView.h"
 #import "Note.h"
@@ -22,6 +23,7 @@
 @implementation NoteViewController
 
 @synthesize doneButton, flipButton, infoView, note;
+@synthesize delegate;
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -195,6 +197,97 @@
 	[loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    UIImage *thumbnailOriginal = [[UIImage alloc] init];
+    thumbnailOriginal = [self screenshot];
+    
+    CGRect clippedRect  = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+160, self.view.frame.size.width, self.view.frame.size.height);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([thumbnailOriginal CGImage], clippedRect);
+    UIImage *newImage   = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    CGSize size;
+    size.height = 72;
+    size.width = 72;
+    
+    UIImage *thumbnail = [[UIImage alloc] init];
+    thumbnail = shrinkImage1(newImage, size);
+    
+    NSData *thumbnailData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)];
+    NSLog(@"Size of Thumbnail Image(bytes):%d",[thumbnailData length]);
+    NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
+    
+    [delegate getNoteThumbnail:thumbnailData];
+}
+
+
+UIImage *shrinkImage1(UIImage *original, CGSize size) {
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    CGContextRef context = CGBitmapContextCreate(NULL, size.width * scale,
+                                                 size.height * scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedFirst);
+    CGContextDrawImage(context,
+                       CGRectMake(0, 0, size.width * scale, size.height * scale),
+                       original.CGImage);
+    CGImageRef shrunken = CGBitmapContextCreateImage(context);
+    UIImage *final = [UIImage imageWithCGImage:shrunken];
+    
+    CGContextRelease(context);
+    CGImageRelease(shrunken);
+    
+    return final;
+}
+
+
+- (UIImage*)screenshot
+{
+    NSLog(@"Screen Shoot");
+    // Create a graphics context with the target size
+    // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
+    // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
+    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
+    if (NULL != UIGraphicsBeginImageContextWithOptions)
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    else
+        UIGraphicsBeginImageContext(imageSize);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // Iterate over every window from back to front
+    for (UIWindow *window in [[UIApplication sharedApplication] windows])
+    {
+        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
+        {
+            // -renderInContext: renders in the coordinate space of the layer,
+            // so we must first apply the layer's geometry to the graphics context
+            CGContextSaveGState(context);
+            // Center the context around the window's anchor point
+            CGContextTranslateCTM(context, [window center].x, [window center].y);
+            // Apply the window's transform about the anchor point
+            CGContextConcatCTM(context, [window transform]);
+            // Offset by the portion of the bounds left of and above the anchor point
+            CGContextTranslateCTM(context,
+                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
+                                  -[window bounds].size.height * [[window layer] anchorPoint].y+50);
+            
+            // Render the layer hierarchy to the current context
+            [[window layer] renderInContext:context];
+            
+            // Restore the context
+            CGContextRestoreGState(context);
+        }
+    }
+    
+    // Retrieve the screenshot image
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return screenImage;
+}
+
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation
 {

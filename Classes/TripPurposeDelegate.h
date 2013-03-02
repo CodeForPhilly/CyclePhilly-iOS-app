@@ -84,8 +84,8 @@
 - (void)didPickNoteType:(NSNumber *)index;
 - (void)didEnterNoteDetails:(NSString *)details;
 - (void)didSaveImage:(NSData *)imgData;
-- (void)getTripThumbnail:(NSData *)imgData;
 - (void)getNoteThumbnail:(NSData *)imgData;
+- (void)getTripThumbnail:(NSData *)imgData;
 - (void)saveNote;
 
 @end

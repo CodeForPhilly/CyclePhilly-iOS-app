@@ -361,26 +361,31 @@
     LoadingView *loading = (LoadingView*)[self.parentViewController.view viewWithTag:909];
 	//NSLog(@"loading: %@", loading);
 	[loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
-	
-//    UIImage *thumbnailOriginal = [[UIImage alloc] init];
-//    thumbnailOriginal = [self screenshot];
-//    
-//    CGSize size;
-//    size.height = 72;
-//    size.width = 54;
-//    
-//    UIImage *thumbnail = [[UIImage alloc] init];
-//    thumbnail = shrinkImage(thumbnailOriginal, size);
-//
-//    NSData *thumbnailData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)];
-//    NSLog(@"Size of Thumbnail Image(bytes):%d",[thumbnailData length]);
-//    NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
-//    
-//    imgView.image = thumbnail;
-//    
-//    //[delegate getTripThumbnail:thumbnailData];
-
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    UIImage *thumbnailOriginal = [[UIImage alloc] init];
+    thumbnailOriginal = [self screenshot];
+    
+    CGRect clippedRect  = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+160, self.view.frame.size.width, self.view.frame.size.height);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([thumbnailOriginal CGImage], clippedRect);
+    UIImage *newImage   = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    CGSize size;
+    size.height = 72;
+    size.width = 72;
+    
+    UIImage *thumbnail = [[UIImage alloc] init];
+    thumbnail = shrinkImage(newImage, size);
+    
+    NSData *thumbnailData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)];
+    NSLog(@"Size of Thumbnail Image(bytes):%d",[thumbnailData length]);
+    NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
+    
+    [delegate getTripThumbnail:thumbnailData];
+}
+
 
 UIImage *shrinkImage(UIImage *original, CGSize size) {
     CGFloat scale = [UIScreen mainScreen].scale;

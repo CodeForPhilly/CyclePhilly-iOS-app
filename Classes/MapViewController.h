@@ -41,6 +41,7 @@
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TripManager.h"
+#import "TripPurposeDelegate.h"
 
 
 @interface MapViewController : UIViewController <MKMapViewDelegate>
