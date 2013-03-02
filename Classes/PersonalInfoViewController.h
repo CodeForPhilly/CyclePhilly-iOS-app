@@ -111,8 +111,6 @@
 @property (nonatomic) NSInteger riderHistorySelectedRow;
 @property (nonatomic) NSInteger selectedItem;
 
-//- (void)initTripManager:(TripManager*)manager;
-
 // DEPRECATED
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
 

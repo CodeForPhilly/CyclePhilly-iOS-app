@@ -53,7 +53,7 @@
 
 @implementation NoteManager
 
-@synthesize note, managedObjectContextNoted, receivedDataNoted;
+@synthesize note, managedObjectContext, receivedDataNoted;
 @synthesize uploadingView, parent;
 @synthesize deviceUniqueIdHash1;
 
@@ -67,8 +67,8 @@
 {
     if ( self = [super init] )
 	{
-		self.managedObjectContextNoted = context;
-        self.note = [(Note *)[NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:managedObjectContextNoted] retain];
+		self.managedObjectContext = context;
+        self.note = [(Note *)[NSEntityDescription insertNewObjectForEntityForName:@"Note" inManagedObjectContext:managedObjectContext] retain];
         if (!note) {
             NSLog(@"NoteInit is nil");
         }
@@ -108,7 +108,7 @@
     NSLog(@"Date: %@", note.recorded);
 	
 	NSError *error;
-	if (![managedObjectContextNoted save:&error]) {
+	if (![managedObjectContext save:&error]) {
 		// Handle the error.
 		NSLog(@"Note addLocation error %@, %@", error, [error localizedDescription]);
 	}
@@ -183,7 +183,7 @@
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	
     // create loading view to indicate trip is being uploaded
-    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingNoteTitle] retain];
+    //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingNoteTitle] retain];
     
     //switch to map w/ trip view
     
@@ -338,7 +338,7 @@
     self.parent = nil;
     self.dirty = nil;
     self.note = nil;
-    self.managedObjectContextNoted = nil;
+    self.managedObjectContext = nil;
     self.receivedDataNoted = nil;
     
     
@@ -349,7 +349,7 @@
     [uploadingView release];
     [parent release];
     [note release];
-    [managedObjectContextNoted release];
+    [managedObjectContext release];
     [receivedDataNoted release];
     
     [super dealloc];

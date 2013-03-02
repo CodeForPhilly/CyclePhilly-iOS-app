@@ -51,7 +51,7 @@
 {
 	Note *note;
 
-    NSManagedObjectContext *managedObjectContextNoted;
+    NSManagedObjectContext *managedObjectContext;
     
 	NSMutableData *receivedDataNoted;
 	
@@ -73,7 +73,7 @@
 @property (assign) BOOL dirty;
 @property (nonatomic, retain) Note *note;
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContextNoted;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, retain) NSMutableData *receivedDataNoted;
 

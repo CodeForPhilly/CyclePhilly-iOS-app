@@ -77,13 +77,6 @@
     return self;
 }
 
-/*
-- (void)initTripManager:(TripManager*)manager
-{
-	self.managedObjectContext = manager.managedObjectContext;
-}
-*/
-
 - (UITextField*)initTextFieldAlpha
 {
 	CGRect frame = CGRectMake( 152, 7, 138, 29 );
