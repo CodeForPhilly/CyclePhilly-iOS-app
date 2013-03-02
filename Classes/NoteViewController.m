@@ -196,6 +196,20 @@
     
 }
 
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation
+{
+    MKPinAnnotationView *noteAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"notePin"];
+    if ([note.note_type intValue]>=0 && [note.note_type intValue]<=5) {
+        noteAnnotation.pinColor = MKPinAnnotationColorRed;
+    }
+    else if ([note.note_type intValue]>=6 && [note.note_type intValue]<=11) {
+        noteAnnotation.pinColor = MKPinAnnotationColorGreen;
+    }
+    noteAnnotation.animatesDrop = YES;
+    noteAnnotation.canShowCallout = YES;
+    return noteAnnotation;
+}
+
 - (void)didReceiveMemoryWarning
 {
     NSLog(@"NoteViewController");

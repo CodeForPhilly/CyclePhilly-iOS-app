@@ -172,21 +172,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-// display map view
-- (void)displaySelectedNoteMap
-{
-	loading		= [[LoadingView loadingViewInView:self.parentViewController.view messageString:@"Loading..."] retain];
-	loading.tag = 999;
-    if ( selectedNote )
-	{
-		NoteViewController *mvc = [[NoteViewController alloc] initWithNote:selectedNote];
-		[[self navigationController] pushViewController:mvc animated:YES];
-		[mvc release];
-		selectedNote = nil;
-	}
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -215,7 +200,6 @@
 			UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
 			imageView.frame = CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
 			imageView.tag	= kTagImage;
-			//[cell.contentView addSubview:imageView];
 			cell.accessoryView = imageView;
 		}
 	}
@@ -387,20 +371,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     selectedNote = (Note *)[notes objectAtIndex:indexPath.row];
     
-    [self displaySelectedNoteMap];
+    loading		= [[LoadingView loadingViewInView:self.parentViewController.view messageString:@"Loading..."] retain];
+	loading.tag = 999;
+    
+    if ( selectedNote )
+	{
+		NoteViewController *mvc = [[NoteViewController alloc] initWithNote:selectedNote];
+		[[self navigationController] pushViewController:mvc animated:YES];
+		[mvc release];
+		selectedNote = nil;
+	}
 }
+
 
 #pragma mark UINavigationController
 
