@@ -69,7 +69,7 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	// disable screen lock
-	[UIApplication sharedApplication].idleTimerDisabled = YES;
+	[UIApplication sharedApplication].idleTimerDisabled = NO;
 	
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
 	
@@ -122,7 +122,7 @@
 	
 	
 	UINavigationController	*recordNav	= (UINavigationController*)[tabBarController.viewControllers 
-																	objectAtIndex:1];
+																	objectAtIndex:0];
 	//[navCon popToRootViewControllerAnimated:NO];
 	RecordTripViewController *recordVC	= (RecordTripViewController *)[recordNav topViewController];
 	[recordVC initTripManager:tripManager];
@@ -130,14 +130,14 @@
 	
 	
 	UINavigationController	*tripsNav	= (UINavigationController*)[tabBarController.viewControllers 
-																	objectAtIndex:2];
+																	objectAtIndex:1];
 	//[navCon popToRootViewControllerAnimated:NO];
 	SavedTripsViewController *tripsVC	= (SavedTripsViewController *)[tripsNav topViewController];
 	tripsVC.delegate					= recordVC;
 	[tripsVC initTripManager:tripManager];
 
 	// select Record tab at launch
-	tabBarController.selectedIndex = 1;
+	tabBarController.selectedIndex = 0;
 	
 	// set delegate to prevent changing tabs when locked
 	tabBarController.delegate = recordVC;
@@ -146,12 +146,12 @@
 	recordVC.parentView = tabBarController.view;
     
     UINavigationController *notesNav = (UINavigationController*)[tabBarController.viewControllers
-                                                                 objectAtIndex:3];
+                                                                 objectAtIndex:2];
     SavedNotesViewController *notesVC = (SavedNotesViewController *)[notesNav topViewController];
     [notesVC initNoteManager:noteManager];
 	
 	UINavigationController	*nav	= (UINavigationController*)[tabBarController.viewControllers 
-															 objectAtIndex:4];
+															 objectAtIndex:3];
 	PersonalInfoViewController *vc	= (PersonalInfoViewController *)[nav topViewController];
 	vc.managedObjectContext			= context;
     

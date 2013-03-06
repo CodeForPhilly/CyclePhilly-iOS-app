@@ -40,6 +40,7 @@
 
 #import "PersonalInfoViewController.h"
 #import "User.h"
+#import "constants.h"
 
 #define kMaxCyclingFreq 3
 
@@ -504,30 +505,75 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	switch (section) {
-		case 0:
-			return @"Tell us about yourself";
+        case 0:
+			return nil;
 			break;
 		case 1:
-			return @"Your typical commute";
+			return @"Tell us about yourself";
 			break;
 		case 2:
+			return @"Your typical commute";
+			break;
+		case 3:
 			return @"How often do you cycle?";
 			break;
-        case 3:
+        case 4:
 			return @"What kind of rider are you?";
 			break;
-        case 4:
+        case 5:
 			return @"How long have you been a cyclist?";
 			break;
 	}
     return nil;
 }
+
+//- (UIView *)tableView:(UITableView *)tbl viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView* sectionHead = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tbl.bounds.size.width, 18)];
+//    sectionHead.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+//    sectionHead.userInteractionEnabled = YES;
+//    sectionHead.tag = section;
+//    
+//    UILabel *sectionText = [[UILabel alloc] initWithFrame:CGRectMake(18, 8, tbl.bounds.size.width - 10, 18)];
+//    
+//    switch (section) {
+//		case 0:
+//			sectionText.text = @"Tell us about yourself";
+//			break;
+//		case 1:
+//			sectionText.text = @"Your typical commute";
+//			break;
+//		case 2:
+//			sectionText.text = @"How often do you cycle?";
+//			break;
+//        case 3:
+//			sectionText.text = @"What kind of rider are you?";
+//			break;
+//        case 4:
+//			sectionText.text = @"How long have you been a cyclist?";
+//			break;
+//	}
+//    sectionText.backgroundColor = [UIColor clearColor];
+//    sectionText.textColor = [UIColor colorWithHue:0.6 saturation:0.33 brightness: 0.49 alpha:1];
+//    //sectionText.shadowColor = [UIColor grayColor];
+//    //sectionText.shadowOffset = CGSizeMake(0,0.001);
+//    sectionText.font = [UIFont boldSystemFontOfSize:16];
+//    
+//    [sectionHead addSubview:sectionText];
+//    [sectionText release];
+//    
+//    return [sectionHead autorelease];
+//}
+//
+//-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return UITableViewAutomaticDimension;
+//}
 
 
 // Customize the number of rows in the table view.
@@ -535,19 +581,22 @@
 {
 	switch ( section )
 	{
-		case 0:
+        case 0:
+            return 1;
+            break;
+		case 1:
 			return 5;
 			break;
-		case 1:
+		case 2:
 			return 3;
 			break;
-		case 2:
-			return 1;
-			break;
-        case 3:
+		case 3:
 			return 1;
 			break;
         case 4:
+			return 1;
+			break;
+        case 5:
 			return 1;
 			break;
 		default:
@@ -566,7 +615,27 @@
 	// outer switch statement identifies section
 	switch ([indexPath indexAtPosition:0])
 	{
-		case 0:
+        case 0:
+		{
+			static NSString *CellIdentifier = @"Cell";
+			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			if (cell == nil) {
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+			}
+            
+			// inner switch statement identifies row
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+					cell.textLabel.text = @"Getting started with Cycle Atlanta";
+					break;
+			}
+			
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
+			break;
+
+		case 1:
 		{
 			static NSString *CellIdentifier = @"CellTextField";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -603,7 +672,7 @@
 		}
 			break;
 	
-		case 1:
+		case 2:
 		{
 			static NSString *CellIdentifier = @"CellTextField";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -631,7 +700,7 @@
 		}
 			break;
             
-        case 2:
+        case 3:
 		{
 			static NSString *CellIdentifier = @"CellTextField";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -651,7 +720,7 @@
 		}
 			break;
             
-        case 3:
+        case 4:
 		{
 			static NSString *CellIdentifier = @"CellTextField";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -672,7 +741,7 @@
 		}
 			break;
             
-        case 4:
+        case 5:
 		{
 			static NSString *CellIdentifier = @"CellTextField";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -691,6 +760,26 @@
 			
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
+            break;
+            
+//        case 5:
+//		{
+//			static NSString *CellIdentifier = @"CellTextField";
+//			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//			if (cell == nil) {
+//				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//			}
+//            
+//			// inner switch statement identifies row
+//			switch ([indexPath indexAtPosition:1])
+//			{
+//				case 0:
+//                    cell.textLabel.text = @"Getting started with Cycle Atlanta";
+//					break;
+//			}
+//			
+//			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//		}
             
 //		case 2:
 //		{
@@ -743,6 +832,9 @@
 	// [anotherViewController release];
 
 	// outer switch statement identifies section
+    NSURL *url = [NSURL URLWithString:kInstructionsURL];
+    NSURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
 	switch ([indexPath indexAtPosition:0])
 	{
 		case 0:
@@ -751,6 +843,7 @@
 			switch ([indexPath indexAtPosition:1])
 			{
 				case 0:
+                    [[UIApplication sharedApplication] openURL:[request URL]];
 					break;
 				case 1:
 					break;
@@ -795,6 +888,17 @@
 		}
             
         case 4:
+		{
+			switch ([indexPath indexAtPosition:1])
+			{
+				case 0:
+					break;
+				case 1:
+					break;
+			}
+			break;
+		}
+        case 5:
 		{
 			switch ([indexPath indexAtPosition:1])
 			{
