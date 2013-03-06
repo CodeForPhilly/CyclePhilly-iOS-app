@@ -72,30 +72,71 @@
 
 - (void)initInfoView
 {
-	infoView					= [[UIView alloc] initWithFrame:CGRectMake(0,0,320,460)];
-	infoView.alpha				= kInfoViewAlpha;
-	infoView.backgroundColor	= [UIColor blackColor];
-	
-	UILabel *notesHeader		= [[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)];
-	notesHeader.backgroundColor = [UIColor clearColor];
-	notesHeader.font			= [UIFont boldSystemFontOfSize:18.0];
-	notesHeader.opaque			= NO;
-	notesHeader.text			= @"Details";
-	notesHeader.textColor		= [UIColor whiteColor];
-	[infoView addSubview:notesHeader];
-	
-	UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,200)];
-	notesText.backgroundColor	= [UIColor clearColor];
-	notesText.editable			= NO;
-	notesText.font				= [UIFont systemFontOfSize:16.0];
-	notesText.text				= note.details;
-	notesText.textColor			= [UIColor whiteColor];
-	[infoView addSubview:notesText];
-    
-    UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(9, 160, 180, 240)];
-    noteImage.backgroundColor   = [UIColor clearColor];
-    noteImage.image= [UIImage imageWithData:note.image_data];
-    [infoView addSubview:noteImage];
+	infoView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,460)];
+    NSInteger textLength = [note.details length];
+    int row = 1+(textLength-1)/34;
+	if ([note.image_data length] != 0 && textLength != 0) {
+        infoView.alpha = 1.0;
+        infoView.backgroundColor = [UIColor blackColor];
+        
+        UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+        noteImage.image= [UIImage imageWithData:note.image_data];
+        [infoView addSubview:noteImage];
+        
+        UIImageView *bgImageHeader      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 74, 320, 36)];
+        bgImageHeader.backgroundColor = [UIColor blackColor];
+        bgImageHeader.alpha = 0.8;
+        [infoView addSubview:bgImageHeader];
+        
+        UILabel *notesHeader		= [[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)];
+        notesHeader.backgroundColor = [UIColor clearColor];
+        notesHeader.font			= [UIFont boldSystemFontOfSize:18.0];
+        notesHeader.opaque			= NO;
+        notesHeader.text			= @"Details";
+        notesHeader.textColor		= [UIColor whiteColor];
+        [infoView addSubview:notesHeader];
+        
+        UIImageView *bgImageText      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+11)];
+        bgImageText.backgroundColor = [UIColor blackColor];
+        bgImageText.alpha = 0.8;
+        [infoView addSubview:bgImageText];
+        
+        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row)];
+        notesText.backgroundColor	= [UIColor clearColor];
+        notesText.editable			= NO;
+        notesText.font				= [UIFont systemFontOfSize:16.0];
+        notesText.text				= note.details;
+        notesText.textColor			= [UIColor whiteColor];
+        [infoView addSubview:notesText];
+    }
+    if ([note.image_data length] != 0 && textLength == 0) {
+        infoView.alpha = 1.0;
+        infoView.backgroundColor = [UIColor blackColor];
+        
+        UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+        noteImage.image= [UIImage imageWithData:note.image_data];
+        [infoView addSubview:noteImage];
+    }
+    else if ([note.image_data length] == 0 && textLength != 0) {
+        infoView.alpha				= kInfoViewAlpha;
+        infoView.backgroundColor	= [UIColor blackColor];
+        
+        UILabel *notesHeader		= [[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)];
+        notesHeader.backgroundColor = [UIColor clearColor];
+        notesHeader.font			= [UIFont boldSystemFontOfSize:18.0];
+        notesHeader.opaque			= NO;
+        notesHeader.text			= @"Details";
+        notesHeader.textColor		= [UIColor whiteColor];
+        [infoView addSubview:notesHeader];
+        
+        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,200)];
+        notesText.backgroundColor	= [UIColor clearColor];
+        notesText.editable			= NO;
+        notesText.font				= [UIFont systemFontOfSize:16.0];
+        notesText.text				= note.details;
+        notesText.textColor			= [UIColor whiteColor];
+        [infoView addSubview:notesText];
+    }
 }
 
 

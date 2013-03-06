@@ -617,7 +617,7 @@
 	{
         case 0:
 		{
-			static NSString *CellIdentifier = @"Cell";
+			static NSString *CellIdentifier = @"CellInstruction";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -637,7 +637,7 @@
 
 		case 1:
 		{
-			static NSString *CellIdentifier = @"CellTextField";
+			static NSString *CellIdentifier = @"CellPersonalInfo";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -674,7 +674,7 @@
 	
 		case 2:
 		{
-			static NSString *CellIdentifier = @"CellTextField";
+			static NSString *CellIdentifier = @"CellZip";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -702,7 +702,7 @@
             
         case 3:
 		{
-			static NSString *CellIdentifier = @"CellTextField";
+			static NSString *CellIdentifier = @"CellFrequecy";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -722,7 +722,7 @@
             
         case 4:
 		{
-			static NSString *CellIdentifier = @"CellTextField";
+			static NSString *CellIdentifier = @"CellType";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -743,7 +743,7 @@
             
         case 5:
 		{
-			static NSString *CellIdentifier = @"CellTextField";
+			static NSString *CellIdentifier = @"CellHistory";
 			cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 			if (cell == nil) {
 				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
