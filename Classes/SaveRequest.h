@@ -51,6 +51,6 @@
 @property (nonatomic, retain) NSMutableDictionary *postVars;
 @property (nonatomic, retain) NSString *deviceUniqueIdHash;
 
-- initWithPostVars:(NSDictionary *)inPostVars with:(NSInteger) type;
+- initWithPostVars:(NSDictionary *)inPostVars with:(NSInteger) type image:(NSData*) imageData;
 
 @end

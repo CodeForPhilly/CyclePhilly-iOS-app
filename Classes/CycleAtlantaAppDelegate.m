@@ -69,7 +69,11 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	// disable screen lock
+<<<<<<< HEAD
 	[UIApplication sharedApplication].idleTimerDisabled = NO;
+=======
+	//[UIApplication sharedApplication].idleTimerDisabled = YES;
+>>>>>>> some progress toward fixing the note w/ image upload
 	
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
 	

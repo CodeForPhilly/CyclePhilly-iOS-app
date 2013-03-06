@@ -576,7 +576,7 @@
 							  [NSString stringWithFormat:@"%d", kSaveProtocolVersion], @"version",
 							  nil];
 	// create save request
-	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:3];
+	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL];
 	
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]

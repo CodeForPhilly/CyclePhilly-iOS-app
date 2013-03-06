@@ -189,13 +189,13 @@
     NSString *noteJson = [[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding];
     
 	// NOTE: device hash added by SaveRequest initWithPostVars
-	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys: 
                               noteJson, @"note",
 							  [NSString stringWithFormat:@"%d", kSaveNoteProtocolVersion], @"version",
-                              [NSData dataWithData:note.image_data], @"image_data",
+//                              [NSData dataWithData:note.image_data], @"image_data",
 							  nil];
 	// create save request
-	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4];
+	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4 image:note.image_data];
 	
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];

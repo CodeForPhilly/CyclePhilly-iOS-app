@@ -48,7 +48,7 @@
 
 #pragma mark init
 
-- initWithPostVars:(NSDictionary *)inPostVars with:(NSInteger) type;
+- initWithPostVars:(NSDictionary *)inPostVars with:(NSInteger) type image:(NSData*) imageData;
 {
 	if (self = [super init])
 	{
@@ -68,42 +68,94 @@
             [request setValue:@"4" forHTTPHeaderField:@"Cycleatl-Protocol-Version"];
         }
         
-        [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
-        // this is a bit grotty, but it indicates a) cycleatl namespace
-        // b) trip upload, c) version 3, d) form encoding
-        [request setValue:@"application/vnd.cycleatl.trip-v3+form" forHTTPHeaderField:@"Content-Type"];
-        self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
-        // NSLog(@"postVars = %@", postVars);
+        if (type == 4){
+            // string constant for the post parameter 'file'. My server uses this name: `file`. Your's may differ
+            NSString* FileParamConstant = @"file";
+            
+            // the server url to which the image (or the media) is uploaded. Use your server url here
+            NSURL* requestURL = [NSURL URLWithString:@""];
+            
+            
+            NSString *boundary = @"cycle*******notedata*******atlanta";
+            // do the work for the note manager
+            // set Content-Type in HTTP header
+            NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+            [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
+            
+            self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
+            [postVars setObject:deviceUniqueIdHash forKey:@"device"];
+            // post body
+            NSMutableData *body = [NSMutableData data];
+            
+            // add note details (all params are strings)
+            for (NSString *key in postVars) {
+                [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"%@\r\n", [postVars objectForKey:key]] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            
+            // add image data
+            //NSData *imageData = UIImageJPEGRepresentation(imageToPost, 1.0);
+            if (imageData) {
+                NSLog(@"there's an image");
+                [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n", FileParamConstant] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:imageData];
+                [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            
+            [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            NSString* bodyString = [NSString stringWithUTF8String:[body bytes]];
+            NSLog(@"Note POST body: %@", bodyString);
+            
+            // setting the body of the post to the reqeust
+            [request setHTTPBody:body];
+            
+            // set the content-length
+            NSString *postLength = [NSString stringWithFormat:@"%d", [body length]];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+                                
+            //
+        } else {
         
-		// add hash of device id
-		[postVars setObject:deviceUniqueIdHash forKey:@"device"];
-        
-        //convert dict to string
-		NSMutableString *postBody = [NSMutableString string];
-        
-        NSString *sep = @"";
-		for(NSString * key in postVars) {
-			[postBody appendString:[NSString stringWithFormat:@"%@%@=%@",
-                                    sep,
-                                    key,
-                                    [postVars objectForKey:key]]];
-            sep = @"&";
+            [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
+            // this is a bit grotty, but it indicates a) cycleatl namespace
+            // b) trip upload, c) version 3, d) form encoding
+            [request setValue:@"application/vnd.cycleatl.trip-v3+form" forHTTPHeaderField:@"Content-Type"];
+            self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
+            // NSLog(@"postVars = %@", postVars);
+            
+            // add hash of device id
+            [postVars setObject:deviceUniqueIdHash forKey:@"device"];
+            
+            //convert dict to string
+            NSMutableString *postBody = [NSMutableString string];
+            
+            NSString *sep = @"";
+            for(NSString * key in postVars) {
+                [postBody appendString:[NSString stringWithFormat:@"%@%@=%@",
+                                        sep,
+                                        key,
+                                        [postVars objectForKey:key]]];
+                sep = @"&";
+            }
+            //append actual image data
+            // for (each image to upload){
+            //      [postBody appendString 
+            
+            NSLog(@"Post body unzipped: %@", postBody);
+            // gzip the POST payload
+            NSData *originalData = [postBody dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *postBodyDataZipped = [ZipUtil gzipDeflate:originalData];
+            
+            NSLog(@"Initializing HTTP POST request to %@ of size %d, orig size %d",
+                  kSaveURL, [postBodyDataZipped length], [originalData length]);
+            
+            [request setValue:[NSString stringWithFormat:@"%d", [postBodyDataZipped length]] forHTTPHeaderField:@"Content-Length"];
+            //set the POST body
+            [request setHTTPBody:postBodyDataZipped];
         }
-        //append actual image data
-        // for (each image to upload){
-        //      [postBody appendString 
-        
-        NSLog(@"Post body unzipped: %@", postBody);
-        // gzip the POST payload
-        NSData *originalData = [postBody dataUsingEncoding:NSUTF8StringEncoding];
-        NSData *postBodyDataZipped = [ZipUtil gzipDeflate:originalData];
-        
-		NSLog(@"Initializing HTTP POST request to %@ of size %d, orig size %d",
-			  kSaveURL, [postBodyDataZipped length], [originalData length]);
-        
-        [request setValue:[NSString stringWithFormat:@"%d", [postBodyDataZipped length]] forHTTPHeaderField:@"Content-Length"];
-        //set the POST body
-        [request setHTTPBody:postBodyDataZipped];
         
 	}
     
