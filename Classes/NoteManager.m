@@ -195,7 +195,7 @@
     UIGraphicsEndImageContext();
     
     
-    NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 1)];
+    NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, kJpegQuality)];
     
     NSLog(@"Size of Image(bytes):%d", [uploadData length]);
     

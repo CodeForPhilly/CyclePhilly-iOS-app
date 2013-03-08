@@ -56,6 +56,7 @@
 #define kStdButtonWidth			106.0
 #define kStdButtonHeight		40.0
 
+#define kJpegQuality        0.9
 
 // error messages
 #define kConnectionError	@"Server unreachable, \n try again later."
