@@ -119,7 +119,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 - (void)didReceiveMemoryWarning
 {
-    NSLog(@"DetailViewController");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -142,7 +141,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 0)];
+    imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 1)];
     
     
     UIImage *compressedImage=[UIImage imageWithData:imageData];

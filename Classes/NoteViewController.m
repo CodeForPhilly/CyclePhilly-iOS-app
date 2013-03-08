@@ -9,6 +9,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "NoteViewController.h"
 #import "LoadingView.h"
+#import "TripPurposeDelegate.h"
 #import "Note.h"
 
 #define kFudgeFactor	1.5
@@ -96,12 +97,12 @@
         notesHeader.textColor		= [UIColor whiteColor];
         [infoView addSubview:notesHeader];
         
-        UIImageView *bgImageText      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+11)];
+        UIImageView *bgImageText      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+20)];
         bgImageText.backgroundColor = [UIColor blackColor];
         bgImageText.alpha = 0.8;
         [infoView addSubview:bgImageText];
         
-        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row)];
+        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row+10)];
         notesText.backgroundColor	= [UIColor clearColor];
         notesText.editable			= NO;
         notesText.font				= [UIFont systemFontOfSize:16.0];
@@ -150,7 +151,9 @@
 	{
 		// format date as a string
         NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-        [outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [outputFormatter setDateStyle:kCFDateFormatterMediumStyle];
+        [outputFormatter setTimeStyle:kCFDateFormatterShortStyle];
+         //@"yyyy-MM-dd HH:mm:ss"];
         NSString *newDateString = [outputFormatter stringFromDate:note.recorded];
 		
 		self.navigationItem.prompt = [NSString stringWithFormat:@"Time: %@",newDateString];
@@ -332,21 +335,48 @@ UIImage *shrinkImage1(UIImage *original, CGSize size) {
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation
 {
-    MKPinAnnotationView *noteAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"notePin"];
-    if ([note.note_type intValue]>=0 && [note.note_type intValue]<=5) {
-        noteAnnotation.pinColor = MKPinAnnotationColorRed;
+
+//    // Try to dequeue an existing pin view first.
+//    MKPinAnnotationView* pinView = (MKPinAnnotationView*)[mapView
+//                                                          dequeueReusableAnnotationViewWithIdentifier:@"LastCoord"];
+//    
+//    if ( !pinView )
+//    {
+//        // If an existing pin view was not available, create one
+//        pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"LastCoord"]
+//                   autorelease];
+//        
+//        pinView.animatesDrop = YES;
+//        pinView.canShowCallout = YES;
+//        pinView.pinColor = MKPinAnnotationColorRed;
+//    }
+//    
+//    annotationView = pinView;
+    
+    
+    
+    MKAnnotationView *noteAnnotation = (MKAnnotationView*)[noteView dequeueReusableAnnotationViewWithIdentifier:@"notePin"];
+    
+    if (!noteAnnotation)
+    {
+        // If an existing pin view was not available, create one
+        noteAnnotation = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"notePin"]
+                          autorelease];
+        if ([note.note_type intValue]>=0 && [note.note_type intValue]<=5) {
+            noteAnnotation.image = [UIImage imageNamed:@"noteIssuePicker.png"];
+            NSLog(@"Note Pin Note This Issue");
+        }
+        else if ([note.note_type intValue]>=6 && [note.note_type intValue]<=11) {
+            noteAnnotation.image = [UIImage imageNamed:@"noteAssetPicker.png"];
+            NSLog(@"Note Pin Note This Asset");
+        }
     }
-    else if ([note.note_type intValue]>=6 && [note.note_type intValue]<=11) {
-        noteAnnotation.pinColor = MKPinAnnotationColorGreen;
-    }
-    noteAnnotation.animatesDrop = YES;
-    noteAnnotation.canShowCallout = YES;
+    
     return noteAnnotation;
 }
 
 - (void)didReceiveMemoryWarning
 {
-    NSLog(@"NoteViewController");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

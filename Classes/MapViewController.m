@@ -151,7 +151,7 @@
 		static NSDateFormatter *dateFormatter = nil;
 		if (dateFormatter == nil) {
 			dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+			[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 			[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 		}
 		
@@ -163,7 +163,7 @@
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
 		NSDate *fauxDate = [inputFormatter dateFromString:@"00:00:00"];
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
-		NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue] 
+		NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue]
 														sinceDate:fauxDate];
 
 		double mph = ( [trip.distance doubleValue] / 1609.344 ) / ( [trip.duration doubleValue] / 3600. );
@@ -464,7 +464,6 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 */
 
 - (void)didReceiveMemoryWarning {
-    NSLog(@"MapViewController");
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	

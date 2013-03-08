@@ -129,7 +129,7 @@
             // for (each image to upload){
             //      [postBody appendString 
             
-            NSLog(@"Post body unzipped: %@", postBody);
+            //NSLog(@"Post body unzipped: %@", postBody);
             // gzip the POST payload
             NSData *originalData = [postBody dataUsingEncoding:NSUTF8StringEncoding];
             NSData *postBodyDataZipped = [ZipUtil gzipDeflate:originalData];
