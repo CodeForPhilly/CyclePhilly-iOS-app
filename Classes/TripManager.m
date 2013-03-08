@@ -817,6 +817,7 @@
 	[self createTripNotesText];
 	[tripNotes addSubview:tripNotesText];
 	[tripNotes show];
+    [self.tripNotesText becomeFirstResponder];
 	[tripNotes release];
     NSLog(@"prompt for notes");
 }

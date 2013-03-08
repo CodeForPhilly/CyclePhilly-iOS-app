@@ -80,11 +80,17 @@
         infoView.alpha = 1.0;
         infoView.backgroundColor = [UIColor blackColor];
         
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+        
         UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
         noteImage.image= [UIImage imageWithData:note.image_data];
-        [infoView addSubview:noteImage];
+        noteImage.contentMode = UIViewContentModeScaleAspectFill;
         
-        UIImageView *bgImageHeader      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 74, 320, 36)];
+        [scrollView addSubview:noteImage];
+        
+        [infoView addSubview:scrollView];
+        
+        UIImageView *bgImageHeader      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
         bgImageHeader.backgroundColor = [UIColor blackColor];
         bgImageHeader.alpha = 0.8;
         [infoView addSubview:bgImageHeader];
@@ -97,12 +103,12 @@
         notesHeader.textColor		= [UIColor whiteColor];
         [infoView addSubview:notesHeader];
         
-        UIImageView *bgImageText      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+20)];
+        UIImageView *bgImageText      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+25)];
         bgImageText.backgroundColor = [UIColor blackColor];
         bgImageText.alpha = 0.8;
         [infoView addSubview:bgImageText];
         
-        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row+10)];
+        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row+15)];
         notesText.backgroundColor	= [UIColor clearColor];
         notesText.editable			= NO;
         notesText.font				= [UIFont systemFontOfSize:16.0];
@@ -114,8 +120,15 @@
         infoView.alpha = 1.0;
         infoView.backgroundColor = [UIColor blackColor];
         
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
         UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
         noteImage.image= [UIImage imageWithData:note.image_data];
+        noteImage.contentMode = UIViewContentModeScaleAspectFill;
+        
+        [scrollView addSubview:noteImage];
+        
+        [infoView addSubview:scrollView];
+        
         [infoView addSubview:noteImage];
     }
     else if ([note.image_data length] == 0 && textLength != 0) {
@@ -140,7 +153,6 @@
     }
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -151,9 +163,9 @@
 	{
 		// format date as a string
         NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-        [outputFormatter setDateStyle:kCFDateFormatterMediumStyle];
         [outputFormatter setTimeStyle:kCFDateFormatterShortStyle];
-         //@"yyyy-MM-dd HH:mm:ss"];
+        [outputFormatter setDateStyle:kCFDateFormatterMediumStyle];
+        
         NSString *newDateString = [outputFormatter stringFromDate:note.recorded];
 		
 		self.navigationItem.prompt = [NSString stringWithFormat:@"Time: %@",newDateString];

@@ -374,8 +374,8 @@
     
     selectedNote = (Note *)[notes objectAtIndex:indexPath.row];
     
-    loading		= [[LoadingView loadingViewInView:self.parentViewController.view messageString:@"Loading..."] retain];
-	loading.tag = 999;
+//    loading		= [[LoadingView loadingViewInView:self.parentViewController.view messageString:@"Loading..."] retain];
+//	loading.tag = 999;
     
     if ( selectedNote )
 	{

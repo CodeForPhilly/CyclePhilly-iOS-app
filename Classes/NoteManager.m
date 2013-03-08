@@ -175,7 +175,29 @@
         note.image_url = [NSString stringWithFormat:@"%@-%@-type-%@",deviceUniqueIdHash1,newDateStringURL,note.note_type];
     }
     NSLog(@"img_url: %@", note.image_url);
-    NSLog(@"Size of Image(bytes):%d", [note.image_data length]);
+    
+    UIImage *castedImage = [[UIImage alloc] initWithData:note.image_data];
+    
+    CGSize size;
+    
+    if (castedImage.size.height > castedImage.size.width) {
+        size.height = 640;
+        size.width = 480;
+    }
+    else if (castedImage.size.height < castedImage.size.width) {
+        size.height = 480;
+        size.width = 640;
+    }
+    
+    UIGraphicsBeginImageContext(size);
+    [castedImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 1)];
+    
+    NSLog(@"Size of Image(bytes):%d", [uploadData length]);
     
     [noteDict setValue:note.image_url forKey:@"i"];  //image_url
     //[noteDict setValue:note.image_data forKey:@"g"];  //image_data
@@ -195,7 +217,7 @@
 //                              [NSData dataWithData:note.image_data], @"image_data",
 							  nil];
 	// create save request
-	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4 image:note.image_data];
+	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4 image:uploadData];
 	
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];

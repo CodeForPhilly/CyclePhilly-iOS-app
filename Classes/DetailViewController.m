@@ -133,32 +133,28 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
     
     CGSize size;
-    size.height = 640;
-    size.width = 480;
+    
+    if (castedImage.size.height > castedImage.size.width) {
+        size.height = 1080;
+        size.width = 810;
+    }
+    else if (castedImage.size.height < castedImage.size.width) {
+        size.height = 810;
+        size.width = 1080;
+    }
     
     UIGraphicsBeginImageContext(size);
     [castedImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
     UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+    
     imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 1)];
-    
-    
-    UIImage *compressedImage=[UIImage imageWithData:imageData];
     
     NSLog(@"Size of Image(bytes):%d",[imageData length]);
     
-    /*NSDictionary *gpsDict   = [NSDictionary dictionaryWithObjectsAndKeys:
-                               [NSNumber numberWithFloat:fabs(loc.coordinate.latitude)], kCGImagePropertyGPSLatitude
-                               , ((loc.coordinate.latitude >= 0) ? @"N" : @"S"), kCGImagePropertyGPSLatitudeRef
-                               , [NSNumber numberWithFloat:fabs(loc.coordinate.longitude)], kCGImagePropertyGPSLongitude
-                               , ((loc.coordinate.longitude >= 0) ? @"E" : @"W"), kCGImagePropertyGPSLongitudeRef
-                               , [formatter stringFromDate:[loc timestamp]], kCGImagePropertyGPSTimeStamp
-                               , [NSNumber numberWithFloat:fabs(loc.altitude)], kCGImagePropertyGPSAltitude
-                               , nil];*/
-
-    self.image = compressedImage;
-    //[addPicButton setTitle:@" " forState:UIControlStateNormal];
+    self.image = castedImage;
+    
     [picker dismissModalViewControllerAnimated:YES];
 }
 
