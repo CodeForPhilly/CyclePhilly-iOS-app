@@ -52,14 +52,17 @@
 {
 	if (self = [super init])
 	{
-		// Nab the unique device id hash from our delegate.
-		CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-		self.deviceUniqueIdHash = delegate.uniqueIDHash;
-        
 		// create request.
         self.request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:kSaveURL]];
         [request setHTTPMethod:@"POST"];
+        
+        // Nab the unique device id hash from our delegate.
+		CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+		self.deviceUniqueIdHash = delegate.uniqueIDHash;
+        
+        self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
+        [postVars setObject:deviceUniqueIdHash forKey:@"device"];
         
         if (type == 3) {
             [request setValue:@"3" forHTTPHeaderField:@"Cycleatl-Protocol-Version"];
@@ -69,13 +72,12 @@
         }
         
         if (type == 4){
-            NSString* FileParamConstant = @"file";
+            // create the POST request for saving a Note
             NSString *boundary = @"cycle*******notedata*******atlanta";
             NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
             [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
             
-            self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
-            [postVars setObject:deviceUniqueIdHash forKey:@"device"];
+            
             // post body
             NSMutableData *body = [NSMutableData data];
             
@@ -90,7 +92,7 @@
             if (imageData) {
                 NSLog(@"there's an image");
                 [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-                [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.jpg\"\r\n", FileParamConstant, deviceUniqueIdHash] dataUsingEncoding:NSUTF8StringEncoding]];
+                [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@.jpg\"\r\n", deviceUniqueIdHash] dataUsingEncoding:NSUTF8StringEncoding]];
                 [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                 [body appendData:imageData];
                 [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -106,16 +108,11 @@
             [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
             
         } else {
-        
+            // create the POST request for saving a Trip
             [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
             // this is a bit grotty, but it indicates a) cycleatl namespace
             // b) trip upload, c) version 3, d) form encoding
-            [request setValue:@"application/vnd.cycleatl.trip-v3+form" forHTTPHeaderField:@"Content-Type"];
-            self.postVars = [NSMutableDictionary dictionaryWithDictionary:inPostVars];
-            // NSLog(@"postVars = %@", postVars);
-            
-            // add hash of device id
-            [postVars setObject:deviceUniqueIdHash forKey:@"device"];
+            [request setValue:@"application/vnd.cycleatl.trip-v3+form" forHTTPHeaderField:@"Content-Type"];            
             
             //convert dict to string
             NSMutableString *postBody = [NSMutableString string];
