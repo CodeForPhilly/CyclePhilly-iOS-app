@@ -34,7 +34,7 @@
 //
 //  Copyright 2009-2010 SFCTA. All rights reserved.
 //  Written by Matt Paul <mattpaul@mopimp.com> on 9/28/09.
-//	For more information on the project, 
+//	For more information on the project,
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
 
@@ -59,13 +59,13 @@
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+ // Custom initialization
+ }
+ return self;
+ }
+ */
 
 - (id)initWithTrip:(Trip *)_trip
 {
@@ -80,10 +80,10 @@
 
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView {
+ }
+ */
 
 
 - (void)infoAction:(UIButton*)sender
@@ -144,7 +144,7 @@
     [super viewDidLoad];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = NO;
-
+    
 	if ( trip )
 	{
 		// format date as a string
@@ -165,15 +165,15 @@
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
 		NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue]
 														sinceDate:fauxDate];
-
+        
 		double mph = ( [trip.distance doubleValue] / 1609.344 ) / ( [trip.duration doubleValue] / 3600. );
 		
 		self.navigationItem.prompt = [NSString stringWithFormat:@"elapsed: %@ ~ %@",
  									  [inputFormatter stringFromDate:outputDate],
 									  [dateFormatter stringFromDate:[trip start]]];
-
+        
 		self.title = [NSString stringWithFormat:@"%.1f mi ~ %.1f mph",
-					  [trip.distance doubleValue] / 1609.344, 
+					  [trip.distance doubleValue] / 1609.344,
 					  mph ];
 		
 		//self.title = trip.purpose;
@@ -191,14 +191,14 @@
 			
 			[self initInfoView];
 		}
-
+        
 		// sort coords by recorded date
 		/*
-		NSSortDescriptor *dateDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"recorded"
-																		ascending:YES] autorelease];
-		NSArray *sortDescriptors = [NSArray arrayWithObjects:dateDescriptor, nil];
-		NSArray *sortedCoords = [[trip.coords allObjects] sortedArrayUsingDescriptors:sortDescriptors];
-		*/
+         NSSortDescriptor *dateDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"recorded"
+         ascending:YES] autorelease];
+         NSArray *sortDescriptors = [NSArray arrayWithObjects:dateDescriptor, nil];
+         NSArray *sortedCoords = [[trip.coords allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+         */
 		
 		// filter coords by hAccuracy
 		NSPredicate *filterByAccuracy	= [NSPredicate predicateWithFormat:@"hAccuracy < 100.0"];
@@ -221,13 +221,13 @@
 		NSNumber *maxLat = [NSNumber numberWithDouble:0.0];
 		NSNumber *minLon = [NSNumber numberWithDouble:0.0];
 		NSNumber *maxLon = [NSNumber numberWithDouble:0.0];
-
+        
         NSMutableArray *routeCoords = [[NSMutableArray alloc]init];
         
 		for ( Coord *coord in sortedCoords )
 		{
 			// only plot unique coordinates to our map for performance reasons
-			if ( !last || 
+			if ( !last ||
 				(![coord.latitude  isEqualToNumber:last.latitude] &&
 				 ![coord.longitude isEqualToNumber:last.longitude] ) )
 			{
@@ -247,7 +247,7 @@
 					first = NO;
 					//pin.first = YES;
 					//pin.title = @"Start";
-					//pin.subtitle = [dateFormatter stringFromDate:coord.recorded];                    
+					//pin.subtitle = [dateFormatter stringFromDate:coord.recorded];
 					
 					// initialize min/max values to the first coord
 					minLat = coord.latitude;
@@ -269,7 +269,7 @@
 					
 					if ( [maxLon compare:coord.longitude] == NSOrderedAscending )
 						maxLon = coord.longitude;
-				}				
+				}
 				
 				//[mapView addAnnotation:pin];
 				count++;
@@ -279,13 +279,13 @@
 			last = coord;
 		}
         NSLog(@"routeCoords array is this long: %d@", [routeCoords count]);
-
+        
         NSUInteger numPoints = [routeCoords count];
         CLLocationCoordinate2D *routePath = malloc(numPoints * sizeof(CLLocationCoordinate2D));
         for (NSUInteger index=0; index < numPoints; index ++){
             routePath[index] = [[routeCoords objectAtIndex:index] coordinate];
         }
-
+        
         self.routeLine = [MKPolyline polylineWithCoordinates:routePath count:count];
         [mapView addOverlay:self.routeLine];
         [mapView setNeedsDisplay];
@@ -299,7 +299,7 @@
         endPoint.coordinate = routePath[numPoints-1];
         endPoint.title = @"End";
         [mapView addAnnotation:endPoint];
-
+        
         
         //free(routePath);
 		
@@ -318,11 +318,11 @@
 		{
 			// calculate region from coords min/max lat/lon
 			/*
-			NSLog(@"minLat = %f", [minLat doubleValue]);
-			NSLog(@"maxLat = %f", [maxLat doubleValue]);
-			NSLog(@"minLon = %f", [minLon doubleValue]);
-			NSLog(@"maxLon = %f", [maxLon doubleValue]);
-			*/
+             NSLog(@"minLat = %f", [minLat doubleValue]);
+             NSLog(@"maxLat = %f", [maxLat doubleValue]);
+             NSLog(@"minLon = %f", [minLon doubleValue]);
+             NSLog(@"maxLon = %f", [maxLon doubleValue]);
+             */
 			
 			// add a small fudge factor to ensure
 			// North-most pins are visible
@@ -334,10 +334,10 @@
 			if ( lonDelta < kMinLonDelta )
 				lonDelta = kMinLonDelta;
 			
-//			MKCoordinateRegion region = { { [minLat doubleValue] + latDelta / 2,
-//											[minLon doubleValue] + lonDelta / 2 }, 
-//										  { latDelta, 
-//											lonDelta } };
+            //			MKCoordinateRegion region = { { [minLat doubleValue] + latDelta / 2,
+            //											[minLon doubleValue] + lonDelta / 2 },
+            //										  { latDelta,
+            //											lonDelta } };
             MKCoordinateRegion region = { { (routePath[0].latitude + routePath[numPoints-1].latitude) / 2,
                 (routePath[0].longitude + routePath[numPoints-1].longitude) / 2 },
                 { latDelta,
@@ -456,12 +456,12 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 
 
 /*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -520,10 +520,8 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 				// If an existing pin view was not available, create one
 				pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"FirstCoord"]
 						   autorelease];
-				
-				pinView.animatesDrop = YES;
-				pinView.canShowCallout = YES;
-				pinView.pinColor = MKPinAnnotationColorGreen;
+                pinView.image = [UIImage imageNamed:@"tripStart.png"];
+                NSLog(@"START GLYPH");
 			}
 			
 			annotationView = pinView;
@@ -539,10 +537,8 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 				// If an existing pin view was not available, create one
 				pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"LastCoord"]
 						   autorelease];
-				
-				pinView.animatesDrop = YES;
-				pinView.canShowCallout = YES;
-				pinView.pinColor = MKPinAnnotationColorRed;
+                pinView.image = [UIImage imageNamed:@"tripEnd.png"];
+                NSLog(@"STOP GLYPH");
 			}
 			
 			annotationView = pinView;
@@ -581,8 +577,14 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
         //handle 'normal' pins
         
         if([annotation.title isEqual:@"Start"]){
-            MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
-            annView.pinColor = MKPinAnnotationColorGreen;
+            MKPinAnnotationView *annView=[[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"tripPin"] autorelease];
+            annView.image = [UIImage imageNamed:@"tripStart.png"];
+            annView.centerOffset = CGPointMake(-(annView.image.size.width/4),(annView.image.size.height/3));
+            return annView;
+        }else if ([annotation.title isEqual:@"End"]){
+            MKPinAnnotationView *annView=[[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"tripPin"] autorelease];
+            annView.image = [UIImage imageNamed:@"tripEnd.png"];
+            annView.centerOffset = CGPointMake(-(annView.image.size.width/4),(annView.image.size.height/3));
             return annView;
         }
     }
@@ -594,7 +596,7 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 {
     MKPolylineView* lineView = [[[MKPolylineView alloc] initWithPolyline:self.routeLine] autorelease];
     lineView.strokeColor = [UIColor blueColor];
-    lineView.lineWidth = 8;
+    lineView.lineWidth = 5;
     return lineView;
 }
 
