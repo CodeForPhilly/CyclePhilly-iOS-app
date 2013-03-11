@@ -375,13 +375,13 @@ UIImage *shrinkImage1(UIImage *original, CGSize size) {
         noteAnnotation = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"notePin"]
                           autorelease];
         if ([note.note_type intValue]>=0 && [note.note_type intValue]<=5) {
-            noteAnnotation.image = [UIImage imageNamed:@"noteIssuePicker.png"];
-            noteAnnotation.centerOffset = CGPointMake(-(noteAnnotation.image.size.width/4),(noteAnnotation.image.size.height/3));
+            noteAnnotation.image = [UIImage imageNamed:@"noteIssueMapGlyph.png"];
+            //noteAnnotation.centerOffset = CGPointMake(-(noteAnnotation.image.size.width/4),(noteAnnotation.image.size.height/3));
             NSLog(@"Note Pin Note This Issue");
         }
         else if ([note.note_type intValue]>=6 && [note.note_type intValue]<=11) {
-            noteAnnotation.image = [UIImage imageNamed:@"noteAssetPicker.png"];
-            noteAnnotation.centerOffset = CGPointMake(-(noteAnnotation.image.size.width/4),(noteAnnotation.image.size.height/3));            
+            noteAnnotation.image = [UIImage imageNamed:@"noteAssetMapGlyph.png"];
+            //noteAnnotation.centerOffset = CGPointMake(-(noteAnnotation.image.size.width/4),(noteAnnotation.image.size.height/3));
             NSLog(@"Note Pin Note This Asset");
         }
     }
