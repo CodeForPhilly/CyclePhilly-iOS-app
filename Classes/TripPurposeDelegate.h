@@ -83,9 +83,11 @@
 - (void)didPickPurpose:(unsigned int)index;
 - (void)didPickNoteType:(NSNumber *)index;
 - (void)didEnterNoteDetails:(NSString *)details;
+- (void)didEnterTripDetails:(NSString *)details;
 - (void)didSaveImage:(NSData *)imgData;
 - (void)getNoteThumbnail:(NSData *)imgData;
 - (void)getTripThumbnail:(NSData *)imgData;
 - (void)saveNote;
+- (void)saveTrip;
 
 @end

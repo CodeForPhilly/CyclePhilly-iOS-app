@@ -41,6 +41,7 @@
 #import "CustomView.h"
 #import "PickerViewController.h"
 #import "DetailViewController.h"
+#import "TripDetailViewController.h"
 #import "TripManager.h"
 #import "NoteManager.h"
 #import "RecordTripViewController.h"
@@ -120,6 +121,12 @@
     if (pickerCategory == 0) {
         NSLog(@"Purpose Save button pressed");
         NSInteger row = [customPickerView selectedRowInComponent:0];
+        
+        TripDetailViewController *tripDetailViewController = [[TripDetailViewController alloc] initWithNibName:@"TripDetailViewController" bundle:nil];
+        tripDetailViewController.delegate = self.delegate;
+        
+        [self presentModalViewController:tripDetailViewController animated:YES];
+        
         [delegate didPickPurpose:row];
     }
     else if (pickerCategory == 1){

@@ -152,7 +152,7 @@
 		if (dateFormatter == nil) {
 			dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-			[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+			[dateFormatter setDateStyle:NSDateFormatterLongStyle];
 		}
 		
 		// display duration, distance as navbar prompt

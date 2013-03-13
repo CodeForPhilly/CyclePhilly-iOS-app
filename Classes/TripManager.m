@@ -806,80 +806,80 @@
 }
 
 
-- (void)promptForTripNotes
-{
-	tripNotes = [[UIAlertView alloc] initWithTitle:kTripNotesTitle
-										   message:@"\n\n\n"
-										  delegate:self
-								 cancelButtonTitle:@"Skip"
-								 otherButtonTitles:@"OK", nil];
-
-	[self createTripNotesText];
-	[tripNotes addSubview:tripNotesText];
-	[tripNotes show];
-    [self.tripNotesText becomeFirstResponder];
-	[tripNotes release];
-    NSLog(@"prompt for notes");
-}
-
-
-#pragma mark UIAlertViewDelegate methods
-
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-	// determine if we're processing tripNotes or saving alert
-	if ( alertView == tripNotes )
-	{
-		NSLog(@"tripNotes didDismissWithButtonIndex: %d", buttonIndex);
-		
-		// save trip notes
-		if ( buttonIndex == 1 )
-		{
-			if ( [tripNotesText.text compare:kTripNotesPlaceholder] != NSOrderedSame )
-			{
-				NSLog(@"saving trip notes: %@", tripNotesText.text);
-				[self saveNotes:tripNotesText.text];
-			}
-		}
-		
-		// save / upload trip
-        [self saveTrip];
-
-	}
-	
-	/*
-	else // alertView == saving
-	{
-		NSLog(@"saving didDismissWithButtonIndex: %d", buttonIndex);
-		
-		// reset button states
-		startButton.enabled = NO;
-		saveButton.enabled = NO;
-		lockButton.hidden = YES;
-		
-		// reset trip, reminder managers
-		NSManagedObjectContext *context = tripManager.managedObjectContext;
-		Trip *trip = tripManager.trip;
-		[self initTripManager:[[TripManager alloc] initWithManagedObjectContext:context]];
-		tripManager.dirty = YES;
-		
-		if ( reminderManager )
-		{
-			[reminderManager release];
-			reminderManager = nil;
-		}
-		
-		[self resetCounter];
-		[self resetPurpose];
-		
-		// load map view of saved trip
-		MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
-		[[self navigationController] pushViewController:mvc animated:YES];
-		[mvc release];
-	}
-	 */
-}
+//- (void)promptForTripNotes
+//{
+//	tripNotes = [[UIAlertView alloc] initWithTitle:kTripNotesTitle
+//										   message:@"\n\n\n"
+//										  delegate:self
+//								 cancelButtonTitle:@"Skip"
+//								 otherButtonTitles:@"OK", nil];
+//
+//	[self createTripNotesText];
+//	[tripNotes addSubview:tripNotesText];
+//	[tripNotes show];
+//    [self.tripNotesText becomeFirstResponder];
+//	[tripNotes release];
+//    NSLog(@"prompt for notes");
+//}
+//
+//
+//#pragma mark UIAlertViewDelegate methods
+//
+//
+//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+//{
+//	// determine if we're processing tripNotes or saving alert
+//	if ( alertView == tripNotes )
+//	{
+//		NSLog(@"tripNotes didDismissWithButtonIndex: %d", buttonIndex);
+//		
+//		// save trip notes
+//		if ( buttonIndex == 1 )
+//		{
+//			if ( [tripNotesText.text compare:kTripNotesPlaceholder] != NSOrderedSame )
+//			{
+//				NSLog(@"saving trip notes: %@", tripNotesText.text);
+//				[self saveNotes:tripNotesText.text];
+//			}
+//		}
+//		
+//		// save / upload trip
+//        [self saveTrip];
+//
+//	}
+//	
+//	/*
+//	else // alertView == saving
+//	{
+//		NSLog(@"saving didDismissWithButtonIndex: %d", buttonIndex);
+//		
+//		// reset button states
+//		startButton.enabled = NO;
+//		saveButton.enabled = NO;
+//		lockButton.hidden = YES;
+//		
+//		// reset trip, reminder managers
+//		NSManagedObjectContext *context = tripManager.managedObjectContext;
+//		Trip *trip = tripManager.trip;
+//		[self initTripManager:[[TripManager alloc] initWithManagedObjectContext:context]];
+//		tripManager.dirty = YES;
+//		
+//		if ( reminderManager )
+//		{
+//			[reminderManager release];
+//			reminderManager = nil;
+//		}
+//		
+//		[self resetCounter];
+//		[self resetPurpose];
+//		
+//		// load map view of saved trip
+//		MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
+//		[[self navigationController] pushViewController:mvc animated:YES];
+//		[mvc release];
+//	}
+//	 */
+//}
 
 
 #pragma mark ActivityIndicatorDelegate methods

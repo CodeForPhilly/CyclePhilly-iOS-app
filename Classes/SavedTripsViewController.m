@@ -817,13 +817,14 @@
 			*/
 			
 			// Trip Purpose
-			NSLog(@"INIT + PUSH");
-			PickerViewController *pickerViewController = [[PickerViewController alloc]
-														  initWithNibName:@"TripPurposePicker" bundle:nil];
-			[pickerViewController setDelegate:self];
-			//[[self navigationController] pushViewController:pickerViewController animated:YES];
-			[self.navigationController presentModalViewController:pickerViewController animated:YES];
-			[pickerViewController release];
+//			NSLog(@"INIT + PUSH");
+//			PickerViewController *pickerViewController = [[PickerViewController alloc]
+//														  initWithNibName:@"TripPurposePicker" bundle:nil];
+//			[pickerViewController setDelegate:self];
+//			//[[self navigationController] pushViewController:pickerViewController animated:YES];
+//			[self.navigationController presentModalViewController:pickerViewController animated:YES];
+//			[pickerViewController release];
+            [tripManager saveTrip];
 			break;
 			
 		//case kActionSheetButtonCancel:
@@ -914,7 +915,7 @@
 {
 	[self.navigationController dismissModalViewControllerAnimated:YES];
 	[tripManager setPurpose:index];
-	[tripManager promptForTripNotes];
+	//[tripManager promptForTripNotes];
 }
 
 - (void)dealloc {

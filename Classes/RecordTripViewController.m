@@ -845,8 +845,7 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didPickPurpose:(unsigned int)index
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
-	
+	//[self.navigationController dismissModalViewControllerAnimated:YES];
 	// update UI
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = NO;
@@ -857,8 +856,18 @@ shouldSelectViewController:(UIViewController *)viewController
 	[self resetTimer];
 	
 	[tripManager setPurpose:index];
-	[tripManager promptForTripNotes];
+	//[tripManager promptForTripNotes];
     //do something here: may change to be the save as a separate view. Not prompt.
+}
+
+- (void)didEnterTripDetails:(NSString *)details{
+    [tripManager saveNotes:details];
+    NSLog(@"Trip Added details: %@",details);
+}
+
+- (void)saveTrip{
+    [tripManager saveTrip];
+    NSLog(@"Save trip");
 }
 
 - (void)didPickNoteType:(NSNumber *)index
@@ -870,7 +879,7 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didEnterNoteDetails:(NSString *)details{
     [noteManager.note setDetails:details];
-    NSLog(@"Added details: %@", noteManager.note.details);
+    NSLog(@"Note Added details: %@", noteManager.note.details);
 }
 
 - (void)didSaveImage:(NSData *)imgData{
