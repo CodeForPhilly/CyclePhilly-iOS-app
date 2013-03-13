@@ -121,7 +121,7 @@ CGPathRef NewPathWithRoundRect(CGRect rect, CGFloat cornerRadius)
     
 	// LoadingView *loadingView = [[[LoadingView alloc] initWithFrame:[aSuperview bounds]] autorelease];
 	CGRect frame    = CGRectMake(floor(0.5 * (320 - DEFAULT_LABEL_WIDTH)),
-								 floor(0.5 * (480 - DEFAULT_LABEL_HEIGHT)), 
+								 floor(0.5 * ([[UIScreen mainScreen] bounds].size.height - DEFAULT_LABEL_HEIGHT)), 
 								 DEFAULT_LABEL_WIDTH, DEFAULT_LABEL_HEIGHT);
 	LoadingView *loadingView = [[[LoadingView alloc] initWithFrame:frame] autorelease];
 	

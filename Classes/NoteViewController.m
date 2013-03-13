@@ -73,7 +73,7 @@
 
 - (void)initInfoView
 {
-	infoView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,460)];
+	infoView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,560)];
     NSInteger textLength = [note.details length];
     int row = 1+(textLength-1)/34;
 	if ([note.image_data length] != 0 && textLength != 0) {

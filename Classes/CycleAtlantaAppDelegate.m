@@ -163,7 +163,7 @@
     
     
 	// create a tab bar controller and init with nav controllers above
-	//tabBarController = [[UITabBarController alloc] initWithNibName:@"MainWindow.xib" bundle:nil];
+	// tabBarController = [[UITabBarController alloc] initWithNibName:@"MainWindow.xib" bundle:nil];
 	
 	/*
 	 tabBarController.viewControllers = [NSArray arrayWithObjects:recordTripNavController, 
