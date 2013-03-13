@@ -56,7 +56,7 @@
 #define kCellReuseIdentifierExclamation @"Exclamataion"
 #define kCellReuseIdentifierInProgress	@"InProgress"
 
-#define kRowHeight	87
+#define kRowHeight	75
 #define kTagTitle	1
 #define kTagDetail	2
 #define kTagImage	3
@@ -432,23 +432,30 @@
 	
 	NSString *tripStatus = nil;
     
-    UITextView *timeText = [[UITextView alloc] init];
-    timeText.frame = CGRectMake( 10, 0, 220, 25);
+    UILabel *timeText = [[UILabel alloc] init];
+    timeText.frame = CGRectMake( 10, 5, 220, 25);
     [timeText setFont:[UIFont systemFontOfSize:15]];
     [timeText setTextColor:[UIColor grayColor]];
-    timeText.userInteractionEnabled = NO;
     
-    UITextView *purposeText = [[UITextView alloc] init];
-    purposeText.frame = CGRectMake( 10, 19, 220, 30);
+    UILabel *purposeText = [[UILabel alloc] init];
+    purposeText.frame = CGRectMake( 10, 24, 120, 30);
     [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
     [purposeText setTextColor:[UIColor blackColor]];
-    purposeText.userInteractionEnabled = NO;
     
-    UITextView *otherText = [[UITextView alloc] init];
-    otherText.frame = CGRectMake( 10, 41, 180, 35);
-    [otherText setFont:[UIFont systemFontOfSize:12]];
-    [otherText setTextColor:[UIColor grayColor]];
-    otherText.userInteractionEnabled = NO;
+    UILabel *durationText = [[UILabel alloc] init];
+    durationText.frame = CGRectMake( 130, 24, 190, 30);
+    [durationText setFont:[UIFont systemFontOfSize:18]];
+    [durationText setTextColor:[UIColor blackColor]];
+    
+    UILabel *CO2Text = [[UILabel alloc] init];
+    CO2Text.frame = CGRectMake( 10, 50, 120, 20);
+    [CO2Text setFont:[UIFont systemFontOfSize:12]];
+    [CO2Text setTextColor:[UIColor grayColor]];
+    
+    UILabel *CaloryText = [[UILabel alloc] init];
+    CaloryText.frame = CGRectMake( 130, 50, 190, 20);
+    [CaloryText setFont:[UIFont systemFontOfSize:12]];
+    [CaloryText setTextColor:[UIColor grayColor]];
     
 	UIImage	*image = nil;
     
@@ -494,9 +501,11 @@
 			default:
 				image = [UIImage imageNamed:@"GreenCheckMark2.png"];
 		}
+        UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
+        imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
 		
 		//[cell.contentView addSubview:imageView];
-		//cell.accessoryView = imageView;
+		cell.accessoryView = imageView;
 		
 //		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(trip saved & uploaded)", 
 //									 [dateFormatter stringFromDate:[trip start]]];		
@@ -545,10 +554,6 @@
 	 */
 
     
-    UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
-    imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
-
-    
     
 	// display duration, distance as navbar prompt
 	static NSDateFormatter *inputFormatter = nil;
@@ -579,26 +584,32 @@
 //								   [inputFormatter stringFromDate:outputDate]
 //								   ];
     
+    
+    cell.detailTextLabel.numberOfLines = 2;
+    
     timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[trip start]], [timeFormatter stringFromDate:[trip start]]];
     
     
-    purposeText.text = [NSString stringWithFormat:@"%@ %@",
-                        								   trip.purpose,
-                        								   [inputFormatter stringFromDate:outputDate]
-                        								   ];
+    purposeText.text = [NSString stringWithFormat:@"%@", trip.purpose];
+    durationText.text = [NSString stringWithFormat:@"%@",[inputFormatter stringFromDate:outputDate]];
 	
     
-    otherText.text = [NSString stringWithFormat:@"Calories Burned: 0000 kcal\nCO2 Saved: 0000 lbs"];
+    CO2Text.text = [NSString stringWithFormat:@"CO2 Saved: %.1f lbs", 0.93 * [trip.distance doubleValue] / 1609.344];
     
-    [cell addSubview:otherText];
-    [cell addSubview:purposeText];
-    [cell addSubview:timeText];
-    
-    if ( trip.uploaded )
-	{
-        cell.accessoryView = imageView;
+    double calory = 49 * [trip.distance doubleValue] / 1609.344 - 1.69;
+    if (calory <= 0) {
+        CaloryText.text = [NSString stringWithFormat:@"Calories Burned: 0 kcal"];
     }
+    else
+        CaloryText.text = [NSString stringWithFormat:@"Calories Burned: %.1f kcal", calory];
     
+    [cell.contentView addSubview:CaloryText];
+    [cell.contentView addSubview:CO2Text];
+    [cell.contentView addSubview:durationText];
+    [cell.contentView addSubview:purposeText];
+    [cell.contentView addSubview:timeText];
+    
+    cell.editingAccessoryView = cell.accessoryView;
 	/*
 	[cell.contentView setNeedsDisplay];
 	[cell.detailTextLabel setNeedsDisplay];

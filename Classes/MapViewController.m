@@ -179,7 +179,7 @@
 		//self.title = trip.purpose;
 		
 		// only add info view for trips with non-null notes
-		if ( trip.notes )
+		if ( ![trip.notes isEqual: @""] )
 		{
 			doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(infoAction:)];
 			

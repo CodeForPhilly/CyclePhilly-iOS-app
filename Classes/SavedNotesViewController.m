@@ -22,7 +22,7 @@
 #define kCellReuseIdentifierCheck		@"CheckMark"
 #define kCellReuseIdentifierExclamation @"Exclamataion"
 
-#define kRowHeight	87
+#define kRowHeight	75
 #define kTagTitle	1
 #define kTagDetail	2
 #define kTagImage	3
@@ -236,17 +236,17 @@
     
     NSString *noteStatus = nil;
     
-    UITextView *timeText = [[UITextView alloc] init];
-    timeText.frame = CGRectMake( 10, 15, 220, 25);
-    [timeText setFont:[UIFont systemFontOfSize:15]];
-    [timeText setTextColor:[UIColor grayColor]];
-    timeText.userInteractionEnabled = NO;
-    
-    UITextView *purposeText = [[UITextView alloc] init];
-    purposeText.frame = CGRectMake( 10, 35, 220, 30);
-    [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
-    [purposeText setTextColor:[UIColor blackColor]];
-    purposeText.userInteractionEnabled = NO;
+//    UITextView *timeText = [[UITextView alloc] init];
+//    timeText.frame = CGRectMake( 10, 15, 220, 25);
+//    [timeText setFont:[UIFont systemFontOfSize:14]];
+//    [timeText setTextColor:[UIColor grayColor]];
+//    timeText.userInteractionEnabled = NO;
+//    
+//    UITextView *purposeText = [[UITextView alloc] init];
+//    purposeText.frame = CGRectMake( 10, 35, 220, 30);
+//    [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
+//    [purposeText setTextColor:[UIColor blackColor]];
+//    purposeText.userInteractionEnabled = NO;
     
     cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierCheck];
     
@@ -273,6 +273,7 @@
     imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
     
     //[cell.contentView addSubview:imageView];
+    cell.accessoryView = imageView;
     
     
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(note saved & uploaded)", 
@@ -281,8 +282,6 @@
     
     cell.detailTextLabel.tag = kTagDetail;
     cell.textLabel.tag = kTagTitle;
-    
-    //cell.textLabel.text			= [dateFormatter stringFromDate:[note recorded]];
     
     NSString *title = [[NSString alloc] init];
     switch ([note.note_type intValue]) {
@@ -325,17 +324,30 @@
         default:
             break;
     }
+    
+    [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+    [cell.textLabel setTextColor:[UIColor grayColor]];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[note recorded]], [timeFormatter stringFromDate:[note recorded]]];
+    
+    [cell.detailTextLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    [cell.detailTextLabel setTextColor:[UIColor blackColor]];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",title];
+    
+    cell.editingAccessoryView = cell.accessoryView;
 
+    //cell.textLabel.text			= [dateFormatter stringFromDate:[note recorded]];
     //cell.detailTextLabel.text = title;
-    timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[note recorded]], [timeFormatter stringFromDate:[note recorded]]];
+    
+    //timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[note recorded]], [timeFormatter stringFromDate:[note recorded]]];
     
     
-    purposeText.text = [NSString stringWithFormat:@"%@",title];
     
-    [cell addSubview:purposeText];
-    [cell addSubview:timeText];
+    //purposeText.text = [NSString stringWithFormat:@"%@",title];
     
-    cell.accessoryView = imageView;
+    //[cell addSubview:purposeText];
+    //[cell addSubview:timeText];
 
     
     return cell;
@@ -401,6 +413,7 @@
     
     loading		= [[LoadingView loadingViewInView:self.parentViewController.view messageString:@"Loading..."] retain];
 	loading.tag = 999;
+    [loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
     
     if ( selectedNote )
 	{
