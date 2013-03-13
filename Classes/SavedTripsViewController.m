@@ -56,7 +56,7 @@
 #define kCellReuseIdentifierExclamation @"Exclamataion"
 #define kCellReuseIdentifierInProgress	@"InProgress"
 
-#define kRowHeight	75
+#define kRowHeight	87
 #define kTagTitle	1
 #define kTagDetail	2
 #define kTagImage	3
@@ -411,8 +411,13 @@
     static NSDateFormatter *dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    }
+    
+    static NSDateFormatter *timeFormatter = nil;
+    if (timeFormatter == nil) {
+        timeFormatter = [[NSDateFormatter alloc] init];
+        [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
     }
 	
 	Trip *trip = (Trip *)[trips objectAtIndex:indexPath.row];
@@ -426,13 +431,33 @@
 	*/
 	
 	NSString *tripStatus = nil;
-	
+    
+    UITextView *timeText = [[UITextView alloc] init];
+    timeText.frame = CGRectMake( 10, 0, 220, 25);
+    [timeText setFont:[UIFont systemFontOfSize:15]];
+    [timeText setTextColor:[UIColor grayColor]];
+    timeText.userInteractionEnabled = NO;
+    
+    UITextView *purposeText = [[UITextView alloc] init];
+    purposeText.frame = CGRectMake( 10, 19, 220, 30);
+    [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
+    [purposeText setTextColor:[UIColor blackColor]];
+    purposeText.userInteractionEnabled = NO;
+    
+    UITextView *otherText = [[UITextView alloc] init];
+    otherText.frame = CGRectMake( 10, 41, 180, 35);
+    [otherText setFont:[UIFont systemFontOfSize:12]];
+    [otherText setTextColor:[UIColor grayColor]];
+    otherText.userInteractionEnabled = NO;
+    
+	UIImage	*image = nil;
+    
 	// completed
 	if ( trip.uploaded )
 	{
 		cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierCheck];
 		
-		UIImage	*image = nil;
+		
 		// add check mark
 		image = [UIImage imageNamed:@"GreenCheckMark2.png"];
 		
@@ -470,14 +495,11 @@
 				image = [UIImage imageNamed:@"GreenCheckMark2.png"];
 		}
 		
-		UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
-		imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
-		
 		//[cell.contentView addSubview:imageView];
-		cell.accessoryView = imageView;
+		//cell.accessoryView = imageView;
 		
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(trip saved & uploaded)", 
-									 [dateFormatter stringFromDate:[trip start]]];		
+//		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(trip saved & uploaded)", 
+//									 [dateFormatter stringFromDate:[trip start]]];		
 		tripStatus = @"(trip saved & uploaded)";
 	}
 
@@ -485,8 +507,8 @@
 	else if ( trip.saved )
 	{
 		cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierExclamation];
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(saved but not uploaded)", 
-									 [dateFormatter stringFromDate:[trip start]]];
+//		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(saved but not uploaded)", 
+//									 [dateFormatter stringFromDate:[trip start]]];
 		tripStatus = @"(saved but not uploaded)";
 	}
 
@@ -499,7 +521,7 @@
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(recording in progress)", 
 									 [dateFormatter stringFromDate:[trip start]]];
 		 */
-		[cell setDetail:[NSString stringWithFormat:@"%@\n(recording in progress)", [dateFormatter stringFromDate:[trip start]]]];
+//		[cell setDetail:[NSString stringWithFormat:@"%@\n(recording in progress)", [dateFormatter stringFromDate:[trip start]]]];
 		tripStatus = @"(recording in progress)";
 	}
 	
@@ -522,6 +544,12 @@
 						   trip.purpose, [trip.distance doubleValue]];
 	 */
 
+    
+    UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
+    imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
+
+    
+    
 	// display duration, distance as navbar prompt
 	static NSDateFormatter *inputFormatter = nil;
 	if ( inputFormatter == nil )
@@ -531,10 +559,10 @@
 	NSDate *fauxDate = [inputFormatter dateFromString:@"00:00:00"];
 	[inputFormatter setDateFormat:@"HH:mm:ss"];
 	NSLog(@"trip duration: %f", [trip.duration doubleValue]);
-	NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue] 
+	NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue]
 													sinceDate:fauxDate];
 	
-	double mph = ( [trip.distance doubleValue] / 1609.344 ) / ( [trip.duration doubleValue] / 3600. );
+	//double mph = ( [trip.distance doubleValue] / 1609.344 ) / ( [trip.duration doubleValue] / 3600. );
 /*
 	cell.textLabel	= [NSString stringWithFormat:@"%.1f mi ~ %.1f mph ~ %@", 
 					   [trip.distance doubleValue] / 1609.344, 
@@ -542,15 +570,35 @@
 					   trip.purpose
 					   ]];
 */	
-	cell.textLabel.text			= [dateFormatter stringFromDate:[trip start]];
+//	cell.textLabel.text			= [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[trip start]], [timeFormatter stringFromDate:[trip start]]];
+//	
+//	cell.detailTextLabel.text	= [NSString stringWithFormat:@"%@: %.1f mi ~ %.1f mph\nelapsed time: %@", 
+//								   trip.purpose,
+//								   [trip.distance doubleValue] / 1609.344, 
+//								   mph,
+//								   [inputFormatter stringFromDate:outputDate]
+//								   ];
+    
+    timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[trip start]], [timeFormatter stringFromDate:[trip start]]];
+    
+    
+    purposeText.text = [NSString stringWithFormat:@"%@ %@",
+                        								   trip.purpose,
+                        								   [inputFormatter stringFromDate:outputDate]
+                        								   ];
 	
-	cell.detailTextLabel.text	= [NSString stringWithFormat:@"%@: %.1f mi ~ %.1f mph\nelapsed time: %@", 
-								   trip.purpose,
-								   [trip.distance doubleValue] / 1609.344, 
-								   mph,
-								   [inputFormatter stringFromDate:outputDate]
-								   ];
-	
+    
+    otherText.text = [NSString stringWithFormat:@"Calories Burned: 0000 kcal\nCO2 Saved: 0000 lbs"];
+    
+    [cell addSubview:otherText];
+    [cell addSubview:purposeText];
+    [cell addSubview:timeText];
+    
+    if ( trip.uploaded )
+	{
+        cell.accessoryView = imageView;
+    }
+    
 	/*
 	[cell.contentView setNeedsDisplay];
 	[cell.detailTextLabel setNeedsDisplay];

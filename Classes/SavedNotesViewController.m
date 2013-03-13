@@ -22,7 +22,7 @@
 #define kCellReuseIdentifierCheck		@"CheckMark"
 #define kCellReuseIdentifierExclamation @"Exclamataion"
 
-#define kRowHeight	75
+#define kRowHeight	87
 #define kTagTitle	1
 #define kTagDetail	2
 #define kTagImage	3
@@ -223,14 +223,30 @@
     static NSDateFormatter *dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    }
+    static NSDateFormatter *timeFormatter = nil;
+    if (timeFormatter == nil) {
+        timeFormatter = [[NSDateFormatter alloc] init];
+        [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
     }
     
     Note *note = (Note *)[notes objectAtIndex:indexPath.row];
 	NoteCell *cell = nil;
     
     NSString *noteStatus = nil;
+    
+    UITextView *timeText = [[UITextView alloc] init];
+    timeText.frame = CGRectMake( 10, 15, 220, 25);
+    [timeText setFont:[UIFont systemFontOfSize:15]];
+    [timeText setTextColor:[UIColor grayColor]];
+    timeText.userInteractionEnabled = NO;
+    
+    UITextView *purposeText = [[UITextView alloc] init];
+    purposeText.frame = CGRectMake( 10, 35, 220, 30);
+    [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
+    [purposeText setTextColor:[UIColor blackColor]];
+    purposeText.userInteractionEnabled = NO;
     
     cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierCheck];
     
@@ -257,16 +273,16 @@
     imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
     
     //[cell.contentView addSubview:imageView];
-    cell.accessoryView = imageView;
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(note saved & uploaded)", 
-                                 [dateFormatter stringFromDate:[note recorded]]];
+    
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(note saved & uploaded)", 
+//                                 [dateFormatter stringFromDate:[note recorded]]];
     noteStatus = @"(note saved & uploaded)";
     
     cell.detailTextLabel.tag = kTagDetail;
     cell.textLabel.tag = kTagTitle;
     
-    cell.textLabel.text			= [dateFormatter stringFromDate:[note recorded]];
+    //cell.textLabel.text			= [dateFormatter stringFromDate:[note recorded]];
     
     NSString *title = [[NSString alloc] init];
     switch ([note.note_type intValue]) {
@@ -310,7 +326,16 @@
             break;
     }
 
-    cell.detailTextLabel.text = title;
+    //cell.detailTextLabel.text = title;
+    timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[note recorded]], [timeFormatter stringFromDate:[note recorded]]];
+    
+    
+    purposeText.text = [NSString stringWithFormat:@"%@",title];
+    
+    [cell addSubview:purposeText];
+    [cell addSubview:timeText];
+    
+    cell.accessoryView = imageView;
 
     
     return cell;

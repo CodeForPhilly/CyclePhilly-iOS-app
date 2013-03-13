@@ -162,14 +162,18 @@
 	if ( note )
 	{
 		// format date as a string
-        NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
-        [outputFormatter setTimeStyle:kCFDateFormatterShortStyle];
-        [outputFormatter setDateStyle:kCFDateFormatterMediumStyle];
+        NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
+        [outputDateFormatter setDateStyle:kCFDateFormatterLongStyle];
         
-        NSString *newDateString = [outputFormatter stringFromDate:note.recorded];
+        NSDateFormatter *outputTimeFormatter = [[NSDateFormatter alloc] init];
+        [outputTimeFormatter setTimeStyle:kCFDateFormatterShortStyle];
+        
+        NSString *newDateString = [outputDateFormatter stringFromDate:note.recorded];
+        NSString *newTimeString = [outputTimeFormatter stringFromDate:note.recorded];
 		
-		self.navigationItem.prompt = [NSString stringWithFormat:@"Time: %@",newDateString];
+		self.navigationItem.prompt = [NSString stringWithFormat:@"%@ at %@",newDateString,newTimeString];
         NSLog(@"NewDataString: %@", newDateString);
+        NSLog(@"NewTimeString: %@", newTimeString);
         
         NSString *title = [[NSString alloc] init];
         switch ([note.note_type intValue]) {
