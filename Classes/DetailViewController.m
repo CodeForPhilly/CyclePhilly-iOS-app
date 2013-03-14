@@ -130,7 +130,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //original
     UIImage *castedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     //save to library
-    //UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
+    UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
     
     CGSize size;
     
