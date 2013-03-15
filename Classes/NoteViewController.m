@@ -11,6 +11,7 @@
 #import "LoadingView.h"
 #import "TripPurposeDelegate.h"
 #import "Note.h"
+#import "UIImageViewResizable.h"
 
 #define kFudgeFactor	1.5
 #define kInfoViewAlpha	0.8
@@ -82,11 +83,18 @@
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
         
-        UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
-        noteImage.image= [UIImage imageWithData:note.image_data];
-        noteImage.contentMode = UIViewContentModeScaleAspectFill;
+        UIImageViewResizable *noteImageResize = [[UIImageViewResizable alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
         
-        [scrollView addSubview:noteImage];
+        noteImageResize.image= [UIImage imageWithData:note.image_data];
+        noteImageResize.contentMode = UIViewContentModeScaleAspectFill;
+        
+        [noteImageResize applyGestures];
+        
+//        UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+//        noteImage.image= [UIImage imageWithData:note.image_data];
+//        noteImage.contentMode = UIViewContentModeScaleAspectFill;
+        
+        [scrollView addSubview:noteImageResize];
         
         [infoView addSubview:scrollView];
         
