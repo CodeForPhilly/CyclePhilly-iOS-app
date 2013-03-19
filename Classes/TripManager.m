@@ -100,7 +100,7 @@
 		NSArray *sortDescriptors	= [NSArray arrayWithObjects:dateDescriptor, nil];
 		self.coords					= [[[_trip.coords allObjects] sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
 		
-		NSLog(@"loading %d coords completed.", [self.coords count]);
+		//NSLog(@"loading %d coords completed.", [self.coords count]);
 
 		// recalculate duration
 		if ( coords && [coords count] > 1 )
@@ -117,8 +117,10 @@
 		if (![self.managedObjectContext save:&error]) {
 			// Handle the error.
 			NSLog(@"loadTrip error %@, %@", error, [error localizedDescription]);
+            
 		}
-		
+		[error release];
+        
 		/*
 		// recalculate trip distance
 		CLLocationDistance newDist	= [self calculateTripDistance:_trip];
@@ -388,7 +390,9 @@
 			if ( error != nil )
 				NSLog(@"TripManager fetch saved user data error %@, %@", error, [error localizedDescription]);
 		}
-		
+        
+        NSString *appVersion = [NSString stringWithFormat:@"%@ (%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+        
 		User *user = [mutableFetchResults objectAtIndex:0];
 		if ( user != nil )
 		{
@@ -404,6 +408,7 @@
             [userDict setValue:user.income          forKey:@"income"];
             [userDict setValue:user.rider_type      forKey:@"rider_type"];
             [userDict setValue:user.rider_history	forKey:@"rider_history"];
+            [userDict setValue:appVersion           forKey:@"app_version"];
 		}
 		else
 			NSLog(@"TripManager fetch user FAIL");
@@ -557,7 +562,7 @@
     // JSON encode user data
     NSData *userJsonData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:&writeError];
     NSString *userJson = [[NSString alloc] initWithData:userJsonData encoding:NSUTF8StringEncoding];
-    //NSLog(@"user data %@", userJson);
+    NSLog(@"user data %@", userJson);
     
     // JSON encode the trip data
     NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
