@@ -121,6 +121,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    self.image = nil;
+    [image release];
 }
 
 #pragma mark UIImagePickerController delegate methods
