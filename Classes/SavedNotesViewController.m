@@ -196,7 +196,7 @@
 		{
 			// add exclamation point
 			UIImage		*image		= [UIImage imageNamed:@"failedUpload.png"];
-			UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
+			UIImageView *imageView	= [[[UIImageView alloc] initWithImage:image] autorelease];
 			imageView.frame = CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
 			imageView.tag	= kTagImage;
 			cell.accessoryView = imageView;
@@ -234,7 +234,7 @@
     Note *note = (Note *)[notes objectAtIndex:indexPath.row];
 	NoteCell *cell = nil;
     
-    NSString *noteStatus = nil;
+//    NSString *noteStatus = nil;
     
 //    UITextView *timeText = [[UITextView alloc] init];
 //    timeText.frame = CGRectMake( 10, 15, 220, 25);
@@ -250,9 +250,9 @@
     
     cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierCheck];
     
-    UIImage	*image = nil;
+    UIImage	*image;
     // add check mark
-    image = [UIImage imageNamed:@"GreenCheckMark2.png"];
+    // image = [UIImage imageNamed:@"GreenCheckMark2.png"];
     
     int index = [note.note_type intValue];
     
@@ -269,7 +269,7 @@
         image = [UIImage imageNamed:@"GreenCheckMark2.png"];
     }
     
-    UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
+    UIImageView *imageView	= [[[UIImageView alloc] initWithImage:image] autorelease];
     imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
     
     //[cell.contentView addSubview:imageView];
@@ -278,12 +278,12 @@
     
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(note saved & uploaded)", 
 //                                 [dateFormatter stringFromDate:[note recorded]]];
-    noteStatus = @"(note saved & uploaded)";
+//    noteStatus = @"(note saved & uploaded)";
     
     cell.detailTextLabel.tag = kTagDetail;
     cell.textLabel.tag = kTagTitle;
     
-    NSString *title = [[NSString alloc] init];
+    NSString *title = [[[NSString alloc] init] autorelease] ;
     switch ([note.note_type intValue]) {
         case 0:
             title = @"Pavement issue";

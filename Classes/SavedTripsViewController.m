@@ -366,7 +366,7 @@
 		{
 			// add exclamation point
 			UIImage		*image		= [UIImage imageNamed:@"failedUpload.png"];
-			UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
+			UIImageView *imageView	= [[[UIImageView alloc] initWithImage:image] autorelease];
 			imageView.frame = CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
 			imageView.tag	= kTagImage;
 			//[cell.contentView addSubview:imageView];
@@ -383,7 +383,7 @@
 			{
 				// create activity indicator if needed
 				CGRect frame = CGRectMake( kAccessoryViewX + 4.0, kAccessoryViewY + 4.0, kActivityIndicatorSize, kActivityIndicatorSize );
-				inProgressIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+				inProgressIndicator = [[[UIActivityIndicatorView alloc] initWithFrame:frame] autorelease];
 				inProgressIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;		
 				[inProgressIndicator sizeToFit];
 				[inProgressIndicator startAnimating];
@@ -430,34 +430,34 @@
 	NSLog(@"recordingInProgress: %@", recordingInProgress);
 	*/
 	
-	NSString *tripStatus = nil;
+	//NSString *tripStatus = nil;
     
-    UILabel *timeText = [[UILabel alloc] init];
+    UILabel *timeText = [[[UILabel alloc] init] autorelease];
     timeText.frame = CGRectMake( 10, 5, 220, 25);
     [timeText setFont:[UIFont systemFontOfSize:15]];
     [timeText setTextColor:[UIColor grayColor]];
     
-    UILabel *purposeText = [[UILabel alloc] init];
+    UILabel *purposeText = [[[UILabel alloc] init] autorelease];
     purposeText.frame = CGRectMake( 10, 24, 120, 30);
     [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
     [purposeText setTextColor:[UIColor blackColor]];
     
-    UILabel *durationText = [[UILabel alloc] init];
+    UILabel *durationText = [[[UILabel alloc] init] autorelease];
     durationText.frame = CGRectMake( 130, 24, 190, 30);
     [durationText setFont:[UIFont systemFontOfSize:18]];
     [durationText setTextColor:[UIColor blackColor]];
     
-    UILabel *CO2Text = [[UILabel alloc] init];
+    UILabel *CO2Text = [[[UILabel alloc] init] autorelease];
     CO2Text.frame = CGRectMake( 10, 50, 120, 20);
     [CO2Text setFont:[UIFont systemFontOfSize:12]];
     [CO2Text setTextColor:[UIColor grayColor]];
     
-    UILabel *CaloryText = [[UILabel alloc] init];
+    UILabel *CaloryText = [[[UILabel alloc] init] autorelease];
     CaloryText.frame = CGRectMake( 130, 50, 190, 20);
     [CaloryText setFont:[UIFont systemFontOfSize:12]];
     [CaloryText setTextColor:[UIColor grayColor]];
     
-	UIImage	*image = nil;
+	UIImage	*image;
     
 	// completed
 	if ( trip.uploaded )
@@ -466,7 +466,7 @@
 		
 		
 		// add check mark
-		image = [UIImage imageNamed:@"GreenCheckMark2.png"];
+		// image = [UIImage imageNamed:@"GreenCheckMark2.png"];
 		
 		int index = [TripPurpose getPurposeIndex:trip.purpose];
 		NSLog(@"trip.purpose: %d => %@", index, trip.purpose);
@@ -501,7 +501,7 @@
 			default:
 				image = [UIImage imageNamed:@"GreenCheckMark2.png"];
 		}
-        UIImageView *imageView	= [[UIImageView alloc] initWithImage:image];
+        UIImageView *imageView	= [[[UIImageView alloc] initWithImage:image] autorelease];
         imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
 		
 		//[cell.contentView addSubview:imageView];
@@ -509,7 +509,7 @@
 		
 //		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(trip saved & uploaded)", 
 //									 [dateFormatter stringFromDate:[trip start]]];		
-		tripStatus = @"(trip saved & uploaded)";
+		//tripStatus = @"(trip saved & uploaded)";
 	}
 
 	// saved but not yet uploaded
@@ -518,7 +518,7 @@
 		cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierExclamation];
 //		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(saved but not uploaded)", 
 //									 [dateFormatter stringFromDate:[trip start]]];
-		tripStatus = @"(saved but not uploaded)";
+		//tripStatus = @"(saved but not uploaded)";
 	}
 
 	// recording for this trip is still in progress (or just completed)
@@ -531,14 +531,14 @@
 									 [dateFormatter stringFromDate:[trip start]]];
 		 */
 //		[cell setDetail:[NSString stringWithFormat:@"%@\n(recording in progress)", [dateFormatter stringFromDate:[trip start]]]];
-		tripStatus = @"(recording in progress)";
+		//tripStatus = @"(recording in progress)";
 	}
 	
 	// this trip was orphaned (an abandoned previous recording)
 	else
 	{
 		cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierExclamation];
-		tripStatus = @"(recording interrupted)";
+		//tripStatus = @"(recording interrupted)";
 	}
 
 	/*
@@ -564,8 +564,8 @@
 	NSDate *fauxDate = [inputFormatter dateFromString:@"00:00:00"];
 	[inputFormatter setDateFormat:@"HH:mm:ss"];
 	NSLog(@"trip duration: %f", [trip.duration doubleValue]);
-	NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue]
-													sinceDate:fauxDate];
+	NSDate *outputDate = [[[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue]
+													sinceDate:fauxDate] autorelease];
 	
 	//double mph = ( [trip.distance doubleValue] / 1609.344 ) / ( [trip.duration doubleValue] / 3600. );
 /*
@@ -632,10 +632,10 @@
 	NSLog(@"promptToConfirmPurpose");
 	
 	// construct purpose confirmation string
-	NSString *purpose = nil;
-	if ( tripManager != nil )
-	//	purpose = [self getPurposeString:[tripManager getPurposeIndex]];
-		purpose = tripManager.trip.purpose;
+//	NSString *purpose = nil;
+//	if ( tripManager != nil )
+//	//	purpose = [self getPurposeString:[tripManager getPurposeIndex]];
+//		purpose = tripManager.trip.purpose;
 
 	//NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Confirm the trip's purpose to try again: %@", purpose];
 	NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Try now?"];

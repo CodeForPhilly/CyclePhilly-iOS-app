@@ -119,7 +119,7 @@
 	infoView.alpha				= kInfoViewAlpha;
 	infoView.backgroundColor	= [UIColor blackColor];
 	
-	UILabel *notesHeader		= [[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)];
+	UILabel *notesHeader		= [[[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)] autorelease];
 	notesHeader.backgroundColor = [UIColor clearColor];
 	notesHeader.font			= [UIFont boldSystemFontOfSize:18.0];
 	notesHeader.opaque			= NO;
@@ -127,7 +127,7 @@
 	notesHeader.textColor		= [UIColor whiteColor];
 	[infoView addSubview:notesHeader];
 	
-	UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,200)];
+	UITextView *notesText		= [[[UITextView alloc] initWithFrame:CGRectMake(0,110,320,200)] autorelease];
 	notesText.backgroundColor	= [UIColor clearColor];
 	notesText.editable			= NO;
 	notesText.font				= [UIFont systemFontOfSize:16.0];
@@ -163,8 +163,7 @@
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
 		NSDate *fauxDate = [inputFormatter dateFromString:@"00:00:00"];
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
-		NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue]
-														sinceDate:fauxDate];
+		NSDate *outputDate = [[[NSDate alloc] initWithTimeInterval:(NSTimeInterval)[trip.duration doubleValue] sinceDate:fauxDate] autorelease];
         
 		double mph = ( [trip.distance doubleValue] / 1609.344 ) / ( [trip.duration doubleValue] / 3600. );
 		
@@ -222,7 +221,7 @@
 		NSNumber *minLon = [NSNumber numberWithDouble:0.0];
 		NSNumber *maxLon = [NSNumber numberWithDouble:0.0];
         
-        NSMutableArray *routeCoords = [[NSMutableArray alloc]init];
+        NSMutableArray *routeCoords = [[[NSMutableArray alloc]init] autorelease];
         
 		for ( Coord *coord in sortedCoords )
 		{
@@ -235,7 +234,7 @@
 				coordinate.latitude  = [coord.latitude doubleValue];
 				coordinate.longitude = [coord.longitude doubleValue];
                 
-                CLLocation *routePoint = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+                CLLocation *routePoint = [[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude] autorelease];
 				[routeCoords addObject:routePoint];
                 
 				//pin = [[MapCoord alloc] init];
@@ -291,11 +290,11 @@
         [mapView setNeedsDisplay];
         
         //add start/end pins
-        MKPointAnnotation *startPoint = [[MKPointAnnotation alloc] init];
+        MKPointAnnotation *startPoint = [[[MKPointAnnotation alloc] init] autorelease];
         startPoint.coordinate = routePath[0];
         startPoint.title = @"Start";
         [mapView addAnnotation:startPoint];
-        MKPointAnnotation *endPoint = [[MKPointAnnotation alloc] init];
+        MKPointAnnotation *endPoint = [[[MKPointAnnotation alloc] init] autorelease];
         endPoint.coordinate = routePath[numPoints-1];
         endPoint.title = @"End";
         [mapView addAnnotation:endPoint];
@@ -350,6 +349,7 @@
 			MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
 			[mapView setRegion:region animated:NO];
 		}
+        free(routePath);
 	}
 	else
 	{
@@ -364,7 +364,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    UIImage *thumbnailOriginal = [[UIImage alloc] init];
+    UIImage *thumbnailOriginal;
     thumbnailOriginal = [self screenshot];
     
     CGRect clippedRect  = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+160, self.view.frame.size.width, self.view.frame.size.height);
@@ -376,10 +376,10 @@
     size.height = 72;
     size.width = 72;
     
-    UIImage *thumbnail = [[UIImage alloc] init];
+    UIImage *thumbnail;
     thumbnail = shrinkImage(newImage, size);
     
-    NSData *thumbnailData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)];
+    NSData *thumbnailData = [[[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)] autorelease];
     NSLog(@"Size of Thumbnail Image(bytes):%d",[thumbnailData length]);
     NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
     
@@ -401,7 +401,7 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
     
     CGContextRelease(context);
     CGImageRelease(shrunken);
-    
+    CGColorSpaceRelease(colorSpace);
     return final;
 }
 

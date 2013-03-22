@@ -141,7 +141,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         size.height = 1080;
         size.width = 810;
     }
-    else if (castedImage.size.height < castedImage.size.width) {
+    else {
         size.height = 810;
         size.width = 1080;
     }
@@ -180,7 +180,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     
     CGContextRelease(context);
     CGImageRelease(shrunken);
-    
+    CGColorSpaceRelease(colorSpace);
     return final;
 }
 

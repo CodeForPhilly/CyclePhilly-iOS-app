@@ -187,7 +187,7 @@
         //Note: get index of type
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
-        NSNumber *tempType;
+        NSNumber *tempType = 0;
 
         
         if(row>=7){

@@ -141,7 +141,7 @@
 		NSLog(@"createUser error %@, %@", error, [error localizedDescription]);
 	}
 	
-	return noob;
+	return [noob autorelease];
 }
 
 
@@ -296,9 +296,9 @@
         doneToolbar.barStyle = UIBarStyleBlackOpaque;
         [doneToolbar sizeToFit];
         
-        NSMutableArray *barItems = [[NSMutableArray alloc] init];
+        NSMutableArray *barItems = [[[NSMutableArray alloc] init] autorelease];
         
-        UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *flexSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
         [barItems addObject:flexSpace];
         
         UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];

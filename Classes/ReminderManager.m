@@ -110,6 +110,7 @@
 		 // just vibrate
 		 AudioServicesPlaySystemSound( kSystemSoundID_Vibrate );
 		 */
+        CFRelease(soundFileURLRef);
 	}
 	
 	if ( battery && delegate )

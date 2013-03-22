@@ -98,7 +98,7 @@
 		NSSortDescriptor *dateDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"recorded"
 																		ascending:NO] autorelease];
 		NSArray *sortDescriptors	= [NSArray arrayWithObjects:dateDescriptor, nil];
-		self.coords					= [[[_trip.coords allObjects] sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+		self.coords					= [[[[_trip.coords allObjects] sortedArrayUsingDescriptors:sortDescriptors] mutableCopy] autorelease];
 		
 		//NSLog(@"loading %d coords completed.", [self.coords count]);
 
@@ -119,7 +119,6 @@
 			NSLog(@"loadTrip error %@, %@", error, [error localizedDescription]);
             
 		}
-		[error release];
         
 		/*
 		// recalculate trip distance
@@ -391,7 +390,10 @@
 				NSLog(@"TripManager fetch saved user data error %@, %@", error, [error localizedDescription]);
 		}
         
-        NSString *appVersion = [NSString stringWithFormat:@"%@ (%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+        NSString *appVersion = [NSString stringWithFormat:@"%@ (%@) on iOS %@",
+                                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"],
+                                [[UIDevice currentDevice] systemVersion]];
         
 		User *user = [mutableFetchResults objectAtIndex:0];
 		if ( user != nil )
