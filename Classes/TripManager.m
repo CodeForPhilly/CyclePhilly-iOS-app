@@ -73,7 +73,7 @@
     if ( self = [super init] )
 	{
 		self.activityDelegate		= self;
-		self.coords					= [[NSMutableArray alloc] initWithCapacity:1000];
+		self.coords					= [[[NSMutableArray alloc] initWithCapacity:1000] autorelease];
 		distance					= 0.0;
 		self.managedObjectContext	= context;
 		self.trip					= nil;
@@ -204,10 +204,10 @@
 
 - (CLLocationDistance)distanceFrom:(Coord*)prev to:(Coord*)next realTime:(BOOL)realTime
 {
-	CLLocation *prevLoc = [[CLLocation alloc] initWithLatitude:[prev.latitude doubleValue] 
-													 longitude:[prev.longitude doubleValue]];
-	CLLocation *nextLoc = [[CLLocation alloc] initWithLatitude:[next.latitude doubleValue] 
-													 longitude:[next.longitude doubleValue]];
+	CLLocation *prevLoc = [[[CLLocation alloc] initWithLatitude:[prev.latitude doubleValue]
+													 longitude:[prev.longitude doubleValue]] autorelease];
+	CLLocation *nextLoc = [[[CLLocation alloc] initWithLatitude:[next.latitude doubleValue]
+													 longitude:[next.longitude doubleValue]] autorelease];
 	
 	CLLocationDistance	deltaDist	= [nextLoc distanceFromLocation:prevLoc];
 	NSTimeInterval		deltaTime	= [next.recorded timeIntervalSinceDate:prev.recorded];
@@ -482,7 +482,7 @@
 	Coord *coord;
 	
 	// format date as a string
-	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];		
+	NSDateFormatter *outputFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
 #if kSaveProtocolVersion == kSaveProtocolVersion_3
@@ -563,12 +563,12 @@
     NSError *writeError = nil;
     // JSON encode user data
     NSData *userJsonData = [NSJSONSerialization dataWithJSONObject:userDict options:0 error:&writeError];
-    NSString *userJson = [[NSString alloc] initWithData:userJsonData encoding:NSUTF8StringEncoding];
+    NSString *userJson = [[[NSString alloc] initWithData:userJsonData encoding:NSUTF8StringEncoding] autorelease];
     NSLog(@"user data %@", userJson);
     
     // JSON encode the trip data
     NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
-    NSString *tripJson = [[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding];
+    NSString *tripJson = [[[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding] autorelease];
     //NSLog(@"trip data %@", tripJson);
 
         
@@ -583,11 +583,10 @@
 							  [NSString stringWithFormat:@"%d", kSaveProtocolVersion], @"version",
 							  nil];
 	// create save request
-	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL];
+	SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
 	
 	// create the connection with the request and start loading the data
-	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request]
-																   delegate:self];
+	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	// create loading view to indicate trip is being uploaded
     uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
 

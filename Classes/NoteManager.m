@@ -139,15 +139,15 @@
     NSMutableDictionary *noteDict;
 	
 	// format date as a string
-	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+	NSDateFormatter *outputFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDateFormatter *outputFormatterURL = [[NSDateFormatter alloc] init];
+    NSDateFormatter *outputFormatterURL = [[[NSDateFormatter alloc] init] autorelease];
 	[outputFormatterURL setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     
     NSLog(@"saving using protocol version 4");
 	
     // create a noteDict for each note
-    noteDict = [[NSMutableDictionary alloc] initWithCapacity:10];
+    noteDict = [[[NSMutableDictionary alloc] initWithCapacity:10] autorelease];
     [noteDict setValue:note.altitude  forKey:@"a"];  //altitude
     [noteDict setValue:note.latitude  forKey:@"l"];  //latitude
     [noteDict setValue:note.longitude forKey:@"n"];  //longitude
@@ -176,7 +176,7 @@
     }
     NSLog(@"img_url: %@", note.image_url);
     
-    UIImage *castedImage = [[UIImage alloc] initWithData:note.image_data];
+    UIImage *castedImage = [[[UIImage alloc] initWithData:note.image_data] autorelease];
     
     CGSize size;
     
@@ -184,7 +184,7 @@
         size.height = 640;
         size.width = 480;
     }
-    else if (castedImage.size.height < castedImage.size.width) {
+    else {
         size.height = 480;
         size.width = 640;
     }
@@ -195,7 +195,7 @@
     UIGraphicsEndImageContext();
     
     
-    NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, kJpegQuality)];
+    NSData *uploadData = [[[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, kJpegQuality)] autorelease];
     
     NSLog(@"Size of Image(bytes):%d", [uploadData length]);
     
@@ -206,9 +206,9 @@
     NSError *writeError = nil;
     
     // JSON encode the Note data
-    NSData *noteJsonData = [[NSData alloc] initWithData:[NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError]];
+    NSData *noteJsonData = [[[NSData alloc] initWithData:[NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError]] autorelease];
     
-    NSString *noteJson = [[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding];
+    NSString *noteJson = [[[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding] autorelease];
     
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys: 
@@ -217,7 +217,7 @@
 //                              [NSData dataWithData:note.image_data], @"image_data",
 							  nil];
 	// create save request
-	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4 image:uploadData];
+	SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:4 image:uploadData] autorelease];
 	
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];

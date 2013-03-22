@@ -70,7 +70,7 @@
         return appDelegate.locationManager;
     }
 	
-    appDelegate.locationManager = [[CLLocationManager alloc] init];
+    appDelegate.locationManager = [[[CLLocationManager alloc] init] autorelease];
     appDelegate.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     //locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     appDelegate.locationManager.delegate = self;
@@ -250,7 +250,7 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
     // setup the noteManager
-    [self initNoteManager:[[NoteManager alloc] initWithManagedObjectContext:context]];
+    [self initNoteManager:[[[NoteManager alloc] initWithManagedObjectContext:context]autorelease]];
 
 	// check if any user data has already been saved and pre-select personal info cell accordingly
 	if ( [self hasUserInfoBeenSaved] )
@@ -272,7 +272,7 @@
     
     [noteButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [noteButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-    [noteButton setTitleColor:[[UIColor alloc] initWithRed:185.0 / 255 green:91.0 / 255 blue:47.0 / 255 alpha:1.0 ] forState:UIControlStateHighlighted];
+    [noteButton setTitleColor:[[[UIColor alloc] initWithRed:185.0 / 255 green:91.0 / 255 blue:47.0 / 255 alpha:1.0 ] autorelease] forState:UIControlStateHighlighted];
     
 //    noteButton.backgroundColor = [UIColor clearColor];
     noteButton.enabled = YES;
@@ -369,7 +369,7 @@
 	
 	// reset trip, reminder managers
 	NSManagedObjectContext *context = tripManager.managedObjectContext;
-	[self initTripManager:[[TripManager alloc] initWithManagedObjectContext:context]];
+	[self initTripManager:[[[TripManager alloc] initWithManagedObjectContext:context] autorelease]];
 	tripManager.dirty = YES;
 
 	[self resetCounter];
@@ -465,22 +465,22 @@
 
 - (NSDictionary *)newTripTimerUserInfo
 {
-    return [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], @"StartDate",
-			tripManager, @"TripManager", nil ];
+    return [[NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], @"StartDate",
+			tripManager, @"TripManager", nil ] retain ];
 }
 
 
-- (NSDictionary *)continueTripTimerUserInfo
-{
-	if ( tripManager.trip && tripManager.trip.start )
-		return [NSDictionary dictionaryWithObjectsAndKeys:tripManager.trip.start, @"StartDate",
-				tripManager, @"TripManager", nil ];
-	else {
-		NSLog(@"WARNING: tried to continue trip timer but failed to get trip.start date");
-		return [self newTripTimerUserInfo];
-	}
-	
-}
+//- (NSDictionary *)continueTripTimerUserInfo
+//{
+//	if ( tripManager.trip && tripManager.trip.start )
+//		return [NSDictionary dictionaryWithObjectsAndKeys:tripManager.trip.start, @"StartDate",
+//				tripManager, @"TripManager", nil ];
+//	else {
+//		NSLog(@"WARNING: tried to continue trip timer but failed to get trip.start date");
+//		return [self newTripTimerUserInfo];
+//	}
+//	
+//}
 
 
 // handle start button action
@@ -661,12 +661,12 @@
 		
 		static NSDateFormatter *inputFormatter = nil;
 		if ( inputFormatter == nil )
-			inputFormatter = [[NSDateFormatter alloc] init];
+			inputFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
 		NSDate *fauxDate = [inputFormatter dateFromString:@"00:00:00"];
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
-		NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:fauxDate];
+		NSDate *outputDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:fauxDate] autorelease];
 		
 		timeCounter.text = [inputFormatter stringFromDate:outputDate];
 	}
@@ -693,7 +693,7 @@
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
 		NSDate *fauxDate = [inputFormatter dateFromString:@"00:00:00"];
 		[inputFormatter setDateFormat:@"HH:mm:ss"];
-		NSDate *outputDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:fauxDate];
+		NSDate *outputDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:fauxDate] autorelease];
 		
 		//NSLog(@"Timer started on %@", startDate);
 		//NSLog(@"Timer started %f seconds ago", interval);
@@ -936,7 +936,7 @@ shouldSelectViewController:(UIViewController *)viewController
     self.noteManager = nil;
     self.appDelegate = nil;
     
-    [appDelegate.locationManager release];
+//    [appDelegate.locationManager release];
     [appDelegate release];
     [infoButton release];
     [saveButton release];

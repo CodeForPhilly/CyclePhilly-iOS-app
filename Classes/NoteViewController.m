@@ -81,9 +81,9 @@
         infoView.alpha = 1.0;
         infoView.backgroundColor = [UIColor blackColor];
         
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+        UIScrollView *scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)] autorelease];
         
-        UIImageViewResizable *noteImageResize = [[UIImageViewResizable alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+        UIImageViewResizable *noteImageResize = [[[UIImageViewResizable alloc] initWithFrame:CGRectMake(0, 0, 320, 427)] autorelease];
         
         noteImageResize.image= [UIImage imageWithData:note.image_data];
         noteImageResize.contentMode = UIViewContentModeScaleAspectFill;
@@ -98,12 +98,12 @@
         
         [infoView addSubview:scrollView];
         
-        UIImageView *bgImageHeader      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
+        UIImageView *bgImageHeader      = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 110)] autorelease];
         bgImageHeader.backgroundColor = [UIColor blackColor];
         bgImageHeader.alpha = 0.8;
         [infoView addSubview:bgImageHeader];
         
-        UILabel *notesHeader		= [[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)];
+        UILabel *notesHeader		= [[[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)] autorelease];
         notesHeader.backgroundColor = [UIColor clearColor];
         notesHeader.font			= [UIFont boldSystemFontOfSize:18.0];
         notesHeader.opaque			= NO;
@@ -111,12 +111,12 @@
         notesHeader.textColor		= [UIColor whiteColor];
         [infoView addSubview:notesHeader];
         
-        UIImageView *bgImageText      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+25)];
+        UIImageView *bgImageText      = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 110, 320, 25*row+25)] autorelease];
         bgImageText.backgroundColor = [UIColor blackColor];
         bgImageText.alpha = 0.8;
         [infoView addSubview:bgImageText];
         
-        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row+15)];
+        UITextView *notesText		= [[[UITextView alloc] initWithFrame:CGRectMake(0,110,320,25*row+15)] autorelease];
         notesText.backgroundColor	= [UIColor clearColor];
         notesText.editable			= NO;
         notesText.font				= [UIFont systemFontOfSize:16.0];
@@ -128,8 +128,8 @@
         infoView.alpha = 1.0;
         infoView.backgroundColor = [UIColor blackColor];
         
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
-        UIImageView *noteImage      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)];
+        UIScrollView *scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)] autorelease];
+        UIImageView *noteImage   = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 427)] autorelease];
         noteImage.image= [UIImage imageWithData:note.image_data];
         noteImage.contentMode = UIViewContentModeScaleAspectFill;
         
@@ -143,7 +143,7 @@
         infoView.alpha				= kInfoViewAlpha;
         infoView.backgroundColor	= [UIColor blackColor];
         
-        UILabel *notesHeader		= [[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)];
+        UILabel *notesHeader		= [[[UILabel alloc] initWithFrame:CGRectMake(9,85,160,25)] autorelease];
         notesHeader.backgroundColor = [UIColor clearColor];
         notesHeader.font			= [UIFont boldSystemFontOfSize:18.0];
         notesHeader.opaque			= NO;
@@ -151,7 +151,7 @@
         notesHeader.textColor		= [UIColor whiteColor];
         [infoView addSubview:notesHeader];
         
-        UITextView *notesText		= [[UITextView alloc] initWithFrame:CGRectMake(0,110,320,200)];
+        UITextView *notesText		= [[[UITextView alloc] initWithFrame:CGRectMake(0,110,320,200)] autorelease];
         notesText.backgroundColor	= [UIColor clearColor];
         notesText.editable			= NO;
         notesText.font				= [UIFont systemFontOfSize:16.0];
@@ -170,10 +170,10 @@
 	if ( note )
 	{
 		// format date as a string
-        NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter *outputDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
         [outputDateFormatter setDateStyle:kCFDateFormatterLongStyle];
         
-        NSDateFormatter *outputTimeFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter *outputTimeFormatter = [[[NSDateFormatter alloc] init] autorelease];
         [outputTimeFormatter setTimeStyle:kCFDateFormatterShortStyle];
         
         NSString *newDateString = [outputDateFormatter stringFromDate:note.recorded];
@@ -183,7 +183,7 @@
         NSLog(@"NewDataString: %@", newDateString);
         NSLog(@"NewTimeString: %@", newTimeString);
         
-        NSString *title = [[NSString alloc] init];
+        NSString *title = [[[NSString alloc] init] autorelease];
         switch ([note.note_type intValue]) {
             case 0:
                 title = @"Pavement issue";
@@ -245,7 +245,7 @@
         noteCoordinate.longitude = [note.longitude doubleValue];
         NSLog(@"noteCoordinate is: %f, %f", noteCoordinate.latitude, noteCoordinate.longitude);
         
-        MKPointAnnotation *notePoint = [[MKPointAnnotation alloc] init];
+        MKPointAnnotation *notePoint = [[[MKPointAnnotation alloc] init] autorelease];
         notePoint.coordinate = noteCoordinate;
         notePoint.title = @"Note";
         [noteView addAnnotation:notePoint];
@@ -267,7 +267,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    UIImage *thumbnailOriginal = [[UIImage alloc] init];
+    UIImage *thumbnailOriginal;
     thumbnailOriginal = [self screenshot];
     
     CGRect clippedRect  = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+160, self.view.frame.size.width, self.view.frame.size.height);
@@ -279,10 +279,10 @@
     size.height = 72;
     size.width = 72;
     
-    UIImage *thumbnail = [[UIImage alloc] init];
+    UIImage *thumbnail;
     thumbnail = shrinkImage1(newImage, size);
     
-    NSData *thumbnailData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)];
+    NSData *thumbnailData = [[[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)] autorelease];
     NSLog(@"Size of Thumbnail Image(bytes):%d",[thumbnailData length]);
     NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
     
@@ -304,7 +304,7 @@ UIImage *shrinkImage1(UIImage *original, CGSize size) {
     
     CGContextRelease(context);
     CGImageRelease(shrunken);
-    
+    CGColorSpaceRelease(colorSpace);
     return final;
 }
 
