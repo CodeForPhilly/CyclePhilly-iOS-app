@@ -1,4 +1,4 @@
-/** Cycle Altanta, Copyright 2012 Georgia Institute of Technology
+/** Cycle Altanta, Copyright 2012, 2013 Georgia Institute of Technology
  *                                    Atlanta, GA. USA
  *
  *   @author Christopher Le Dantec <ledantec@gatech.edu>
