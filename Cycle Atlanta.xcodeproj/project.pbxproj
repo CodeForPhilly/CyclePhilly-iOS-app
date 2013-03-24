@@ -52,6 +52,7 @@
 		8F20B0AC16F0F08A00031712 /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F20B0AA16F0F08A00031712 /* TripDetailViewController.m */; };
 		8F20B0AD16F0F08A00031712 /* TripDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F20B0AB16F0F08A00031712 /* TripDetailViewController.xib */; };
 		8F25EC7916E13E7C004263D4 /* SavedNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F25EC7716E13E7B004263D4 /* SavedNotesViewController.m */; };
+		8F50190616FC2AC200AB284F /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F50190516FC2AC200AB284F /* Model.xcmappingmodel */; };
 		8F5E60661602CBE000D8F85D /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */; };
 		8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E60651602CBE000D8F85D /* UIDevice+IdentifierAddition.m */; };
 		8F9C086416DC9479003EA308 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C086316DC9479003EA308 /* Note.m */; };
@@ -242,6 +243,7 @@
 		8F20B0AB16F0F08A00031712 /* TripDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TripDetailViewController.xib; path = Classes/TripDetailViewController.xib; sourceTree = "<group>"; };
 		8F25EC7616E13E7B004263D4 /* SavedNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedNotesViewController.h; sourceTree = "<group>"; };
 		8F25EC7716E13E7B004263D4 /* SavedNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedNotesViewController.m; sourceTree = "<group>"; };
+		8F50190516FC2AC200AB284F /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = Model.xcmappingmodel; path = Classes/Model.xcmappingmodel; sourceTree = "<group>"; };
 		8F5E60621602CBE000D8F85D /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5Addition.h"; path = "../NSString+MD5Addition.h"; sourceTree = "<group>"; };
 		8F5E60631602CBE000D8F85D /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5Addition.m"; path = "../NSString+MD5Addition.m"; sourceTree = "<group>"; };
 		8F5E60641602CBE000D8F85D /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+IdentifierAddition.h"; path = "../UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */,
+				8F50190516FC2AC200AB284F /* Model.xcmappingmodel */,
 				8F9C086B16DC947A003EA308 /* Coord.h */,
 				8F9C086C16DC947A003EA308 /* Coord.m */,
 				8F9C086816DC9479003EA308 /* User.h */,
@@ -921,7 +924,11 @@
 				8F25EC7916E13E7C004263D4 /* SavedNotesViewController.m in Sources */,
 				8F20B0AC16F0F08A00031712 /* TripDetailViewController.m in Sources */,
 				8FAD930516F189EE00082B6F /* UIImageViewResizable.m in Sources */,
+<<<<<<< HEAD
 				9DD65FBB16FEA3CC00F2EB63 /* ImageResize.m in Sources */,
+=======
+				8F50190616FC2AC200AB284F /* Model.xcmappingmodel in Sources */,
+>>>>>>> Add mapping model for coredata migration
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
