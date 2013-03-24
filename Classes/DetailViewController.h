@@ -34,11 +34,11 @@
 
 @property (copy, nonatomic) NSString *lastChosenMediaType;
 
--(IBAction)skip:(id)sender;
--(IBAction)saveDetail:(id)sender;
-
+- (IBAction)skip:(id)sender;
+- (IBAction)saveDetail:(id)sender;
 - (IBAction)shootPictureOrVideo:(id)sender;
 - (IBAction)selectExistingPictureOrVideo:(id)sender;
+
 
 
 @end

@@ -47,6 +47,7 @@
 #import "LoadingView.h"
 #import "RecordTripViewController.h"
 #import "CycleAtlantaAppDelegate.h"
+#import "ImageResize.h"
 
 
 #define kSaveNoteProtocolVersion	4
@@ -176,10 +177,9 @@
     }
     NSLog(@"img_url: %@", note.image_url);
     
-    UIImage *castedImage = [[[UIImage alloc] initWithData:note.image_data] autorelease];
+    UIImage *castedImage = [[UIImage alloc] initWithData:note.image_data];
     
     CGSize size;
-    
     if (castedImage.size.height > castedImage.size.width) {
         size.height = 640;
         size.width = 480;
@@ -189,13 +189,7 @@
         size.width = 640;
     }
     
-    UIGraphicsBeginImageContext(size);
-    [castedImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    
-    NSData *uploadData = [[[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, kJpegQuality)] autorelease];
+    NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation([ImageResize imageWithImage:castedImage scaledToSize:size], kJpegQuality)];
     
     NSLog(@"Size of Image(bytes):%d", [uploadData length]);
     
@@ -206,9 +200,9 @@
     NSError *writeError = nil;
     
     // JSON encode the Note data
-    NSData *noteJsonData = [[[NSData alloc] initWithData:[NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError]] autorelease];
+    NSData *noteJsonData = [[NSData alloc] initWithData:[NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError]];
     
-    NSString *noteJson = [[[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding] autorelease];
+    NSString *noteJson = [[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding];
     
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys: 
@@ -217,7 +211,7 @@
 //                              [NSData dataWithData:note.image_data], @"image_data",
 							  nil];
 	// create save request
-	SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:4 image:uploadData] autorelease];
+	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4 image:uploadData];
 	
 	// create the connection with the request and start loading the data
 	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
@@ -245,6 +239,11 @@
         
     }
     
+    [noteJson release];
+    [noteJsonData release];
+    [castedImage release];
+    [uploadData release];
+    [saveRequest release];
 }
 
 

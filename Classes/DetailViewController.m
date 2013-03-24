@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "NoteManager.h"
+#import "ImageResize.h"
 
 @interface DetailViewController ()
 static UIImage *shrinkImage(UIImage *original, CGSize size);
@@ -92,6 +93,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     [delegate saveNote];
 }
 
+
 -(IBAction)saveDetail:(id)sender{
     NSLog(@"Save Detail");
     [detailTextView resignFirstResponder];
@@ -121,9 +123,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
-    self.imageFrameView = nil;
-    [imageFrameView release];
 }
 
 #pragma mark UIImagePickerController delegate methods
@@ -135,36 +134,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //save to library
     UIImageWriteToSavedPhotosAlbum(castedImage,self, nil, nil);
     
-    CGSize size;
-    
-    if (castedImage.size.height > castedImage.size.width) {
-        size.height = 1080;
-        size.width = 810;
-    }
-    else {
-        size.height = 810;
-        size.width = 1080;
-    }
-    
-    UIGraphicsBeginImageContext(size);
-    [castedImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(destImage, 1)];
+    imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation([ImageResize imageWithImage:castedImage scaledToSizeWithSameAspectRatio:CGSizeMake(960, 640)], 1)];
+    UIImage *thumbnail = [ImageResize imageWithImage:castedImage scaledToSizeWithSameAspectRatio:CGSizeMake(290, 192)];
     
     NSLog(@"Size of Image(bytes):%d",[imageData length]);
-    
-    self.image = castedImage;
-
+    self.image = thumbnail;
     [picker dismissModalViewControllerAnimated:YES];
+    [picker release];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissModalViewControllerAnimated:YES];
+    [picker release];
 }
 
 #pragma mark  -
+
 static UIImage *shrinkImage(UIImage *original, CGSize size) {
     CGFloat scale = [UIScreen mainScreen].scale;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -199,7 +184,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
         picker.delegate = self;
         picker.sourceType = sourceType;
         [self presentModalViewController:picker animated:YES];
-        [picker release];
+//        [picker release];
     } else {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Error accessing media"

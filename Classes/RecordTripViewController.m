@@ -885,6 +885,7 @@ shouldSelectViewController:(UIViewController *)viewController
 - (void)didSaveImage:(NSData *)imgData{
     [noteManager.note setImage_data:imgData];
     NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
+    [imgData release];
 }
 
 - (void)getTripThumbnail:(NSData *)imgData{

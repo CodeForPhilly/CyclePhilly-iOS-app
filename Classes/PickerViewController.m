@@ -200,7 +200,6 @@
         NSLog(@"tempType: %d", [tempType intValue]);
         
         [delegate didPickNoteType:tempType];
-        
     }	
 }
 
