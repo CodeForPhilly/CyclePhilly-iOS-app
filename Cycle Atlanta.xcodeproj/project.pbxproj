@@ -47,6 +47,7 @@
 		64F823E1106AC151001413F8 /* SaveRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F823E0106AC151001413F8 /* SaveRequest.m */; };
 		64F824E6106AFFA4001413F8 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */; };
 		64FCC5B411352242000FA1B6 /* PersonalInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64FCC5B311352242000FA1B6 /* PersonalInfo.xib */; };
+		8F14B2AC16FF478D00464039 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F14B2AB16FF478D00464039 /* Model.xcmappingmodel */; };
 		8F1B1D3F164B94C60022B776 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1B1D3E164B94C60022B776 /* DetailViewController.m */; };
 		8F1B1D41164B94E90022B776 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1B1D40164B94E90022B776 /* DetailView.xib */; };
 		8F20B0AC16F0F08A00031712 /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F20B0AA16F0F08A00031712 /* TripDetailViewController.m */; };
@@ -234,6 +235,7 @@
 		64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		64FCC5B311352242000FA1B6 /* PersonalInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfo.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Cycle Atlanta-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cycle Atlanta-Info.plist"; sourceTree = "<group>"; };
+		8F14B2AB16FF478D00464039 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		8F1B1D3D164B94C60022B776 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8F1B1D3E164B94C60022B776 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8F1B1D40164B94E90022B776 /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				8FA0AD9116BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld */,
+				8F14B2AB16FF478D00464039 /* Model.xcmappingmodel */,
 				8F9C086B16DC947A003EA308 /* Coord.h */,
 				8F9C086C16DC947A003EA308 /* Coord.m */,
 				8F9C086816DC9479003EA308 /* User.h */,
@@ -922,6 +925,7 @@
 				8F20B0AC16F0F08A00031712 /* TripDetailViewController.m in Sources */,
 				8FAD930516F189EE00082B6F /* UIImageViewResizable.m in Sources */,
 				9DD65FBB16FEA3CC00F2EB63 /* ImageResize.m in Sources */,
+				8F14B2AC16FF478D00464039 /* Model.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
