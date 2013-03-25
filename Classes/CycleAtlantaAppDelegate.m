@@ -180,7 +180,8 @@
 	
 	
 	// Add the tab bar controller's current view as a subview of the window
-    [window addSubview:tabBarController.view];
+    //[window addSubview:tabBarController.view];
+    window.rootViewController = tabBarController;
 	[window makeKeyAndVisible];	
 }
 
@@ -378,8 +379,7 @@
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, nil];
-    
-    //[NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
+                             //[NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
 	NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
