@@ -100,7 +100,7 @@
             [view release];
             
             view = [[CustomView alloc] initWithFrame:CGRectZero];
-            view.title = @"Work-related";
+            view.title = @"Work-Related";
             view.image = [UIImage imageNamed:kTripPurposeWorkIcon];
             [viewArray addObject:view];
             [view release];

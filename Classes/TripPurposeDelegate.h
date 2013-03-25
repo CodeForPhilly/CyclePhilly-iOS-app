@@ -62,7 +62,7 @@
 
 #define kTripPurposeCommuteString	@"Commute"
 #define kTripPurposeSchoolString	@"School"
-#define kTripPurposeWorkString		@"Work-related"
+#define kTripPurposeWorkString		@"Work-Related"
 #define kTripPurposeExerciseString	@"Exercise"
 #define kTripPurposeSocialString	@"Social"
 #define kTripPurposeShoppingString	@"Shopping"

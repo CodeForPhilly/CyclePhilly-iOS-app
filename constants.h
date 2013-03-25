@@ -90,7 +90,7 @@
 #define kSaveError			@"Your trip has been saved. Please try uploading again later."
 
 #define kInfoURL			@"http://cycleatlanta.org/CycleAtlantaInfo"
-#define kInstructionsURL	@"http://cycleatlanta.org/instructions/"
+#define kInstructionsURL	@"http://cycleatlanta.org/instructions-v2/"
 
 #define kSaveURL			@"http://cycleatlanta.org/post_dev/"
 //#define kSaveURL			@""

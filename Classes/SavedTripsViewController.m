@@ -443,7 +443,7 @@
     [purposeText setTextColor:[UIColor blackColor]];
     
     UILabel *durationText = [[[UILabel alloc] init] autorelease];
-    durationText.frame = CGRectMake( 130, 24, 190, 30);
+    durationText.frame = CGRectMake( 140, 24, 190, 30);
     [durationText setFont:[UIFont systemFontOfSize:18]];
     [durationText setTextColor:[UIColor blackColor]];
     
@@ -453,7 +453,7 @@
     [CO2Text setTextColor:[UIColor grayColor]];
     
     UILabel *CaloryText = [[[UILabel alloc] init] autorelease];
-    CaloryText.frame = CGRectMake( 130, 50, 190, 20);
+    CaloryText.frame = CGRectMake( 140, 50, 190, 20);
     [CaloryText setFont:[UIFont systemFontOfSize:12]];
     [CaloryText setTextColor:[UIColor grayColor]];
     
