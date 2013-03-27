@@ -38,7 +38,7 @@
 	<key>CFBundleSignature</key>
 	<string>CAGT</string>
 	<key>CFBundleVersion</key>
-	<string>111-d</string>
+	<string>111</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
