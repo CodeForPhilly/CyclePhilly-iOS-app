@@ -406,6 +406,11 @@
 
 - (void)done
 {
+    [email resignFirstResponder];
+    [homeZIP resignFirstResponder];
+    [workZIP resignFirstResponder];
+    [schoolZIP resignFirstResponder];
+    
     NSLog(@"Saving User Data");
 	if ( user != nil )
 	{
