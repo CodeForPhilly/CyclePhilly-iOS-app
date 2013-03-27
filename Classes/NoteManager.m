@@ -223,6 +223,122 @@
     
     NSInteger recording = [[NSUserDefaults standardUserDefaults] integerForKey:@"recording"];
     
+    
+    if (recording == 0) {
+        [parent displayUploadedNote];
+    }
+    
+    NSLog(@"note save and parent");
+    
+    if ( theConnection )
+    {
+        receivedDataNoted=[[NSMutableData data] retain];
+    }
+    else
+    {
+        // inform the user that the download could not be made
+        
+    }
+    
+    [noteJson release];
+    [noteJsonData release];
+    [castedImage release];
+    [uploadData release];
+    [saveRequest release];
+}
+
+
+- (void)saveNote:(Note*)_note
+{
+    NSMutableDictionary *noteDict;
+	
+	// format date as a string
+	NSDateFormatter *outputFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	[outputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDateFormatter *outputFormatterURL = [[[NSDateFormatter alloc] init] autorelease];
+	[outputFormatterURL setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+    
+    NSLog(@"saving using protocol version 4");
+	
+    // create a noteDict for each note
+    noteDict = [[[NSMutableDictionary alloc] initWithCapacity:10] autorelease];
+    [noteDict setValue:_note.altitude  forKey:@"a"];  //altitude
+    [noteDict setValue:_note.latitude  forKey:@"l"];  //latitude
+    [noteDict setValue:_note.longitude forKey:@"n"];  //longitude
+    [noteDict setValue:_note.speed     forKey:@"s"];  //speed
+    [noteDict setValue:_note.hAccuracy forKey:@"h"];  //haccuracy
+    [noteDict setValue:_note.vAccuracy forKey:@"v"];  //vaccuracy
+    
+    [noteDict setValue:_note.note_type     forKey:@"t"];  //note_type
+    [noteDict setValue:_note.details forKey:@"d"];  //details
+    
+    NSString *newDateString = [outputFormatter stringFromDate:_note.recorded];
+    NSString *newDateStringURL = [outputFormatterURL stringFromDate:_note.recorded];
+    [noteDict setValue:newDateString forKey:@"r"];    //recorded timestamp
+    
+    CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    self.deviceUniqueIdHash1 = delegate.uniqueIDHash;
+    NSLog(@"deviceUniqueIdHash is %@", deviceUniqueIdHash1);
+    
+    //generated from userid, recordedtime and type
+    
+    if (_note.image_data == nil) {
+        _note.image_url =@"";
+    }
+    else {
+        _note.image_url = [NSString stringWithFormat:@"%@-%@-type-%@",deviceUniqueIdHash1,newDateStringURL,_note.note_type];
+    }
+    NSLog(@"note_type: %d", [_note.note_type intValue]);
+    NSLog(@"img_url: %@", _note.image_url);
+    NSLog(@"img_url: %@", _note.details);
+    
+    UIImage *castedImage = [[UIImage alloc] initWithData:_note.image_data];
+    
+    CGSize size;
+    if (castedImage.size.height > castedImage.size.width) {
+        size.height = 640;
+        size.width = 480;
+    }
+    else {
+        size.height = 480;
+        size.width = 640;
+    }
+    
+    NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation([ImageResize imageWithImage:castedImage scaledToSize:size], kJpegQuality)];
+    
+    NSLog(@"Size of Image(bytes):%d", [uploadData length]);
+    
+    [noteDict setValue:_note.image_url forKey:@"i"];  //image_url
+    //[noteDict setValue:note.image_data forKey:@"g"];  //image_data
+    
+    // JSON encode user data and trip data, return to strings
+    NSError *writeError = nil;
+    
+    // JSON encode the Note data
+    NSData *noteJsonData = [[NSData alloc] initWithData:[NSJSONSerialization dataWithJSONObject:noteDict options:0 error:&writeError]];
+    
+    NSString *noteJson = [[NSString alloc] initWithData:noteJsonData encoding:NSUTF8StringEncoding];
+    
+	// NOTE: device hash added by SaveRequest initWithPostVars
+	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
+                              noteJson, @"note",
+							  [NSString stringWithFormat:@"%d", kSaveNoteProtocolVersion], @"version",
+                              //                              [NSData dataWithData:note.image_data], @"image_data",
+							  nil];
+	// create save request
+	SaveRequest *saveRequest = [[SaveRequest alloc] initWithPostVars:postVars with:4 image:uploadData];
+	
+	// create the connection with the request and start loading the data
+	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
+	
+    // create loading view to indicate trip is being uploaded
+    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingNoteTitle] retain];
+    
+    //switch to map w/ trip view
+    
+    NSInteger recording = [[NSUserDefaults standardUserDefaults] integerForKey:@"recording"];
+    
+    
     if (recording == 0) {
         [parent displayUploadedNote];
     }
@@ -299,13 +415,13 @@
         
         if ( success )
 		{
-//			[note setUploaded:[NSDate date]];
-//			
-//			NSError *error;
-//			if (![managedObjectContext save:&error]) {
-//				// Handle the error.
-//				NSLog(@"TripManager setUploaded error %@, %@", error, [error localizedDescription]);
-//			}
+            [note setUploaded:[NSDate date]];
+			
+			NSError *error;
+			if (![managedObjectContext save:&error]) {
+				// Handle the error.
+				NSLog(@"TripManager setUploaded error %@, %@", error, [error localizedDescription]);
+			}
             
             [uploadingView loadingComplete:kSuccessTitle delayInterval:.7];
 		} else {
@@ -366,6 +482,34 @@
     // release the connection, and the data object
     [connection release];
     [receivedDataNoted release];
+}
+
+- (id)initWithNote:(Note *)_note
+{
+    if ( self = [super init] )
+	{
+		self.activityDelegate = self;
+		[self loadNote:_note];
+    }
+    return self;
+}
+
+- (BOOL)loadNote:(Note *)_note
+{
+    if ( _note )
+	{
+		self.note					= _note;
+		self.managedObjectContext	= [_note managedObjectContext];
+        
+		// save updated duration to CoreData
+		NSError *error;
+		if (![self.managedObjectContext save:&error]) {
+			// Handle the error.
+			NSLog(@"loadNote error %@, %@", error, [error localizedDescription]);
+            
+		}
+    }
+    return YES;
 }
 
 - (void)dealloc {

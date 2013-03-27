@@ -27,7 +27,7 @@
 @class NoteManager;
 
 @interface SavedNotesViewController : UITableViewController
-    <UINavigationControllerDelegate>
+    <UINavigationControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 {
     NSMutableArray *notes;
     NoteManager *noteManager;
@@ -46,5 +46,7 @@
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
 - (id)initWithNoteManager:(NoteManager*)manager;
+
+- (void)displayUploadedNote;
 
 @end

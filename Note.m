@@ -25,5 +25,6 @@
 @dynamic image_data;
 @dynamic thumbnail;
 @dynamic user;
+@dynamic uploaded;
 
 @end

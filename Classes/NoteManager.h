@@ -81,10 +81,14 @@
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
 
 - (void)saveNote;
+- (void)saveNote:(Note*)note;
 
 - (void)createNote;
 
 - (void)addLocation:(CLLocation*)locationNow;
+
+- (id)initWithNote:(Note*)note;
+- (BOOL)loadNote:(Note *)note;
 
 @end
 

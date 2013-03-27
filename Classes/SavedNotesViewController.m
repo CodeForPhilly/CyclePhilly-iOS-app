@@ -45,6 +45,7 @@
 }
 - (void)setTitle:(NSString *)title;
 - (void)setDetail:(NSString *)detail;
+- (void)setDirty;
 
 @end
 
@@ -60,6 +61,11 @@
 {
     self.detailTextLabel.text = detail;
     [self setNeedsDisplay];
+}
+
+- (void)setDirty
+{
+	[self setNeedsDisplay];
 }
 
 @end
@@ -217,8 +223,9 @@
 			cell.accessoryView = imageView;
 		}
 	}
-	else
-		[[cell.contentView viewWithTag:kTagImage] setNeedsDisplay];
+	else{
+        [[cell.contentView viewWithTag:kTagImage] setNeedsDisplay];
+    }
     
 	// slide accessory view out of the way during editing
 	cell.editingAccessoryView = cell.accessoryView;
@@ -249,47 +256,37 @@
     Note *note = (Note *)[notes objectAtIndex:indexPath.row];
 	NoteCell *cell = nil;
     
-//    NSString *noteStatus = nil;
-    
-//    UITextView *timeText = [[UITextView alloc] init];
-//    timeText.frame = CGRectMake( 10, 15, 220, 25);
-//    [timeText setFont:[UIFont systemFontOfSize:14]];
-//    [timeText setTextColor:[UIColor grayColor]];
-//    timeText.userInteractionEnabled = NO;
-//    
-//    UITextView *purposeText = [[UITextView alloc] init];
-//    purposeText.frame = CGRectMake( 10, 35, 220, 30);
-//    [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
-//    [purposeText setTextColor:[UIColor blackColor]];
-//    purposeText.userInteractionEnabled = NO;
-    
-    cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierCheck];
-    
     UIImage	*image;
-    // add check mark
-    // image = [UIImage imageNamed:@"GreenCheckMark2.png"];
     
-    int index = [note.note_type intValue];
-    
-    NSLog(@"note.purpose: %d",index);
-    
-    // add purpose icon
-    if (index >=0 && index <=5) {
-        image = [UIImage imageNamed:kNoteThisIssue];
+    if(note.uploaded){
+        cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierCheck];
+        
+        int index = [note.note_type intValue];
+        
+        NSLog(@"note.purpose: %d",index);
+        
+        // add purpose icon
+        if (index >=0 && index <=5) {
+            image = [UIImage imageNamed:kNoteThisIssue];
+        }
+        else if (index>=6 && index<=11) {
+            image = [UIImage imageNamed:kNoteThisAsset];
+        }
+        else{
+            image = [UIImage imageNamed:@"GreenCheckMark2.png"];
+        }
+        
+        UIImageView *imageView	= [[[UIImageView alloc] initWithImage:image] autorelease];
+        imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
+        
+        //[cell.contentView addSubview:imageView];
+        cell.accessoryView = imageView;
     }
-    else if (index>=6 && index<=11) {
-        image = [UIImage imageNamed:kNoteThisAsset];
-    }
-    else{
-        image = [UIImage imageNamed:@"GreenCheckMark2.png"];
-    }
-    
-    UIImageView *imageView	= [[[UIImageView alloc] initWithImage:image] autorelease];
-    imageView.frame			= CGRectMake( kAccessoryViewX, kAccessoryViewY, image.size.width, image.size.height );
-    
-    //[cell.contentView addSubview:imageView];
-    cell.accessoryView = imageView;
-    
+    else
+	{
+		cell = [self getCellWithReuseIdentifier:kCellReuseIdentifierExclamation];
+		//tripStatus = @"(recording interrupted)";
+	}
     
 //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n(note saved & uploaded)", 
 //                                 [dateFormatter stringFromDate:[note recorded]]];
@@ -368,6 +365,70 @@
     return cell;
 }
 
+- (void)promptToConfirmPurpose
+{
+	NSLog(@"promptToConfirmPurpose");
+	
+	NSString *confirm = [NSString stringWithFormat:@"This note has not yet been uploaded. Try now?"];
+	
+	// present action sheet
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
+															 delegate:self
+													cancelButtonTitle:@"Cancel"
+											   destructiveButtonTitle:nil
+													otherButtonTitles:@"Upload", nil];
+	
+	actionSheet.actionSheetStyle	= UIActionSheetStyleBlackTranslucent;
+	[actionSheet showInView:self.tabBarController.view];
+	[actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"actionSheet clickedButtonAtIndex %d", buttonIndex);
+	switch ( buttonIndex )
+	{
+		case 0:
+            [noteManager saveNote:noteManager.note];
+			break;
+		case 1:
+		default:
+			NSLog(@"Cancel");
+			[self displaySelectedNoteMap];
+			break;
+	}
+}
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	NSLog(@"actionSheetCancel");
+}
+
+- (void)displaySelectedNoteMap
+{
+	loading		= [[LoadingView loadingViewInView:self.parentViewController.view messageString:@"Loading..."] retain];
+	loading.tag = 999;
+	if ( selectedNote )
+	{
+		NoteViewController *mvc = [[NoteViewController alloc] initWithNote:selectedNote];
+		[[self navigationController] pushViewController:mvc animated:YES];
+		[mvc release];
+		selectedNote = nil;
+	}
+}
+
+- (void)displayUploadedNote
+{
+    Note *note = noteManager.note;
+    
+    // load map view of note
+    NoteViewController *mvc = [[NoteViewController alloc] initWithNote:note];
+    [[self navigationController] pushViewController:mvc animated:YES];
+    NSLog(@"displayUploadedNote");
+    [mvc release];
+}
+
+
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -430,7 +491,17 @@
 	loading.tag = 999;
     [loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
     
-    if ( selectedNote )
+    if (!selectedNote.uploaded) {
+        if ( noteManager )
+            [noteManager release];
+        
+        noteManager = [[NoteManager alloc] initWithNote:selectedNote];
+        noteManager.alertDelegate = self;
+        noteManager.parent = self;
+        // prompt to upload
+        [self promptToConfirmPurpose];
+    }
+    else if ( selectedNote )
 	{
 		NoteViewController *mvc = [[NoteViewController alloc] initWithNote:selectedNote];
 		[[self navigationController] pushViewController:mvc animated:YES];
