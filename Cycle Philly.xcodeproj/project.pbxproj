@@ -176,12 +176,12 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* CycleAtlantaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleAtlantaAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* CycleAtlantaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleAtlantaAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Cycle Atlanta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Atlanta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Cycle Philly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cycle Philly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* Cycle Atlanta_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cycle Atlanta_Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cycle Philly_Prefix.pch"; sourceTree = "<group>"; };
 		6411996010683D7500C201F0 /* RecordTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RecordTripViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6411996110683D7500C201F0 /* RecordTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RecordTripViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6411996C10683DCD00C201F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -234,7 +234,7 @@
 		64F824E4106AFFA4001413F8 /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
 		64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
 		64FCC5B311352242000FA1B6 /* PersonalInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalInfo.xib; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Cycle Atlanta-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cycle Atlanta-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Cycle Philly-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cycle Philly-Info.plist"; sourceTree = "<group>"; };
 		8F1B1D3D164B94C60022B776 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8F1B1D3E164B94C60022B776 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8F1B1D40164B94E90022B776 /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
@@ -456,7 +456,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Cycle Atlanta.app */,
+				1D6058910D05DD3D006BFB54 /* Cycle Philly.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -480,7 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				64F823B6106AB402001413F8 /* constants.h */,
-				32CA4F630368D1EE00C91783 /* Cycle Atlanta_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -497,7 +497,7 @@
 				6411A185106A90E400C201F0 /* TripPurposePickerIcons v2 */,
 				6411A16A106A05DE00C201F0 /* Images */,
 				6458114D107AA4D30075DABD /* bicycle-bell-normalized.aiff */,
-				8D1107310486CEB800E47090 /* Cycle Atlanta-Info.plist */,
+				8D1107310486CEB800E47090 /* Cycle Philly-Info.plist */,
 				64577E28106DC2FD003ACBFD /* dist.plist */,
 				64210F28113508B800415F1A /* MainWindow.xib */,
 				642F14791071D3F10050BCB9 /* MapViewController.xib */,
@@ -719,9 +719,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Cycle Atlanta */ = {
+		1D6058900D05DD3D006BFB54 /* Cycle Philly */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Cycle Atlanta" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Cycle Philly" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -731,9 +731,9 @@
 			);
 			dependencies = (
 			);
-			name = "Cycle Atlanta";
+			name = "Cycle Philly";
 			productName = CycleTracks;
-			productReference = 1D6058910D05DD3D006BFB54 /* Cycle Atlanta.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Cycle Philly.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -744,7 +744,7 @@
 			attributes = {
 				LastUpgradeCheck = 0440;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cycle Atlanta" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cycle Philly" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -755,7 +755,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Cycle Atlanta */,
+				1D6058900D05DD3D006BFB54 /* Cycle Philly */,
 			);
 		};
 /* End PBXProject section */
@@ -943,10 +943,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cycle Atlanta_Prefix.pch";
-				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
+				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
+				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Cycle Atlanta";
+				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -961,10 +961,10 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cycle Atlanta_Prefix.pch";
-				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
+				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
+				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Cycle Atlanta";
+				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -992,10 +992,10 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cycle Atlanta_Prefix.pch";
-				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
+				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
+				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Cycle Atlanta";
+				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1028,10 +1028,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cycle Atlanta_Prefix.pch";
-				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
+				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
+				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Cycle Atlanta";
+				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -1060,10 +1060,10 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Cycle Atlanta_Prefix.pch";
-				INFOPLIST_FILE = "Cycle Atlanta-Info.plist";
+				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
+				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Cycle Atlanta";
+				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -1098,7 +1098,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Cycle Atlanta" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Cycle Philly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -1110,7 +1110,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cycle Atlanta" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cycle Philly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
