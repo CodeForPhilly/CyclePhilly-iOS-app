@@ -89,10 +89,10 @@
 #define kSaveAccepted		@"Your trip has already been uploaded. Thank you."
 #define kSaveError			@"Your trip has been saved. Please try uploading again later."
 
-#define kInfoURL			@"http://cycleatlanta.org/CycleAtlantaInfo"
-#define kInstructionsURL	@"http://cycleatlanta.org/instructions-v2/"
+#define kInfoURL			@"http://mytracks.phillyopen.org/CycleAtlantaInfo"
+#define kInstructionsURL	@"http://mytracks.phillyopen.org/instructions-v2/"
 
-#define kSaveURL			@"http://cycleatlanta.org/post/"
+#define kSaveURL			@"http://mytracks.phillyopen.org/post/"
 //#define kSaveURL			@""
 
 #define kTripNotesPlaceholder	@"Comments"
