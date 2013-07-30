@@ -89,6 +89,8 @@
 #define kSaveAccepted		@"Your trip has already been uploaded. Thank you."
 #define kSaveError			@"Your trip has been saved. Please try uploading again later."
 
+//	updated references for posting to Cycle Philly site for Cycle Philly adaptation for questions email Corey Acri acri.corey@gmail.com
+
 #define kInfoURL			@"http://mytracks.phillyopen.org/CycleAtlantaInfo"
 #define kInstructionsURL	@"http://mytracks.phillyopen.org/instructions-v2/"
 
