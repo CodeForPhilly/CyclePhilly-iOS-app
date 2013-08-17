@@ -936,7 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Corey Acri (ZD2BH568RB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -947,7 +947,7 @@
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C8C07D70-5C0D-4304-BE17-4F7413038552";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -956,7 +956,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Corey Acri (ZD2BH568RB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -965,7 +965,7 @@
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C8C07D70-5C0D-4304-BE17-4F7413038552";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -987,7 +987,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Corey Acri (ZD2BH568RB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -996,7 +996,7 @@
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C8C07D70-5C0D-4304-BE17-4F7413038552";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -1021,7 +1021,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Corey Acri (ZD2BH568RB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1032,7 +1032,7 @@
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C8C07D70-5C0D-4304-BE17-4F7413038552";
 				SDKROOT = iphoneos;
 			};
 			name = Beta;
@@ -1055,7 +1055,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Corey Acri (ZD2BH568RB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1064,7 +1064,7 @@
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C8C07D70-5C0D-4304-BE17-4F7413038552";
 				SDKROOT = iphoneos;
 			};
 			name = "Release Beta";

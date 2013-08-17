@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8CDC3EE8-E2D7-4BF6-B686-6B14D1EB681E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Cycle Philly</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>71F631D7-15F7-4B2D-8E42-853890540A56</key>
+		<string>https://github.com/PhillyOpen/Cycle-Philly-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Cycle Philly.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>71F631D7-15F7-4B2D-8E42-853890540A56</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PhillyOpen/Cycle-Philly-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>71F631D7-15F7-4B2D-8E42-853890540A56</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>71F631D7-15F7-4B2D-8E42-853890540A56</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Cycle-Philly-iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
