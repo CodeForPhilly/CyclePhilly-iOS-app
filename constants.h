@@ -79,7 +79,7 @@
 #define kSavingNoteTitle    @"Uploading your note"
 #define kSuccessTitle		@"Upload complete"
 #define kTripNotesTitle		@"Enter Comments Below"
-#define kConsentFor18Title  @"In order to send route data to Georgia Tech and the City of Atlanta, you must be at least 18."
+#define kConsentFor18Title  @"In order to transmit route data, you must be at least 18."
 
 
 #define kInterruptedTitle		@"Recording Interrupted"

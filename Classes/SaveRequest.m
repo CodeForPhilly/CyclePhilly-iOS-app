@@ -1,4 +1,14 @@
-/** Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
+/** Cycle Philly, 2013 Code For Philly
+ *                                    Philadelphia, PA. USA
+ *
+ *
+ *   Contact: Corey Acri <acri.corey@gmail.com>
+ *            Lloyd Emelle <lloyd.emelle@gmail.com>
+ *
+ *   Updated/Modified for Philadelphia's app deployment. Based on the
+ *   Cycle Atlanta and CycleTracks codebase for SFCTA.
+ *
+ * Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
  *                                    Atlanta, GA. USA
  *
  *   @author Christopher Le Dantec <ledantec@gatech.edu>
@@ -110,7 +120,7 @@
         } else {
             // create the POST request for saving a Trip
             [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
-            // this is a bit grotty, but it indicates a) cycleatl namespace
+            // this is a bit grotty, but it indicates a) cycle namespace
             // b) trip upload, c) version 3, d) form encoding
             [request setValue:@"application/vnd.cycleatl.trip-v3+form" forHTTPHeaderField:@"Content-Type"];            
             

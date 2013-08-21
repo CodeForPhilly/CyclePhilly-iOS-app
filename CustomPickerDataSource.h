@@ -1,4 +1,14 @@
-/** Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
+/** Cycle Philly, 2013 Code For Philly
+ *                                    Philadelphia, PA. USA
+ *
+ *
+ *   Contact: Corey Acri <acri.corey@gmail.com>
+ *            Lloyd Emelle <lloyd.emelle@gmail.com>
+ *
+ *   Updated/Modified for Philadelphia's app deployment. Based on the
+ *   Cycle Atlanta and CycleTracks codebase for SFCTA.
+ *
+ * Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
  *                                    Atlanta, GA. USA
  *
  *   @author Christopher Le Dantec <ledantec@gatech.edu>
@@ -60,7 +70,7 @@
 // Asset descriptions
 #define kAssetDescBikeParking   @"Park them here and remember to secure your bike well! Please only include racks or other objects intended for bikes."
 #define kAssetDescBikeShops @"Have a flat, a broken chain, or spongy brakes? Or do you need a bike to jump into this world of cycling in the first place? Here's a shop ready to help."
-#define kAssetDescPublicRestrooms   @"Help us make cycling mainstream… here’s a place to refresh yourself before you re-enter the fashionable world of Atlanta."
+#define kAssetDescPublicRestrooms   @"Help us make cycling mainstream… here’s a place to refresh yourself."
 #define kAssetDescSecretPassage @"Here's an access point under the tracks, through the park, onto a trail, or over a ravine."
 #define kAssetDescWaterFountains    @"Here’s a spot to fill your bottle on those hot summer days… stay hydrated, people. We need you."
 #define kAssetDescNoteThisSpot  @"Anything else we should map to help your fellow cyclists? Share the details."

@@ -3,7 +3,7 @@
 //  Cycle Atlanta
 //
 //  Created by Guo Anhong on 13-2-26.
-//
+//  adapted for CyclePhilly 2013, CodeforPhilly.org
 //
 
 #import "User.h"

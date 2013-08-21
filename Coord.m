@@ -1,6 +1,6 @@
 //
 //  Coord.m
-//  Cycle Atlanta
+//  Cycle Atlanta adapted for CyclePhilly 2013, CodeforPhilly.org
 //
 //  Created by Guo Anhong on 13-2-26.
 //

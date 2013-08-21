@@ -1,4 +1,14 @@
-/** Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
+/** Cycle Philly, 2013 Code For Philly
+ *                                    Philadelphia, PA. USA
+ *
+ *
+ *   Contact: Corey Acri <acri.corey@gmail.com>
+ *            Lloyd Emelle <lloyd.emelle@gmail.com>
+ *
+ *   Updated/Modified for Philadelphia's app deployment. Based on the
+ *   Cycle Atlanta and CycleTracks codebase for SFCTA.
+ *
+ * Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
  *                                    Atlanta, GA. USA
  *
  *   @author Christopher Le Dantec <ledantec@gatech.edu>
@@ -631,7 +641,7 @@
 			switch ([indexPath indexAtPosition:1])
 			{
 				case 0:
-					cell.textLabel.text = @"Getting started with Cycle Atlanta";
+					cell.textLabel.text = @"Getting started with Cycle Philly";
 					break;
 			}
 			
@@ -778,7 +788,7 @@
 //			switch ([indexPath indexAtPosition:1])
 //			{
 //				case 0:
-//                    cell.textLabel.text = @"Getting started with Cycle Atlanta";
+//                    cell.textLabel.text = @"Getting started with Cycle Philly";
 //					break;
 //			}
 //			

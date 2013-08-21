@@ -1,4 +1,14 @@
-/** Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
+/** Cycle Philly, 2013 Code For Philly
+ *                                    Philadelphia, PA. USA
+ *
+ *
+ *   Contact: Corey Acri <acri.corey@gmail.com>
+ *            Lloyd Emelle <lloyd.emelle@gmail.com>
+ *
+ *   Updated/Modified for Philadelphia's app deployment. Based on the
+ *   Cycle Atlanta and CycleTracks codebase for SFCTA.
+ *
+ * Cycle Atlanta, Copyright 2012, 2013 Georgia Institute of Technology
  *                                    Atlanta, GA. USA
  *
  *   @author Christopher Le Dantec <ledantec@gatech.edu>
@@ -7,7 +17,7 @@
  *   Updated/Modified for Atlanta's app deployment. Based on the
  *   CycleTracks codebase for SFCTA.
  *
- ** CycleTracks, Copyright 2009,2010 San Francisco County Transportation Authority
+ *  CycleTracks, Copyright 2009,2010 San Francisco County Transportation Authority
  *                                    San Francisco, CA, USA
  *
  *   @author Matt Paul <mattpaul@mopimp.com>
