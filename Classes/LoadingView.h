@@ -3,7 +3,7 @@
  *
  *
  *   Contact: Corey Acri <acri.corey@gmail.com>
- *            Lloyd Emelle <lloyd.emelle@gmail.com>
+ *            Lloyd Emelle <lemelle@codeforamerica.org>
  *
  *   Updated/Modified for Philadelphia's app deployment. Based on the
  *   Cycle Atlanta and CycleTracks codebase for SFCTA.
