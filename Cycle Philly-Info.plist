@@ -16,6 +16,11 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>appIcon@Retina</string>
+				<string>appIcon58x58</string>
+				<string>appIcon29x29</string>
+				<string>appretina</string>
+				<string>appicon57x57</string>
 				<string>appIcon.png</string>
 				<string>Default.png</string>
 				<string>appIcon@2x.png</string>
