@@ -15,12 +15,13 @@ Copyright 2009, 2010 San Francisco County Transportation Authority
 100 Van Ness Ave, 26th Floor
 San Francisco, CA 94102 USA
 
+Copyright 2013 Code for Philly
+
 Code primarily written by Matt Paul, with some mods by Billy Charlton.
 
-contact email: modeling@sfcta.org
-http://www.sfcta.org/cycletracks
+CyclePhilly Modifications written by Lloyd Emelle, Kathryn Killebrew, and Kevin Clough.
 
-CycleTracks is released under the GNU General Public License, version 3.
+CyclePhilly and CycleTracks is released under the GNU General Public License, version 3.
 See 'COPYING' for a detailed description of the GNU GPL.
 
 -----------
