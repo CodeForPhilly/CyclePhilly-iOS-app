@@ -93,7 +93,7 @@
         pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
         
         if (pickerCategory == 0) {
-            self.pickerTitles = [NSArray arrayWithObjects:@"Commute", @"School", @"Work-Related", @"Excersize", @"Social", @"Shopping", @"Errand", @"Other", nil];
+            self.pickerTitles = [NSArray arrayWithObjects:@"Commute", @"School", @"Work-Related", @"Exercise", @"Social", @"Shopping", @"Errand", @"Other", nil];
             self.pickerImages = [NSArray arrayWithObjects: [UIImage imageNamed:kTripPurposeCommuteIcon], [UIImage imageNamed:kTripPurposeSchoolIcon],
                                  [UIImage imageNamed:kTripPurposeWorkIcon], [UIImage imageNamed:kTripPurposeExerciseIcon], [UIImage imageNamed:kTripPurposeSocialIcon],
                                  [UIImage imageNamed:kTripPurposeShoppingIcon], [UIImage imageNamed:kTripPurposeErrandIcon], [UIImage imageNamed:kTripPurposeOtherIcon], nil];
