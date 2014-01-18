@@ -97,7 +97,7 @@
 {
     if ( _trip )
 	{
-		self.trip					= _trip;
+        self.trip					= _trip;
 		distance					= [_trip.distance doubleValue];
 		self.managedObjectContext	= [_trip managedObjectContext];
 		
@@ -109,19 +109,20 @@
 																		ascending:NO] autorelease];
 		NSArray *sortDescriptors	= [NSArray arrayWithObjects:dateDescriptor, nil];
 		self.coords					= [[[[_trip.coords allObjects] sortedArrayUsingDescriptors:sortDescriptors] mutableCopy] autorelease];
+
 		
 		//NSLog(@"loading %d coords completed.", [self.coords count]);
 
 		// recalculate duration
-		if ( coords && [coords count] > 1 )
+		if ( self.coords && [self.coords count] > 1 )
 		{
-			Coord *last		= [coords objectAtIndex:0];
-			Coord *first	= [coords lastObject];
+			Coord *last		= [self.coords objectAtIndex:0];
+			Coord *first	= [self.coords lastObject];
 			NSTimeInterval duration = [last.recorded timeIntervalSinceDate:first.recorded];
 			NSLog(@"duration = %.0fs", duration);
 			[trip setDuration:[NSNumber numberWithDouble:duration]];
 		}
-		
+        
 		// save updated duration to CoreData
 		NSError *error;
 		if (![self.managedObjectContext save:&error]) {
@@ -141,6 +142,7 @@
 		// TODO: initialize purposeIndex from trip.purpose
 		purposeIndex				= -1;
     }
+
     return YES;
 }
 
@@ -158,7 +160,7 @@
 
 - (void)createTripNotesText
 {
-	tripNotesText = [[UITextView alloc] initWithFrame:CGRectMake( 12.0, 50.0, 260.0, 65.0 )];
+	tripNotesText = [[[UITextView alloc] initWithFrame:CGRectMake( 12.0, 50.0, 260.0, 65.0 )] autorelease];
 	tripNotesText.delegate = self;
 	tripNotesText.enablesReturnKeyAutomatically = NO;
 	tripNotesText.font = [UIFont fontWithName:@"Arial" size:16];
@@ -1083,7 +1085,7 @@
 		}
 	}
 	
-	NSLog(@"oldDist: %f => newDist: %f", distance, newDist);	
+	NSLog(@"oldDist: %f => newDist: %f", distance, newDist);
 	return newDist;
 }
 

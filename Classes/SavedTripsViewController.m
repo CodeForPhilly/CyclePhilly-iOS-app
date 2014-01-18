@@ -442,30 +442,11 @@
 	
 	//NSString *tripStatus = nil;
     
-    UILabel *timeText = [[[UILabel alloc] init] autorelease];
-    timeText.frame = CGRectMake( 10, 5, 220, 25);
-    [timeText setFont:[UIFont systemFontOfSize:15]];
-    [timeText setTextColor:[UIColor grayColor]];
-    
-    UILabel *purposeText = [[[UILabel alloc] init] autorelease];
-    purposeText.frame = CGRectMake( 10, 24, 120, 30);
-    [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
-    [purposeText setTextColor:[UIColor blackColor]];
-    
-    UILabel *durationText = [[[UILabel alloc] init] autorelease];
-    durationText.frame = CGRectMake( 140, 24, 190, 30);
-    [durationText setFont:[UIFont systemFontOfSize:18]];
-    [durationText setTextColor:[UIColor blackColor]];
-    
-    UILabel *CO2Text = [[[UILabel alloc] init] autorelease];
-    CO2Text.frame = CGRectMake( 10, 50, 120, 20);
-    [CO2Text setFont:[UIFont systemFontOfSize:12]];
-    [CO2Text setTextColor:[UIColor grayColor]];
-    
-    UILabel *CaloryText = [[[UILabel alloc] init] autorelease];
-    CaloryText.frame = CGRectMake( 140, 50, 190, 20);
-    [CaloryText setFont:[UIFont systemFontOfSize:12]];
-    [CaloryText setTextColor:[UIColor grayColor]];
+    UILabel *timeText = nil;
+    UILabel *purposeText = nil;
+    UILabel *durationText = nil;
+    UILabel *CO2Text = nil;
+    UILabel *CaloryText = nil;
     
 	UIImage	*image;
     
@@ -597,11 +578,62 @@
     
     cell.detailTextLabel.numberOfLines = 2;
     
+    if (cell == nil) {
+        
+        timeText = [[[UILabel alloc] init] autorelease];
+        timeText.tag = 1;
+        timeText.frame = CGRectMake( 10, 5, 220, 25);
+        [timeText setFont:[UIFont systemFontOfSize:15]];
+        [timeText setTextColor:[UIColor grayColor]];
+        
+        purposeText = [[[UILabel alloc] init] autorelease];
+        purposeText.tag = 2;
+        purposeText.frame = CGRectMake( 10, 24, 120, 30);
+        [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
+        [purposeText setTextColor:[UIColor blackColor]];
+        
+        durationText = [[[UILabel alloc] init] autorelease];
+        durationText.tag = 3;
+        durationText.frame = CGRectMake( 140, 24, 190, 30);
+        [durationText setFont:[UIFont systemFontOfSize:18]];
+        [durationText setTextColor:[UIColor blackColor]];
+        
+        CO2Text = [[[UILabel alloc] init] autorelease];
+        CO2Text.tag = 4;
+        CO2Text.frame = CGRectMake( 10, 50, 120, 20);
+        [CO2Text setFont:[UIFont systemFontOfSize:12]];
+        [CO2Text setTextColor:[UIColor grayColor]];
+        
+        CaloryText = [[[UILabel alloc] init] autorelease];
+        CaloryText.tag = 5;
+        CaloryText.frame = CGRectMake( 140, 50, 190, 20);
+        [CaloryText setFont:[UIFont systemFontOfSize:12]];
+        [CaloryText setTextColor:[UIColor grayColor]];
+        
+        [cell.contentView addSubview:CaloryText];
+        [cell.contentView addSubview:CO2Text];
+        [cell.contentView addSubview:durationText];
+        [cell.contentView addSubview:purposeText];
+        [cell.contentView addSubview:timeText];
+
+    } else {
+        timeText = (UILabel *)[cell.contentView viewWithTag:1];
+        purposeText = (UILabel *)[cell.contentView viewWithTag:2];
+        durationText = (UILabel *)[cell.contentView viewWithTag:3];
+        CO2Text = (UILabel *)[cell.contentView viewWithTag:4];
+        CaloryText = (UILabel *)[cell.contentView viewWithTag:5];
+    }
+    
     timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[trip start]], [timeFormatter stringFromDate:[trip start]]];
     
     
     purposeText.text = [NSString stringWithFormat:@"%@", trip.purpose];
-    durationText.text = [NSString stringWithFormat:@"%@",[inputFormatter stringFromDate:outputDate]];
+    
+    if (trip != recordingInProgress) {
+        durationText.text = [NSString stringWithFormat:@"%@",[inputFormatter stringFromDate:outputDate]];
+    } else {
+        purposeText.text = @"recording in progress...";
+    }
 	
     
     CO2Text.text = [NSString stringWithFormat:@"CO2 Saved: %.1f lbs", 0.93 * [trip.distance doubleValue] / 1609.344];
@@ -613,20 +645,9 @@
     else
         CaloryText.text = [NSString stringWithFormat:@"Calories Burned: %.1f kcal", calory];
     
-    [cell.contentView addSubview:CaloryText];
-    [cell.contentView addSubview:CO2Text];
-    [cell.contentView addSubview:durationText];
-    [cell.contentView addSubview:purposeText];
-    [cell.contentView addSubview:timeText];
-    
+
     cell.editingAccessoryView = cell.accessoryView;
-	/*
-	[cell.contentView setNeedsDisplay];
-	[cell.detailTextLabel setNeedsDisplay];
-	[cell.textLabel setNeedsDisplay];
-	[cell setNeedsDisplay];
-	 */
-	
+    
     return cell;
 }
 
@@ -670,6 +691,8 @@
 	
 	// identify trip by row
 	//NSLog(@"didSelectRow: %d", indexPath.row);
+    
+    [selectedTrip release];
 	selectedTrip = (Trip *)[trips objectAtIndex:indexPath.row];
 	//NSLog(@"%@", selectedTrip);
 
@@ -792,7 +815,7 @@
 	NSLog(@"actionSheet clickedButtonAtIndex %d", buttonIndex);
 	switch ( buttonIndex )
 	{
-			/*
+			
 		case kActionSheetButtonDiscard:
 			NSLog(@"Discard");
 			
@@ -818,24 +841,25 @@
 				NSLog(@"Unresolved error %@", [error localizedDescription]);
 			}
 			break;
-			*/
-			/*
+			
+			
 		case kActionSheetButtonConfirm:
 			NSLog(@"Confirm => creating Trip Notes dialog");
 			[tripManager promptForTripNotes];
 			break;
-			*/
+             
+			
 		//case kActionSheetButtonChange:
+        /*
 		case 0:
 			NSLog(@"Upload => push Trip Purpose picker");
-			/*
+			
 			// NOTE: this code to get purposeIndex fails for the load a saved trip case
-			PickerViewController *pickerViewController = [[PickerViewController alloc]
+         //PickerViewController *pickerViewController = [[PickerViewController alloc]
 														  initWithPurpose:[tripManager getPurposeIndex]];
-			[pickerViewController setDelegate:self];
-			[[self navigationController] pushViewController:pickerViewController animated:YES];
-			[pickerViewController release];
-			*/
+         //[pickerViewController setDelegate:self];
+         //[[self navigationController] pushViewController:pickerViewController animated:YES];
+         //[pickerViewController release];
 			
 			// Trip Purpose
 //			NSLog(@"INIT + PUSH");
@@ -847,6 +871,8 @@
 //			[pickerViewController release];
             [tripManager saveTrip];
 			break;
+         */
+           
 			
 		//case kActionSheetButtonCancel:
 		case 1:

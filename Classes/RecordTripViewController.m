@@ -378,6 +378,7 @@
     [startButton setTitle:@"Start" forState:UIControlStateNormal];
 	
 	// reset trip, reminder managers
+    [tripManager release];
 	NSManagedObjectContext *context = tripManager.managedObjectContext;
 	[self initTripManager:[[[TripManager alloc] initWithManagedObjectContext:context] autorelease]];
 	tripManager.dirty = YES;
@@ -401,7 +402,8 @@
            {
                NSLog(@"Discard!!!!");
                [self resetRecordingInProgress];
-               //discard that trip
+               // TODO: actually discard that trip
+               
                break;
            }
         case 1:{
@@ -507,7 +509,7 @@
 			[self resetCounter];
 			timer = [NSTimer scheduledTimerWithTimeInterval:kCounterTimeInterval
 													 target:self selector:@selector(updateCounter:)
-												   userInfo:[self newTripTimerUserInfo] repeats:YES];
+												   userInfo:[[self newTripTimerUserInfo] autorelease] repeats:YES];
         }
         
         UIImage *buttonImage = [[UIImage imageNamed:@"blueButton.png"]
@@ -946,6 +948,7 @@ shouldSelectViewController:(UIViewController *)viewController
     self.tripManager = nil;
     self.noteManager = nil;
     self.appDelegate = nil;
+    speedCounter = nil;
     
 //    [appDelegate.locationManager release];
     [appDelegate release];

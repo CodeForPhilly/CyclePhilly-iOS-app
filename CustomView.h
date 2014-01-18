@@ -59,8 +59,8 @@
 	UIImage *image;
 }
 
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) UIImage *image;
 
 + (CGFloat)viewWidth;
 + (CGFloat)viewHeight;
