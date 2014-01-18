@@ -191,6 +191,7 @@
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
         [imageView setFrame:CGRectMake(0, 0, 44, 44)];
         [view addSubview:imageView];
+        [imageView release];
     }
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(48, 0, pickerView.frame.size.width, 48)];
@@ -199,7 +200,8 @@
     label.text = [NSString stringWithFormat:@" %@", [pickerTitles objectAtIndex: row]];
     
     [view addSubview:label];
-    return view;
+    [label release];
+    return [view autorelease];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
