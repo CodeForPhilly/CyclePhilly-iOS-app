@@ -401,8 +401,11 @@
            case 0:
            {
                NSLog(@"Discard!!!!");
-               [self resetRecordingInProgress];
+               
                // TODO: actually discard that trip
+               [self.tripManager discardTrip];
+
+               [self resetRecordingInProgress];
                
                break;
            }

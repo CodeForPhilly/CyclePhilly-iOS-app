@@ -619,6 +619,24 @@
     
 }
 
+-(void)discardTrip
+{
+    // TODO: delete trip from trip manager
+    NSLog(@"discardTrip");
+	
+	// delete trip instance
+    [managedObjectContext deleteObject:trip];
+    
+    NSError *error;
+	if (![managedObjectContext save:&error]) {
+		// Handle the error.
+		NSLog(@"discardTrip save error %@, %@", error, [error localizedDescription]);
+	}
+
+    self.trip = nil;
+    
+}
+
 
 #pragma mark NSURLConnection delegate methods
 
@@ -690,12 +708,6 @@
         }
         
 	}
-	
-    // it can be called multiple times, for example in the case of a
-	// redirect, so each time we reset the data.
-	
-    // receivedData is declared as a method instance elsewhere
-    [receivedData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -742,7 +754,10 @@
 
     // release the connection, and the data object
     [connection release];
-    [receivedData release];	
+    [receivedData release];
+    
+    // create new for next upload
+    receivedData=[[NSMutableData data] retain];
 }
 
 
