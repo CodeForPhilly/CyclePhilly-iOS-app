@@ -642,7 +642,7 @@
     
     CO2Text.text = [NSString stringWithFormat:@"CO2 Saved: %.1f lbs", 0.93 * [trip.distance doubleValue] / 1609.344];
     
-    // TODO:
+    // old formula
     //double calory = 49 * [trip.distance doubleValue] / 1609.344 - 1.69;
     
     // P = g m V_g (K_1+s) + K_2 V_g^3
@@ -688,29 +688,53 @@
 }
 */
 
+- (void)promptToConfirmRetryUpload
+{
+    NSLog(@"promptToConfirmRetryUpload");
+    
+    // construct purpose confirmation string
+    //	NSString *purpose = nil;
+    //	if ( tripManager != nil )
+    //	//	purpose = [self getPurposeString:[tripManager getPurposeIndex]];
+    //		purpose = tripManager.trip.purpose;
+    
+    //NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Confirm the trip's purpose to try again: %@", purpose];
+    NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Try now?"];
+    
+    // present action sheet
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Upload", nil];
+    
+    actionSheet.actionSheetStyle	= UIActionSheetStyleBlackTranslucent;
+    [actionSheet showInView:self.tabBarController.view];
+    [actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // TODO:
+    NSLog(@"User clicked button %d on action sheet", buttonIndex);
+    
+    if (buttonIndex == 0) {
+        [self promptToConfirmPurpose];
+    }
+}
+
 - (void)promptToConfirmPurpose
 {
 	NSLog(@"promptToConfirmPurpose");
-	
-	// construct purpose confirmation string
-//	NSString *purpose = nil;
-//	if ( tripManager != nil )
-//	//	purpose = [self getPurposeString:[tripManager getPurposeIndex]];
-//		purpose = tripManager.trip.purpose;
-
-	//NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Confirm the trip's purpose to try again: %@", purpose];
-	NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Try now?"];
-	
-	// present action sheet
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
-															 delegate:self
-													cancelButtonTitle:@"Cancel"
-											   destructiveButtonTitle:nil
-													otherButtonTitles:@"Upload", nil];
-	
-	actionSheet.actionSheetStyle	= UIActionSheetStyleBlackTranslucent;
-	[actionSheet showInView:self.tabBarController.view];
-	[actionSheet release];	
+	   
+    // Trip Purpose
+    NSLog(@"INIT + PUSH");
+    PickerViewController *tripPurposePickerView = [[PickerViewController alloc]
+                                                   //initWithPurpose:[tripManager getPurposeIndex]];
+                                                   initWithNibName:@"TripPurposePicker" bundle:nil];
+    [tripPurposePickerView setDelegate:self];
+    [self.navigationController presentModalViewController:tripPurposePickerView animated:YES];
+    [tripPurposePickerView release];
 }
 
 
@@ -743,8 +767,14 @@
 			//tripManager.activityDelegate = self;
 			tripManager.alertDelegate = self;
 			tripManager.parent = self;
+            
+            // TODO: prompt whether user wants to upload now first
 			// prompt to upload
-			[self promptToConfirmPurpose];
+            
+            [self promptToConfirmRetryUpload];
+			//[self promptToConfirmPurpose];
+            /////////////
+            
 		}
 		
 		// else => goto map view
@@ -985,16 +1015,32 @@
 
 - (void)didCancelPurpose
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+    NSLog(@"Cancelled purpose picker dialog");
 }
 
 
 - (void)didPickPurpose:(unsigned int)index
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+    NSLog(@"Picked purpose");
 	[tripManager setPurpose:index];
 	//[tripManager promptForTripNotes];
 }
+
+- (void)didCancelNote
+{
+	[self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)didEnterTripDetails:(NSString *)details{
+    [tripManager saveNotes:details];
+    NSLog(@"Trip Added details: %@",details);
+}
+
+- (void)saveTrip{
+    [tripManager saveTrip];
+    NSLog(@"Save trip");
+}
+
 
 - (void)dealloc {
     self.trips = nil;

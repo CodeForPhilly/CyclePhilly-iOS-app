@@ -235,6 +235,8 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = YES;
 	
+    // TODO:  init to Philly
+    ///////////////////////////
 	// init map region to Atlanta
 	MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.0078, 0.0068 } };
 	[mapView setRegion:region animated:NO];
@@ -402,7 +404,7 @@
            {
                NSLog(@"Discard!!!!");
                
-               // TODO: actually discard that trip
+               // actually discard the trip
                [self.tripManager discardTrip];
 
                [self resetRecordingInProgress];
