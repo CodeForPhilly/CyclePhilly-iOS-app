@@ -621,7 +621,7 @@
 
 -(void)discardTrip
 {
-    // TODO: delete trip from trip manager
+    //delete trip from trip manager
     NSLog(@"discardTrip");
 	
 	// delete trip instance

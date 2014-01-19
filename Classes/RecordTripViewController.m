@@ -235,10 +235,8 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = YES;
 	
-    // TODO:  init to Philly
-    ///////////////////////////
-	// init map region to Atlanta
-	MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.0078, 0.0068 } };
+    // init map region to Philadelphia
+	MKCoordinateRegion region = { { 39.954491, -75.163758 }, { 0.0078, 0.0068 } };
 	[mapView setRegion:region animated:NO];
 	
 	// setup info button used when showing recorded trips

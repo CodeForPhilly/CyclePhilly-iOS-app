@@ -642,9 +642,10 @@
     
     CO2Text.text = [NSString stringWithFormat:@"CO2 Saved: %.1f lbs", 0.93 * [trip.distance doubleValue] / 1609.344];
     
-    // old formula
+    // old formula:
     //double calory = 49 * [trip.distance doubleValue] / 1609.344 - 1.69;
     
+    // new formula:
     // P = g m V_g (K_1+s) + K_2 V_g^3
     // P * 4.2 = kCal
     
@@ -664,8 +665,6 @@
     
     double speed = [trip.distance doubleValue] / [trip.duration doubleValue];
     double calory = ((4.5909819 * speed + 0.185 * pow(speed, 3)) / 1000) * [trip.duration doubleValue];
-    //////////////////////////////////////////////
-    
     
     if (calory <= 0) {
         CaloryText.text = [NSString stringWithFormat:@"Calories Burned: 0 kcal"];
@@ -692,13 +691,6 @@
 {
     NSLog(@"promptToConfirmRetryUpload");
     
-    // construct purpose confirmation string
-    //	NSString *purpose = nil;
-    //	if ( tripManager != nil )
-    //	//	purpose = [self getPurposeString:[tripManager getPurposeIndex]];
-    //		purpose = tripManager.trip.purpose;
-    
-    //NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Confirm the trip's purpose to try again: %@", purpose];
     NSString *confirm = [NSString stringWithFormat:@"This trip has not yet been uploaded. Try now?"];
     
     // present action sheet
@@ -715,9 +707,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // TODO:
-    NSLog(@"User clicked button %d on action sheet", buttonIndex);
-    
     if (buttonIndex == 0) {
         [self promptToConfirmPurpose];
     }
@@ -768,14 +757,9 @@
 			tripManager.alertDelegate = self;
 			tripManager.parent = self;
             
-            // TODO: prompt whether user wants to upload now first
-			// prompt to upload
-            
+            //prompt whether user wants to upload now
             [self promptToConfirmRetryUpload];
-			//[self promptToConfirmPurpose];
-            /////////////
-            
-		}
+        }
 		
 		// else => goto map view
 		else 
