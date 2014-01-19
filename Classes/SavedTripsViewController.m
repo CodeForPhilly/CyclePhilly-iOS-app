@@ -407,7 +407,7 @@
 
 	// slide accessory view out of the way during editing
 	cell.editingAccessoryView = cell.accessoryView;
-
+    
 	return cell;
 }
 
@@ -592,27 +592,6 @@
         [purposeText setFont:[UIFont boldSystemFontOfSize:18]];
         [purposeText setTextColor:[UIColor blackColor]];
         
-        durationText = [[[UILabel alloc] init] autorelease];
-        durationText.tag = 3;
-        durationText.frame = CGRectMake( 140, 24, 190, 30);
-        [durationText setFont:[UIFont systemFontOfSize:18]];
-        [durationText setTextColor:[UIColor blackColor]];
-        
-        CO2Text = [[[UILabel alloc] init] autorelease];
-        CO2Text.tag = 4;
-        CO2Text.frame = CGRectMake( 10, 50, 120, 20);
-        [CO2Text setFont:[UIFont systemFontOfSize:12]];
-        [CO2Text setTextColor:[UIColor grayColor]];
-        
-        CaloryText = [[[UILabel alloc] init] autorelease];
-        CaloryText.tag = 5;
-        CaloryText.frame = CGRectMake( 140, 50, 190, 20);
-        [CaloryText setFont:[UIFont systemFontOfSize:12]];
-        [CaloryText setTextColor:[UIColor grayColor]];
-        
-        [cell.contentView addSubview:CaloryText];
-        [cell.contentView addSubview:CO2Text];
-        [cell.contentView addSubview:durationText];
         [cell.contentView addSubview:purposeText];
         [cell.contentView addSubview:timeText];
 
@@ -622,6 +601,31 @@
         durationText = (UILabel *)[cell.contentView viewWithTag:3];
         CO2Text = (UILabel *)[cell.contentView viewWithTag:4];
         CaloryText = (UILabel *)[cell.contentView viewWithTag:5];
+        
+        if (durationText == nil) {
+            durationText = [[[UILabel alloc] init] autorelease];
+            durationText.tag = 3;
+            durationText.frame = CGRectMake( 140, 30, 120, 30);
+            [durationText setFont:[UIFont systemFontOfSize:14]];
+            [durationText setTextColor:[UIColor grayColor]];
+            
+            CO2Text = [[[UILabel alloc] init] autorelease];
+            CO2Text.tag = 4;
+            CO2Text.frame = CGRectMake( 10, 50, 130, 20);
+            [CO2Text setFont:[UIFont systemFontOfSize:12]];
+            [CO2Text setTextColor:[UIColor grayColor]];
+            
+            CaloryText = [[[UILabel alloc] init] autorelease];
+            CaloryText.tag = 5;
+            CaloryText.frame = CGRectMake(140, 50, 190, 20);
+            [CaloryText setFont:[UIFont systemFontOfSize:12]];
+            [CaloryText setTextColor:[UIColor grayColor]];
+            
+            [cell.contentView addSubview:CaloryText];
+            [cell.contentView addSubview:CO2Text];
+            [cell.contentView addSubview:durationText];
+
+        }
     }
     
     timeText.text = [NSString stringWithFormat:@"%@ at %@", [dateFormatter stringFromDate:[trip start]], [timeFormatter stringFromDate:[trip start]]];
@@ -638,15 +642,41 @@
     
     CO2Text.text = [NSString stringWithFormat:@"CO2 Saved: %.1f lbs", 0.93 * [trip.distance doubleValue] / 1609.344];
     
-    double calory = 49 * [trip.distance doubleValue] / 1609.344 - 1.69;
+    // TODO:
+    //double calory = 49 * [trip.distance doubleValue] / 1609.344 - 1.69;
+    
+    // P = g m V_g (K_1+s) + K_2 V_g^3
+    // P * 4.2 = kCal
+    
+    // gravity -> 9.81 m/s^2
+    // average weight in US -> 74.7 kg
+    // average bike weight -> 13.6 kg (88.3 kg for bike+rider)
+    // assume flat grade (s -> 0)
+    // K_1 is frictional loss -> 0.0053
+    // K_2 is aerodynamic drag constant -> 0.185 kg/m
+    // assume no wind
+    
+    // P = ( 9.81 * 88.3 * speed * (0.0053 + 0) ) + ( 0.185 * speed^3 )
+    // P is in watts (Joules/sec).  1 cal ~= 1 watt on bike
+    
+    // simplifying...
+    // kCal = ((4.5909819 * speed + 0.185 * speed^3) / 1000) * (trip time, in seconds)
+    
+    double speed = [trip.distance doubleValue] / [trip.duration doubleValue];
+    double calory = ((4.5909819 * speed + 0.185 * pow(speed, 3)) / 1000) * [trip.duration doubleValue];
+    //////////////////////////////////////////////
+    
+    
     if (calory <= 0) {
         CaloryText.text = [NSString stringWithFormat:@"Calories Burned: 0 kcal"];
     }
     else
-        CaloryText.text = [NSString stringWithFormat:@"Calories Burned: %.1f kcal", calory];
+        CaloryText.text = [NSString stringWithFormat:@"Calories Burned: %.1f kCal", calory];
     
 
     cell.editingAccessoryView = cell.accessoryView;
+    
+    [cell setNeedsLayout];
     
     return cell;
 }
@@ -844,8 +874,9 @@
 			
 			
 		case kActionSheetButtonConfirm:
-			NSLog(@"Confirm => creating Trip Notes dialog");
-			[tripManager promptForTripNotes];
+            // TODO:
+			// NSLog(@"Confirm => creating Trip Notes dialog");
+			// [tripManager promptForTripNotes];
 			break;
              
 			
