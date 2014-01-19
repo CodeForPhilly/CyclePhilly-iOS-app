@@ -80,7 +80,6 @@
     NSURL *url = [NSURL URLWithString:kInstructionsURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [request setTimeoutInterval:10];
     [webView loadRequest:request];
     //loads the instructions page once and saves it unless the app is deleted
 	//[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kInstructionsURL]]];
