@@ -625,7 +625,7 @@
     NSLog(@"discardTrip");
 	
 	// delete trip instance
-    [managedObjectContext deleteObject:trip];
+    if (trip != nil) [managedObjectContext deleteObject:trip];
     
     NSError *error;
 	if (![managedObjectContext save:&error]) {
