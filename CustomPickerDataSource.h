@@ -58,22 +58,22 @@
 #define kDescOther		@"If none of the other reasons apply to this trip, you can enter trip comments after saving your trip to tell us more."
 
 // Issue descriptions
-#define kIssueDescPavementIssue  @"Here’s a spot where the road needs to be repaired (pothole, rough concrete, gravel in the road, manhole cover, sewer grate)."
-#define kIssueDescTrafficSignal  @"Here’s a signal that you can’t activate with your bike."
-#define kIssueDescEnforcement    @"The bike lane is always blocked here, cars disobey \"no right on red\"… anything where the cops can help make cycling safer."
-#define kIssueDescNeedParking    @"You need a bike rack to secure your bike here."
-#define kIssueDescBikeLaneIssue  @"Where the bike lane ends (abruptly) or is too narrow (pesky parked cars)."
-#define kIssueDescNoteThisSpot   @"Anything else ripe for improvement: want a sharrow, a sign, a bike lane? Share the details."
+#define kIssueDescPavementIssue  @"Select this option if the the road needs repairs (pothole, rough concrete, gravel in the road, manhole cover, sewer grate)."
+#define kIssueDescTrafficSignal  @"Select this option if the traffic signal is malfunctioning."
+#define kIssueDescEnforcement    @"Select this option to note bike lane obstructions (cars, trucks in bike lanes etc.)."
+#define kIssueDescNeedParking    @"Select this option if you would like to see secure bike parking in this location."
+#define kIssueDescBikeLaneIssue  @"Select this option if the bike lane needs improvement (it ends abruptly or needs repainting)."
+#define kIssueDescNoteThisSpot   @"Misc. comments about needed improvements."
 
-#define kDescNoteThis   @"Anything about this spot?"
+#define kDescNoteThis   @"Select an issue or note an asset."
 
 // Asset descriptions
-#define kAssetDescBikeParking   @"Park them here and remember to secure your bike well! Please only include racks or other objects intended for bikes."
-#define kAssetDescBikeShops @"Have a flat, a broken chain, or spongy brakes? Or do you need a bike to jump into this world of cycling in the first place? Here's a shop ready to help."
-#define kAssetDescPublicRestrooms   @"Help us make cycling mainstream… here’s a place to refresh yourself."
-#define kAssetDescSecretPassage @"Here's an access point under the tracks, through the park, onto a trail, or over a ravine."
-#define kAssetDescWaterFountains    @"Here’s a spot to fill your bottle on those hot summer days… stay hydrated, people. We need you."
-#define kAssetDescNoteThisSpot  @"Anything else we should map to help your fellow cyclists? Share the details."
+#define kAssetDescBikeParking   @"Note if secure bike parking is in this location."
+#define kAssetDescBikeShops @"Note if bike shops are in this location."
+#define kAssetDescPublicRestrooms   @"Note if public restrooms are in this location."
+#define kAssetDescSecretPassage @"Note for routes outside normal bike lanes."
+#define kAssetDescWaterFountains    @"Note if water is available in this location."
+#define kAssetDescNoteThisSpot  @"Note any misc. assets in this location."
 
 
 @interface CustomPickerDataSource : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
