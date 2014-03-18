@@ -66,7 +66,7 @@
         self.request = [[[NSMutableURLRequest alloc] init] autorelease];
         [request setURL:[NSURL URLWithString:kSaveURL]];
         [request setHTTPMethod:@"POST"];
-        [request setTimeoutInterval:10];
+        [request setTimeoutInterval:60];
         
         // Nab the unique device id hash from our delegate.
 		CycleAtlantaAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
