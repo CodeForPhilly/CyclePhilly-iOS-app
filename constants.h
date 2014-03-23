@@ -105,6 +105,8 @@
 #define kInstructionsURL	@"http://mytracks.phillyopen.org/instructions-v2/"
 
 #define kSaveURL			@"http://mytracks.phillyopen.org/post/"
+
+#define kFireDomain			@"https://cyclephilly.firebaseio.com/"
 //#define kSaveURL			@""
 
 #define kTripNotesPlaceholder	@"Comments"

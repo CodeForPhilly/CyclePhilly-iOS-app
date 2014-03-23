@@ -56,6 +56,7 @@
 #import "TripPurposeDelegate.h"
 #import "CycleAtlantaAppDelegate.h"
 #import "Note.h"
+#import <Firebase/Firebase.h>
 
 
 @class ReminderManager;

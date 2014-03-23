@@ -135,6 +135,7 @@
                                         key,
                                         [postVars objectForKey:key]]];
                 sep = @"&";
+                NSLog(@"%@",[postVars objectForKey:key]);
             }
             //append actual image data
             // for (each image to upload){

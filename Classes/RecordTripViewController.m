@@ -327,6 +327,24 @@
     Trip *trip = tripManager.trip;
     [self resetRecordingInProgress];
     
+    //Write Uploaded Trip to Firebase
+    // Create a reference to a Firebase location
+    NSDateFormatter *formatter;
+    NSString        *today;
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy/MM/dd/"];
+    today = [formatter stringFromDate:[NSDate date]];
+    NSMutableString *fireURLC = [[NSMutableString alloc] initWithString:kFireDomain];
+    [fireURLC appendString:@"trips-completed/"];
+    [fireURLC appendString:today];
+    
+    Firebase* fEnd = [[Firebase alloc] initWithUrl:fireURLC];
+    Firebase* completed = [fEnd childByAutoId];
+    NSTimeInterval timeS = [[NSDate date] timeIntervalSince1970] * 1000;
+    // NSTimeInterval is defined as double
+    NSString *totalPoints = [NSString stringWithFormat: @"%d", (int)trip.coords.count];
+    NSNumber *timeSObj = [NSNumber numberWithDouble: timeS];
+    [completed setValue:@{@"deviceType": @"ios",@"distance": trip.distance,@"totalPoints": totalPoints,@"totalTime": trip.duration,@"purpose": trip.purpose,@"timestamp": timeSObj}];
     // load map view of saved trip
     MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
     [[self navigationController] pushViewController:mvc animated:YES];
@@ -527,6 +545,25 @@
         appDelegate = [[UIApplication sharedApplication] delegate];
         appDelegate.isRecording = YES;
         recording = YES;
+        // Write to Firebase
+        // Create a reference to a Firebase location
+        NSDateFormatter *formatter;
+        NSString        *today;
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy/MM/dd/"];
+        today = [formatter stringFromDate:[NSDate date]];
+        NSMutableString *fireURL = [[NSMutableString alloc] initWithString:kFireDomain];
+        [fireURL appendString:@"trips-started/"];
+        [fireURL appendString:today];
+        
+        Firebase* fStart = [[Firebase alloc] initWithUrl:fireURL];
+        Firebase* timeStart = [fStart childByAutoId];
+        //NSLog(@"%@",fireURL);
+        NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] * 1000;
+        // NSTimeInterval is defined as double
+        NSNumber *timeStampObj = [NSNumber numberWithDouble: timeStamp];
+        [timeStart setValue:timeStampObj];
+        
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey: @"recording"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         

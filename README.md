@@ -26,6 +26,14 @@ See 'COPYING' for a detailed description of the GNU GPL.
 
 -----------
 
+Installation Notes
+-----------
+CyclePhilly is setup to use Firebase for realtime updates. Please follow the instructions
+at https://www.firebase.com/docs/ios-quickstart.html to setup Firebase and its dependencies.
+
+In the constants.h file, change the kFireDomain variable to your firebase url.
+-----------
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or

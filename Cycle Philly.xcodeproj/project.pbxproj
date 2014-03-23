@@ -170,6 +170,11 @@
 		9D6D31AE16D7C189007A2497 /* noteBlankPicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */; };
 		9DD65FBB16FEA3CC00F2EB63 /* ImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD65FBA16FEA3CC00F2EB63 /* ImageResize.m */; };
 		9FC3C01C1798DE89009238FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		DA78811F18DF417C008A5BE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78811E18DF417C008A5BE9 /* libicucore.dylib */; };
+		DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812018DF418A008A5BE9 /* CFNetwork.framework */; };
+		DA78812318DF423F008A5BE9 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812218DF423F008A5BE9 /* Firebase.framework */; };
+		DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812418DF46DE008A5BE9 /* libc++.dylib */; };
+		DA78812718DF46EC008A5BE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -373,6 +378,11 @@
 		9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noteBlankPicker@2x.png"; path = "TripPurposePickerIcons V3/noteBlankPicker@2x.png"; sourceTree = SOURCE_ROOT; };
 		9DD65FB916FEA3CC00F2EB63 /* ImageResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageResize.h; sourceTree = "<group>"; };
 		9DD65FBA16FEA3CC00F2EB63 /* ImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageResize.m; sourceTree = "<group>"; };
+		DA78811E18DF417C008A5BE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		DA78812018DF418A008A5BE9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DA78812218DF423F008A5BE9 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../Downloads/Firebase.framework; sourceTree = "<group>"; };
+		DA78812418DF46DE008A5BE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA9A6F171832C5CA0038A071 /* appretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appretina.png; sourceTree = "<group>"; };
 		DA9A6F181832C6C40038A071 /* appIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon29x29.png; sourceTree = "<group>"; };
 		DA9A6F191832C70D0038A071 /* appIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon58x58.png; sourceTree = "<group>"; };
@@ -385,6 +395,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA78812718DF46EC008A5BE9 /* SystemConfiguration.framework in Frameworks */,
+				DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */,
+				DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */,
+				DA78811F18DF417C008A5BE9 /* libicucore.dylib in Frameworks */,
 				9D504DA416B6D0AE00B99EBC /* libz.dylib in Frameworks */,
 				8FD696E91655E36600324E6E /* MediaPlayer.framework in Frameworks */,
 				8FD696E61655E35800324E6E /* MobileCoreServices.framework in Frameworks */,
@@ -393,6 +407,7 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */,
+				DA78812318DF423F008A5BE9 /* Firebase.framework in Frameworks */,
 				64F823C6106AB42B001413F8 /* Security.framework in Frameworks */,
 				642F151C1071D9DD0050BCB9 /* MapKit.framework in Frameworks */,
 				642647FD107435A200E43DEF /* AudioToolbox.framework in Frameworks */,
@@ -524,6 +539,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */,
+				DA78812418DF46DE008A5BE9 /* libc++.dylib */,
+				DA78812218DF423F008A5BE9 /* Firebase.framework */,
+				DA78812018DF418A008A5BE9 /* CFNetwork.framework */,
+				DA78811E18DF417C008A5BE9 /* libicucore.dylib */,
 				8FD696E81655E36600324E6E /* MediaPlayer.framework */,
 				8FD696E51655E35800324E6E /* MobileCoreServices.framework */,
 				642647FC107435A200E43DEF /* AudioToolbox.framework */,
@@ -752,10 +772,10 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = L93755WP84;
+						DevelopmentTeam = M3TV4P99P8;
 					};
 				};
 			};
@@ -951,18 +971,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/toby/Downloads,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -971,16 +997,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/toby/Downloads,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -988,12 +1020,14 @@
 		64577E10106DB5D8003ACBFD /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christopher Le Dantec (PKMEYDVVL2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7682DFBF-AE70-4C0B-AED0-DC1BBCD2D87F";
+				OTHER_CODE_SIGN_FLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1002,16 +1036,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/toby/Downloads,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -1020,13 +1060,16 @@
 		64577E12106DB5E6003ACBFD /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christopher Le Dantec (PKMEYDVVL2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7682DFBF-AE70-4C0B-AED0-DC1BBCD2D87F";
+				OTHER_CODE_SIGN_FLAGS = "-ObjC";
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "-ObjC";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Beta;
@@ -1035,19 +1078,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/toby/Downloads,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Beta;
@@ -1055,12 +1104,14 @@
 		64D31CD9108E80E400D52130 /* Release Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christopher Le Dantec (PKMEYDVVL2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7682DFBF-AE70-4C0B-AED0-DC1BBCD2D87F";
+				OTHER_CODE_SIGN_FLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = "Release Beta";
@@ -1069,17 +1120,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/toby/Downloads,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Cycle Philly";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = "Release Beta";
@@ -1087,12 +1144,15 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christopher Le Dantec (PKMEYDVVL2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7682DFBF-AE70-4C0B-AED0-DC1BBCD2D87F";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1100,12 +1160,14 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Christopher Le Dantec (PKMEYDVVL2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7682DFBF-AE70-4C0B-AED0-DC1BBCD2D87F";
+				OTHER_CODE_SIGN_FLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
