@@ -641,7 +641,7 @@
 			switch ([indexPath indexAtPosition:1])
 			{
 				case 0:
-					cell.textLabel.text = @"Getting started with Cycle Philly";
+					cell.textLabel.text = @"Questions? Contact Us";
 					break;
 			}
 			
