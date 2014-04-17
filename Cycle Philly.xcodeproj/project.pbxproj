@@ -12,6 +12,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		461A123D190091A300BBDBB6 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461A123C190091A300BBDBB6 /* Firebase.framework */; };
 		6411996210683D7500C201F0 /* RecordTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6411996110683D7500C201F0 /* RecordTripViewController.m */; };
 		6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6411996C10683DCD00C201F0 /* CoreLocation.framework */; };
 		641199B2106851AA00C201F0 /* SavedTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641199B1106851AA00C201F0 /* SavedTripsViewController.m */; };
@@ -172,7 +173,6 @@
 		9FC3C01C1798DE89009238FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		DA78811F18DF417C008A5BE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78811E18DF417C008A5BE9 /* libicucore.dylib */; };
 		DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812018DF418A008A5BE9 /* CFNetwork.framework */; };
-		DA78812318DF423F008A5BE9 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812218DF423F008A5BE9 /* Firebase.framework */; };
 		DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812418DF46DE008A5BE9 /* libc++.dylib */; };
 		DA78812718DF46EC008A5BE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
@@ -187,6 +187,7 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cycle Philly_Prefix.pch"; sourceTree = "<group>"; };
+		461A123C190091A300BBDBB6 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		6411996010683D7500C201F0 /* RecordTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RecordTripViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6411996110683D7500C201F0 /* RecordTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RecordTripViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6411996C10683DCD00C201F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -380,7 +381,6 @@
 		9DD65FBA16FEA3CC00F2EB63 /* ImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageResize.m; sourceTree = "<group>"; };
 		DA78811E18DF417C008A5BE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		DA78812018DF418A008A5BE9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		DA78812218DF423F008A5BE9 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../Downloads/Firebase.framework; sourceTree = "<group>"; };
 		DA78812418DF46DE008A5BE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA9A6F171832C5CA0038A071 /* appretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appretina.png; sourceTree = "<group>"; };
@@ -396,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA78812718DF46EC008A5BE9 /* SystemConfiguration.framework in Frameworks */,
+				461A123D190091A300BBDBB6 /* Firebase.framework in Frameworks */,
 				DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */,
 				DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */,
 				DA78811F18DF417C008A5BE9 /* libicucore.dylib in Frameworks */,
@@ -407,7 +408,6 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */,
-				DA78812318DF423F008A5BE9 /* Firebase.framework in Frameworks */,
 				64F823C6106AB42B001413F8 /* Security.framework in Frameworks */,
 				642F151C1071D9DD0050BCB9 /* MapKit.framework in Frameworks */,
 				642647FD107435A200E43DEF /* AudioToolbox.framework in Frameworks */,
@@ -541,7 +541,7 @@
 			children = (
 				DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */,
 				DA78812418DF46DE008A5BE9 /* libc++.dylib */,
-				DA78812218DF423F008A5BE9 /* Firebase.framework */,
+				461A123C190091A300BBDBB6 /* Firebase.framework */,
 				DA78812018DF418A008A5BE9 /* CFNetwork.framework */,
 				DA78811E18DF417C008A5BE9 /* libicucore.dylib */,
 				8FD696E81655E36600324E6E /* MediaPlayer.framework */,
@@ -978,6 +978,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/toby/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1004,6 +1005,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/toby/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
@@ -1020,14 +1022,14 @@
 		64577E10106DB5D8003ACBFD /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CODE_SIGN_FLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				PROVISIONING_PROFILE = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1043,6 +1045,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/toby/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
@@ -1061,15 +1064,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CODE_SIGN_FLAGS = "-ObjC";
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "-ObjC";
-				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				PROVISIONING_PROFILE = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
 				SDKROOT = iphoneos;
 			};
 			name = Beta;
@@ -1086,6 +1089,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/toby/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1104,14 +1108,14 @@
 		64D31CD9108E80E400D52130 /* Release Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CODE_SIGN_FLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				PROVISIONING_PROFILE = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
 				SDKROOT = iphoneos;
 			};
 			name = "Release Beta";
@@ -1128,6 +1132,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/toby/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
@@ -1144,15 +1149,15 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				PROVISIONING_PROFILE = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1160,14 +1165,14 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CODE_SIGN_FLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
+				PROVISIONING_PROFILE = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9360687D-F9FF-4B0F-B21D-E9ABB488AB13";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
