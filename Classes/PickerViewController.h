@@ -59,8 +59,8 @@
 	id <TripPurposeDelegate> delegate;
 	UIPickerView			*customPickerView;
 	CustomPickerDataSource	*customPickerDataSource;
-	
-	UITextView				*description;
+    
+    UITextView				*description;
     NSInteger pickerCategory;
     NSInteger pickedNotedType;
     IBOutlet UINavigationBar *navBarItself;

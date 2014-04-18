@@ -88,6 +88,7 @@
 - (NSString *)setPurpose:(unsigned int)index;
 
 @optional
+- (void)didTakeTransit;
 - (void)didCancelPurpose;
 - (void)didCancelNote;
 - (void)didPickPurpose:(unsigned int)index;

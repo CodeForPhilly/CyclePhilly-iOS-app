@@ -51,7 +51,10 @@
 #import "CustomView.h"
 #import "PickerViewController.h"
 #import "DetailViewController.h"
-#import "TripDetailViewController.h"
+
+//#import "TripDetailViewController.h"
+#import "TookTransitViewController.h"
+
 #import "TripManager.h"
 #import "NoteManager.h"
 #import "RecordTripViewController.h"
@@ -132,10 +135,10 @@
         NSLog(@"Purpose Save button pressed");
         NSInteger row = [customPickerView selectedRowInComponent:0];
         
-        TripDetailViewController *tripDetailViewController = [[TripDetailViewController alloc] initWithNibName:@"TripDetailViewController" bundle:nil];
-        tripDetailViewController.delegate = self.delegate;
+        TookTransitViewController *tookTransitViewController = [[TookTransitViewController alloc] initWithNibName:@"TookTransitViewController" bundle:nil];
+        tookTransitViewController.delegate = self.delegate;
         
-        [self presentModalViewController:tripDetailViewController animated:YES];
+        [self presentModalViewController:tookTransitViewController animated:YES];
         
         [delegate didPickPurpose:row];
     }
@@ -477,7 +480,7 @@
 	self.customPickerDataSource = nil;
     self.description = nil;
     self.descriptionText = nil;
-    
+
 	[customPickerDataSource release];
 	[customPickerView release];
     [delegate release];

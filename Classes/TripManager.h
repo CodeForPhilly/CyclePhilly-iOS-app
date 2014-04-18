@@ -114,7 +114,9 @@ UITextViewDelegate>
 - (void)createTrip:(unsigned int)index;
 
 - (CLLocationDistance)addCoord:(CLLocation*)location;
+- (void)saveTookTransit;
 - (void)saveNotes:(NSString*)notes;
+- (void)saveTookTransit;
 - (void)saveTrip;
 - (void)discardTrip;
 

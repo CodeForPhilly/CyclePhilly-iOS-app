@@ -436,11 +436,29 @@
     return userDict;
 }
 
+- (void)saveTookTransit {
+    /* Note if user took public transit by appending |took_transit to
+       end of notes field */
+    if (trip) {
+        NSString *tripNote = @"|took_transit";
+        if (trip.notes) {
+            tripNote = [trip.notes stringByAppendingString:tripNote];
+        }
+        [trip setNotes:tripNote];
+    }
+}
 
 - (void)saveNotes:(NSString*)notes
 {
-	if ( trip && notes )
-		[trip setNotes:notes];
+	if ( trip && notes ) {
+        NSString *useNotes = notes;
+        if (trip.notes) {
+            // if trip already noted, prefix with this note
+            // (so |took_transit note will be at end)
+            useNotes = [useNotes stringByAppendingString:trip.notes];
+        }
+        [trip setNotes:useNotes];
+    }
 }
 
 

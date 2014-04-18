@@ -13,6 +13,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		461A123D190091A300BBDBB6 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461A123C190091A300BBDBB6 /* Firebase.framework */; };
+		4688ACA81902B8EF00A67FAF /* TookTransitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4688ACA61902B8EF00A67FAF /* TookTransitViewController.m */; };
+		4688ACAB1902CF1B00A67FAF /* TookTransitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */; };
 		6411996210683D7500C201F0 /* RecordTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6411996110683D7500C201F0 /* RecordTripViewController.m */; };
 		6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6411996C10683DCD00C201F0 /* CoreLocation.framework */; };
 		641199B2106851AA00C201F0 /* SavedTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641199B1106851AA00C201F0 /* SavedTripsViewController.m */; };
@@ -188,6 +190,9 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cycle Philly_Prefix.pch"; sourceTree = "<group>"; };
 		461A123C190091A300BBDBB6 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		4688ACA51902B8EF00A67FAF /* TookTransitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TookTransitViewController.h; sourceTree = "<group>"; };
+		4688ACA61902B8EF00A67FAF /* TookTransitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TookTransitViewController.m; sourceTree = "<group>"; };
+		4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TookTransitViewController.xib; sourceTree = "<group>"; };
 		6411996010683D7500C201F0 /* RecordTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RecordTripViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6411996110683D7500C201F0 /* RecordTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RecordTripViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6411996C10683DCD00C201F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -447,6 +452,8 @@
 				64F824E5106AFFA4001413F8 /* PersonalInfoViewController.m */,
 				64119ABD10689ED800C201F0 /* PickerViewController.h */,
 				64119ABE10689ED800C201F0 /* PickerViewController.m */,
+				4688ACA51902B8EF00A67FAF /* TookTransitViewController.h */,
+				4688ACA61902B8EF00A67FAF /* TookTransitViewController.m */,
 				64581198107AC1080075DABD /* RecordingInProgressDelegate.h */,
 				6411996010683D7500C201F0 /* RecordTripViewController.h */,
 				6411996110683D7500C201F0 /* RecordTripViewController.m */,
@@ -528,6 +535,7 @@
 				642F14791071D3F10050BCB9 /* MapViewController.xib */,
 				8FBCD3C916E0E58100C11EBE /* NoteViewController.xib */,
 				64C8D40211386B26008BCADE /* RecordMap.xib */,
+				4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */,
 				64119A9B1068665B00C201F0 /* TripPurposePicker.xib */,
 				8F1B1D40164B94E90022B776 /* DetailView.xib */,
 				8F20B0AB16F0F08A00031712 /* TripDetailViewController.xib */,
@@ -844,6 +852,7 @@
 				9D4647EC1604EF1200A4F9CB /* lock_button2.png in Resources */,
 				9D4647ED1604EF1200A4F9CB /* lock_button_fpo.png in Resources */,
 				9D4647EE1604EF1200A4F9CB /* LockIcon.png in Resources */,
+				4688ACAB1902CF1B00A67FAF /* TookTransitViewController.xib in Resources */,
 				9D4647EF1604EF1200A4F9CB /* OpacityMask80.png in Resources */,
 				9D4647F01604EF1200A4F9CB /* OpacityMaskWindow.png in Resources */,
 				9D4647F11604EF1200A4F9CB /* orangeslide.png in Resources */,
@@ -953,6 +962,7 @@
 				8F9C086416DC9479003EA308 /* Note.m in Sources */,
 				8F9C086716DC9479003EA308 /* Trip.m in Sources */,
 				8F9C086A16DC947A003EA308 /* User.m in Sources */,
+				4688ACA81902B8EF00A67FAF /* TookTransitViewController.m in Sources */,
 				8F9C086D16DC947A003EA308 /* Coord.m in Sources */,
 				8FBCD3CA16E0E58100C11EBE /* NoteViewController.m in Sources */,
 				8F25EC7916E13E7C004263D4 /* SavedNotesViewController.m in Sources */,

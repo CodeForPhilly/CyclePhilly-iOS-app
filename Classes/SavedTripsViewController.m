@@ -1020,6 +1020,11 @@
     NSLog(@"Trip Added details: %@",details);
 }
 
+- (void)didTakeTransit {
+    [tripManager saveTookTransit];
+    NSLog(@"Noted rider took public transit in SavedTripsViewController.");
+}
+
 - (void)saveTrip{
     [tripManager saveTrip];
     NSLog(@"Save trip");
