@@ -47,6 +47,10 @@
 //	For more information on the project, 
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
+// Check system version to support picker
+// (different on iOS >= 7 and previous versions)
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+
 // Trip Purpose descriptions
 #define kDescCommute	@"The primary reason for this bike trip is to get between home and your primary work location."
 #define kDescSchool		@"The primary reason for this bike trip is to go to or from school or college."
@@ -83,6 +87,7 @@
     NSInteger pickerCategory;
 }
 
+@property (nonatomic, retain) NSArray *customPickerArray;
 @property (nonatomic, retain) NSArray *pickerTitles;
 @property (nonatomic, retain) NSArray *pickerImages;
 @property (nonatomic, retain) id<UIPickerViewDelegate> parent;
