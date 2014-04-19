@@ -664,6 +664,11 @@
     // kCal = ((4.5909819 * speed + 0.185 * speed^3) / 1000) * (trip time, in seconds)
     
     double speed = [trip.distance doubleValue] / [trip.duration doubleValue];
+    
+    CaloryText.text = @"";
+    // TODO: removing calorie calculation for now, as it seems to be
+    // way off.
+    /*
     double calory = ((4.5909819 * speed + 0.185 * pow(speed, 3)) / 1000) * [trip.duration doubleValue];
     
     if (calory <= 0) {
@@ -671,6 +676,7 @@
     }
     else
         CaloryText.text = [NSString stringWithFormat:@"Calories Burned: %.1f kCal", calory];
+    */
     
 
     cell.editingAccessoryView = cell.accessoryView;
