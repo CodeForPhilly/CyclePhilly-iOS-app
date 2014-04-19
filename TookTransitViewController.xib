@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <userGuides>
-                <userLayoutGuide location="392" affinity="maxY"/>
+                <userLayoutGuide location="363" affinity="maxY"/>
             </userGuides>
             <subviews>
                 <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="4">
@@ -41,19 +41,21 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Did you take public transit this trip?" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="12" id="19">
-                    <rect key="frame" x="0.0" y="43" width="320" height="36"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="12" id="19">
+                    <rect key="frame" x="-36" y="43" width="393" height="74"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
                     </accessibility>
+                    <string key="text">Did you take public transit before, during, 
+or after this trip?</string>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="No" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="12" id="Tvk-ZW-iTN" userLabel="Label - No">
-                    <rect key="frame" x="146" y="88" width="168" height="36"/>
+                    <rect key="frame" x="139" y="130" width="168" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                     <accessibility key="accessibilityConfiguration">
@@ -64,7 +66,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="IVM-lO-zAD">
-                    <rect key="frame" x="20" y="93" width="51" height="31"/>
+                    <rect key="frame" x="13" y="135" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="answerChanged:" destination="-1" eventType="valueChanged" id="suO-FE-sAP"/>

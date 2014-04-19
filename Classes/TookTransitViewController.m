@@ -30,14 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // switches default to 'on', so turn it off here
-    [self.tookPublicTransit setOn:false];
-    
     [self.view addSubview:tookTransitView];
-    
-    navBarItself.topItem.title = @"Transit";
-    self.descriptionText.text = @"Did you take public transit this trip?";
 }
 
 - (void)didReceiveMemoryWarning
