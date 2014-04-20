@@ -492,7 +492,9 @@
         case 201:
         {
             NSLog(@"save cancelled because no co-ordinates in trip");
-            startButton.enabled = YES;
+            // discard the empty trip
+            [self.tripManager discardTrip];
+            [self resetRecordingInProgress];
         }
             break;
 		default:
