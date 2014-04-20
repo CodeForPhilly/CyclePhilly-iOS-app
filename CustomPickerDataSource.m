@@ -62,7 +62,7 @@
     
     pickerCategory = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickerCategory"];
         
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+    if (IOS_6_OR_EARLIER) {
         // setup for picker on ios 5/6
         
         // create the data source for this custom picker
@@ -326,7 +326,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+    if (IOS_6_OR_EARLIER) {
         // iOS 5/6
         return [customPickerArray count];
     } else {
@@ -344,12 +344,11 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     
-    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+    if (IOS_6_OR_EARLIER) {
         // tell the picker which view to use for a given component and row;
         // we have an array of views to show (iOS 5/6)
         return [customPickerArray objectAtIndex:row];
     }
-
     // iOS 7+
     if(view == nil) {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width, 48)];
@@ -365,12 +364,14 @@
         UIImage *image = [pickerImages objectAtIndex:row];
         UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [imageView setFrame:CGRectMake(0, 0, 44, 44)];
+        
+        [imageView setFrame:CGRectMake(60, 0, 44, 44)];
         [view addSubview:imageView];
         [imageView release];
     }
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(48, 0, pickerView.frame.size.width, 48)];
+    CGRect labelFrame = CGRectMake(108, 0, pickerView.frame.size.width, 48);
+    UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     label.text = [NSString stringWithFormat:@" %@", [pickerTitles objectAtIndex: row]];
@@ -382,8 +383,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-	//NSLog(@"child didSelectRow: %ld inComponent:%d", (long)row, component);
-	[parent pickerView:pickerView didSelectRow:row inComponent:component];
+    [parent pickerView:pickerView didSelectRow:row inComponent:component];
 }
 
 @end

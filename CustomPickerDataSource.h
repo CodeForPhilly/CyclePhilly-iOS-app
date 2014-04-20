@@ -48,8 +48,10 @@
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
 // Check system version to support picker
-// (different on iOS >= 7 and previous versions)
-#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+// picker styles for iOS >= 7.1,
+// 7.0, which gets its own weird style,
+// and 5/6
+#define IOS_6_OR_EARLIER ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
 
 // Trip Purpose descriptions
 #define kDescCommute	@"The primary reason for this bike trip is to get between home and your primary work location."
