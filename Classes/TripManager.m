@@ -1045,7 +1045,7 @@
 	return count;
 }
 
-- (BOOL)loadMostRecetUnSavedTrip
+- (BOOL)loadMostRecentUnSavedTrip
 {
 	BOOL success = NO;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];

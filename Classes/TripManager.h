@@ -130,7 +130,7 @@ UITextViewDelegate>
 - (long)countUnSyncedTrips;
 - (long)countZeroDistanceTrips;
 
-- (BOOL)loadMostRecetUnSavedTrip;
+- (BOOL)loadMostRecentUnSavedTrip;
 - (long)recalculateTripDistances;
 - (CLLocationDistance)calculateTripDistance:(Trip*)_trip;
 

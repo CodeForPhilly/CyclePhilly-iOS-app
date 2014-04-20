@@ -476,7 +476,7 @@
 				case 1:
 				default:
 					// continue => load most recent unsaved trip
-					[tripManager loadMostRecetUnSavedTrip];
+					[tripManager loadMostRecentUnSavedTrip];
 					
 					// update UI to reflect trip once loading has completed
 					[self setCounterTimeSince:tripManager.trip.start
@@ -489,6 +489,12 @@
 			}
 		}
 			break;
+        case 201:
+        {
+            NSLog(@"save cancelled because no co-ordinates in trip");
+            startButton.enabled = YES;
+        }
+            break;
 		default:
 		{
 			NSLog(@"saving didDismissWithButtonIndex: %ld", (long)buttonIndex);
@@ -585,6 +591,16 @@
     else
     {
         NSLog(@"User Press Save Button");
+        
+        if ([tripManager.coords count] < 1) {
+            // no data to upload; bail now
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No data to upload" message:@"No co-ordinates have been logged for this trip yet." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+            alert.tag = 201;
+            [alert show];
+            [alert release];
+            return;
+        }
+        
         saveActionSheet = [[UIActionSheet alloc]
                            initWithTitle:@""
                            delegate:self
