@@ -464,7 +464,7 @@
 
 - (void)saveTrip
 {
-	NSLog(@"about to save trip with %d coords...", [coords count]);
+	NSLog(@"about to save trip with %lu coords...", (unsigned long)[coords count]);
 //	[activityDelegate updateSavingMessage:kPreparingData];
 	//NSLog(@"%@", trip);
 
@@ -621,7 +621,7 @@
     uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
 
     //switch to map w/ trip view
-    [parent displayUploadedTripMap];
+    [(RecordTripViewController *)parent displayUploadedTripMap];
     
     //TODO: get screenshot and store.
 
@@ -662,8 +662,8 @@
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten 
  totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-	NSLog(@"%d bytesWritten, %d totalBytesWritten, %d totalBytesExpectedToWrite",
-		  bytesWritten, totalBytesWritten, totalBytesExpectedToWrite );
+	NSLog(@"%ld bytesWritten, %ld totalBytesWritten, %ld totalBytesExpectedToWrite",
+		  (long)bytesWritten, (long)totalBytesWritten, (long)totalBytesExpectedToWrite );
 }
 
 
@@ -767,7 +767,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	// do something with the data
-    NSLog(@"+++++++DEBUG: Received %d bytes of data", [receivedData length]);
+    NSLog(@"+++++++DEBUG: Received %lu bytes of data", (unsigned long)[receivedData length]);
 	NSLog(@"%@", [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] autorelease] );
 
     // release the connection, and the data object
@@ -781,7 +781,7 @@
 
 - (NSInteger)getPurposeIndex
 {
-	NSLog(@"%d", purposeIndex);
+	NSLog(@"%ld", (long)purposeIndex);
 	return purposeIndex;
 }
 
@@ -789,13 +789,13 @@
 #pragma mark TripPurposeDelegate methods
 
 
-- (NSString *)getPurposeString:(unsigned int)index
+- (NSString *)getPurposeString:(long)index
 {
 	return [TripPurpose getPurposeString:index];
 }
 
 
-- (NSString *)setPurpose:(unsigned int)index
+- (NSString *)setPurpose:(long)index
 {
 	NSString *purpose = [self getPurposeString:index];
 	NSLog(@"setPurpose: %@", purpose);
@@ -837,7 +837,7 @@
 
 
 // DEPRECATED
-- (void)createTrip:(unsigned int)index
+- (void)createTrip:(long)index
 {
 	NSString *purpose = [self getPurposeString:index];
 	NSLog(@"createTrip: %@", purpose);
@@ -956,7 +956,7 @@
  totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
 	if ( saving )
-		saving.message = [NSString stringWithFormat:@"Sent %d of %d bytes", totalBytesWritten, totalBytesExpectedToWrite];
+		saving.message = [NSString stringWithFormat:@"Sent %ld of %ld bytes", (long)totalBytesWritten, (long)totalBytesExpectedToWrite];
 }
 
 
@@ -971,7 +971,7 @@
 
 
 // count trips that have not yet been saved
-- (int)countUnSavedTrips
+- (long)countUnSavedTrips
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip" inManagedObjectContext:managedObjectContext];
@@ -989,14 +989,14 @@
 	
 	NSError *error;
 	NSInteger count = [managedObjectContext countForFetchRequest:request error:&error];
-	NSLog(@"countUnSavedTrips = %d", count);
+	NSLog(@"countUnSavedTrips = %ld", (long)count);
 	
 	[request release];
 	return count;
 }
 
 // count trips that have been saved but not uploaded
-- (int)countUnSyncedTrips
+- (long)countUnSyncedTrips
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip" inManagedObjectContext:managedObjectContext];
@@ -1014,14 +1014,14 @@
 	
 	NSError *error;
 	NSInteger count = [managedObjectContext countForFetchRequest:request error:&error];
-	NSLog(@"countUnSyncedTrips = %d", count);
+	NSLog(@"countUnSyncedTrips = %ld", (long)count);
 	
 	[request release];
 	return count;
 }
 
 // count trips that have been saved but have zero distance
-- (int)countZeroDistanceTrips
+- (long)countZeroDistanceTrips
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip" inManagedObjectContext:managedObjectContext];
@@ -1039,7 +1039,7 @@
 	
 	NSError *error;
 	NSInteger count = [managedObjectContext countForFetchRequest:request error:&error];
-	NSLog(@"countZeroDistanceTrips = %d", count);
+	NSLog(@"countZeroDistanceTrips = %ld", (long)count);
 	
 	[request release];
 	return count;
@@ -1087,7 +1087,7 @@
 // filter and sort all trip coords before calculating distance in post-processing
 - (CLLocationDistance)calculateTripDistance:(Trip*)_trip
 {
-	NSLog(@"calculateTripDistance for trip started %@ having %d coords", _trip.start, [_trip.coords count]);
+	NSLog(@"calculateTripDistance for trip started %@ having %lu coords", _trip.start, (unsigned long)[_trip.coords count]);
 	
 	CLLocationDistance newDist = 0.;
 
@@ -1097,7 +1097,7 @@
 	// filter coords by hAccuracy
 	NSPredicate *filterByAccuracy	= [NSPredicate predicateWithFormat:@"hAccuracy < 100.0"];
 	NSArray		*filteredCoords		= [[_trip.coords allObjects] filteredArrayUsingPredicate:filterByAccuracy];
-	NSLog(@"count of filtered coords = %d", [filteredCoords count]);
+	NSLog(@"count of filtered coords = %lu", (unsigned long)[filteredCoords count]);
 	
 	if ( [filteredCoords count] )
 	{
@@ -1123,7 +1123,7 @@
 }
 
 
-- (int)recalculateTripDistances
+- (long)recalculateTripDistances
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip" inManagedObjectContext:managedObjectContext];
@@ -1147,9 +1147,9 @@
 		if ( error != nil )
 			NSLog(@"Unresolved error2 %@, %@", error, [error userInfo]);
 	}
-	int count = [mutableFetchResults count];
+	long count = [mutableFetchResults count];
 
-	NSLog(@"found %d trip(s) in need of distance recalcuation", count);
+	NSLog(@"found %ld trip(s) in need of distance recalcuation", count);
 
 	for (Trip *_trip in mutableFetchResults)
 	{
@@ -1212,7 +1212,7 @@
 
 @implementation TripPurpose
 
-+ (unsigned int)getPurposeIndex:(NSString*)string
++ (long)getPurposeIndex:(NSString*)string
 {
 	if ( [string isEqualToString:kTripPurposeCommuteString] )
 		return kTripPurposeCommute;
@@ -1233,7 +1233,7 @@
 		return kTripPurposeOther;
 }
 
-+ (NSString *)getPurposeString:(unsigned int)index
++ (NSString *)getPurposeString:(long)index
 {
 	switch (index) {
 		case kTripPurposeCommute:

@@ -133,7 +133,7 @@
     
     if (pickerCategory == 0) {
         NSLog(@"Purpose Save button pressed");
-        NSInteger row = [customPickerView selectedRowInComponent:0];
+        long row = [customPickerView selectedRowInComponent:0];
         
         TookTransitViewController *tookTransitViewController = [[TookTransitViewController alloc] initWithNibName:@"TookTransitViewController" bundle:nil];
         tookTransitViewController.delegate = self.delegate;
@@ -162,7 +162,7 @@
         
         pickedNotedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedNotedType"];
         
-        NSLog(@"pickedNotedType is %d", pickedNotedType);
+        NSLog(@"pickedNotedType is %ld", (long)pickedNotedType);
     }
     else if (pickerCategory == 2){
         NSLog(@"Asset Save button pressed");
@@ -183,7 +183,7 @@
         
         pickedNotedType = [[NSUserDefaults standardUserDefaults] integerForKey:@"pickedNotedType"];
         
-        NSLog(@"pickedNotedType is %d", pickedNotedType);
+        NSLog(@"pickedNotedType is %ld", (long)pickedNotedType);
         
     }
     else if (pickerCategory == 3){
@@ -204,10 +204,10 @@
 
         
         if(row>=7){
-            tempType = [NSNumber numberWithInt:row-7];
+            tempType = [NSNumber numberWithLong:row-7];
         }
         else if (row<=5){
-            tempType = [NSNumber numberWithInt:11-row];
+            tempType = [NSNumber numberWithLong:11-row];
         }
         
         NSLog(@"tempType: %d", [tempType intValue]);

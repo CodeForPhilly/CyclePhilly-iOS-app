@@ -115,7 +115,7 @@
             [request setHTTPBody:body];
             
             // set the content-length
-            NSString *postLength = [NSString stringWithFormat:@"%d", [body length]];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
             [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
             
         } else {
@@ -146,10 +146,10 @@
             NSData *originalData = [postBody dataUsingEncoding:NSUTF8StringEncoding];
             NSData *postBodyDataZipped = [ZipUtil gzipDeflate:originalData];
             
-            NSLog(@"Initializing HTTP POST request to %@ of size %d, orig size %d",
-                  kSaveURL, [postBodyDataZipped length], [originalData length]);
+            NSLog(@"Initializing HTTP POST request to %@ of size %lu, orig size %lu",
+                  kSaveURL, (unsigned long)[postBodyDataZipped length], (unsigned long)[originalData length]);
             
-            [request setValue:[NSString stringWithFormat:@"%d", [postBodyDataZipped length]] forHTTPHeaderField:@"Content-Length"];
+            [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postBodyDataZipped length]] forHTTPHeaderField:@"Content-Length"];
             //set the POST body
             [request setHTTPBody:postBodyDataZipped];
         }

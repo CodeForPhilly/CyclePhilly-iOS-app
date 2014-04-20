@@ -382,7 +382,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-	NSLog(@"child didSelectRow: %d inComponent:%d", row, component);
+	//NSLog(@"child didSelectRow: %ld inComponent:%d", (long)row, component);
 	[parent pickerView:pickerView didSelectRow:row inComponent:component];
 }
 

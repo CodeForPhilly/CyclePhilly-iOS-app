@@ -215,7 +215,7 @@
 	
 	NSError *error;
 	NSInteger count = [managedObjectContext countForFetchRequest:request error:&error];
-	NSLog(@"saved user count  = %d", count);
+	NSLog(@"saved user count  = %ld", (long)count);
 	if ( count == 0 )
 	{
 		// create an empty User entity
@@ -424,19 +424,19 @@
     NSLog(@"Saving User Data");
 	if ( user != nil )
 	{
-		[user setAge:[NSNumber numberWithInt:ageSelectedRow]];
+		[user setAge:[NSNumber numberWithLong:ageSelectedRow]];
         NSLog(@"saved age index: %@ and text: %@", user.age, age.text);
 
 		[user setEmail:email.text];
         NSLog(@"saved email: %@", user.email);
 
-		[user setGender:[NSNumber numberWithInt:genderSelectedRow]];
+		[user setGender:[NSNumber numberWithLong:genderSelectedRow]];
 		NSLog(@"saved gender index: %@ and text: %@", user.gender, gender.text);
         
-        [user setEthnicity:[NSNumber numberWithInt:ethnicitySelectedRow]];
+        [user setEthnicity:[NSNumber numberWithLong:ethnicitySelectedRow]];
         NSLog(@"saved ethnicity index: %@ and text: %@", user.ethnicity, ethnicity.text);
         
-        [user setIncome:[NSNumber numberWithInt:incomeSelectedRow]];
+        [user setIncome:[NSNumber numberWithLong:incomeSelectedRow]];
         NSLog(@"saved income index: %@ and text: %@", user.income, income.text);
         
 		[user setHomeZIP:homeZIP.text];
@@ -448,13 +448,13 @@
 		[user setWorkZIP:workZIP.text];
         NSLog(@"saved workZIP: %@", workZIP.text);
                 
-        [user setCyclingFreq:[NSNumber numberWithInt:cyclingFreqSelectedRow]];
+        [user setCyclingFreq:[NSNumber numberWithLong:cyclingFreqSelectedRow]];
         NSLog(@"saved cycle freq index: %@ and text: %@", user.cyclingFreq, cyclingFreq.text);
         
-        [user setRider_type:[NSNumber numberWithInt:riderTypeSelectedRow]];
+        [user setRider_type:[NSNumber numberWithLong:riderTypeSelectedRow]];
         NSLog(@"saved rider type index: %@ and text: %@", user.rider_type, riderType.text);
         
-        [user setRider_history:[NSNumber numberWithInt:riderHistorySelectedRow]];
+        [user setRider_history:[NSNumber numberWithLong:riderHistorySelectedRow]];
         NSLog(@"saved rider history index: %@ and text: %@", user.rider_history, riderHistory.text);
 		
 		//NSLog(@"saving cycling freq: %d", [cyclingFreq intValue]);

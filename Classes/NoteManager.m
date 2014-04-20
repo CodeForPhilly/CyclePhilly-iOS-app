@@ -74,6 +74,26 @@
 
 // change this function for note initialization
 
+- (void) updateBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+    
+}
+
+- (void) updateSavingMessage:(NSString *)message {
+    
+}
+
+- (void) startAnimating {
+    
+}
+
+- (void) stopAnimating {
+    
+}
+
+- (void) dismissSaving {
+    
+}
+
 - (id)initWithManagedObjectContext:(NSManagedObjectContext*)context
 {
     if ( self = [super init] )
@@ -201,7 +221,7 @@
     
     NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation([ImageResize imageWithImage:castedImage scaledToSize:size], kJpegQuality)];
     
-    NSLog(@"Size of Image(bytes):%d", [uploadData length]);
+    NSLog(@"Size of Image(bytes):%lu", (unsigned long)[uploadData length]);
     
     [noteDict setValue:note.image_url forKey:@"i"];  //image_url
     //[noteDict setValue:note.image_data forKey:@"g"];  //image_data
@@ -235,7 +255,7 @@
     
     
     if (recording == 0) {
-        [parent displayUploadedNote];
+        [(RecordTripViewController *)parent displayUploadedNote];
     }
     
     NSLog(@"note save and parent");
@@ -316,7 +336,7 @@
     
     NSData *uploadData = [[NSData alloc] initWithData:UIImageJPEGRepresentation([ImageResize imageWithImage:castedImage scaledToSize:size], kJpegQuality)];
     
-    NSLog(@"Size of Image(bytes):%d", [uploadData length]);
+    NSLog(@"Size of Image(bytes):%lu", (unsigned long)[uploadData length]);
     
     [noteDict setValue:_note.image_url forKey:@"i"];  //image_url
     //[noteDict setValue:note.image_data forKey:@"g"];  //image_data
@@ -350,7 +370,7 @@
     
     
     if (recording == 0) {
-        [parent displayUploadedNote];
+        [(RecordTripViewController *)parent displayUploadedNote];
     }
     
     NSLog(@"note save and parent");
@@ -379,8 +399,8 @@
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
-	NSLog(@"%d bytesWritten, %d totalBytesWritten, %d totalBytesExpectedToWrite",
-		  bytesWritten, totalBytesWritten, totalBytesExpectedToWrite );
+	NSLog(@"%ld bytesWritten, %ld totalBytesWritten, %ld totalBytesExpectedToWrite",
+		  (long)bytesWritten, (long)totalBytesWritten, (long)totalBytesExpectedToWrite );
 }
 
 
@@ -486,7 +506,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	// do something with the data
-    NSLog(@"+++++++DEBUG: Received %d bytes of data", [receivedDataNoted length]);
+    NSLog(@"+++++++DEBUG: Received %lu bytes of data", (unsigned long)[receivedDataNoted length]);
 	NSLog(@"%@", [[[NSString alloc] initWithData:receivedDataNoted encoding:NSUTF8StringEncoding] autorelease] );
     
     // release the connection, and the data object

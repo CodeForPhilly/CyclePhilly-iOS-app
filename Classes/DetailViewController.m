@@ -159,7 +159,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation([ImageResize imageWithImage:castedImage scaledToSizeWithSameAspectRatio:CGSizeMake(960, 640)], 1)];
     UIImage *thumbnail = [ImageResize imageWithImage:castedImage scaledToSizeWithSameAspectRatio:CGSizeMake(290, 192)];
     
-    NSLog(@"Size of Image(bytes):%d",[imageData length]);
+    NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imageData length]);
     self.image = thumbnail;
     [picker dismissModalViewControllerAnimated:YES];
     [picker release];

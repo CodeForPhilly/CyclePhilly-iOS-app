@@ -163,7 +163,7 @@
 	
 	NSError *error;
 	NSInteger count = [tripManager.managedObjectContext countForFetchRequest:request error:&error];
-	NSLog(@"count = %d", count);
+	NSLog(@"count = %ld", (long)count);
 	
 	NSMutableArray *mutableFetchResults = [[tripManager.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	if (mutableFetchResults == nil) {
@@ -459,8 +459,8 @@
 		// add check mark
 		// image = [UIImage imageNamed:@"GreenCheckMark2.png"];
 		
-		int index = [TripPurpose getPurposeIndex:trip.purpose];
-		NSLog(@"trip.purpose: %d => %@", index, trip.purpose);
+		long index = [TripPurpose getPurposeIndex:trip.purpose];
+		NSLog(@"trip.purpose: %ld => %@", index, trip.purpose);
 		//int index =0;
 		
 		// add purpose icon
@@ -663,7 +663,7 @@
     // simplifying...
     // kCal = ((4.5909819 * speed + 0.185 * speed^3) / 1000) * (trip time, in seconds)
     
-    double speed = [trip.distance doubleValue] / [trip.duration doubleValue];
+    //double speed = [trip.distance doubleValue] / [trip.duration doubleValue];
     
     CaloryText.text = @"";
     // TODO: removing calorie calculation for now, as it seems to be
@@ -862,7 +862,7 @@
 //- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-	NSLog(@"actionSheet clickedButtonAtIndex %d", buttonIndex);
+	NSLog(@"actionSheet clickedButtonAtIndex %ld", (long)buttonIndex);
 	switch ( buttonIndex )
 	{
 			
@@ -951,7 +951,7 @@
 	switch (alertView.tag) {
 		case 202:
 		{
-			NSLog(@"zeroDistance didDismissWithButtonIndex: %d", buttonIndex);
+			NSLog(@"zeroDistance didDismissWithButtonIndex: %ld", (long)buttonIndex);
 			switch (buttonIndex) {
 				case 0:
 					// nothing to do
@@ -966,7 +966,7 @@
 			break;
 		case 303:
 		{
-			NSLog(@"unSyncedTrips didDismissWithButtonIndex: %d", buttonIndex);
+			NSLog(@"unSyncedTrips didDismissWithButtonIndex: %ld", (long)buttonIndex);
 			switch (buttonIndex) {
 				case 0:
 					// Nevermind
@@ -981,7 +981,7 @@
 			break;
 		default:
 		{
-			NSLog(@"SavedTripsView alertView: didDismissWithButtonIndex: %d", buttonIndex);
+			NSLog(@"SavedTripsView alertView: didDismissWithButtonIndex: %ld", (long)buttonIndex);
 			[self displaySelectedTripMap];
 		}
 	}
@@ -991,13 +991,13 @@
 #pragma mark TripPurposeDelegate methods
 
 
-- (NSString *)setPurpose:(unsigned int)index
+- (NSString *)setPurpose:(long)index
 {
 	return [tripManager setPurpose:index];
 }
 
 
-- (NSString *)getPurposeString:(unsigned int)index
+- (NSString *)getPurposeString:(long)index
 {
 	return [tripManager getPurposeString:index];
 }
@@ -1009,7 +1009,7 @@
 }
 
 
-- (void)didPickPurpose:(unsigned int)index
+- (void)didPickPurpose:(long)index
 {
     NSLog(@"Picked purpose");
 	[tripManager setPurpose:index];

@@ -73,6 +73,17 @@
 
 #pragma mark CLLocationManagerDelegate methods
 
+- (void)save:(UIButton *)sender {
+    
+}
+
+- (void) createCounter {
+    
+}
+
+- (UIButton *)createSaveButton {
+    return [[UIButton alloc] init];
+}
 
 - (CLLocationManager *)getLocationManager {
 	appDelegate = [[UIApplication sharedApplication] delegate];
@@ -413,7 +424,7 @@
 //- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-	NSLog(@"actionSheet clickedButtonAtIndex %d", buttonIndex);
+	NSLog(@"actionSheet clickedButtonAtIndex %ld", (long)buttonIndex);
 	switch ( buttonIndex )
 	{			
            case 0:
@@ -457,7 +468,7 @@
 	switch (alertView.tag) {
 		case 101:
 		{
-			NSLog(@"recording interrupted didDismissWithButtonIndex: %d", buttonIndex);
+			NSLog(@"recording interrupted didDismissWithButtonIndex: %ld", (long)buttonIndex);
 			switch (buttonIndex) {
 				case 0:
 					// new trip => do nothing
@@ -480,7 +491,7 @@
 			break;
 		default:
 		{
-			NSLog(@"saving didDismissWithButtonIndex: %d", buttonIndex);
+			NSLog(@"saving didDismissWithButtonIndex: %ld", (long)buttonIndex);
 			
 			// keep a pointer to our trip to pass to map view below
 			Trip *trip = tripManager.trip;
@@ -859,7 +870,7 @@ shouldSelectViewController:(UIViewController *)viewController
 #pragma mark TripPurposeDelegate methods
 
 
-- (NSString *)setPurpose:(unsigned int)index
+- (NSString *)setPurpose:(long)index
 {
 	NSString *purpose = [tripManager setPurpose:index];
 	NSLog(@"setPurpose: %@", purpose);
@@ -870,7 +881,7 @@ shouldSelectViewController:(UIViewController *)viewController
 }
 
 
-- (NSString *)getPurposeString:(unsigned int)index
+- (NSString *)getPurposeString:(long)index
 {
 	return [tripManager getPurposeString:index];
 }
@@ -895,7 +906,7 @@ shouldSelectViewController:(UIViewController *)viewController
 }
 
 
-- (void)didPickPurpose:(unsigned int)index
+- (void)didPickPurpose:(long)index
 {
 	//[self.navigationController dismissModalViewControllerAnimated:YES];
 	// update UI
@@ -941,18 +952,18 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didSaveImage:(NSData *)imgData{
     [noteManager.note setImage_data:imgData];
-    NSLog(@"Added image, Size of Image(bytes):%d", [imgData length]);
+    NSLog(@"Added image, Size of Image(bytes):%lu", (unsigned long)[imgData length]);
     [imgData release];
 }
 
 - (void)getTripThumbnail:(NSData *)imgData{
     [tripManager.trip setThumbnail:imgData];
-    NSLog(@"Trip Thumbnail, Size of Image(bytes):%d", [imgData length]);
+    NSLog(@"Trip Thumbnail, Size of Image(bytes):%lu", (unsigned long)[imgData length]);
 }
 
 - (void)getNoteThumbnail:(NSData *)imgData{
     [noteManager.note setThumbnail:imgData];
-    NSLog(@"Note Thumbnail, Size of Image(bytes):%d", [imgData length]);
+    NSLog(@"Note Thumbnail, Size of Image(bytes):%lu", (unsigned long)[imgData length]);
 }
 
 - (void)saveNote{

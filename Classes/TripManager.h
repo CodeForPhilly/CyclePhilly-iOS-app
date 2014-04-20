@@ -111,7 +111,7 @@ UITextViewDelegate>
 - (BOOL)loadTrip:(Trip*)trip;
 
 - (void)createTrip;
-- (void)createTrip:(unsigned int)index;
+- (void)createTrip:(long)index;
 
 - (CLLocationDistance)addCoord:(CLLocation*)location;
 - (void)saveTookTransit;
@@ -124,14 +124,14 @@ UITextViewDelegate>
 
 - (NSInteger)getPurposeIndex;
 
-- (void)promptForTripNotes;
+//- (void)promptForTripNotes;
 
-- (int)countUnSavedTrips;
-- (int)countUnSyncedTrips;
-- (int)countZeroDistanceTrips;
+- (long)countUnSavedTrips;
+- (long)countUnSyncedTrips;
+- (long)countZeroDistanceTrips;
 
 - (BOOL)loadMostRecetUnSavedTrip;
-- (int)recalculateTripDistances;
+- (long)recalculateTripDistances;
 - (CLLocationDistance)calculateTripDistance:(Trip*)_trip;
 
 @end
@@ -139,8 +139,8 @@ UITextViewDelegate>
 
 @interface TripPurpose : NSObject { }
 
-+ (unsigned int)getPurposeIndex:(NSString*)string;
-+ (NSString *)getPurposeString:(unsigned int)index;
++ (long)getPurposeIndex:(NSString*)string;
++ (NSString *)getPurposeString:(long)index;
 
 @end
 

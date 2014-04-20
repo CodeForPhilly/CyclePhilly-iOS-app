@@ -987,7 +987,6 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/toby/Downloads,
 					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1001,6 +1000,7 @@
 				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1014,7 +1014,6 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/toby/Downloads,
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1026,6 +1025,7 @@
 				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1054,7 +1054,6 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/toby/Downloads,
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1067,6 +1066,7 @@
 				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Distribution;
 		};
@@ -1098,7 +1098,6 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/toby/Downloads,
 					"$(PROJECT_DIR)",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1112,6 +1111,7 @@
 				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Beta;
 		};
@@ -1141,7 +1141,6 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/toby/Downloads,
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1153,6 +1152,7 @@
 				PRODUCT_NAME = "Cycle Philly";
 				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release Beta";
 		};
