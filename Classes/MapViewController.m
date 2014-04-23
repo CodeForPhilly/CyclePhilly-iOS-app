@@ -356,7 +356,7 @@
 		else
 		{
 			// init map region to Atlanta
-			MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
+			MKCoordinateRegion region = { { 39.952707, -75.164133 }, { 0.10825, 0.10825 } };
 			[mapView setRegion:region animated:NO];
 		}
         free(routePath);
@@ -364,7 +364,7 @@
 	else
 	{
 		// error: init map region
-		MKCoordinateRegion region = { { 33.749038, -84.388068 }, { 0.10825, 0.10825 } };
+		MKCoordinateRegion region = { { 39.952707, -75.164133 }, { 0.10825, 0.10825 } };
 		[mapView setRegion:region animated:NO];
 	}
     
