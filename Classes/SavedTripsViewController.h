@@ -52,6 +52,9 @@
 #import "ActivityIndicatorDelegate.h"
 #import "RecordingInProgressDelegate.h"
 
+// Check system version to size text labels
+#define IOS_6_OR_EARLIER ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
+
 @class LoadingView;
 @class MapViewController;
 @class Trip;

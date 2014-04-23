@@ -605,13 +605,22 @@
         if (durationText == nil) {
             durationText = [[[UILabel alloc] init] autorelease];
             durationText.tag = 3;
-            durationText.frame = CGRectMake( 140, 30, 120, 30);
-            [durationText setFont:[UIFont systemFontOfSize:14]];
-            [durationText setTextColor:[UIColor grayColor]];
             
             CO2Text = [[[UILabel alloc] init] autorelease];
             CO2Text.tag = 4;
-            CO2Text.frame = CGRectMake( 10, 50, 130, 20);
+            
+            // do some version-dependent sizing stuff here
+            if (IOS_6_OR_EARLIER) {
+                durationText.frame = CGRectMake(140, 34, 190, 30);
+                CO2Text.frame = CGRectMake( 10, 54, 130, 20);
+            } else {
+                durationText.frame = CGRectMake(140, 30, 120, 30);
+                CO2Text.frame = CGRectMake( 10, 50, 130, 20);
+            }
+            
+            [durationText setFont:[UIFont systemFontOfSize:14]];
+            [durationText setTextColor:[UIColor grayColor]];
+            
             [CO2Text setFont:[UIFont systemFontOfSize:12]];
             [CO2Text setTextColor:[UIColor grayColor]];
             
