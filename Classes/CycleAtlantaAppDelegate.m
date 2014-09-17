@@ -267,7 +267,8 @@
 - (void)initUniqueIDHash
 {
     
-	self.uniqueIDHash = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]; // save for later.
+	//self.uniqueIDHash = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]; // save for later.
+    self.uniqueIDHash = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 	NSLog(@"Hashed uniqueID: %@", uniqueIDHash);
 	/*unsigned char result[CC_MD5_DIGEST_LENGTH];
 	const char * uniqueIDStr = [[UIDevice currentDevice].uniqueIdentifier UTF8String];

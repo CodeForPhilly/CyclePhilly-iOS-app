@@ -177,6 +177,7 @@
 		DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812018DF418A008A5BE9 /* CFNetwork.framework */; };
 		DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812418DF46DE008A5BE9 /* libc++.dylib */; };
 		DA78812718DF46EC008A5BE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */; };
+		DAA6D2D71978FF63004A83F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA6D2D61978FF63004A83F6 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -392,6 +393,7 @@
 		DA9A6F181832C6C40038A071 /* appIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon29x29.png; sourceTree = "<group>"; };
 		DA9A6F191832C70D0038A071 /* appIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon58x58.png; sourceTree = "<group>"; };
 		DA9A6F1A1832C7500038A071 /* appIcon@Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@Retina.png"; sourceTree = "<group>"; };
+		DAA6D2D61978FF63004A83F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Cycle Philly/Images.xcassets"; sourceTree = "<group>"; };
 		DAFD01681832C4270037CC9B /* appicon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon57x57.png; path = Images/appicon57x57.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -521,6 +523,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DAA6D2D61978FF63004A83F6 /* Images.xcassets */,
 				9D46482B1604EF3800A4F9CB /* TabBarIcons V2 */,
 				9D4648201604EF2F00A4F9CB /* UI Elements */,
 				9D4647FB1604EF2600A4F9CB /* TripPurposePickerIcons V3 */,
@@ -873,6 +876,7 @@
 				9D4648141604EF2600A4F9CB /* failedUpload.png in Resources */,
 				9D4648151604EF2600A4F9CB /* failedUpload@2x.png in Resources */,
 				9D4648161604EF2600A4F9CB /* other.png in Resources */,
+				DAA6D2D71978FF63004A83F6 /* Images.xcassets in Resources */,
 				9D4648171604EF2600A4F9CB /* other@2x.png in Resources */,
 				9D4648181604EF2600A4F9CB /* school.png in Resources */,
 				9D4648191604EF2600A4F9CB /* school@2x.png in Resources */,
@@ -981,6 +985,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
@@ -994,7 +1000,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1008,6 +1014,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
@@ -1019,7 +1027,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1048,6 +1056,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
@@ -1059,12 +1069,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
 				PROVISIONING_PROFILE = "8D7C7187-369B-42E2-9E58-20421916EBBA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1091,6 +1101,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
@@ -1105,7 +1117,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1134,6 +1146,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lloyd Emell (SG6MUP688G)";
@@ -1146,7 +1160,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;

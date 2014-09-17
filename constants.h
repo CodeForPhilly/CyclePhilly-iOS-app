@@ -101,10 +101,10 @@
 
 //	updated references for posting to Cycle Philly site for Cycle Philly adaptation for questions email Corey Acri acri.corey@gmail.com
 
-#define kInfoURL			@"http://mytracks.phillyopen.org/CycleAtlantaInfo"
+#define kInfoURL			@"http://www.cyclephilly.org/#about"
 #define kInstructionsURL	@"mailto:support@cyclephilly.org"
 
-#define kSaveURL			@"http://mytracks.phillyopen.org/post/"
+#define kSaveURL			@"http://www.cyclephilly.org/post/"
 
 #define kFireDomain			@"https://cyclephilly.firebaseio.com/"
 //#define kSaveURL			@""

@@ -7,10 +7,12 @@
 //  
 
 #import <Foundation/Foundation.h>
+//#import <AdSupport/ASIdentifierManager.h>
 
 
 @interface UIDevice (IdentifierAddition)
-
+@property(nonatomic, readonly, retain) NSUUID *identifierForVendor;
+@property(nonatomic, readonly) NSUUID *advertisingIdentifier;
 /*
  * @method uniqueDeviceIdentifier
  * @description use this method when you need a unique identifier in one app.
