@@ -12,7 +12,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
-		461A123D190091A300BBDBB6 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461A123C190091A300BBDBB6 /* Firebase.framework */; };
 		4688ACA81902B8EF00A67FAF /* TookTransitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4688ACA61902B8EF00A67FAF /* TookTransitViewController.m */; };
 		4688ACAB1902CF1B00A67FAF /* TookTransitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */; };
 		6411996210683D7500C201F0 /* RecordTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6411996110683D7500C201F0 /* RecordTripViewController.m */; };
@@ -173,6 +172,8 @@
 		9D6D31AE16D7C189007A2497 /* noteBlankPicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */; };
 		9DD65FBB16FEA3CC00F2EB63 /* ImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD65FBA16FEA3CC00F2EB63 /* ImageResize.m */; };
 		9FC3C01C1798DE89009238FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		DA2D78331A91F36200C54FB9 /* migrate.c in Sources */ = {isa = PBXBuildFile; fileRef = DA2D78321A91F36200C54FB9 /* migrate.c */; };
+		DA2D78351A91F7B200C54FB9 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2D78341A91F7B200C54FB9 /* Firebase.framework */; };
 		DA78811F18DF417C008A5BE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78811E18DF417C008A5BE9 /* libicucore.dylib */; };
 		DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812018DF418A008A5BE9 /* CFNetwork.framework */; };
 		DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA78812418DF46DE008A5BE9 /* libc++.dylib */; };
@@ -190,7 +191,6 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cycle Philly_Prefix.pch"; sourceTree = "<group>"; };
-		461A123C190091A300BBDBB6 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		4688ACA51902B8EF00A67FAF /* TookTransitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TookTransitViewController.h; sourceTree = "<group>"; };
 		4688ACA61902B8EF00A67FAF /* TookTransitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TookTransitViewController.m; sourceTree = "<group>"; };
 		4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TookTransitViewController.xib; sourceTree = "<group>"; };
@@ -385,6 +385,8 @@
 		9D6D31AC16D7C189007A2497 /* noteBlankPicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noteBlankPicker@2x.png"; path = "TripPurposePickerIcons V3/noteBlankPicker@2x.png"; sourceTree = SOURCE_ROOT; };
 		9DD65FB916FEA3CC00F2EB63 /* ImageResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageResize.h; sourceTree = "<group>"; };
 		9DD65FBA16FEA3CC00F2EB63 /* ImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageResize.m; sourceTree = "<group>"; };
+		DA2D78321A91F36200C54FB9 /* migrate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = migrate.c; sourceTree = "<group>"; };
+		DA2D78341A91F7B200C54FB9 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		DA78811E18DF417C008A5BE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		DA78812018DF418A008A5BE9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DA78812418DF46DE008A5BE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -403,7 +405,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA78812718DF46EC008A5BE9 /* SystemConfiguration.framework in Frameworks */,
-				461A123D190091A300BBDBB6 /* Firebase.framework in Frameworks */,
 				DA78812518DF46DE008A5BE9 /* libc++.dylib in Frameworks */,
 				DA78812118DF418A008A5BE9 /* CFNetwork.framework in Frameworks */,
 				DA78811F18DF417C008A5BE9 /* libicucore.dylib in Frameworks */,
@@ -416,6 +417,7 @@
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */,
 				64F823C6106AB42B001413F8 /* Security.framework in Frameworks */,
+				DA2D78351A91F7B200C54FB9 /* Firebase.framework in Frameworks */,
 				642F151C1071D9DD0050BCB9 /* MapKit.framework in Frameworks */,
 				642647FD107435A200E43DEF /* AudioToolbox.framework in Frameworks */,
 				64ED1621112F364200E617E1 /* QuartzCore.framework in Frameworks */,
@@ -516,6 +518,7 @@
 				64F823B6106AB402001413F8 /* constants.h */,
 				32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				DA2D78321A91F36200C54FB9 /* migrate.c */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -550,9 +553,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA2D78341A91F7B200C54FB9 /* Firebase.framework */,
 				DA78812618DF46EC008A5BE9 /* SystemConfiguration.framework */,
 				DA78812418DF46DE008A5BE9 /* libc++.dylib */,
-				461A123C190091A300BBDBB6 /* Firebase.framework */,
 				DA78812018DF418A008A5BE9 /* CFNetwork.framework */,
 				DA78811E18DF417C008A5BE9 /* libicucore.dylib */,
 				8FD696E81655E36600324E6E /* MediaPlayer.framework */,
@@ -966,6 +969,7 @@
 				8F9C086416DC9479003EA308 /* Note.m in Sources */,
 				8F9C086716DC9479003EA308 /* Trip.m in Sources */,
 				8F9C086A16DC947A003EA308 /* User.m in Sources */,
+				DA2D78331A91F36200C54FB9 /* migrate.c in Sources */,
 				4688ACA81902B8EF00A67FAF /* TookTransitViewController.m in Sources */,
 				8F9C086D16DC947A003EA308 /* Coord.m in Sources */,
 				8FBCD3CA16E0E58100C11EBE /* NoteViewController.m in Sources */,

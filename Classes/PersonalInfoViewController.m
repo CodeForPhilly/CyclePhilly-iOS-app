@@ -184,6 +184,12 @@
     pickerView.dataSource = self;
     pickerView.delegate = self;
     
+    actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
+    
+    [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
+
+    
     
 	// initialize text fields
 	self.age		= [self initTextFieldAlpha];
@@ -291,65 +297,90 @@
         [myTextField resignFirstResponder];
     }
     NSLog(@"currentTextfield: picker");*/
+    NSLog(@"beginedit");
     currentTextField = myTextField;
     
     if(myTextField == gender || myTextField == age || myTextField == ethnicity || myTextField == income || myTextField == cyclingFreq || myTextField == riderType || myTextField == riderHistory){
-        
         [myTextField resignFirstResponder];
-        
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
         
         [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-        
-        [actionSheet addSubview:pickerView];
-        
-        doneToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-        doneToolbar.barStyle = UIBarStyleBlackOpaque;
-        [doneToolbar sizeToFit];
-        
-        NSMutableArray *barItems = [[[NSMutableArray alloc] init] autorelease];
-        
-        UIBarButtonItem *flexSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
-        [barItems addObject:flexSpace];
-        
-        UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
-        [barItems addObject:cancelBtn];
-        
-        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
-        [barItems addObject:doneBtn];
+        [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
+        // actionSheet.release;
+//        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil]; //as we want to display a subview we won't be using the default buttons but rather we're need to create a toolbar to display the buttons on
+//
+//       [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+//        [actionSheet setActionSheetStyle:UIActionSheetStyleAutomatic];
+
+//        [actionSheet addSubview:pickerView];
+
+//        doneToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+//        doneToolbar.barStyle = UIBarStyleBlackOpaque;
+//        [doneToolbar sizeToFit];
+
+//        NSMutableArray *barItems = [[[NSMutableArray alloc] init] autorelease];
+//        
+//        UIBarButtonItem *flexSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
+//        [barItems addObject:flexSpace];
+//        
+//        UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonPressed:)];
+//        [barItems addObject:cancelBtn];
+//        
+//        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+//        [barItems addObject:doneBtn];
         
         //TODO add a next and previous button to left side to take us to the next/previous thing. and switch to the right kind of input mode.
         
-        [doneToolbar setItems:barItems animated:YES];
-        
-        [actionSheet addSubview:doneToolbar];
-        
+//        [doneToolbar setItems:barItems animated:YES];
+//        
+//        [actionSheet addSubview:doneToolbar];
+
         selectedItem = 0;
+        
+        // Iterate over fields and populate uiactionsheet
         if(myTextField == gender){
-            selectedItem = [user.gender integerValue];
+            for(NSString *title in genderArray){
+                [actionSheet addButtonWithTitle:title];
+            }
         }else if (myTextField == age){
+            for(NSString *title in ageArray){
+                [actionSheet addButtonWithTitle:title];
+            }
             selectedItem = [user.age integerValue];
         }else if (myTextField == ethnicity){
-            selectedItem = [user.ethnicity integerValue];
+            for(NSString *title in ethnicityArray){
+                [actionSheet addButtonWithTitle:title];
+            }
         }else if (myTextField == income){
-            selectedItem = [user.income integerValue];
+            for(NSString *title in incomeArray){
+                [actionSheet addButtonWithTitle:title];
+            }
         }else if (myTextField == cyclingFreq){
-            selectedItem = [user.cyclingFreq integerValue];
+            for(NSString *title in cyclingFreqArray){
+                [actionSheet addButtonWithTitle:title];
+            }
         }else if (myTextField == riderType){
-            selectedItem = [user.rider_type integerValue];
+            for(NSString *title in riderTypeArray){
+                [actionSheet addButtonWithTitle:title];
+            }
         }else if (myTextField == riderHistory){
-            selectedItem = [user.rider_history integerValue];
+            for(NSString *title in riderHistoryArray){
+                [actionSheet addButtonWithTitle:title];
+            }
+            
         }
+//        [actionSheet release];
         
-        [pickerView selectRow:selectedItem inComponent:0 animated:NO];
+//        [pickerView selectRow:selectedItem inComponent:0 animated:NO];
         
-        [pickerView reloadAllComponents];
-        
-        [actionSheet addSubview:pickerView];
-        
+//        [pickerView reloadAllComponents];
+//
+//        [actionSheet addSubview:pickerView];
+//
         [actionSheet showInView:self.view];
-        
-        [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+        [actionSheet release];
+//
+//        [actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
 
     }
 }
@@ -662,7 +693,7 @@
 			switch ([indexPath indexAtPosition:1])
 			{
 				case 0:
-					cell.textLabel.text = @"Age";
+					cell.textLabel.text = @"Age Range";
 					[cell.contentView addSubview:age];
 					break;
 				case 1:
@@ -995,6 +1026,39 @@
     return 1;
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(currentTextField == gender){
+        currentTextField.text = [genderArray objectAtIndex:buttonIndex];
+        genderSelectedRow = buttonIndex;
+    }
+    else if(currentTextField == age){
+        currentTextField.text = [ageArray objectAtIndex:buttonIndex];
+        ageSelectedRow = buttonIndex;
+    }
+    else if(currentTextField == ethnicity){
+        currentTextField.text = [ethnicityArray objectAtIndex:buttonIndex];
+        ethnicitySelectedRow = buttonIndex;
+    }
+    else if(currentTextField == income){
+        currentTextField.text = [incomeArray objectAtIndex:buttonIndex];
+        incomeSelectedRow = buttonIndex;
+    }
+    else if(currentTextField == cyclingFreq){
+        currentTextField.text = [cyclingFreqArray objectAtIndex:buttonIndex];
+        cyclingFreqSelectedRow = buttonIndex;
+    }
+    else if(currentTextField == riderType){
+        currentTextField.text = [riderTypeArray objectAtIndex:buttonIndex];
+        riderTypeSelectedRow = buttonIndex;
+    }
+    else if(currentTextField == riderHistory){
+        currentTextField.text = [riderHistoryArray objectAtIndex:buttonIndex];
+        riderHistorySelectedRow = buttonIndex;
+    }
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
+// deprecated
 - (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
     if(currentTextField == gender){
         return [genderArray count];
