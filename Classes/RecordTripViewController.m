@@ -59,6 +59,11 @@
 #import "NoteManager.h"
 #import "Trip.h"
 #import "User.h"
+@import CoreLocation;
+
+@interface RecordTripViewController () <CLLocationManagerDelegate>
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@end
 
 //TODO: Fix incomplete implementation
 @implementation RecordTripViewController
@@ -245,7 +250,15 @@
 	
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = YES;
-	
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    self->mapView.showsUserLocation = YES;
+    [self.locationManager startUpdatingLocation];
+    
     // init map region to Philadelphia
 	MKCoordinateRegion region = { { 39.954491, -75.163758 }, { 0.0078, 0.0068 } };
 	[mapView setRegion:region animated:NO];

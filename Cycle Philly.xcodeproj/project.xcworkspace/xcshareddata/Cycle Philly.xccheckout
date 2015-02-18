@@ -22,7 +22,7 @@
 		<key>6110CC6252755727643E36F2E3E0B2B306648F28</key>
 		<string>../../..</string>
 		<key>71F631D7-15F7-4B2D-8E42-853890540A56</key>
-		<string>../../Cycle-Philly-iOS</string>
+		<string>../../../../../Cycle-Philly-iOS</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/PhillyOpen/Cycle-Philly-iOS.git</string>

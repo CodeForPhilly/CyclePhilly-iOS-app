@@ -1044,6 +1044,7 @@
 		64577E10106DB5D8003ACBFD /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1087,6 +1088,7 @@
 		64577E12106DB5E6003ACBFD /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
@@ -1134,6 +1136,7 @@
 		64D31CD9108E80E400D52130 /* Release Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1177,6 +1180,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1193,6 +1197,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				GCC_C_LANGUAGE_STANDARD = c99;

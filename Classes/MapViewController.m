@@ -54,12 +54,15 @@
 #import "MapViewController.h"
 #import "Trip.h"
 #import <MobileCoreServices/UTCoreTypes.h>
-
+@import CoreLocation;
 #define kFudgeFactor	1.5
 #define kInfoViewAlpha	0.8
 #define kMinLatDelta	0.0039
 #define kMinLonDelta	0.0034
 
+@interface MapViewController () <CLLocationManagerDelegate>
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@end
 
 @implementation MapViewController
 
@@ -154,8 +157,16 @@
     [super viewDidLoad];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = NO;
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    self->mapView.showsUserLocation = YES;
+    [self.locationManager startUpdatingLocation];
     
-	if ( trip )
+    if ( trip )
 	{
 		// format date as a string
 		static NSDateFormatter *dateFormatter = nil;
