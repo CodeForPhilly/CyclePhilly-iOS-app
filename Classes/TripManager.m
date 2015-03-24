@@ -424,6 +424,9 @@
             [userDict setValue:user.rider_history	forKey:@"rider_history"];
             [userDict setValue:appVersion           forKey:@"app_version"];
 		}
+        
+        /* Update firebase user data here */
+        
 		else
 			NSLog(@"TripManager fetch user FAIL");
 		
@@ -600,8 +603,9 @@
     NSData *tripJsonData = [NSJSONSerialization dataWithJSONObject:tripDict options:0 error:&writeError];
     NSString *tripJson = [[[NSString alloc] initWithData:tripJsonData encoding:NSUTF8StringEncoding] autorelease];
     //NSLog(@"trip data %@", tripJson);
-
-        
+    
+//    if([userDict.])
+    
 	// NOTE: device hash added by SaveRequest initWithPostVars
 	NSDictionary *postVars = [NSDictionary dictionaryWithObjectsAndKeys:
 							  tripJson, @"coords",
@@ -612,11 +616,14 @@
                               
 							  [NSString stringWithFormat:@"%d", kSaveProtocolVersion], @"version",
 							  nil];
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com/trips/"];
+    Firebase *post1Ref = [ref childByAutoId];
+    [post1Ref setValue: postVars];
 	// create save request
-	SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
+	//SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
 	
 	// create the connection with the request and start loading the data
-	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
+	//NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	// create loading view to indicate trip is being uploaded
     uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
 
@@ -625,15 +632,15 @@
     
     //TODO: get screenshot and store.
 
-    if ( theConnection )
-     {
-         receivedData=[[NSMutableData data] retain];
-     }
-     else
-     {
-         // inform the user that the download could not be made
-     
-     }
+//    if ( theConnection )
+//     {
+//         receivedData=[[NSMutableData data] retain];
+//     }
+//     else
+//     {
+//         // inform the user that the download could not be made
+//     
+//     }
     
 }
 

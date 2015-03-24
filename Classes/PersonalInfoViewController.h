@@ -48,6 +48,7 @@
 //	e-mail Billy Charlton at the SFCTA <billy.charlton@sfcta.org>
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 #import "PersonalInfoDelegate.h"
 
 

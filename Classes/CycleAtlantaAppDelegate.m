@@ -96,7 +96,33 @@
 	TripManager *tripManager = [[[TripManager alloc] initWithManagedObjectContext:context] autorelease];
     NoteManager *noteManager = [[[NoteManager alloc] initWithManagedObjectContext:context] autorelease];
 	
-	
+    //Anon Firebase User
+    NSDateFormatter *formatter;
+    NSString        *today;
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy/MM/dd/"];
+    today = [formatter stringFromDate:[NSDate date]];
+    NSMutableString *fireURLC = [[NSMutableString alloc] initWithString:kFireDomain];
+    [fireURLC appendString:@"trips-completed/"];
+    [fireURLC appendString:today];
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"];
+    
+    
+    [ref authAnonymouslyWithCompletionBlock:^(NSError *error, FAuthData *authData) {
+        if (error) {
+            // There was an error logging in anonymously
+             NSLog(@"Firebase auth error!");
+        } else {
+            // We are now logged in!
+            NSDictionary *newUser = @{
+                                      @"provider": authData.provider,
+                                      @"uid": authData.uid
+                                      };
+            [[[ref childByAppendingPath:@"users"]
+              childByAppendingPath:authData.uid] setValue:newUser];
+            
+        }
+    }];
 	/*
 	 // initialize each tab's root view controller with the trip manager	
 	 RecordTripViewController *recordTripViewController = [[[RecordTripViewController alloc]

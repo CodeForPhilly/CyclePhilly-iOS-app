@@ -50,6 +50,7 @@
 
 #import "PersonalInfoViewController.h"
 #import "User.h"
+#import <Firebase/Firebase.h>
 #import "constants.h"
 
 
@@ -454,6 +455,7 @@
     [schoolZIP resignFirstResponder];
     
     NSLog(@"Saving User Data");
+    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"];
 	if ( user != nil )
 	{
 		[user setAge:[NSNumber numberWithLong:ageSelectedRow]];
@@ -491,12 +493,32 @@
 		
 		//NSLog(@"saving cycling freq: %d", [cyclingFreq intValue]);
 		//[user setCyclingFreq:cyclingFreq];
-
-		NSError *error;
-		if (![managedObjectContext save:&error]) {
-			// Handle the error.
-			NSLog(@"PersonalInfo save cycling freq error %@, %@", error, [error localizedDescription]);
-		}
+        if (ref.authData) {
+            // user authenticated with Firebase
+            NSLog(@"%@", ref.authData);
+            NSDictionary *newUser = @{
+                                      @"provider": ref.authData.provider,
+                                      @"uid": ref.authData.uid,
+                                      @"email": user.email,
+                                      @"age": user.age,
+                                      @"gender": user.gender,
+                                      @"ethnicity": user.ethnicity,
+                                      @"cycleFrequency": user.cyclingFreq,
+                                      @"riderType": user.rider_type,
+                                      @"riderHistory": riderHistory.text,
+                                      };
+            [[[ref childByAppendingPath:@"users"]
+              childByAppendingPath:ref.authData.uid] setValue:newUser];
+            
+            NSError *error;
+            if (![managedObjectContext save:&error]) {
+                // Handle the error.
+                NSLog(@"PersonalInfo save cycling freq error %@, %@", error, [error localizedDescription]);
+            }
+        } else {
+            // No user is logged in
+        }
+       
 	}
 	else
 		NSLog(@"ERROR can't save personal info for nil user");
