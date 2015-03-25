@@ -616,10 +616,22 @@
                               
 							  [NSString stringWithFormat:@"%d", kSaveProtocolVersion], @"version",
 							  nil];
+    
+    // Firebase upload - testing
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com/trips/"];
     Firebase *post1Ref = [ref childByAutoId];
-    [post1Ref setValue: postVars];
-	// create save request
+    [post1Ref setValue:postVars withCompletionBlock:^(NSError *error, Firebase *ref) {
+        if(error){
+            // bad news
+            [uploadingView loadingComplete:kServerError delayInterval:1.5];
+        } else{
+            // great!
+            [uploadingView loadingComplete:kSuccessTitle delayInterval:.7];
+        }
+    }];
+    
+    
+	// create save request - deprecating
 	//SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
 	
 	// create the connection with the request and start loading the data
