@@ -623,36 +623,38 @@
     [post1Ref setValue:postVars withCompletionBlock:^(NSError *error, Firebase *ref) {
         if(error){
             // bad news
-            [uploadingView loadingComplete:kServerError delayInterval:1.5];
+//            [uploadingView loadingComplete:kServerError delayInterval:1.5];
+            NSLog(@"Firebase fail");
         } else{
             // great!
-            [uploadingView loadingComplete:kSuccessTitle delayInterval:.7];
+//            [uploadingView loadingComplete:kSuccessTitle delayInterval:.7];
+            NSLog(@"Firebase success");
         }
     }];
     
     
 	// create save request - deprecating
-	//SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
+	SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
 	
 	// create the connection with the request and start loading the data
-	//NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
+	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	// create loading view to indicate trip is being uploaded
-    uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
+    //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
 
     //switch to map w/ trip view
     [(RecordTripViewController *)parent displayUploadedTripMap];
     
     //TODO: get screenshot and store.
 
-//    if ( theConnection )
-//     {
-//         receivedData=[[NSMutableData data] retain];
-//     }
-//     else
-//     {
-//         // inform the user that the download could not be made
-//     
-//     }
+    if ( theConnection )
+     {
+         receivedData=[[NSMutableData data] retain];
+     }
+     else
+     {
+         // inform the user that the download could not be made
+     
+     }
     
 }
 
