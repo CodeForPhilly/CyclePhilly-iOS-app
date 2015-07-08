@@ -86,7 +86,7 @@
     
 }
 
-- (UIButton *)createSaveButton {
+- (UIButton *)newSaveButton {
     return [[UIButton alloc] init];
 }
 
@@ -246,7 +246,7 @@
 	NSLog(@"RecordTripViewController viewDidLoad");
     NSLog(@"Bundle ID: %@", [[NSBundle mainBundle] bundleIdentifier]);
     [super viewDidLoad];
-	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
+	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 	
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = YES;
@@ -641,7 +641,7 @@
 													  initWithNibName:@"TripPurposePicker" bundle:nil];
 		[tripPurposePickerView setDelegate:self];
 		//[[self navigationController] pushViewController:pickerViewController animated:YES];
-		[self.navigationController presentModalViewController:tripPurposePickerView animated:YES];
+        [self.navigationController presentViewController:tripPurposePickerView animated:YES completion:nil];
 		[tripPurposePickerView release];
 	}
 	
@@ -700,7 +700,7 @@
                                                        initWithNibName:@"TripPurposePicker" bundle:nil];
 		[notePickerView setDelegate:self];
 		//[[self navigationController] pushViewController:pickerViewController animated:YES];
-		[self.navigationController presentModalViewController:notePickerView animated:YES];
+		[self.navigationController presentViewController:notePickerView animated:YES completion:nil];
         
         //add location information
         
@@ -920,7 +920,7 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didCancelPurpose
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[self.navigationController dismissViewControllerAnimated:NO completion:nil];
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = YES;
 	recording = YES;
@@ -932,7 +932,7 @@ shouldSelectViewController:(UIViewController *)viewController
 
 - (void)didCancelNote
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[self.navigationController dismissViewControllerAnimated:NO completion:nil];
     appDelegate = [[UIApplication sharedApplication] delegate];
 }
 

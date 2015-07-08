@@ -174,7 +174,7 @@
 - (void)setCounterTimeSince:(NSDate *)startDate distance:(CLLocationDistance)distance;
 - (void)updateCounter:(NSTimer *)theTimer;
 
-- (UIButton *)createSaveButton;
+- (UIButton *)newSaveButton;
 - (UIButton *)createStartButton;
 - (UIButton *)createNoteButton;
 

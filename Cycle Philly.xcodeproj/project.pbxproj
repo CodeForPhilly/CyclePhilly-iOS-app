@@ -789,7 +789,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 6969LZKKE9;
+						DevelopmentTeam = 4R28S5TJB2;
 					};
 				};
 			};
@@ -1004,7 +1004,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1031,7 +1031,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1074,7 +1074,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1123,7 +1123,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;
@@ -1167,7 +1167,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cycle Philly_Prefix.pch";
 				INFOPLIST_FILE = "Cycle Philly-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = CyclePhilly;

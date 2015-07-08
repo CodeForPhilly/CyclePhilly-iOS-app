@@ -384,7 +384,9 @@
 	[loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
     UIImage *thumbnailOriginal;
     thumbnailOriginal = [self screenshot];
     
@@ -431,13 +433,8 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 {
     NSLog(@"Screen Shoot");
     // Create a graphics context with the target size
-    // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
-    // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
     CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-    if (NULL != UIGraphicsBeginImageContextWithOptions)
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    else
-        UIGraphicsBeginImageContext(imageSize);
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
