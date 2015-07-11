@@ -455,7 +455,7 @@
     [schoolZIP resignFirstResponder];
     
     NSLog(@"Saving User Data");
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"];
+    Firebase *ref = [[[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"] autorelease];
 	if ( user != nil )
 	{
 		[user setAge:[NSNumber numberWithLong:ageSelectedRow]];

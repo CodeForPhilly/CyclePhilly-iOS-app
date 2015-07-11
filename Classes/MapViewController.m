@@ -157,7 +157,7 @@
     [super viewDidLoad];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = NO;
-    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -366,7 +366,7 @@
 		}
 		else
 		{
-			// init map region to Atlanta
+			// init map region to Philadelphia City Hall
 			MKCoordinateRegion region = { { 39.952707, -75.164133 }, { 0.10825, 0.10825 } };
 			[mapView setRegion:region animated:NO];
 		}
@@ -407,6 +407,7 @@
     NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
     
     [delegate getTripThumbnail:thumbnailData];
+    [delegate release];
 }
 
 

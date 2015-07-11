@@ -99,13 +99,13 @@
     //Anon Firebase User
     NSDateFormatter *formatter;
     NSString        *today;
-    formatter = [[NSDateFormatter alloc] init];
+    formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:@"yyyy/MM/dd/"];
     today = [formatter stringFromDate:[NSDate date]];
-    NSMutableString *fireURLC = [[NSMutableString alloc] initWithString:kFireDomain];
+    NSMutableString *fireURLC = [[[NSMutableString alloc] initWithString:kFireDomain] autorelease];
     [fireURLC appendString:@"trips-completed/"];
     [fireURLC appendString:today];
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"];
+    Firebase *ref = [[[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"] autorelease];
     
     
     [ref authAnonymouslyWithCompletionBlock:^(NSError *error, FAuthData *authData) {
@@ -123,41 +123,7 @@
             
         }
     }];
-	/*
-	 // initialize each tab's root view controller with the trip manager	
-	 RecordTripViewController *recordTripViewController = [[[RecordTripViewController alloc]
-	 initWithTripManager:manager]
-	 autorelease];
-	 
-	 // create tab bar items for the tabs themselves
-	 UIImage *image = [UIImage imageNamed:@"tabbar_record.png"];
-	 UITabBarItem *recordTab = [[UITabBarItem alloc] initWithTitle:@"Record New Trip" image:image tag:101];
-	 recordTripViewController.tabBarItem = recordTab;
-	 
-	 SavedTripsViewController *savedTripsViewController = [[[SavedTripsViewController alloc]
-	 initWithTripManager:manager]
-	 autorelease];
-	 
-	 // RecordingInProgressDelegate
-	 savedTripsViewController.delegate = recordTripViewController;
-	 
-	 image = [UIImage imageNamed:@"tabbar_view.png"];
-	 UITabBarItem *viewTab = [[UITabBarItem alloc] initWithTitle:@"View Saved Trips" image:image tag:102];
-	 savedTripsViewController.tabBarItem = viewTab;
-	 
-	 // create a navigation controller stack for each tab, set delegates to respective root view controller
-	 UINavigationController *recordTripNavController = [[UINavigationController alloc]
-	 initWithRootViewController:recordTripViewController];
-	 recordTripNavController.delegate = recordTripViewController;
-	 recordTripNavController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	 
-	 UINavigationController *savedTripsNavController = [[UINavigationController alloc]
-	 initWithRootViewController:savedTripsViewController];
-	 savedTripsNavController.delegate = savedTripsViewController;
-	 savedTripsNavController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	 */
-	
-	
+		
 	UINavigationController	*recordNav	= (UINavigationController*)[tabBarController.viewControllers 
 																	objectAtIndex:0];
 	//[navCon popToRootViewControllerAnimated:NO];
@@ -193,122 +159,16 @@
 	vc.managedObjectContext			= context;
     
    
-    
-
-    
-    
-    
-	// create a tab bar controller and init with nav controllers above
-	// tabBarController = [[UITabBarController alloc] initWithNibName:@"MainWindow.xib" bundle:nil];
-	
-	/*
-	 tabBarController.viewControllers = [NSArray arrayWithObjects:recordTripNavController, 
-	 savedTripsNavController, 
-	 nil];
-	 
-	 // set delegate to prevent changing tabs when locked
-	 tabBarController.delegate = recordTripViewController;
-	 
-	 // set parent view so we can apply opacity mask to it
-	 recordTripViewController.parentView = tabBarController.view;
-	 //recordTripViewController.parentView = tabBarController.tabBar;
-	 */
-	
-	
-	// Add the tab bar controller's current view as a subview of the window
+   	// Add the tab bar controller's current view as a subview of the window
     //[window addSubview:tabBarController.view];
     window.rootViewController = tabBarController;
 	[window makeKeyAndVisible];	
 }
 
-/*
-- (void)applicationDidFinishLaunching:(UIApplication *)application
-{
-	// disable screen lock
-	[UIApplication sharedApplication].idleTimerDisabled = YES;
-	
-	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackTranslucent;
-
-    NSManagedObjectContext *context = [self managedObjectContext];
-    if (!context) {
-        // Handle the error.
-    }
-	
-	// init our unique ID hash
-	[self initUniqueIDHash];
-	
-	// initialize trip manager with the managed object context
-	TripManager *manager = [[[TripManager alloc] initWithManagedObjectContext:context] autorelease];
-
-	// initialize each tab's root view controller with the trip manager	
-	RecordTripViewController *recordTripViewController = [[[RecordTripViewController alloc]
-														   initWithTripManager:manager]
-														  autorelease];
-
-	// create tab bar items for the tabs themselves
-	UIImage *image = [UIImage imageNamed:@"tabbar_record.png"];
-	UITabBarItem *recordTab = [[UITabBarItem alloc] initWithTitle:@"Record New Trip" image:image tag:101];
-	recordTripViewController.tabBarItem = recordTab;
-	
-	SavedTripsViewController *savedTripsViewController = [[[SavedTripsViewController alloc]
-														   initWithTripManager:manager]
-														  autorelease];
-
-	savedTripsViewController.delegate = recordTripViewController;
-	
-	image = [UIImage imageNamed:@"tabbar_view.png"];
-	UITabBarItem *viewTab = [[UITabBarItem alloc] initWithTitle:@"View Saved Trips" image:image tag:102];
-	savedTripsViewController.tabBarItem = viewTab;
-	
-	// create a navigation controller stack for each tab, set delegates to respective root view controller
-	UINavigationController *recordTripNavController = [[UINavigationController alloc]
-													   initWithRootViewController:recordTripViewController];
-	recordTripNavController.delegate = recordTripViewController;
-	recordTripNavController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-
-	UINavigationController *savedTripsNavController = [[UINavigationController alloc]
-													   initWithRootViewController:savedTripsViewController];
-	savedTripsNavController.delegate = savedTripsViewController;
-	savedTripsNavController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-
-	// create a tab bar controller and init with nav controllers above
-	tabBarController = [[UITabBarController alloc] initWithNibName:@"MainWindow.xib" bundle:nil];
-	tabBarController.viewControllers = [NSArray arrayWithObjects:recordTripNavController, 
-																 savedTripsNavController, 
-																 nil];
-
-	// set delegate to prevent changing tabs when locked
-	tabBarController.delegate = recordTripViewController;
-	
-	// set parent view so we can apply opacity mask to it
-	recordTripViewController.parentView = tabBarController.view;
-	//recordTripViewController.parentView = tabBarController.tabBar;
-
-	// Add the tab bar controller's current view as a subview of the window
-    [window addSubview:tabBarController.view];
-	[window makeKeyAndVisible];	
-}
-*/
-
 - (void)initUniqueIDHash
 {
-    
-	//self.uniqueIDHash = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]; // save for later.
     self.uniqueIDHash = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 	NSLog(@"Hashed uniqueID: %@", uniqueIDHash);
-	/*unsigned char result[CC_MD5_DIGEST_LENGTH];
-	const char * uniqueIDStr = [[UIDevice currentDevice].uniqueIdentifier UTF8String];
-	CC_MD5(uniqueIDStr, strlen(uniqueIDStr), result);
-	NSString *uniqueID = [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-						  result[0], result[1], result[2], result[3],
-						  result[4], result[5], result[6], result[7],
-						  result[8], result[9], result[10], result[11],
-						  result[12], result[13], result[14], result[15]
-						  ];
-	
-	NSLog(@"uniqueID: %@", [UIDevice currentDevice].uniqueIdentifier);	
-	NSLog(@"Hashed uniqueID: %@", uniqueID);
-	self.uniqueIDHash = uniqueID; // save for later.*/
 }
 
 
@@ -379,14 +239,6 @@
  Returns the managed object model for the application.
  If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
  */
-//- (NSManagedObjectModel *)managedObjectModel {
-//	
-//    if (managedObjectModel != nil) {
-//        return managedObjectModel;
-//    }
-//    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
-//    return managedObjectModel;
-//}
 
 - (NSManagedObjectModel *)managedObjectModel {
     

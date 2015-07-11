@@ -83,16 +83,13 @@ const CGFloat kViewHeight = 44;
 	CGFloat yCoord = (self.bounds.size.height - self.image.size.height) / 2;
 	CGPoint point = CGPointMake(10.0, yCoord);
 	[self.image drawAtPoint:point];
-	
-	yCoord = (self.bounds.size.height - MAIN_FONT_SIZE) / 2;
-	point = CGPointMake(10.0 + self.image.size.width + 10.0, yCoord);
     
-    CGRect drawRect = CGRectMake(10.0 + self.image.size.width, yCoord, self.bounds.size.width, self.image.size.height);
+    CGRect drawRect = CGRectMake(10.0 + self.image.size.width, (self.bounds.size.height - MAIN_FONT_SIZE) / 2, self.bounds.size.width, self.image.size.height);
     
     NSDictionary *textAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:MAIN_FONT_SIZE]};
     
     // Create string drawing context
-    NSStringDrawingContext *drawingContext = [[NSStringDrawingContext alloc] init];
+    NSStringDrawingContext *drawingContext = [[[NSStringDrawingContext alloc] init] autorelease];
     drawingContext.minimumScaleFactor = MIN_MAIN_FONT_SIZE / MAIN_FONT_SIZE;
     
     [self.title drawWithRect:drawRect

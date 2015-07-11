@@ -250,7 +250,7 @@
 	
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = YES;
-    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -355,15 +355,14 @@
     // Create a reference to a Firebase location
     NSDateFormatter *formatter;
     NSString        *today;
-    formatter = [[NSDateFormatter alloc] init];
+    formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:@"yyyy/MM/dd/"];
     today = [formatter stringFromDate:[NSDate date]];
-    NSMutableString *fireURLC = [[NSMutableString alloc] initWithString:kFireDomain];
+    NSMutableString *fireURLC = [[[NSMutableString alloc] initWithString:kFireDomain] autorelease];
     [fireURLC appendString:@"trips-completed/"];
     [fireURLC appendString:today];
     
-    Firebase* fEnd = [[Firebase alloc] initWithUrl:fireURLC];
-    Firebase* completed = [fEnd childByAutoId];
+    Firebase *completed = [[[[Firebase alloc] initWithUrl:fireURLC] autorelease] childByAutoId];
     NSTimeInterval timeS = [[NSDate date] timeIntervalSince1970] * 1000;
     // NSTimeInterval is defined as double
     NSString *totalPoints = [NSString stringWithFormat: @"%d", (int)trip.coords.count];
@@ -581,15 +580,14 @@
         // Create a reference to a Firebase location
         NSDateFormatter *formatter;
         NSString        *today;
-        formatter = [[NSDateFormatter alloc] init];
+        formatter = [[[NSDateFormatter alloc] init] autorelease];
         [formatter setDateFormat:@"yyyy/MM/dd/"];
         today = [formatter stringFromDate:[NSDate date]];
-        NSMutableString *fireURL = [[NSMutableString alloc] initWithString:kFireDomain];
+        NSMutableString *fireURL = [[[NSMutableString alloc] initWithString:kFireDomain] autorelease];
         [fireURL appendString:@"trips-started/"];
         [fireURL appendString:today];
-        
-        Firebase* fStart = [[Firebase alloc] initWithUrl:fireURL];
-        Firebase* timeStart = [fStart childByAutoId];
+
+        Firebase *timeStart = [[[[Firebase alloc] initWithUrl:fireURL] autorelease] childByAutoId];
         //NSLog(@"%@",fireURL);
         NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970] * 1000;
         // NSTimeInterval is defined as double
