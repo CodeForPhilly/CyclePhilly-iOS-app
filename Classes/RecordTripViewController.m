@@ -97,6 +97,7 @@
     appDelegate.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     //locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     appDelegate.locationManager.delegate = self;
+    mapView.delegate = self;
     
     return appDelegate.locationManager;
 }
@@ -242,6 +243,7 @@
     self.navigationController.navigationBarHidden = YES;
     self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     self.locationManager.delegate = self;
+    self->mapView.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [self.locationManager requestAlwaysAuthorization];
@@ -284,13 +286,8 @@
 	NSLog(@"save");
 }
 
-////////////////////////////////////
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"Got response");
-}
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"Got data");
+    NSLog(@"Got station data");
     //NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     //NSLog(response);
     
@@ -320,23 +317,38 @@
         [stationPoint setTitle:stationName];
         [stationPoint setSubtitle:status];
         
-        MKPinAnnotationView *stationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:stationPoint reuseIdentifier:stationName] autorelease];
-        stationPin.animatesDrop = false;
-        stationPin.canShowCallout = true;
         [mapView addAnnotation:stationPoint];
     }
     
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSString *msg = [@"Indego station request failed with error" stringByAppendingString:error.description];
-    NSLog(@"%@", msg);
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation {
+    
+    MKAnnotationView *annotationView = nil;
+    
+    // return null to use the system user location icon
+    if(annotation == map.userLocation) {
+        return nil;
+    }
+    
+    // create or reuse an Indego annotation
+    static NSString *viewId = @"IndegoAnnotationView";
+
+    [self->mapView dequeueReusableAnnotationViewWithIdentifier:viewId];
+    if (annotationView == nil) {
+        annotationView = [[[MKAnnotationView alloc]
+                           initWithAnnotation:annotation reuseIdentifier:viewId] autorelease];
+        annotationView.image = [UIImage imageNamed:@"indegoActiveMarker.png"];
+        annotationView.canShowCallout = true;
+    }
+    
+    return annotationView;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Connection finished loading");
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSString *msg = [@"Indego station request failed with error: " stringByAppendingString:error.description];
+    NSLog(@"%@", msg);
 }
-//////////////////////////////////////
 
 // instantiate start button
 - (UIButton *)createStartButton
