@@ -24,16 +24,10 @@
 @property (nonatomic, retain) NSString * workZIP;
 @property (nonatomic, retain) NSNumber * gender;
 @property (nonatomic, retain) NSString * email;
-@property (nonatomic, retain) NSSet *notes;
 @property (nonatomic, retain) NSSet *trips;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
-
-- (void)addNotesObject:(Note *)value;
-- (void)removeNotesObject:(Note *)value;
-- (void)addNotes:(NSSet *)values;
-- (void)removeNotes:(NSSet *)values;
 
 - (void)addTripsObject:(Trip *)value;
 - (void)removeTripsObject:(Trip *)value;

@@ -50,13 +50,11 @@
 
 #import "constants.h"
 #import "MapViewController.h"
-#import "NoteViewController.h"
 #import "PersonalInfoViewController.h"
 #import "PickerViewController.h"
 #import "RecordTripViewController.h"
 #import "ReminderManager.h"
 #import "TripManager.h"
-#import "NoteManager.h"
 #import "Trip.h"
 #import "User.h"
 @import CoreLocation;
@@ -69,8 +67,7 @@
 @implementation RecordTripViewController
 
 @synthesize tripManager;// reminderManager;
-@synthesize noteManager;
-@synthesize infoButton, saveButton, startButton, noteButton, parentView;
+@synthesize infoButton, saveButton, startButton, parentView;
 @synthesize timer, timeCounter, distCounter;
 @synthesize recording, shouldUpdateCounter, userInfoSaved;
 @synthesize appDelegate;
@@ -167,13 +164,6 @@
 }
 
 
-- (void)initNoteManager:(NoteManager*)manager
-{
-	self.noteManager = manager;
-    manager.parent = self;
-}
-
-
 - (BOOL)hasUserInfoBeenSaved
 {
 	BOOL					response = NO;
@@ -267,9 +257,8 @@
 	infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	infoButton.showsTouchWhenHighlighted = YES;
 	
-	// Set up the buttons.
+	// Set up the button.
 	[self.view addSubview:[self createStartButton]];
-    [self.view addSubview:[self createNoteButton]];
 	
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isRecording = NO;
@@ -281,11 +270,6 @@
 	// Start the location manager.
 	[[self getLocationManager] startUpdatingLocation];
     
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
-    // setup the noteManager
-    [self initNoteManager:[[[NoteManager alloc] initWithManagedObjectContext:context]autorelease]];
-
 	// check if any user data has already been saved and pre-select personal info cell accordingly
 	if ( [self hasUserInfoBeenSaved] )
 		[self setSaved:YES];
@@ -295,31 +279,6 @@
     
 	NSLog(@"save");
 }
-
-
-- (UIButton *)createNoteButton
-{
-    UIImage *buttonImage = [[UIImage imageNamed:@"whiteButton.png"]
-                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"whiteButtonHighlight.png"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    
-    [noteButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [noteButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-    [noteButton setTitleColor:[[[UIColor alloc] initWithRed:185.0 / 255 green:91.0 / 255 blue:47.0 / 255 alpha:1.0 ] autorelease] forState:UIControlStateHighlighted];
-    
-//    noteButton.backgroundColor = [UIColor clearColor];
-    noteButton.enabled = YES;
-    
-    [noteButton setTitle:@"Note this..." forState:UIControlStateNormal];
-
-//    noteButton.titleLabel.font = [UIFont boldSystemFontOfSize: 24];
-    [noteButton addTarget:self action:@selector(notethis:) forControlEvents:UIControlEventTouchUpInside];
-    
-	return noteButton;
-    
-}
-
 
 // instantiate start button
 - (UIButton *)createStartButton
@@ -372,18 +331,6 @@
     MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
     [[self navigationController] pushViewController:mvc animated:YES];
     NSLog(@"displayUploadedTripMap");
-    [mvc release];
-}
-
-
-- (void)displayUploadedNote
-{
-    Note *note = noteManager.note;
-    
-    // load map view of note
-    NoteViewController *mvc = [[NoteViewController alloc] initWithNote:note];
-    [[self navigationController] pushViewController:mvc animated:YES];
-    NSLog(@"displayUploadedNote");
     [mvc release];
 }
 
@@ -673,68 +620,6 @@
     
 }
 
-
--(IBAction)notethis:(id)sender{
-    [[NSUserDefaults standardUserDefaults] setInteger:3 forKey: @"pickerCategory"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSLog(@"Note This");
-    
-    [noteManager createNote];
-    
-    if (myLocation){
-        [noteManager addLocation:myLocation];
-    }
-	
-	// go directly to TripPurpose, user can cancel from there
-	if ( YES )
-	{
-		// Trip Purpose
-		NSLog(@"INIT + PUSH");
-        
-        
-		PickerViewController *notePickerView = [[PickerViewController alloc]
-                                                       //initWithPurpose:[tripManager getPurposeIndex]];
-                                                       initWithNibName:@"TripPurposePicker" bundle:nil];
-		[notePickerView setDelegate:self];
-		//[[self navigationController] pushViewController:pickerViewController animated:YES];
-		[self.navigationController presentViewController:notePickerView animated:YES completion:nil];
-        
-        //add location information
-        
-		[notePickerView release];
-	}
-	
-	// prompt to confirm first
-	else
-	{
-		// pause updating the counter
-		shouldUpdateCounter = NO;
-		
-		// construct purpose confirmation string
-		NSString *purpose = nil;
-		if ( tripManager != nil )
-			purpose = [self getPurposeString:[tripManager getPurposeIndex]];
-		
-		NSString *confirm = [NSString stringWithFormat:@"Stop recording & save this trip?"];
-		
-		// present action sheet
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:confirm
-																 delegate:self
-														cancelButtonTitle:@"Cancel"
-												   destructiveButtonTitle:nil
-														otherButtonTitles:@"Save", nil];
-		
-		actionSheet.actionSheetStyle		= UIActionSheetStyleBlackTranslucent;
-		UIViewController *pvc = self.parentViewController;
-		UITabBarController *tbc = (UITabBarController *)pvc.parentViewController;
-		
-		[actionSheet showFromTabBar:tbc.tabBar];
-		[actionSheet release];
-	}
-}
-
-
 - (void)resetCounter
 {
 	if ( timeCounter != nil )
@@ -967,39 +852,11 @@ shouldSelectViewController:(UIViewController *)viewController
     NSLog(@"Save trip");
 }
 
-- (void)didPickNoteType:(NSNumber *)index
-{	
-	[noteManager.note setNote_type:index];
-    NSLog(@"Added note type: %d", [noteManager.note.note_type intValue]);
-    //do something here: may change to be the save as a separate view. Not prompt.
-}
-
-- (void)didEnterNoteDetails:(NSString *)details{
-    [noteManager.note setDetails:details];
-    NSLog(@"Note Added details: %@", noteManager.note.details);
-}
-
-- (void)didSaveImage:(NSData *)imgData{
-    [noteManager.note setImage_data:imgData];
-    NSLog(@"Added image, Size of Image(bytes):%lu", (unsigned long)[imgData length]);
-    [imgData release];
-}
 
 - (void)getTripThumbnail:(NSData *)imgData{
     [tripManager.trip setThumbnail:imgData];
     NSLog(@"Trip Thumbnail, Size of Image(bytes):%lu", (unsigned long)[imgData length]);
 }
-
-- (void)getNoteThumbnail:(NSData *)imgData{
-    [noteManager.note setThumbnail:imgData];
-    NSLog(@"Note Thumbnail, Size of Image(bytes):%lu", (unsigned long)[imgData length]);
-}
-
-- (void)saveNote{
-    [noteManager saveNote];
-    NSLog(@"Save note");
-}
-
 
 
 
@@ -1021,7 +878,6 @@ shouldSelectViewController:(UIViewController *)viewController
     self.startButton = nil;
     self.infoButton = nil;
     self.saveButton = nil;
-    self.noteButton = nil;
     self.timeCounter = nil;
     self.distCounter = nil;
     self.saveActionSheet = nil;
@@ -1031,7 +887,6 @@ shouldSelectViewController:(UIViewController *)viewController
     self.shouldUpdateCounter = nil;
     self.userInfoSaved = nil;
     self.tripManager = nil;
-    self.noteManager = nil;
     self.appDelegate = nil;
     speedCounter = nil;
     
@@ -1040,7 +895,6 @@ shouldSelectViewController:(UIViewController *)viewController
     [infoButton release];
     [saveButton release];
     [startButton release];
-    [noteButton release];
     [timeCounter release];
     [distCounter release];
     [speedCounter release];
@@ -1049,7 +903,6 @@ shouldSelectViewController:(UIViewController *)viewController
     [opacityMask release];
     [parentView release];
     [tripManager release];
-    [noteManager release];
     [myLocation release];
     
     [managedObjectContext release];

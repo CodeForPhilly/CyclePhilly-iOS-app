@@ -55,13 +55,11 @@
 #import "RecordingInProgressDelegate.h"
 #import "TripPurposeDelegate.h"
 #import "CycleAtlantaAppDelegate.h"
-#import "Note.h"
 #import <Firebase/Firebase.h>
 
 
 @class ReminderManager;
 @class TripManager;
-@class NoteManager;
 //@class CycleTracksAppDelegate;
 
 //@interface RecordTripViewController : UITableViewController 
@@ -90,7 +88,6 @@
 	IBOutlet UIButton *infoButton;
 	IBOutlet UIButton *saveButton;
 	IBOutlet UIButton *startButton;
-    IBOutlet UIButton *noteButton;
 	
 	IBOutlet UILabel *timeCounter;
 	IBOutlet UILabel *distCounter;
@@ -110,8 +107,6 @@
     NSInteger pickerCategory;
 	
 	TripManager		*tripManager;
-    NoteManager *noteManager;
-    
     
     CLLocation *myLocation;
 //	ReminderManager *reminderManager;
@@ -127,7 +122,6 @@
 @property (nonatomic, retain) UIButton *infoButton;
 @property (nonatomic, retain) UIButton *saveButton;
 @property (nonatomic, retain) UIButton *startButton;
-@property (nonatomic, retain) UIButton *noteButton;
 
 @property (nonatomic, retain) UILabel *timeCounter;
 @property (nonatomic, retain) UILabel *distCounter;
@@ -146,13 +140,9 @@
 //@property (nonatomic, retain) ReminderManager *reminderManager;
 @property (nonatomic, retain) TripManager *tripManager;
 
-@property (nonatomic, retain) NoteManager *noteManager;
-
 @property (nonatomic, retain) CycleAtlantaAppDelegate *appDelegate;
 
 - (void)initTripManager:(TripManager*)manager;
-
-- (void)initNoteManager:(NoteManager*)manager;
 
 // DEPRECATED
 //- (id)initWithManagedObjectContext:(NSManagedObjectContext*)context;
@@ -164,9 +154,6 @@
 
 - (IBAction)start:(UIButton *)sender;
 
--(IBAction)notethis:(id)sender;
-
-
 // timer methods
 - (void)start:(UIButton *)sender;
 - (void)createCounter;
@@ -176,9 +163,7 @@
 
 - (UIButton *)newSaveButton;
 - (UIButton *)createStartButton;
-- (UIButton *)createNoteButton;
 
 - (void)displayUploadedTripMap;
-- (void)displayUploadedNote;
 
 @end

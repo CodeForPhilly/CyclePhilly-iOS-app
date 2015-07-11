@@ -54,13 +54,11 @@
 #import "PersonalInfoViewController.h"
 #import "RecordTripViewController.h"
 #import "SavedTripsViewController.h"
-#import "SavedNotesViewController.h"
 #import "TripManager.h"
 #import "NSString+MD5Addition.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "constants.h"
 #import "DetailViewController.h"
-#import "NoteManager.h"
 #import <CoreData/NSMappingModel.h>
 
 
@@ -94,7 +92,6 @@
 	
 	// initialize trip manager with the managed object context
 	TripManager *tripManager = [[[TripManager alloc] initWithManagedObjectContext:context] autorelease];
-    NoteManager *noteManager = [[[NoteManager alloc] initWithManagedObjectContext:context] autorelease];
 	
     //Anon Firebase User
     NSDateFormatter *formatter;
@@ -129,7 +126,6 @@
 	//[navCon popToRootViewControllerAnimated:NO];
 	RecordTripViewController *recordVC	= (RecordTripViewController *)[recordNav topViewController];
 	[recordVC initTripManager:tripManager];
-    [recordVC initNoteManager:noteManager];
 	
 	
 	UINavigationController	*tripsNav	= (UINavigationController*)[tabBarController.viewControllers 
@@ -148,13 +144,8 @@
 	// set parent view so we can apply opacity mask to it
 	recordVC.parentView = tabBarController.view;
     
-    UINavigationController *notesNav = (UINavigationController*)[tabBarController.viewControllers
-                                                                 objectAtIndex:2];
-    SavedNotesViewController *notesVC = (SavedNotesViewController *)[notesNav topViewController];
-    [notesVC initNoteManager:noteManager];
-	
-	UINavigationController	*nav	= (UINavigationController*)[tabBarController.viewControllers 
-															 objectAtIndex:3];
+	UINavigationController	*nav	= (UINavigationController*)[tabBarController.viewControllers
+															 objectAtIndex:2];
 	PersonalInfoViewController *vc	= (PersonalInfoViewController *)[nav topViewController];
 	vc.managedObjectContext			= context;
     

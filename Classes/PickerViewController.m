@@ -56,14 +56,14 @@
 #import "TookTransitViewController.h"
 
 #import "TripManager.h"
-#import "NoteManager.h"
 #import "RecordTripViewController.h"
 
 
 @implementation PickerViewController
 
-@synthesize customPickerView, customPickerDataSource, delegate, description;
-@synthesize descriptionText;
+@synthesize customPickerView, customPickerDataSource, delegate;
+@synthesize descriptionText = description;
+@synthesize descriptionLabel;
 
 
 // return the picker frame based on its size
@@ -280,17 +280,6 @@
         navBarItself.topItem.title = @"This is rad!";
         self.descriptionText.text = @"Please select the asset type & tap Save";
     }
-    else if (pickerCategory == 3){
-        navBarItself.topItem.title = @"Note This";
-        self.descriptionText.text = @"Please select the type & tap Save";
-        [self.customPickerView selectRow:6 inComponent:0 animated:NO];
-        if ([self.customPickerView selectedRowInComponent:0] == 6) {
-            navBarItself.topItem.rightBarButtonItem.enabled = NO;
-        }
-        else{
-            navBarItself.topItem.rightBarButtonItem.enabled = YES;
-        }
-    }
 
 	[super viewDidLoad];
     
@@ -376,99 +365,6 @@
                 break;
         }
     }
-
-    else if (pickerCategory == 1){
-        switch (row) {
-            case 0:
-                description.text = kIssueDescPavementIssue;
-                break;
-            case 1:
-                description.text = kIssueDescTrafficSignal;
-                break;
-            case 2:
-                description.text = kIssueDescEnforcement;
-                break;
-            case 3:
-                description.text = kIssueDescNeedParking;
-                break;
-            case 4:
-                description.text = kIssueDescBikeLaneIssue;
-                break;
-            default:
-                description.text = kIssueDescNoteThisSpot;
-                break;
-        }
-    }
-    else if (pickerCategory == 2){
-        switch (row) {
-            case 0:
-                description.text = kAssetDescBikeParking;
-                break;
-            case 1:
-                description.text = kAssetDescBikeShops;
-                break;
-            case 2:
-                description.text = kAssetDescPublicRestrooms;
-                break;
-            case 3:
-                description.text = kAssetDescSecretPassage;
-                break;
-            case 4:
-                description.text = kAssetDescWaterFountains;
-                break;
-            default:
-                description.text = kAssetDescNoteThisSpot;
-                break;
-        }
-    }
-    else if (pickerCategory == 3){
-        switch (row) {
-            case 6:
-                description.text = kDescNoteThis;
-                break;
-                
-            case 0:
-                description.text = kAssetDescNoteThisSpot;
-                break;
-            case 1:
-                description.text = kAssetDescWaterFountains;
-                break;
-            case 2:
-                description.text = kAssetDescSecretPassage;
-                break;
-            case 3:
-                description.text = kAssetDescPublicRestrooms;
-                break;
-            case 4:
-                description.text = kAssetDescBikeShops;
-                break;
-            case 5:
-                description.text = kAssetDescBikeParking;
-                break;
-        
-            
-            
-            case 7:
-                description.text = kIssueDescPavementIssue;
-                break;
-            case 8:
-                description.text = kIssueDescTrafficSignal;
-                break;
-            case 9:
-                description.text = kIssueDescEnforcement;
-                break;
-            case 10:
-                description.text = kIssueDescNeedParking;
-                break;
-            case 11:
-                description.text = kIssueDescBikeLaneIssue;
-                break;
-            case 12:
-                description.text = kIssueDescNoteThisSpot;
-                break;
-
-        }
-    }
 }
 
 
@@ -478,7 +374,7 @@
     self.delegate = nil;
     self.customPickerView = nil;
 	self.customPickerDataSource = nil;
-    self.description = nil;
+    self.descriptionLabel = nil;
     self.descriptionText = nil;
 
 	[customPickerDataSource release];
