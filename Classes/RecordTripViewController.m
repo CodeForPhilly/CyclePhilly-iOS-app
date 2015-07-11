@@ -270,6 +270,10 @@
 	// Start the location manager.
 	[[self getLocationManager] startUpdatingLocation];
     
+    NSLog(@"Going to load Indego station data");
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.phila.gov/bike-share-stations/v1"]];
+    [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+    
 	// check if any user data has already been saved and pre-select personal info cell accordingly
 	if ( [self hasUserInfoBeenSaved] )
 		[self setSaved:YES];
@@ -279,6 +283,60 @@
     
 	NSLog(@"save");
 }
+
+////////////////////////////////////
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"Got response");
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"Got data");
+    //NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    //NSLog(response);
+    
+    NSError *jsonError;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+    
+    NSArray *features = [json objectForKey:@"features"];
+    
+    for (NSDictionary *feature in features) {
+        NSDictionary *geom = [feature objectForKey:@"geometry"];
+        NSDictionary *props = [feature objectForKey:@"properties"];
+        
+        NSArray *coords = [geom objectForKey:@"coordinates"];
+        NSNumber *lon = [coords objectAtIndex:0];
+        NSNumber *lat = [coords objectAtIndex:1];
+        
+        NSString *stationName = [props objectForKey:@"name"];
+        //NSLog([@"got station " stringByAppendingString:stationName]);
+        NSString *status = [props objectForKey:@"kioskPublicStatus"];
+        
+        CLLocationCoordinate2D stationLocation;
+        stationLocation.latitude = [lat doubleValue];
+        stationLocation.longitude = [lon doubleValue];
+        
+        MKPointAnnotation *stationPoint = [[[MKPointAnnotation alloc] init] autorelease];
+        [stationPoint setCoordinate:stationLocation];
+        [stationPoint setTitle:stationName];
+        [stationPoint setSubtitle:status];
+        
+        MKPinAnnotationView *stationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:stationPoint reuseIdentifier:stationName] autorelease];
+        stationPin.animatesDrop = false;
+        stationPin.canShowCallout = true;
+        [mapView addAnnotation:stationPoint];
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSString *msg = [@"Indego station request failed with error" stringByAppendingString:error.description];
+    NSLog(@"%@", msg);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"Connection finished loading");
+}
+//////////////////////////////////////
 
 // instantiate start button
 - (UIButton *)createStartButton

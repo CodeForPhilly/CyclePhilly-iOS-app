@@ -215,7 +215,7 @@ CGPathRef NewPathWithRoundRect(CGRect rect, CGFloat cornerRadius)
     
     CGRect labelRect = [self.loadingLabel.text boundingRectWithSize:maxLabelSize
                                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                                            attributes:@{NSFontAttributeName:loadingLabel.font, NSParagraphStyleAttributeName: paragraphStyle.copy}
+                                                            attributes:@{NSFontAttributeName:loadingLabel.font, NSParagraphStyleAttributeName: paragraphStyle}
                                                             context:nil];
     CGSize labelSize = labelRect.size;
 
