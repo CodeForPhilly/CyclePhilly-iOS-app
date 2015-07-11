@@ -63,25 +63,6 @@
 #define kDescErrand		@"The primary reason for this bike trip is to attend to personal business such as banking, doctor visit, going to the gym, etc."
 #define kDescOther		@"If none of the other reasons apply to this trip, you can enter trip comments after saving your trip to tell us more."
 
-// Issue descriptions
-#define kIssueDescPavementIssue  @"Select this option if the the road needs repairs (pothole, rough concrete, gravel in the road, manhole cover, sewer grate)."
-#define kIssueDescTrafficSignal  @"Select this option if the traffic signal is malfunctioning."
-#define kIssueDescEnforcement    @"Select this option to note bike lane obstructions (cars, trucks in bike lanes etc.)."
-#define kIssueDescNeedParking    @"Select this option if you would like to see secure bike parking in this location."
-#define kIssueDescBikeLaneIssue  @"Select this option if the bike lane needs improvement (it ends abruptly or needs repainting)."
-#define kIssueDescNoteThisSpot   @"Misc. comments about needed improvements."
-
-#define kDescNoteThis   @"Select an issue or note an asset."
-
-// Asset descriptions
-#define kAssetDescBikeParking   @"Note if secure bike parking is in this location."
-#define kAssetDescBikeShops @"Note if bike shops are in this location."
-#define kAssetDescPublicRestrooms   @"Note if public restrooms are in this location."
-#define kAssetDescSecretPassage @"Note for routes outside normal bike lanes."
-#define kAssetDescWaterFountains    @"Note if water is available in this location."
-#define kAssetDescNoteThisSpot  @"Note any misc. assets in this location."
-
-
 @interface CustomPickerDataSource : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
 {
 	NSArray	*customPickerArray;

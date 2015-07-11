@@ -73,9 +73,9 @@
 @property (nonatomic, retain) IBOutlet UIPickerView *customPickerView;
 @property (nonatomic, retain) CustomPickerDataSource *customPickerDataSource;
 
-@property (nonatomic, retain) UITextView *description;
+@property (atomic, retain) UITextView *descriptionText;
 
-@property (nonatomic, retain) IBOutlet UILabel *descriptionText;
+@property (nonatomic, retain) IBOutlet UILabel *descriptionLabel;
 
 - (id)initWithPurpose:(NSInteger)index;
 

@@ -95,7 +95,7 @@
 	CGRect frame = CGRectMake( 152, 7, 138, 29 );
 	UITextField *textField = [[UITextField alloc] initWithFrame:frame];
 	textField.borderStyle = UITextBorderStyleRoundedRect;
-	textField.textAlignment = UITextAlignmentRight;
+	textField.textAlignment = NSTextAlignmentRight;
 	textField.placeholder = @"Choose one";
 	textField.delegate = self;
 	return textField;
@@ -106,7 +106,7 @@
 	CGRect frame = CGRectMake( 152, 7, 138, 29 );
 	UITextField *textField = [[UITextField alloc] initWithFrame:frame];
 	textField.borderStyle = UITextBorderStyleRoundedRect;
-	textField.textAlignment = UITextAlignmentRight;
+	textField.textAlignment = NSTextAlignmentRight;
 	textField.placeholder = @"Choose one";
 	textField.delegate = self;
 	return textField;
@@ -119,7 +119,7 @@
 	UITextField *textField = [[UITextField alloc] initWithFrame:frame];
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone,
 	textField.borderStyle = UITextBorderStyleRoundedRect;
-	textField.textAlignment = UITextAlignmentRight;
+	textField.textAlignment = NSTextAlignmentRight;
 	textField.placeholder = @"name@domain";
 	textField.keyboardType = UIKeyboardTypeEmailAddress;
 	textField.returnKeyType = UIReturnKeyDone;
@@ -133,7 +133,7 @@
 	CGRect frame = CGRectMake( 152, 7, 138, 29 );
 	UITextField *textField = [[UITextField alloc] initWithFrame:frame];
 	textField.borderStyle = UITextBorderStyleRoundedRect;
-	textField.textAlignment = UITextAlignmentRight;
+	textField.textAlignment = NSTextAlignmentRight;
 	textField.placeholder = @"12345";
 	textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 	textField.returnKeyType = UIReturnKeyDone;
@@ -455,7 +455,7 @@
     [schoolZIP resignFirstResponder];
     
     NSLog(@"Saving User Data");
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"];
+    Firebase *ref = [[[Firebase alloc] initWithUrl:@"https://cyclephilly.firebaseio.com"] autorelease];
 	if ( user != nil )
 	{
 		[user setAge:[NSNumber numberWithLong:ageSelectedRow]];

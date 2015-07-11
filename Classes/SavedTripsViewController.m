@@ -737,7 +737,7 @@
                                                    //initWithPurpose:[tripManager getPurposeIndex]];
                                                    initWithNibName:@"TripPurposePicker" bundle:nil];
     [tripPurposePickerView setDelegate:self];
-    [self.navigationController presentModalViewController:tripPurposePickerView animated:YES];
+    [self.navigationController presentViewController:tripPurposePickerView animated:YES completion:nil];
     [tripPurposePickerView release];
 }
 
@@ -1027,7 +1027,7 @@
 
 - (void)didCancelNote
 {
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+	[self.navigationController dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)didEnterTripDetails:(NSString *)details{

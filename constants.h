@@ -76,7 +76,6 @@
 #define kBatteryTitle		@"Battery Low"
 #define kRetryTitle			@"Retry Upload?"
 #define	kSavingTitle		@"Uploading your trip"
-#define kSavingNoteTitle    @"Uploading your note"
 #define kSuccessTitle		@"Upload complete"
 #define kTripNotesTitle		@"Enter Comments Below"
 #define kConsentFor18Title  @"In order to transmit route data, you must be at least 18."

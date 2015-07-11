@@ -157,7 +157,7 @@
     [super viewDidLoad];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = NO;
-    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -366,7 +366,7 @@
 		}
 		else
 		{
-			// init map region to Atlanta
+			// init map region to Philadelphia City Hall
 			MKCoordinateRegion region = { { 39.952707, -75.164133 }, { 0.10825, 0.10825 } };
 			[mapView setRegion:region animated:NO];
 		}
@@ -384,7 +384,9 @@
 	[loading performSelector:@selector(removeView) withObject:nil afterDelay:0.5];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
     UIImage *thumbnailOriginal;
     thumbnailOriginal = [self screenshot];
     
@@ -405,6 +407,7 @@
     NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
     
     [delegate getTripThumbnail:thumbnailData];
+    [delegate release];
 }
 
 
@@ -431,13 +434,8 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 {
     NSLog(@"Screen Shoot");
     // Create a graphics context with the target size
-    // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
-    // On iOS prior to 4, fall back to use UIGraphicsBeginImageContext
     CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-    if (NULL != UIGraphicsBeginImageContextWithOptions)
-        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    else
-        UIGraphicsBeginImageContext(imageSize);
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
