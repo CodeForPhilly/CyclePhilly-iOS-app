@@ -49,6 +49,7 @@
 
 
 #import "constants.h"
+#import "IndegoStationStrings.h"
 #import "MKPointAnnotation+IndegoPointAnnotation.h"
 #import "MapViewController.h"
 #import "PersonalInfoViewController.h"
@@ -287,8 +288,11 @@
 	NSLog(@"save");
 }
 
+// Got Indego station status response; go add markers to map
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"Got station data");
+    //NSLog(@"Got station data");
+    
+    // to debug log the response as a string
     //NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     //NSLog(response);
     
@@ -296,6 +300,8 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
     
     NSArray *features = [json objectForKey:@"features"];
+    
+    NSDictionary *stationStatusDictionary = [IndegoStationStrings getStatusDictionary];
     
     for (NSDictionary *feature in features) {
         NSDictionary *geom = [feature objectForKey:@"geometry"];
@@ -307,11 +313,47 @@
         
         NSString *stationName = [props objectForKey:@"name"];
         NSString *status = [props objectForKey:@"kioskPublicStatus"];
+        NSNumber *specialEvent = [props objectForKey:@"isEventBased"];
+        NSNumber *bikesAvailable = [props objectForKey:@"bikesAvailable"];
+        NSNumber *docksAvailable = [props objectForKey:@"docksAvailable"];
         
-        // TODO: remove
-        // test other station status
-        if ([stationName isEqual: @"Pennsylvania Convention Center"]) {
-            status = @"Unavailable";
+        NSMutableString *subtitle = [[[NSMutableString alloc] init] autorelease];
+        
+        // this is to test another station status
+        //if ([stationName isEqual: @"Pennsylvania Convention Center"]) {
+        //    status = @"Unavailable";
+        //}
+        
+        BOOL showBikesDocks = true;
+        if ([specialEvent integerValue] == YES) {
+            // show start/end times for special events
+            status = @"SpecialEvent";
+            [subtitle appendString:[stationStatusDictionary valueForKey:status]];
+            [subtitle appendString:@" "];
+            NSString *eventStart = [props objectForKey:@"eventStart"];
+            NSString *eventEnd = [props objectForKey:@"eventEnd"];
+            [subtitle appendString:kEventStart];
+            [subtitle appendString:eventStart];
+            [subtitle appendString:@" "];
+            [subtitle appendString:kEventEnd];
+            [subtitle appendString:eventEnd];
+            [subtitle appendString:@" "];
+        } else if ([status isEqualToString:@"PartialService"]) {
+            // show status to warn of partial service, but still show bikes/docks counts
+            [subtitle appendString:[stationStatusDictionary valueForKey:status]];
+            [subtitle appendString:@" "];
+        } else if (![status isEqualToString:@"Active"]) {
+            // not in service; just show station status description
+            [subtitle appendString:[stationStatusDictionary valueForKey:status]];
+            showBikesDocks = false;
+        }
+        
+        if (showBikesDocks) {
+            [subtitle appendString:kBikesAvailable];
+            [subtitle appendString:[bikesAvailable stringValue]];
+            [subtitle appendString:@" "];
+            [subtitle appendString:kDocksAvailable];
+            [subtitle appendString:[docksAvailable stringValue]];
         }
         
         CLLocationCoordinate2D stationLocation;
@@ -323,7 +365,7 @@
         [stationPoint setTitle:stationName];
         stationPoint.stationStatus = status;
         
-        [stationPoint setSubtitle:status];
+        [stationPoint setSubtitle:subtitle];
         
         [mapView addAnnotation:stationPoint];
     }
@@ -349,7 +391,8 @@
         
         MKPointAnnotation *stationPoint = (MKPointAnnotation *)annotation;
         // marker images are named in pattern ingego(Status).png
-        NSString *imagePath = [@"indego" stringByAppendingString:[stationPoint.stationStatus stringByAppendingString:@".png"]];
+        NSString *imagePath = [NSString stringWithFormat:@"%@%@%@", @"indego", stationPoint.stationStatus, @".png"];
+        //NSString *imagePath = [@"indego" stringByAppendingString:[stationPoint.stationStatus stringByAppendingString:@".png"]];
         annotationView.image = [UIImage imageNamed:imagePath];
         annotationView.canShowCallout = true;
     }

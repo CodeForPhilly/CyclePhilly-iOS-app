@@ -25,6 +25,7 @@
 		46CA9EAE1B52C43A0058076F /* indegoSpecialEvent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA41B52C43A0058076F /* indegoSpecialEvent@2x.png */; };
 		46CA9EAF1B52C43A0058076F /* indegoUnavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA51B52C43A0058076F /* indegoUnavailable.png */; };
 		46CA9EB01B52C43A0058076F /* indegoUnavailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA61B52C43A0058076F /* indegoUnavailable@2x.png */; };
+		46CA9EB21B52C9E70058076F /* IndegoStationStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA9EB11B52C9E70058076F /* IndegoStationStrings.m */; };
 		6411996210683D7500C201F0 /* RecordTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6411996110683D7500C201F0 /* RecordTripViewController.m */; };
 		6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6411996C10683DCD00C201F0 /* CoreLocation.framework */; };
 		641199B2106851AA00C201F0 /* SavedTripsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641199B1106851AA00C201F0 /* SavedTripsViewController.m */; };
@@ -214,6 +215,8 @@
 		46CA9EA41B52C43A0058076F /* indegoSpecialEvent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoSpecialEvent@2x.png"; sourceTree = "<group>"; };
 		46CA9EA51B52C43A0058076F /* indegoUnavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indegoUnavailable.png; sourceTree = "<group>"; };
 		46CA9EA61B52C43A0058076F /* indegoUnavailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoUnavailable@2x.png"; sourceTree = "<group>"; };
+		46CA9EB11B52C9E70058076F /* IndegoStationStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndegoStationStrings.m; sourceTree = "<group>"; };
+		46CA9EB31B52CA030058076F /* IndegoStationStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndegoStationStrings.h; sourceTree = "<group>"; };
 		6411996010683D7500C201F0 /* RecordTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RecordTripViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6411996110683D7500C201F0 /* RecordTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RecordTripViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6411996C10683DCD00C201F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -529,6 +532,8 @@
 				32CA4F630368D1EE00C91783 /* Cycle Philly_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				DA2D78321A91F36200C54FB9 /* migrate.c */,
+				46CA9EB31B52CA030058076F /* IndegoStationStrings.h */,
+				46CA9EB11B52C9E70058076F /* IndegoStationStrings.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -995,6 +1000,7 @@
 				8F5E60671602CBE000D8F85D /* UIDevice+IdentifierAddition.m in Sources */,
 				8F1B1D3F164B94C60022B776 /* DetailViewController.m in Sources */,
 				9D504DA116B6CF4000B99EBC /* ZipUtil.m in Sources */,
+				46CA9EB21B52C9E70058076F /* IndegoStationStrings.m in Sources */,
 				8FA0AD9416BB4ED800E0E7C4 /* CycleAtlanta.xcdatamodeld in Sources */,
 				8F9C086416DC9479003EA308 /* Note.m in Sources */,
 				8F9C086716DC9479003EA308 /* Trip.m in Sources */,

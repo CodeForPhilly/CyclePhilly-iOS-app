@@ -13,6 +13,9 @@
 @implementation MKPointAnnotation (IndegoPointAnnotation)
 @dynamic stationStatus;
 
+// associated objects icky hack required to add property for determining which marker icon to use
+// http://nshipster.com/associated-objects/
+
 - (void)setStationStatus:(NSString *)stationStatus {
     objc_setAssociatedObject(self, @selector(stationStatus), stationStatus, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
