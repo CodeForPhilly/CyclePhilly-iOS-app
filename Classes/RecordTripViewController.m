@@ -128,8 +128,8 @@
 		didUpdateUserLocation = YES;
 	}
 	
-	// only update map if deltaDistance is at least some epsilon 
-	else if ( deltaDistance > 1.0 )
+	// only update map if recording and deltaDistance is at least some epsilon 
+	else if ( recording && deltaDistance > 1.0 )
 	{
 		//NSLog(@"center map to current user location");
 		[mapView setCenterCoordinate:newLocation.coordinate animated:YES];
@@ -251,6 +251,7 @@
         [self.locationManager requestAlwaysAuthorization];
     }
     self->mapView.showsUserLocation = YES;
+    
     [self.locationManager startUpdatingLocation];
     
     // init map region to Philadelphia
