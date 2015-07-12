@@ -106,7 +106,7 @@ or after this trip?</string>
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.15686275059999999" green="0.1647058874" blue="0.2196078598" alpha="1" colorSpace="deviceRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

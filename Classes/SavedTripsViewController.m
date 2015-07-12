@@ -250,20 +250,15 @@
 	[super viewWillAppear:animated];
 }
 
-/*
- - (void)viewDidAppear:(BOOL)animated {
- [super viewDidAppear:animated];
- }
- */
-/*
- - (void)viewWillDisappear:(BOOL)animated {
- [super viewWillDisappear:animated];
- }
- */
 
  - (void)viewDidDisappear:(BOOL)animated
 { 
 	[super viewDidDisappear:animated];
+}
+
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
 }
 
 

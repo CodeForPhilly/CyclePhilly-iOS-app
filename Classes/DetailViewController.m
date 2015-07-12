@@ -97,6 +97,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[super viewDidDisappear:animated];
 }
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
 
 -(IBAction)skip:(id)sender{
     NSLog(@"Skip");
