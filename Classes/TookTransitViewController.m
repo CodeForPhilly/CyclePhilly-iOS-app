@@ -15,7 +15,8 @@
 @implementation TookTransitViewController
 
 @synthesize tookTransitView;
-@synthesize tookPublicTransit, descriptionText, answerYesNo;
+@synthesize tookPublicTransit, transitText, answerTransitYesNo;
+@synthesize tookRental, rentalText, answerRentalYesNo;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,11 +42,23 @@
 
 -(IBAction)answerChanged:(UISwitch *)sender {
     NSLog(@"Switch moved");
-    if (self.tookPublicTransit.on) {
-        self.answerYesNo.text = @"Yes";
+    if (sender == self.tookPublicTransit) {
+        if (self.tookPublicTransit.on) {
+            self.answerTransitYesNo.text = @"Yes";
+        } else {
+            self.answerTransitYesNo.text = @"No";
+        }
+    } else if (sender == self.tookRental) {
+        if (self.tookRental.on) {
+            self.answerRentalYesNo.text = @"Yes";
+        } else {
+            self.answerRentalYesNo.text = @"No";
+        }
     } else {
-        self.answerYesNo.text = @"No";
+        NSLog(@"Unrecognized switch in TookTransitViewController");
     }
+    
+    
 }
 
 -(IBAction)cancel:(id)sender{
@@ -63,6 +76,11 @@
         [delegate didTakeTransit];
     }
     
+    if (self.tookRental.on) {
+        NSLog(@"Noted took bike rental in TookTransitViewController");
+        [delegate didTakeBikeRental];
+    }
+    
     TripDetailViewController *tripDetailViewController = [[TripDetailViewController alloc] initWithNibName:@"TripDetailViewController" bundle:nil];
     tripDetailViewController.delegate = self.delegate;
     
@@ -74,10 +92,14 @@
     self.delegate = nil;
     self.tookTransitView = nil;
     self.tookPublicTransit = nil;
-    self.descriptionText = nil;
+    self.tookRental = nil;
+    self.transitText = nil;
+    self.rentalText = nil;
     
-    [descriptionText release];
+    [transitText release];
+    [rentalText release];
     [tookPublicTransit release];
+    [tookRental release];
     [delegate release];
     
     [navBarItself release];

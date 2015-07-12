@@ -973,6 +973,11 @@ shouldSelectViewController:(UIViewController *)viewController
     NSLog(@"Noted rider took public transit in RecordTripViewController.");
 }
 
+- (void)didTakeBikeRental {
+    [tripManager saveTookBikeRental];
+    NSLog(@"Noted rider took bike rental in RecordTripViewController.");
+}
+
 - (void)saveTrip{
     [tripManager saveTrip];
     NSLog(@"Save trip");

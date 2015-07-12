@@ -115,8 +115,8 @@ UITextViewDelegate>
 
 - (CLLocationDistance)addCoord:(CLLocation*)location;
 - (void)saveTookTransit;
+- (void)saveTookBikeRental;
 - (void)saveNotes:(NSString*)notes;
-- (void)saveTookTransit;
 - (void)saveTrip;
 - (void)discardTrip;
 

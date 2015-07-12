@@ -451,6 +451,18 @@
     }
 }
 
+- (void)saveTookBikeRental {
+    /* Note if user took Indego bike rental by appending |took_indego to
+     end of notes field */
+    if (trip) {
+        NSString *tripNote = @"|took_indego";
+        if (trip.notes) {
+            tripNote = [trip.notes stringByAppendingString:tripNote];
+        }
+        [trip setNotes:tripNote];
+    }
+}
+
 - (void)saveNotes:(NSString*)notes
 {
 	if ( trip && notes ) {

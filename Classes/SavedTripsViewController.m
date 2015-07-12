@@ -1040,6 +1040,11 @@
     NSLog(@"Noted rider took public transit in SavedTripsViewController.");
 }
 
+- (void)didTakeBikeRental {
+    [tripManager saveTookBikeRental];
+    NSLog(@"Noted rider took bike rental in SavedTripsViewController.");
+}
+
 - (void)saveTrip{
     [tripManager saveTrip];
     NSLog(@"Save trip");
