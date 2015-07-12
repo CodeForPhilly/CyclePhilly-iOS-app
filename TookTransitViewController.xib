@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1296" defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TookTransitViewController">
             <connections>
-                <outlet property="answerYesNo" destination="Tvk-ZW-iTN" id="N86-DS-iRf"/>
-                <outlet property="descriptionText" destination="19" id="BqY-Qp-QKD"/>
+                <outlet property="answerRentalYesNo" destination="DDe-M8-mke" id="WUB-Ii-Sed"/>
+                <outlet property="answerTransitYesNo" destination="Tvk-ZW-iTN" id="W3o-zc-PDO"/>
                 <outlet property="navBarItself" destination="4" id="B7V-P1-cii"/>
+                <outlet property="rentalText" destination="PbX-E8-glu" id="nld-bh-jDJ"/>
                 <outlet property="tookPublicTransit" destination="IVM-lO-zAD" id="TBv-ZC-lE4"/>
+                <outlet property="tookRental" destination="f8T-i5-PkF" id="iRo-yq-Vid"/>
+                <outlet property="transitText" destination="19" id="w5E-Ok-uj9"/>
                 <outlet property="view" destination="1" id="0pZ-O4-BFF"/>
             </connections>
         </placeholder>
@@ -26,7 +29,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Transit" id="5">
+                        <navigationItem title="Other Modes" id="5">
                             <barButtonItem key="backBarButtonItem" title="Cancel" id="12"/>
                             <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="13">
                                 <connections>
@@ -72,9 +75,44 @@ or after this trip?</string>
                         <action selector="answerChanged:" destination="-1" eventType="valueChanged" id="suO-FE-sAP"/>
                     </connections>
                 </switch>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Did you use Indego bike rental for this trip?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="12" id="PbX-E8-glu">
+                    <rect key="frame" x="-36" y="190" width="393" height="74"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                    </accessibility>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="f8T-i5-PkF">
+                    <rect key="frame" x="13" y="278" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="answerChanged:" destination="-1" eventType="valueChanged" id="opu-Ir-MyR"/>
+                    </connections>
+                </switch>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="No" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="12" id="DDe-M8-mke" userLabel="Label - No">
+                    <rect key="frame" x="139" y="278" width="168" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                    </accessibility>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.15686275059999999" green="0.1647058874" blue="0.2196078598" alpha="1" colorSpace="deviceRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

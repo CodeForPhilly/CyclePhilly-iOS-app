@@ -81,7 +81,7 @@
 	//[UIApplication sharedApplication].idleTimerDisabled = YES;
 	
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-	
+    
     NSManagedObjectContext *context = [self managedObjectContext];
     if (!context) {
         // Handle the error.

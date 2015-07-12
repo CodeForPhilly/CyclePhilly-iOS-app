@@ -85,6 +85,7 @@
 
 @optional
 - (void)didTakeTransit;
+- (void)didTakeBikeRental;
 - (void)didCancelPurpose;
 - (void)didCancelNote;
 - (void)didPickPurpose:(long)index;

@@ -250,20 +250,15 @@
 	[super viewWillAppear:animated];
 }
 
-/*
- - (void)viewDidAppear:(BOOL)animated {
- [super viewDidAppear:animated];
- }
- */
-/*
- - (void)viewWillDisappear:(BOOL)animated {
- [super viewWillDisappear:animated];
- }
- */
 
  - (void)viewDidDisappear:(BOOL)animated
 { 
 	[super viewDidDisappear:animated];
+}
+
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
 }
 
 
@@ -1038,6 +1033,11 @@
 - (void)didTakeTransit {
     [tripManager saveTookTransit];
     NSLog(@"Noted rider took public transit in SavedTripsViewController.");
+}
+
+- (void)didTakeBikeRental {
+    [tripManager saveTookBikeRental];
+    NSLog(@"Noted rider took bike rental in SavedTripsViewController.");
 }
 
 - (void)saveTrip{

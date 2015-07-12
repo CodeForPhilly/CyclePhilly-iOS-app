@@ -47,6 +47,10 @@
     return self;
 }
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
+
 - (void)viewDidLoad
 {
     [self.detailTextView becomeFirstResponder];

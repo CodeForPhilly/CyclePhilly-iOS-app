@@ -839,6 +839,11 @@
 }
 
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
+}
+
+
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -971,6 +976,11 @@ shouldSelectViewController:(UIViewController *)viewController
 - (void)didTakeTransit {
     [tripManager saveTookTransit];
     NSLog(@"Noted rider took public transit in RecordTripViewController.");
+}
+
+- (void)didTakeBikeRental {
+    [tripManager saveTookBikeRental];
+    NSLog(@"Noted rider took bike rental in RecordTripViewController.");
 }
 
 - (void)saveTrip{

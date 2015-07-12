@@ -280,6 +280,10 @@
         navBarItself.topItem.title = @"This is rad!";
         self.descriptionText.text = @"Please select the asset type & tap Save";
     }
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 
 	[super viewDidLoad];
     
