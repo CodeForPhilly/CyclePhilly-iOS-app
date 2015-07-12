@@ -49,6 +49,7 @@
 
 
 #import "constants.h"
+#import "MKPointAnnotation+IndegoPointAnnotation.h"
 #import "MapViewController.h"
 #import "PersonalInfoViewController.h"
 #import "PickerViewController.h"
@@ -305,8 +306,13 @@
         NSNumber *lat = [coords objectAtIndex:1];
         
         NSString *stationName = [props objectForKey:@"name"];
-        //NSLog([@"got station " stringByAppendingString:stationName]);
         NSString *status = [props objectForKey:@"kioskPublicStatus"];
+        
+        // TODO: remove
+        // test other station status
+        if ([stationName isEqual: @"Pennsylvania Convention Center"]) {
+            status = @"Unavailable";
+        }
         
         CLLocationCoordinate2D stationLocation;
         stationLocation.latitude = [lat doubleValue];
@@ -315,6 +321,8 @@
         MKPointAnnotation *stationPoint = [[[MKPointAnnotation alloc] init] autorelease];
         [stationPoint setCoordinate:stationLocation];
         [stationPoint setTitle:stationName];
+        stationPoint.stationStatus = status;
+        
         [stationPoint setSubtitle:status];
         
         [mapView addAnnotation:stationPoint];
@@ -327,7 +335,7 @@
     MKAnnotationView *annotationView = nil;
     
     // return null to use the system user location icon
-    if(annotation == map.userLocation) {
+    if (![[annotation class] isSubclassOfClass:[MKPointAnnotation class]]) {
         return nil;
     }
     
@@ -338,7 +346,11 @@
     if (annotationView == nil) {
         annotationView = [[[MKAnnotationView alloc]
                            initWithAnnotation:annotation reuseIdentifier:viewId] autorelease];
-        annotationView.image = [UIImage imageNamed:@"indegoActiveMarker.png"];
+        
+        MKPointAnnotation *stationPoint = (MKPointAnnotation *)annotation;
+        // marker images are named in pattern ingego(Status).png
+        NSString *imagePath = [@"indego" stringByAppendingString:[stationPoint.stationStatus stringByAppendingString:@".png"]];
+        annotationView.image = [UIImage imageNamed:imagePath];
         annotationView.canShowCallout = true;
     }
     
