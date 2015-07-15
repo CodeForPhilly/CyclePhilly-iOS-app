@@ -15,16 +15,6 @@
 		4688ACA81902B8EF00A67FAF /* TookTransitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4688ACA61902B8EF00A67FAF /* TookTransitViewController.m */; };
 		4688ACAB1902CF1B00A67FAF /* TookTransitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */; };
 		46CA9E981B52BCCE0058076F /* MKPointAnnotation+IndegoPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA9E971B52BCCE0058076F /* MKPointAnnotation+IndegoPointAnnotation.m */; };
-		46CA9EA71B52C43A0058076F /* indegoActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9E9D1B52C43A0058076F /* indegoActive.png */; };
-		46CA9EA81B52C43A0058076F /* indegoActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9E9E1B52C43A0058076F /* indegoActive@2x.png */; };
-		46CA9EA91B52C43A0058076F /* indegoComingSoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9E9F1B52C43A0058076F /* indegoComingSoon.png */; };
-		46CA9EAA1B52C43A0058076F /* indegoComingSoon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA01B52C43A0058076F /* indegoComingSoon@2x.png */; };
-		46CA9EAB1B52C43A0058076F /* indegoPartialService.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA11B52C43A0058076F /* indegoPartialService.png */; };
-		46CA9EAC1B52C43A0058076F /* indegoPartialService@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA21B52C43A0058076F /* indegoPartialService@2x.png */; };
-		46CA9EAD1B52C43A0058076F /* indegoSpecialEvent.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA31B52C43A0058076F /* indegoSpecialEvent.png */; };
-		46CA9EAE1B52C43A0058076F /* indegoSpecialEvent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA41B52C43A0058076F /* indegoSpecialEvent@2x.png */; };
-		46CA9EAF1B52C43A0058076F /* indegoUnavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA51B52C43A0058076F /* indegoUnavailable.png */; };
-		46CA9EB01B52C43A0058076F /* indegoUnavailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA9EA61B52C43A0058076F /* indegoUnavailable@2x.png */; };
 		46CA9EB21B52C9E70058076F /* IndegoStationStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CA9EB11B52C9E70058076F /* IndegoStationStrings.m */; };
 		6411996210683D7500C201F0 /* RecordTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6411996110683D7500C201F0 /* RecordTripViewController.m */; };
 		6411996D10683DCD00C201F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6411996C10683DCD00C201F0 /* CoreLocation.framework */; };
@@ -205,16 +195,6 @@
 		4688ACAA1902CF1B00A67FAF /* TookTransitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TookTransitViewController.xib; sourceTree = "<group>"; };
 		46CA9E961B52BCCE0058076F /* MKPointAnnotation+IndegoPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKPointAnnotation+IndegoPointAnnotation.h"; sourceTree = "<group>"; };
 		46CA9E971B52BCCE0058076F /* MKPointAnnotation+IndegoPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKPointAnnotation+IndegoPointAnnotation.m"; sourceTree = "<group>"; };
-		46CA9E9D1B52C43A0058076F /* indegoActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indegoActive.png; sourceTree = "<group>"; };
-		46CA9E9E1B52C43A0058076F /* indegoActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoActive@2x.png"; sourceTree = "<group>"; };
-		46CA9E9F1B52C43A0058076F /* indegoComingSoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indegoComingSoon.png; sourceTree = "<group>"; };
-		46CA9EA01B52C43A0058076F /* indegoComingSoon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoComingSoon@2x.png"; sourceTree = "<group>"; };
-		46CA9EA11B52C43A0058076F /* indegoPartialService.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indegoPartialService.png; sourceTree = "<group>"; };
-		46CA9EA21B52C43A0058076F /* indegoPartialService@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoPartialService@2x.png"; sourceTree = "<group>"; };
-		46CA9EA31B52C43A0058076F /* indegoSpecialEvent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indegoSpecialEvent.png; sourceTree = "<group>"; };
-		46CA9EA41B52C43A0058076F /* indegoSpecialEvent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoSpecialEvent@2x.png"; sourceTree = "<group>"; };
-		46CA9EA51B52C43A0058076F /* indegoUnavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indegoUnavailable.png; sourceTree = "<group>"; };
-		46CA9EA61B52C43A0058076F /* indegoUnavailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indegoUnavailable@2x.png"; sourceTree = "<group>"; };
 		46CA9EB11B52C9E70058076F /* IndegoStationStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndegoStationStrings.m; sourceTree = "<group>"; };
 		46CA9EB31B52CA030058076F /* IndegoStationStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndegoStationStrings.h; sourceTree = "<group>"; };
 		6411996010683D7500C201F0 /* RecordTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RecordTripViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -541,11 +521,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46D0BD371B561E8A008194E4 /* Indego Icons */,
 				DAA6D2D61978FF63004A83F6 /* Images.xcassets */,
 				9D46482B1604EF3800A4F9CB /* TabBarIcons V2 */,
 				9D4648201604EF2F00A4F9CB /* UI Elements */,
 				9D4647FB1604EF2600A4F9CB /* TripPurposePickerIcons V3 */,
-				9D4647C61604EF1200A4F9CB /* Depricated Images */,
+				9D4647C61604EF1200A4F9CB /* Deprecated Images */,
 				9D4647A81604EBF400A4F9CB /* Button Icons */,
 				6411A185106A90E400C201F0 /* TripPurposePickerIcons v2 */,
 				6411A16A106A05DE00C201F0 /* Images */,
@@ -588,6 +569,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		46D0BD371B561E8A008194E4 /* Indego Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Indego Icons";
+			sourceTree = "<group>";
+		};
 		6411992B1068371B00C201F0 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,16 +607,6 @@
 		6411A16A106A05DE00C201F0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				46CA9E9D1B52C43A0058076F /* indegoActive.png */,
-				46CA9E9E1B52C43A0058076F /* indegoActive@2x.png */,
-				46CA9E9F1B52C43A0058076F /* indegoComingSoon.png */,
-				46CA9EA01B52C43A0058076F /* indegoComingSoon@2x.png */,
-				46CA9EA11B52C43A0058076F /* indegoPartialService.png */,
-				46CA9EA21B52C43A0058076F /* indegoPartialService@2x.png */,
-				46CA9EA31B52C43A0058076F /* indegoSpecialEvent.png */,
-				46CA9EA41B52C43A0058076F /* indegoSpecialEvent@2x.png */,
-				46CA9EA51B52C43A0058076F /* indegoUnavailable.png */,
-				46CA9EA61B52C43A0058076F /* indegoUnavailable@2x.png */,
 				9D3CDAD016D6F7A900F423B8 /* lcdScreen.png */,
 				9D3CDAD116D6F7A900F423B8 /* lcdScreen@2x.png */,
 				9D3CDAD216D6F7A900F423B8 /* photoFrame.png */,
@@ -685,7 +663,7 @@
 			path = "Button Icons";
 			sourceTree = "<group>";
 		};
-		9D4647C61604EF1200A4F9CB /* Depricated Images */ = {
+		9D4647C61604EF1200A4F9CB /* Deprecated Images */ = {
 			isa = PBXGroup;
 			children = (
 				9D4647C71604EF1200A4F9CB /* 20-gear2.png */,
@@ -714,7 +692,7 @@
 				9D4647DE1604EF1200A4F9CB /* UnlockIcon.png */,
 				9D4647E01604EF1200A4F9CB /* yellowslide.png */,
 			);
-			path = "Depricated Images";
+			path = "Deprecated Images";
 			sourceTree = "<group>";
 		};
 		9D4647FB1604EF2600A4F9CB /* TripPurposePickerIcons V3 */ = {
@@ -851,30 +829,25 @@
 				64577E29106DC2FD003ACBFD /* dist.plist in Resources */,
 				642F150C1071D9910050BCB9 /* MapViewController.xib in Resources */,
 				6458114E107AA4D30075DABD /* bicycle-bell-normalized.aiff in Resources */,
-				46CA9EAC1B52C43A0058076F /* indegoPartialService@2x.png in Resources */,
 				644ED3E410853DEC008725A8 /* commuter2.png in Resources */,
 				64210F29113508B800415F1A /* MainWindow.xib in Resources */,
 				64FCC5B411352242000FA1B6 /* PersonalInfo.xib in Resources */,
 				64C8D40311386B26008BCADE /* RecordMap.xib in Resources */,
 				9D4647B71604EBF400A4F9CB /* blueButton.png in Resources */,
-				46CA9EA71B52C43A0058076F /* indegoActive.png in Resources */,
 				9D4647B81604EBF400A4F9CB /* blueButton@2x.png in Resources */,
 				9D4647B91604EBF400A4F9CB /* blueButtonHighlight.png in Resources */,
-				46CA9EAA1B52C43A0058076F /* indegoComingSoon@2x.png in Resources */,
 				9D4647BA1604EBF400A4F9CB /* blueButtonHighlight@2x.png in Resources */,
 				9D4647BB1604EBF400A4F9CB /* greenButton.png in Resources */,
 				9D4647BC1604EBF400A4F9CB /* greenButton@2x.png in Resources */,
 				9D4647BD1604EBF400A4F9CB /* greenButtonHighlight.png in Resources */,
 				9D4647BE1604EBF400A4F9CB /* greenButtonHighlight@2x.png in Resources */,
 				9D4647BF1604EBF400A4F9CB /* greyButton.png in Resources */,
-				46CA9EA91B52C43A0058076F /* indegoComingSoon.png in Resources */,
 				9D4647C01604EBF400A4F9CB /* greyButton@2x.png in Resources */,
 				9D4647C11604EBF400A4F9CB /* redButton.png in Resources */,
 				9D4647C21604EBF400A4F9CB /* redButton@2x.png in Resources */,
 				9D4647C31604EBF400A4F9CB /* redButtonHighlight.png in Resources */,
 				9D4647C41604EBF400A4F9CB /* redButtonHighlight@2x.png in Resources */,
 				9D4647E11604EF1200A4F9CB /* 20-gear2.png in Resources */,
-				46CA9EAF1B52C43A0058076F /* indegoUnavailable.png in Resources */,
 				9D4647E21604EF1200A4F9CB /* ArrowButton.png in Resources */,
 				9D4647E31604EF1200A4F9CB /* cancel_button.png in Resources */,
 				9D4647E41604EF1200A4F9CB /* ClearArrowButton.png in Resources */,
@@ -886,7 +859,6 @@
 				9D4647EA1604EF1200A4F9CB /* LargeCounter.png in Resources */,
 				9D4647EB1604EF1200A4F9CB /* lock_button1.png in Resources */,
 				9D4647EC1604EF1200A4F9CB /* lock_button2.png in Resources */,
-				46CA9EB01B52C43A0058076F /* indegoUnavailable@2x.png in Resources */,
 				9D4647ED1604EF1200A4F9CB /* lock_button_fpo.png in Resources */,
 				9D4647EE1604EF1200A4F9CB /* LockIcon.png in Resources */,
 				4688ACAB1902CF1B00A67FAF /* TookTransitViewController.xib in Resources */,
@@ -900,7 +872,6 @@
 				9D4647F61604EF1200A4F9CB /* start_button.png in Resources */,
 				9D4647F71604EF1200A4F9CB /* start_button_selected.png in Resources */,
 				9D4647F81604EF1200A4F9CB /* UnlockIcon.png in Resources */,
-				46CA9EAE1B52C43A0058076F /* indegoSpecialEvent@2x.png in Resources */,
 				9D4647FA1604EF1200A4F9CB /* yellowslide.png in Resources */,
 				9D46480E1604EF2600A4F9CB /* commute.png in Resources */,
 				9D46480F1604EF2600A4F9CB /* commute@2x.png in Resources */,
@@ -929,11 +900,8 @@
 				9D4648341604EF3800A4F9CB /* tabbar_instructions.png in Resources */,
 				9D4648351604EF3800A4F9CB /* tabbar_instructions@2x.png in Resources */,
 				9D4648361604EF3800A4F9CB /* tabbar_record.png in Resources */,
-				46CA9EAB1B52C43A0058076F /* indegoPartialService.png in Resources */,
 				9D4648371604EF3800A4F9CB /* tabbar_record@2x.png in Resources */,
 				9D4648381604EF3800A4F9CB /* tabbar_settings.png in Resources */,
-				46CA9EAD1B52C43A0058076F /* indegoSpecialEvent.png in Resources */,
-				46CA9EA81B52C43A0058076F /* indegoActive@2x.png in Resources */,
 				9D4648391604EF3800A4F9CB /* tabbar_settings@2x.png in Resources */,
 				9D46483A1604EF3800A4F9CB /* tabbar_view.png in Resources */,
 				9D46483B1604EF3800A4F9CB /* tabbar_view@2x.png in Resources */,
