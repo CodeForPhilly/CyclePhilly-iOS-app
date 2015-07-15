@@ -393,7 +393,6 @@
 		DA9A6F191832C70D0038A071 /* appIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon58x58.png; sourceTree = "<group>"; };
 		DA9A6F1A1832C7500038A071 /* appIcon@Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@Retina.png"; sourceTree = "<group>"; };
 		DAA6D2D61978FF63004A83F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Cycle Philly/Images.xcassets"; sourceTree = "<group>"; };
-		DAFD01681832C4270037CC9B /* appicon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon57x57.png; path = Images/appicon57x57.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,11 +487,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				DA9A6F1A1832C7500038A071 /* appIcon@Retina.png */,
-				DA9A6F191832C70D0038A071 /* appIcon58x58.png */,
-				DA9A6F181832C6C40038A071 /* appIcon29x29.png */,
-				DA9A6F171832C5CA0038A071 /* appretina.png */,
-				DAFD01681832C4270037CC9B /* appicon57x57.png */,
 				9D504DA316B6D0AE00B99EBC /* libz.dylib */,
 				64119AA81068672100C201F0 /* Trip Purpose data source */,
 				6411992B1068371B00C201F0 /* Data Model */,
@@ -521,6 +515,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46D0BD3A1B5621F8008194E4 /* AppIcons */,
 				46D0BD371B561E8A008194E4 /* Indego Icons */,
 				DAA6D2D61978FF63004A83F6 /* Images.xcassets */,
 				9D46482B1604EF3800A4F9CB /* TabBarIcons V2 */,
@@ -574,6 +569,17 @@
 			children = (
 			);
 			name = "Indego Icons";
+			sourceTree = "<group>";
+		};
+		46D0BD3A1B5621F8008194E4 /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				DA9A6F1A1832C7500038A071 /* appIcon@Retina.png */,
+				DA9A6F191832C70D0038A071 /* appIcon58x58.png */,
+				DA9A6F181832C6C40038A071 /* appIcon29x29.png */,
+				DA9A6F171832C5CA0038A071 /* appretina.png */,
+			);
+			path = AppIcons;
 			sourceTree = "<group>";
 		};
 		6411992B1068371B00C201F0 /* Data Model */ = {
