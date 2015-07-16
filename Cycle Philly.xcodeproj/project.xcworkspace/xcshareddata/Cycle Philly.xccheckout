@@ -12,12 +12,16 @@
 	<dict>
 		<key>6110CC6252755727643E36F2E3E0B2B306648F28</key>
 		<string>https://github.com/PhillyOpen/Cycle-Philly-iOS.git</string>
+		<key>97BCBF0230202DF50BD97BB75A9558D280E2EE38</key>
+		<string>https://github.com/PhillyOpen/Cycle-Philly-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Cycle Philly.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6110CC6252755727643E36F2E3E0B2B306648F28</key>
+		<string>../..</string>
+		<key>97BCBF0230202DF50BD97BB75A9558D280E2EE38</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -32,7 +36,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6110CC6252755727643E36F2E3E0B2B306648F28</string>
+			<string>97BCBF0230202DF50BD97BB75A9558D280E2EE38</string>
 			<key>IDESourceControlWCCName</key>
 			<string></string>
 		</dict>

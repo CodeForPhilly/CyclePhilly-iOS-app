@@ -309,7 +309,6 @@
 		8FAD930316F189EE00082B6F /* UIImageViewResizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageViewResizable.h; path = ../UIImageViewResizable.h; sourceTree = "<group>"; };
 		8FAD930416F189EE00082B6F /* UIImageViewResizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageViewResizable.m; path = ../UIImageViewResizable.m; sourceTree = "<group>"; };
 		8FBCD3C916E0E58100C11EBE /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoteViewController.xib; path = Classes/NoteViewController.xib; sourceTree = "<group>"; };
-		8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8FD696E51655E35800324E6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8FD696E81655E36600324E6E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9D3281D916EE46C8004C4AF2 /* noteAssetMapGlyph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noteAssetMapGlyph.png; sourceTree = "<group>"; };
@@ -398,10 +397,6 @@
 		9D4648331604EF3800A4F9CB /* tabbar_view@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_view@2x.png"; sourceTree = "<group>"; };
 		9D47F8F9160BA4E900B8B14D /* appStoreIcon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appStoreIcon512.png; path = Images/appStoreIcon512.png; sourceTree = "<group>"; };
 		9D47F8FA160BA4E900B8B14D /* appStoreIcon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appStoreIcon1024.png; path = Images/appStoreIcon1024.png; sourceTree = "<group>"; };
-		9D47F905160BA50000B8B14D /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
-		9D47F907160BA50C00B8B14D /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
-		9D47F909160BA52C00B8B14D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		9D47F90B160BA53000B8B14D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9D4CB08816EAC2410038A96F /* tripEnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tripEnd.png; sourceTree = "<group>"; };
 		9D4CB08916EAC2420038A96F /* tripEnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tripEnd@2x.png"; sourceTree = "<group>"; };
 		9D4CB08A16EAC2450038A96F /* tripStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tripStart.png; sourceTree = "<group>"; };
@@ -664,11 +659,6 @@
 				9D3CDAD116D6F7A900F423B8 /* lcdScreen@2x.png */,
 				9D3CDAD216D6F7A900F423B8 /* photoFrame.png */,
 				9D3CDAD316D6F7A900F423B8 /* photoFrame@2x.png */,
-				9D47F909160BA52C00B8B14D /* Default.png */,
-				9D47F90B160BA53000B8B14D /* Default@2x.png */,
-				8FD62A3B16B2253100B54A35 /* Default-568h@2x.png */,
-				9D47F907160BA50C00B8B14D /* appIcon@2x.png */,
-				9D47F905160BA50000B8B14D /* appIcon.png */,
 				9D47F8F9160BA4E900B8B14D /* appStoreIcon512.png */,
 				9D47F8FA160BA4E900B8B14D /* appStoreIcon1024.png */,
 			);
