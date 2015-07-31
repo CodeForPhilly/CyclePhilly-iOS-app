@@ -793,6 +793,7 @@
     // load map view of saved trip
     MapViewController *mvc = [[MapViewController alloc] initWithTrip:trip];
     [[self navigationController] pushViewController:mvc animated:YES];
+    
     [mvc release];
 }
 
@@ -1047,6 +1048,7 @@
 
 
 - (void)dealloc {
+
     self.trips = nil;
     self.managedObjectContext = nil;
     self.delegate = nil;

@@ -157,7 +157,7 @@
     [super viewDidLoad];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     self.navigationController.navigationBarHidden = NO;
-    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+    self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -386,93 +386,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    UIImage *thumbnailOriginal;
-    thumbnailOriginal = [self screenshot];
-    
-    CGRect clippedRect  = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+160, self.view.frame.size.width, self.view.frame.size.height);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([thumbnailOriginal CGImage], clippedRect);
-    UIImage *newImage   = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    CGSize size;
-    size.height = 72;
-    size.width = 72;
-    
-    UIImage *thumbnail;
-    thumbnail = shrinkImage(newImage, size);
-    
-    NSData *thumbnailData = [[[NSData alloc] initWithData:UIImageJPEGRepresentation(thumbnail, 0)] autorelease];
-    NSLog(@"Size of Thumbnail Image(bytes):%lu",(unsigned long)[thumbnailData length]);
-    NSLog(@"Size: %f, %f", thumbnail.size.height, thumbnail.size.width);
-    
-    [delegate getTripThumbnail:thumbnailData];
+    [self.locationManager stopUpdatingLocation];
     [delegate release];
 }
-
-
-UIImage *shrinkImage(UIImage *original, CGSize size) {
-    CGFloat scale = [UIScreen mainScreen].scale;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGContextRef context = CGBitmapContextCreate(NULL, size.width * scale,
-                                                 size.height * scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedFirst);
-    CGContextDrawImage(context,
-                       CGRectMake(0, 0, size.width * scale, size.height * scale),
-                       original.CGImage);
-    CGImageRef shrunken = CGBitmapContextCreateImage(context);
-    UIImage *final = [UIImage imageWithCGImage:shrunken];
-    
-    CGContextRelease(context);
-    CGImageRelease(shrunken);
-    CGColorSpaceRelease(colorSpace);
-    return final;
-}
-
-
-- (UIImage*)screenshot
-{
-    NSLog(@"Screen Shoot");
-    // Create a graphics context with the target size
-    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // Iterate over every window from back to front
-    for (UIWindow *window in [[UIApplication sharedApplication] windows])
-    {
-        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen])
-        {
-            // -renderInContext: renders in the coordinate space of the layer,
-            // so we must first apply the layer's geometry to the graphics context
-            CGContextSaveGState(context);
-            // Center the context around the window's anchor point
-            CGContextTranslateCTM(context, [window center].x, [window center].y);
-            // Apply the window's transform about the anchor point
-            CGContextConcatCTM(context, [window transform]);
-            // Offset by the portion of the bounds left of and above the anchor point
-            CGContextTranslateCTM(context,
-                                  -[window bounds].size.width * [[window layer] anchorPoint].x,
-                                  -[window bounds].size.height * [[window layer] anchorPoint].y+50);
-            
-            // Render the layer hierarchy to the current context
-            [[window layer] renderInContext:context];
-            
-            // Restore the context
-            CGContextRestoreGState(context);
-        }
-    }
-    
-    // Retrieve the screenshot image
-    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return screenImage;
-}
-
-
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -620,12 +536,8 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
 }
 
 - (void)dealloc {
-    self.trip = nil;
-    self.doneButton = nil;
-    self.flipButton = nil;
-    self.infoView = nil;
-    self.routeLine = nil;
-    self.delegate = nil;
+    
+    [super dealloc];
     
     [delegate release];
 	[doneButton release];
@@ -635,8 +547,6 @@ UIImage *shrinkImage(UIImage *original, CGSize size) {
     [routeLine release];
     
     [mapView release];
-    
-    [super dealloc];
 }
 
 
