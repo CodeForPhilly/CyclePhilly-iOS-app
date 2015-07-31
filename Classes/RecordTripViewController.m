@@ -95,7 +95,7 @@
         return appDelegate.locationManager;
     }
 	
-    appDelegate.locationManager = [[[CLLocationManager alloc] init] autorelease];
+    appDelegate.locationManager = [[CLLocationManager alloc] init];
     appDelegate.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     //locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     appDelegate.locationManager.delegate = self;
@@ -818,6 +818,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.locationManager stopUpdatingLocation];
+}
 
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -1026,7 +1031,6 @@ shouldSelectViewController:(UIViewController *)viewController
     self.appDelegate = nil;
     speedCounter = nil;
     
-//    [appDelegate.locationManager release];
     [appDelegate release];
     [infoButton release];
     [saveButton release];
