@@ -276,7 +276,7 @@
 	[[self getLocationManager] startUpdatingLocation];
     
     NSLog(@"Going to load Indego station data");
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.phila.gov/bike-share-stations/v1"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.cyclephilly.org/jsonservice/Indego/citystations.json"]];
     [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
     
 	// check if any user data has already been saved and pre-select personal info cell accordingly
