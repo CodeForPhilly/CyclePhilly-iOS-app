@@ -276,8 +276,26 @@
 	[[self getLocationManager] startUpdatingLocation];
     
     NSLog(@"Going to load Indego station data");
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.cyclephilly.org/jsonservice/Indego/citystations.json"]];
+   
+    // Old Kat code below
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.rideindego.com/stations/json/"]];
+    
     [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+   
+    // --- end old Kat code
+    
+    // new code CA trying to fix request with URL deprecation issue
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    
+//    NSURL *URL = [NSURL URLWithString:@"https://www.rideindego.com/stations/json/"];
+//    
+//    NSURLSessionTask *task = [session dataTaskWithURL:URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        // process response here
+//    }];
+//    
+//    [task resume];
+    
+ 
     
 	// check if any user data has already been saved and pre-select personal info cell accordingly
 	if ( [self hasUserInfoBeenSaved] )

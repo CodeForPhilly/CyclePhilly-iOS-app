@@ -455,7 +455,7 @@
     /* Note if user took Indego bike rental by appending |took_indego to
      end of notes field */
     if (trip) {
-        NSString *tripNote = @"|took_indego";
+        NSString *tripNote = @"|took_bikeshare";
         if (trip.notes) {
             tripNote = [trip.notes stringByAppendingString:tripNote];
         }
