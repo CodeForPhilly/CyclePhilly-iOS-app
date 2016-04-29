@@ -786,7 +786,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 6969LZKKE9;
@@ -1007,6 +1007,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodeforPhilly.Cycle;
 				PRODUCT_NAME = CyclePhilly;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1034,6 +1035,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodeforPhilly.Cycle;
 				PRODUCT_NAME = CyclePhilly;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1077,6 +1079,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodeforPhilly.Cycle;
 				PRODUCT_NAME = CyclePhilly;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D7C7187-369B-42E2-9E58-20421916EBBA";
@@ -1126,6 +1129,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodeforPhilly.Cycle;
 				PRODUCT_NAME = CyclePhilly;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1170,6 +1174,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodeforPhilly.Cycle;
 				PRODUCT_NAME = CyclePhilly;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1183,6 +1188,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kathryn Killebrew (4R28S5TJB2)";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

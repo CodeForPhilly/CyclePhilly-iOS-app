@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6110CC6252755727643E36F2E3E0B2B306648F28+++1751453",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6110CC6252755727643E36F2E3E0B2B306648F28+++1751453" : 0,
+    "6110CC6252755727643E36F2E3E0B2B306648F28+++4052AE6" : 0,
+    "6110CC6252755727643E36F2E3E0B2B306648F28+++07112F3" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8CDC3EE8-E2D7-4BF6-B686-6B14D1EB681E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6110CC6252755727643E36F2E3E0B2B306648F28+++1751453" : "CyclePhilly-iOS-app\/",
+    "6110CC6252755727643E36F2E3E0B2B306648F28+++4052AE6" : "",
+    "6110CC6252755727643E36F2E3E0B2B306648F28+++07112F3" : "CyclePhilly-iOS"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Cycle Philly",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Cycle Philly.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/PhillyOpen\/Cycle-Philly-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6110CC6252755727643E36F2E3E0B2B306648F28+++07112F3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:CfABrigadePhiladelphia\/CyclePhilly-iOS-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6110CC6252755727643E36F2E3E0B2B306648F28+++1751453"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/PhillyOpen\/Cycle-Philly-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6110CC6252755727643E36F2E3E0B2B306648F28+++4052AE6"
+    }
+  ]
+}
