@@ -643,13 +643,14 @@
             NSLog(@"Firebase success");
         }
     }];
+    // Corey commenting this out because we don't need to save images and I think it is causing an issue on upload.
     
     
 	// create save request - deprecating
-	SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
+	//SaveRequest *saveRequest = [[[SaveRequest alloc] initWithPostVars:postVars with:3 image:NULL] autorelease];
 	
 	// create the connection with the request and start loading the data
-	NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
+	//NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:[saveRequest request] delegate:self];
 	// create loading view to indicate trip is being uploaded
     //uploadingView = [[LoadingView loadingViewInView:parent.parentViewController.view messageString:kSavingTitle] retain];
 
@@ -657,16 +658,15 @@
     [(RecordTripViewController *)parent displayUploadedTripMap];
     
     //TODO: get screenshot and store.
-
-    if ( theConnection )
-     {
-         receivedData=[[NSMutableData data] retain];
-     }
-     else
-     {
-         // inform the user that the download could not be made
-     
-     }
+//    if ( theConnection )
+//     {
+//         receivedData=[[NSMutableData data] retain];
+//     }
+//     else
+//     {
+//         // inform the user that the download could not be made
+//     
+//     }
     
 }
 

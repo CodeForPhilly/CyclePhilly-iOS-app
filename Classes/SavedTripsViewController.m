@@ -209,14 +209,17 @@
 	// check for countUnSyncedTrips
 	else if ( [tripManager countUnSyncedTrips] )
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUnsyncedTitle
-														message:kUnsyncedMessage
-													   delegate:nil
-											  cancelButtonTitle:nil
-											  otherButtonTitles:@"OK", nil];
-		alert.tag = 303;
-		[alert show];
-		[alert release];
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kUnsyncedTitle
+//														message:kUnsyncedMessage
+//													   delegate:nil
+//											  cancelButtonTitle:nil
+//											  otherButtonTitles:@"OK", nil];
+//		alert.tag = 303;
+//		[alert show];
+//		[alert release];
+        
+        NSLog(@"found unsynced trips");
+
 	}
 	else
 		NSLog(@"no zero distance or unsynced trips found");
@@ -768,7 +771,9 @@
 			tripManager.parent = self;
             
             //prompt whether user wants to upload now
-            [self promptToConfirmRetryUpload];
+           // [self promptToConfirmRetryUpload];
+            
+            [self displaySelectedTripMap];
         }
 		
 		// else => goto map view

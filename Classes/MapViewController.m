@@ -163,6 +163,11 @@
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [self.locationManager requestAlwaysAuthorization];
     }
+    
+    if ([self.locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
+        [self.locationManager setAllowsBackgroundLocationUpdates:YES];
+    }
+    
     self->mapView.showsUserLocation = YES;
     [self.locationManager startUpdatingLocation];
     

@@ -31,7 +31,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>We need your location to track your routes. </string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIBackgroundModes</key>

@@ -252,8 +252,8 @@
     }
     
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-        self.locationManager.allowsBackgroundLocationUpdates = YES;
+    if ([self.locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
+        [self.locationManager setAllowsBackgroundLocationUpdates:YES];
     }
     
     self->mapView.showsUserLocation = YES;
